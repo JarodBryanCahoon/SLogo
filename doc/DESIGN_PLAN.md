@@ -9,3 +9,5 @@ The user interface is simple; it contains an overhead menu bar with dropdown men
 * Users can interact with the interface by selecting menu options from the bar, typing in SLOGO commands in the console, or (potentially later) clicking in the render screen (clicking on turtle, etc).
 * Errors reported to the user include bad syntax (potentially include realtime syntax help like eclipse or an IDE), empty/bad data, errors with turtle reported from backend, etc.
 * Clicking on the turtle may (in the future) select a turtle from multiple turtles, change pen color, etc. For now many of these options will be in the menu toolbar
+
+![Perfectly Rendered Image of Design](IMG_20171012_222408440.jpg)
