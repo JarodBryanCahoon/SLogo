@@ -4,6 +4,14 @@ Introduction
 * The primary design goals of this project are for the user to be able to manipulate one or many objects on the screen, both by the command line which will provided to the right of the display, and by clicking elements of the GUI. We want our code to be flexible enough to accomidate both new objects which have their own behaviors, and new commands which the user can input for the Object to do.
 * We plan to implement a hierarchical system which will allow the programmer to extend existing code to create new classes with unique behavior, but be closed to changing the methods that the object possesses. This will be done using an interface.
 
+Design Overview
+====================
+* In this project, we are planning on shoring up the project into four distinct APIs
+    1. External Frontend - This is essentially the display portion of the GUI, and will be what the user interacts with almost explicitly. For instance, buttons which the user clicks on the GUI would call these methods which would be accessable to to user.
+    2. Internal Frontend - Methods which will be called as a result of the GUI updating the panel which shows the appearance of the turtle. These methods will be public and open to call from other parts of the code, but the user cannot explicitly call these methods.
+    3. External Backend - The most straightforward example of this API would be the parser which the user triggers by entering commands into the REPL on the side of the GUI.
+    4. Internal Backend - Once the parser has interpreted the message from the user, it would call this API to appropriately move the turtle in whatever manner is necessary.
+
 User Interface
 =====================
 The user interface is simple; it contains an overhead menu bar with dropdown menu options, a render screen on the left to display sprites/turtles/pen movements, a console on the right that allows the user to type in code, and a debug screen on the bottom that shows the users errors in coding, etc. 
