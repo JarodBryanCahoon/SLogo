@@ -31,3 +31,10 @@ The user interface is simple; it contains an overhead menu bar with dropdown men
 
 API Details
 ========================
+
+Team Responsibilites
+===========================
+1. Jarod - Logic of the Turtles, their behavior, etc. These methods will be called from the Information parser, i.e. Venkat
+2. Venkat - Information Parser - Takes written commands and then calls the appropriate methods which the user desired.
+3. Albert - Frontend with Lasia
+4. Lasi - Frontend with Albert
