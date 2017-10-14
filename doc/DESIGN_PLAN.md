@@ -1,16 +1,24 @@
 Introduction
-====================
-* In this project, our main objective is to parse user input (commands) about how they should be moving a turtle (or turtles) across the screen from where they have originated.
-* The primary design goals of this project are for the user to be able to manipulate one or many objects on the screen, both by the command line which will provided to the right of the display, and by clicking elements of the GUI. We want our code to be flexible enough to accomidate both new objects which have their own behaviors, and new commands which the user can input for the Object to do.
-* We plan to implement a hierarchical system which will allow the programmer to extend existing code to create new classes with unique behavior, but be closed to changing the methods that the object possesses. This will be done using an interface.
+=================
+* Our design will follow the Model-View-Controller architecture. The primary design goal of this architecture is to provide a level of abstraction in how models (turtles in this case) will be manipulated.
+    * The backend model and frontend view would be held together with a central controller that processes command logic
+    * Our group is trying to provide extensibility in how we process commands in order to handle more than just the basics provided
+    * The ability to add new commands, to add features to the model, and vary the structure of the frontend is open. Everything else is closed.
+        * Ideally, MVC would allow us to substitutue an entirely new controller as long as the APIs remain the same.  
+    * The primary design goals of this project are for the user to be able to manipulate one or many objects on the screen, both by the command line which will provided to the right of the display, and by clicking elements of the GUI. We want our code to be flexible enough to accomidate both new objects which have their own behaviors, and new commands which the user can input for the Object to do.
+    * We plan to implement a hierarchical system which will allow the programmer to extend existing code to create new classes with unique behavior, but be closed to changing the methods that the object possesses. This will be done using an interface.
+
 
 Design Overview
-====================
-* In this project, we are planning on shoring up the project into four distinct APIs
-    1. External Frontend - This is essentially the display portion of the GUI, and will be what the user interacts with almost explicitly. For instance, buttons which the user clicks on the GUI would call these methods which would be accessable to to user.
-    2. Internal Frontend - Methods which will be called as a result of the GUI updating the panel which shows the appearance of the turtle. These methods will be public and open to call from other parts of the code, but the user cannot explicitly call these methods.
-    3. External Backend - The most straightforward example of this API would be the parser which the user triggers by entering commands into the REPL on the side of the GUI.
-    4. Internal Backend - Once the parser has interpreted the message from the user, it would call this API to appropriately move the turtle in whatever manner is necessary. For example: 
+===================
+* External APIs will be linked to either "side" of the Controller
+    * Frontend -> Backend
+        * Give commands
+        * Change language
+    * Backend -> Frontend
+        * Change Turtles
+        * Give errors
+        * Change GUI config
 
 User Interface
 =====================
@@ -22,18 +30,4 @@ The user interface is simple; it contains an overhead menu bar with dropdown men
 ![Perfectly Rendered Image of Design](IMG_20171012_222408440.jpg)
 
 API Details
-=====================
-* 
-
-API Example Code
-=====================
-
-Design Considerations
-=====================
-* Still somewhat unsure where several of the things are going to be handled.
-
-Team Responsibilities 
-=====================
-1. Jarod - Logic of the Turtles, their behavior, etc. These methods will be called from the Information parser, i.e. Venkat
-2. Venkat - Information Parser - Takes written commands and then calls the appropriate methods which the user desired.
-
+========================
