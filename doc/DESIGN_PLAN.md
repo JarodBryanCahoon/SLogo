@@ -10,7 +10,7 @@ Design Overview
     1. External Frontend - This is essentially the display portion of the GUI, and will be what the user interacts with almost explicitly. For instance, buttons which the user clicks on the GUI would call these methods which would be accessable to to user.
     2. Internal Frontend - Methods which will be called as a result of the GUI updating the panel which shows the appearance of the turtle. These methods will be public and open to call from other parts of the code, but the user cannot explicitly call these methods.
     3. External Backend - The most straightforward example of this API would be the parser which the user triggers by entering commands into the REPL on the side of the GUI.
-    4. Internal Backend - Once the parser has interpreted the message from the user, it would call this API to appropriately move the turtle in whatever manner is necessary.
+    4. Internal Backend - Once the parser has interpreted the message from the user, it would call this API to appropriately move the turtle in whatever manner is necessary. For example: 
 
 User Interface
 =====================
@@ -21,8 +21,16 @@ The user interface is simple; it contains an overhead menu bar with dropdown men
 
 ![Perfectly Rendered Image of Design](IMG_20171012_222408440.jpg)
 
+API Details
+=====================
+* 
+
+API Example Code
+=====================
+
 Design Considerations
 =====================
+* Still somewhat unsure where several of the things are going to be handled.
 
 Team Responsibilities 
 =====================
