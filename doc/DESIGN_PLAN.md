@@ -1,4 +1,5 @@
-### Introduction
+Introduction
+====================
 * In this project, our main objective is to parse user input (commands) about how they should be moving a turtle (or turtles) across the screen from where they have originated.
 * The primary design goals of this project are for the user to be able to manipulate one or many objects on the screen, both by the command line which will provided to the right of the display, and by clicking elements of the GUI. We want our code to be flexible enough to accomidate both new objects which have their own behaviors, and new commands which the user can input for the Object to do.
 * We plan to implement a hierarchical system which will allow the programmer to extend existing code to create new classes with unique behavior, but be closed to changing the methods that the object possesses. This will be done using an interface.
