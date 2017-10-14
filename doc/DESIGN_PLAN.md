@@ -20,3 +20,12 @@ The user interface is simple; it contains an overhead menu bar with dropdown men
 * Clicking on the turtle may (in the future) select a turtle from multiple turtles, change pen color, etc. For now many of these options will be in the menu toolbar
 
 ![Perfectly Rendered Image of Design](IMG_20171012_222408440.jpg)
+
+Design Considerations
+=====================
+
+Team Responsibilities 
+=====================
+1. Jarod - Logic of the Turtles, their behavior, etc. These methods will be called from the Information parser, i.e. Venkat
+2. Venkat - Information Parser - Takes written commands and then calls the appropriate methods which the user desired.
+
