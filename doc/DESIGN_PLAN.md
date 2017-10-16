@@ -2,6 +2,7 @@ Introduction
 =================
 * Our design will follow the Model-View-Controller architecture. The primary design goal of this architecture is to provide a level of abstraction in how models (turtles in this case) will be manipulated.
     * The backend model and frontend view would be held together with a central controller that processes command logic
+    * The frontend view will be able to change based on changes in the turtle model through the observer/observable pattern
     * Our group is trying to provide extensibility in how we process commands in order to handle more than just the basics provided
     * The ability to add new commands, to add features to the model, and vary the structure of the frontend is open. Everything else is closed.
         * Ideally, MVC would allow us to substitutue an entirely new controller as long as the APIs remain the same.  
@@ -13,12 +14,23 @@ Design Overview
 ===================
 * External APIs will be linked to either "side" of the Controller
     * Frontend -> Backend
-        * Give commands
-        * Change language
+        * clearScreen()
+        * showError(String error)
     * Backend -> Frontend
-        * Change Turtles
-        * Give errors
-        * Change GUI config
+        * setX(int X)
+        * setY(int Y)
+        * rotateLeft(int degrees)
+        * rotateRight(int degrees)
+        * setHeading(int degrees)
+        * penUp();
+        * penDown();
+        * showTurtle();
+        * hideTurtle();
+        * addTurtle(Listener TurtleListener)
+* Internal APIs
+    * Frontend
+        * addWindow()
+    * Backend
 
 User Interface
 =====================
