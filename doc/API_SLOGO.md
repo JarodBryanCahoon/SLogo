@@ -1,15 +1,20 @@
-* External
+* External APIs
     * Frontend -> Backend
-        * Give commands
-        * Language change
+        * clearScreen()
+        * showError(String error)
     * Backend -> Frontend
-        * Give RenderTurtles back
-        * Give Errors
-        * Give GUI Config
-        
-* Internal
+        * setX(int X)
+        * setY(int Y)
+        * rotateLeft(int degrees)
+        * rotateRight(int degrees)
+        * setHeading(int degrees)
+        * penUp();
+        * penDown();
+        * showTurtle();
+        * hideTurtle();
+        * addTurtle(Listener TurtleListener)
+* Internal APIs
     * Frontend
-    
+        * addWindow()
     * Backend
-        * Add commands to internal list of support commands
 
