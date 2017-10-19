@@ -1,15 +1,16 @@
-package frontend.windows;
+package frontend.modules;
 
 import java.util.List;
 
 import javafx.scene.Node;
 import javafx.scene.Parent;
 
-public abstract class Window {
-	int myWidth;
-	int myHeight;
-	Parent myParent;
-	public Window(int width, int height, Parent parent) {
+public abstract class Module {
+	private int myWidth;
+	private int myHeight;
+	private Parent myParent;
+
+	public Module(int width, int height, Parent parent /*, backend backend */) {
 		myWidth = width;
 		myHeight = height;
 		myParent = parent;
@@ -24,4 +25,10 @@ public abstract class Window {
 	public Parent getParent() {
 		return myParent;
 	}
+	
+	/* 
+	 * public backend getBackend() {
+	 * 	return backend
+	 * }
+	 */
 }
