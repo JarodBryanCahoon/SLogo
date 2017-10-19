@@ -1,7 +1,7 @@
 package test;
 
-import frontend.windows.ConsoleModule;
-import frontend.windows.Modules;
+import frontend.modules.ConsoleModule;
+import frontend.modules.Module;
 import javafx.application.Application;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -13,7 +13,7 @@ public class ModulesTester extends Application{
 	public void start(Stage stage) {
 		
 		// Change test to whatever module you want
-		Modules test = new ConsoleModule (WIDTH,HEIGHT);
+		Module test = new ConsoleModule (WIDTH,HEIGHT);
 		
 		Parent parent = test.getParent();
 		Scene scene = new Scene(parent);
