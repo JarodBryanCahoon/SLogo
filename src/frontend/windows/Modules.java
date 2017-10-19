@@ -9,11 +9,13 @@ public abstract class Modules {
 	int myWidth;
 	int myHeight;
 	Parent myParent;
-	public Modules(int width, int height, Parent parent) {
+	public Modules(int width, int height) {
 		myWidth = width;
 		myHeight = height;
-		myParent = parent;
+		myParent = createParent();
 	}
+	protected abstract Parent createParent();
+	
 	
 	protected void addChildren(List<Node> myNodes) {
 		for(Node node : myNodes) {

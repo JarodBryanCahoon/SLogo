@@ -1,18 +1,27 @@
 package frontend.windows;
 
+import javafx.scene.Parent;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 
 public class ConsoleModule extends Modules {
+	private VBox vbox;
 	public ConsoleModule(int width, int height) {
-		super(width, height, new VBox());
+		super(width, height);
+		
+	}
+	
+	@Override
+	protected Parent createParent() {
+		vbox = new VBox();
 		addMessageBox();
 		addHistory();
+		return vbox;
 	}
-
+	
 	private void addMessageBox() {
 		TextField textField = new TextField();
-		myParent.getChildrenUnmodifiable().add(textField);
+		vbox.getChildren().add(textField);
 		}
 
 	private void addHistory() {
