@@ -10,14 +10,15 @@ import javafx.scene.Parent;
 public class RenderModule extends Module{
 	
 	private List<SpriteObserver> myObservers;
-	public RenderModule(int width, int height) {
+//	private List<Sprite> mySprite;
+	public RenderModule(int width, int height) throws Exception {
 		super(width, height);
 	}
 	
 	@Override
-	protected Parent createParent() {
-		// TODO Auto-generated method stub
-		return null;
+	protected Parent createParent() throws Exception {
+		Group myGroup = new Group();
+		return myGroup;
 	}
 	
 	

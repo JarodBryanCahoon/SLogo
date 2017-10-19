@@ -1,15 +1,24 @@
 package frontend.modules;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
+import frontend.xml.ModuleStyleReader;
+import frontend.xml.XMLReader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 
 public class ViewModule extends Module{
-	public ViewModule(int width, int height) {
+	private String moduleFileName = "modules.txt";
+	
+	private List<Module> myModules;
+	public ViewModule(int width, int height) throws Exception {
 		super(width, height);
+		ModuleStyleReader mStyleReader = new ModuleStyleReader(getClass().getClassLoader().getResource(moduleFileName).getFile());
+		myModules = mStyleReader.readFromFile();
 	}
 	
 	private void displayWindows() {
@@ -17,8 +26,8 @@ public class ViewModule extends Module{
 	}
 
 	@Override
-	protected Parent createParent() {
-		// TODO Auto-generated method stub
+	protected Parent createParent() throws Exception {
+		
 		return null;
 	}
 

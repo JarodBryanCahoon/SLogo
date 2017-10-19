@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 public class ModulesTester extends Application{
 	private int WIDTH, HEIGHT = 500;
 	@Override
-	public void start(Stage stage) {
+	public void start(Stage stage) throws Exception {
 		
 		// Change test to whatever module you want
 		Module test = new ConsoleModule (WIDTH,HEIGHT);

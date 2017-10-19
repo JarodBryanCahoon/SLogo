@@ -6,7 +6,7 @@ import javafx.scene.layout.VBox;
 
 public class ConsoleModule extends Module {
 	private VBox vbox;
-	public ConsoleModule(int width, int height) {
+	public ConsoleModule(int width, int height) throws Exception {
 		super(width, height);
 		
 	}
