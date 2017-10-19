@@ -11,7 +11,13 @@ public class RenderModule extends Module{
 	
 	private List<SpriteObserver> myObservers;
 	public RenderModule(int width, int height) {
-		super(width, height, new Group());
+		super(width, height);
+	}
+	
+	@Override
+	protected Parent createParent() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	
