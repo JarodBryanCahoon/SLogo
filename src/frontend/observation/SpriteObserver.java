@@ -1,4 +1,4 @@
-package frontend.observables;
+package frontend.observation;
 
 import java.util.Observer;
 
