@@ -1,4 +1,4 @@
-package backend.Evaluators;
+package backend.evaluators;
 
 import java.util.Collection;
 
