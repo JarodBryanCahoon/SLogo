@@ -1,4 +1,4 @@
-package frontend.windows;
+package frontend.modules;
 
 import java.util.List;
 
@@ -9,9 +9,9 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 
-public class ConsoleModule extends Modules {
+public class ConsoleModule extends Module {
 	private VBox vbox;
-	public ConsoleModule(int width, int height) {
+	public ConsoleModule(int width, int height) throws Exception {
 		super(width, height);
 		
 	}
@@ -37,3 +37,4 @@ public class ConsoleModule extends Modules {
 	                  
 
 }
+
