@@ -1,6 +1,11 @@
 package frontend.windows;
 
+import java.util.List;
+
+import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 
@@ -15,7 +20,7 @@ public class ConsoleModule extends Modules {
 	protected Parent createParent() {
 		vbox = new VBox();
 		addMessageBox();
-		addHistory();
+//		addHistory();
 		return vbox;
 	}
 	
@@ -25,8 +30,9 @@ public class ConsoleModule extends Modules {
 		}
 
 	private void addHistory() {
-		// TODO Auto-generated method stub
-		
+		ScrollPane historyPane = new ScrollPane();
+		TextArea textArea = new TextArea();
+		List<Object> historyList = backend.getHistory();
 	}
 	                  
 
