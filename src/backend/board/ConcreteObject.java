@@ -1,6 +1,6 @@
 package backend.board;
 
-public class ConcreteObject implements GeneralObject {
+public abstract class ConcreteObject implements GeneralObject {
 	
 	public double moveForward() {
 		// TODO Auto-generated method stub
