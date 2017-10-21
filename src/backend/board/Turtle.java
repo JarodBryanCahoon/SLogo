@@ -6,6 +6,8 @@ package backend.board;
  *
  */
 public class Turtle extends ConcreteObject{
+		public static final double STARTING_ANGLE = 90;
+		public static final double[] STARTING_POSITION = {0,0};
 		private double myXPos;
 		private double myYPos;
 		private double myAngle;
@@ -13,8 +15,9 @@ public class Turtle extends ConcreteObject{
 		private boolean myOpacity;
 
 		public Turtle() {
-			myYPos = myXPos = 0;
-			myAngle = 90; 
+			myXPos = STARTING_POSITION[0];
+			myYPos = STARTING_POSITION[1];
+			myAngle = STARTING_ANGLE; 
 			myPenDown = true;
 			myOpacity = true;
 		}
@@ -42,19 +45,15 @@ public class Turtle extends ConcreteObject{
 			return addAngle;
 		}
 	
-		public double setAngle() {
-			// TODO Auto-generated method stub
+		public double setAngle(double angle) {
+			myAngle = angle;
 			return 0;
 		}
 	
 		public double setHome() {
-			// TODO Auto-generated method stub
-			return 0;
-		}
-	
-		public double clearScreen() {
-			// TODO Auto-generated method stub
-			return 0;
+			double distance = TurtleMath.pointDistance(0, 0, myXPos, myYPos);
+			myXPos = myYPos = 0;
+			return distance;
 		}
 	
 		public double Hide() {
