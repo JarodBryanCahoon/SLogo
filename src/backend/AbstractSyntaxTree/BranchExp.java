@@ -1,6 +1,6 @@
 package backend.AbstractSyntaxTree;
 
-public class BranchExp {
+public class BranchExp extends Expression{
 	boolean val;
 	
 	public BranchExp(boolean b) {
