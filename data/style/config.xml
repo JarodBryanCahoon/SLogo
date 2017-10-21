@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<resource>
+<resources>
 	<module>
 		<class>ConsoleModule</class>
 		<width>10</width>
@@ -11,4 +11,5 @@
 		<width>10</width>
 		<height>10</height>
 	</module>
-</resource>
+
+</resources>

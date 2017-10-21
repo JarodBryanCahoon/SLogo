@@ -9,24 +9,20 @@ import frontend.xml.XMLReader;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
 public class ViewModule extends Module{
-	private String moduleFileName = "modules.xml";
+	private final String moduleFileName = "modules.xml";
+	private Scene myScene;
 	
 	private List<Module> myModules;
 	public ViewModule(int width, int height) throws Exception {
 		super(width, height);
 		ModuleStyleReader mStyleReader = new ModuleStyleReader(getClass().getClassLoader().getResource(moduleFileName).getFile());
 		myModules = mStyleReader.getModules();
-		displayWindows();
-	}
-	
-	private void displayWindows() {
-		for(Module m : myModules) {
-			// display m
-		}
 	}
 
 	@Override
@@ -38,5 +34,4 @@ public class ViewModule extends Module{
 		}
 		return myGroup;
 	}
-
 }

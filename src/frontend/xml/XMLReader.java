@@ -22,7 +22,7 @@ public abstract class XMLReader {
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			myDocument = dBuilder.parse(myXmlFile);
 		} catch (Exception e) {
-			// TODO
+			e.printStackTrace();
 		}
 		readFromFile();
 	}
