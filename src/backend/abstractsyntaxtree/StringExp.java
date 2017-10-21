@@ -1,4 +1,4 @@
-package backend.AbstractSyntaxTree;
+package backend.abstractsyntaxtree;
 
 public class StringExp extends Expression{
 	private String val;

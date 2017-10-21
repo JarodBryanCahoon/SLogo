@@ -6,12 +6,15 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.w3c.dom.Document;
+import org.w3c.dom.NodeList;
+
+import exceptions.XMLException;
 
 public abstract class XMLReader {
 	private String myPath;
 	private File myXmlFile;
 	private Document myDocument;
-	public XMLReader(String path) {
+	public XMLReader(String path) throws XMLException {
 		myPath = path;
 		try {
 			myXmlFile = new File(myPath);
@@ -21,9 +24,14 @@ public abstract class XMLReader {
 		} catch (Exception e) {
 			// TODO
 		}
+		readFromFile();
 	}
 	
-	protected Document getMyDocument() {
-		return myDocument;
+	protected abstract void readFromFile() throws XMLException;
+	
+	protected NodeList getNodeList(String tag) {
+		myDocument.getDocumentElement().normalize();
+		NodeList nList = myDocument.getElementsByTagName(tag);
+		return nList;
 	}
 }

@@ -17,6 +17,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import exceptions.XMLException;
 import frontend.modules.Module;
 
 public class ModuleStyleReader extends XMLReader{
@@ -27,15 +28,14 @@ public class ModuleStyleReader extends XMLReader{
 	private static final String CLASS_TAG = "class";
 	private List<Module> myModules;
 
-	public ModuleStyleReader(String path) {
+	public ModuleStyleReader(String path) throws XMLException {
 		super(path);
 		myModules = new ArrayList<>();
 	}
 
-	public List<Module> readFromFile() throws Exception {
-		Document document = this.getMyDocument();
-		document.getDocumentElement().normalize();
-		NodeList nList = document.getElementsByTagName(MODULE_TAG);
+	@Override
+	protected void readFromFile() throws XMLException {
+		NodeList nList = this.getNodeList(MODULE_TAG);
 
 		for (int i = 0; i < nList.getLength(); i++) {
 			Node nNode = nList.item(i);
@@ -45,10 +45,13 @@ public class ModuleStyleReader extends XMLReader{
 				myModules.add(instFromElement(element));
 			}
 		}
+	}
+	
+	public List<Module> getModules() {
 		return myModules;
 	}
 
-	private Module instFromElement(Element element) throws Exception {
+	private Module instFromElement(Element element) throws XMLException {
 		String clsName = element.getAttribute(CLASS_TAG);
 		int width = Integer.parseInt(element.getAttribute(WIDTH_TAG));
 		int height = Integer.parseInt(element.getAttribute(HEIGHT_TAG));
@@ -65,7 +68,7 @@ public class ModuleStyleReader extends XMLReader{
 				| IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
 			// TODO handle exception properly
 			e.printStackTrace();
-			throw new Exception();
+			throw new XMLException();
 		}		
 		return module;
 	}

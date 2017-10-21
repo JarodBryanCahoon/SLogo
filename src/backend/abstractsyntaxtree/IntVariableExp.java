@@ -1,4 +1,4 @@
-package backend.AbstractSyntaxTree;
+package backend.abstractsyntaxtree;
 
 public class IntVariableExp extends Expression {
 	private String name;

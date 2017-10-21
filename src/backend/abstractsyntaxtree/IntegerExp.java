@@ -1,4 +1,4 @@
-package backend.AbstractSyntaxTree;
+package backend.abstractsyntaxtree;
 
 public class IntegerExp extends Expression {
 	private Integer val;
