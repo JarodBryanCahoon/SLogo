@@ -5,7 +5,7 @@ package backend.board;
  * @author Jarod Cahoon
  *
  */
-public interface GeneralObject{
+public interface GeneralObject extends iRenderSprite {
 	public double moveForward();
 	
 	public double moveBackwards();

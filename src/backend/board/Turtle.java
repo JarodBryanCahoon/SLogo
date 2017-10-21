@@ -1,5 +1,7 @@
 package backend.board;
 
+import java.util.List;
+
 /**
  * 
  * @author Jarod Cahoon
@@ -11,12 +13,15 @@ public class Turtle extends ConcreteObject{
 		private double myAngle;
 		private boolean myPenDown;
 		private boolean myOpacity;
+		private RenderSprite myRenderSprite;
+		private List<RenderSprite> prevRenderSprites;
 
-		public Turtle() {
+		public Turtle(String imagePath) {
 			myYPos = myXPos = 0;
 			myAngle = 90; 
 			myPenDown = true;
 			myOpacity = true;
+			myRenderSprite = new RenderSprite(myXPos, myYPos, imagePath);
 		}
 		
 		public double moveForward(double pixels) {
@@ -52,11 +57,6 @@ public class Turtle extends ConcreteObject{
 			return 0;
 		}
 	
-		public double clearScreen() {
-			// TODO Auto-generated method stub
-			return 0;
-		}
-	
 		public double Hide() {
 			myOpacity = false;
 			return 0;
@@ -79,6 +79,27 @@ public class Turtle extends ConcreteObject{
 			double[] delta = TurtleMath.xyDeltaCalc(pixels, myAngle);
 			myXPos += b? delta[0]: -delta[0];
 			myYPos += b? delta[1]: -delta[0];
+		}
+
+		@Override
+		public double getX() {
+			return myXPos;
+		}
+
+		@Override
+		public double getY() {
+			return myYPos;
+		}
+
+		@Override
+		public boolean isPenDown() {
+			return this.myPenDown;
+		}
+
+		@Override
+		public boolean isVisible() {
+			// TODO Auto-generated method stub
+			return false;
 		}
 
 }
