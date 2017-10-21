@@ -2,14 +2,14 @@ package backend.AbstractSyntaxTree;
 
 public class ASTNode {
 	private Expression val;
-	private Expression left;
-	private Expression right;
+	private ASTNode left;
+	private ASTNode right;
 	
 	public ASTNode(Expression e) {
 		this.val = e;
 	}
 	
-	public ASTNode(Expression e, Expression l, Expression r) {
+	public ASTNode(Expression e, ASTNode l, ASTNode r) {
 		this.left = l;
 		this.right = r;
 		this.val = e;
