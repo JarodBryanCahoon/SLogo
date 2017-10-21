@@ -43,10 +43,9 @@ public class Turtle extends ConcreteObject{
 		}
 	
 		public double turnRight(double addAngle) {
-			if(myAngle - addAngle <= 0)
-				myAngle = 360 - (addAngle - myAngle);
-			else
-				myAngle -= addAngle;
+			int modulo = (int) Math.abs(addAngle / 360 + 1);			
+			myAngle = 360 - addAngle;
+			myAngle = ( 360 * modulo ) % 360;
 			return addAngle;
 		}
 	
@@ -61,12 +60,12 @@ public class Turtle extends ConcreteObject{
 			return distance;
 		}
 	
-		public double Hide() {
+		public double hide() {
 			myOpacity = false;
 			return 0;
 		}
 	
-		public double Show() {
+		public double show() {
 			myOpacity = true;
 			return 1;
 		}
@@ -104,6 +103,11 @@ public class Turtle extends ConcreteObject{
 		public boolean isVisible() {
 			// TODO Auto-generated method stub
 			return false;
+		}
+
+		@Override
+		public RenderSprite getRenderSprite() {
+			return myRenderSprite;
 		}
 
 }

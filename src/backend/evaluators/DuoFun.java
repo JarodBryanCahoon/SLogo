@@ -1,4 +1,4 @@
-package backend.Evaluators;
+package backend.evaluators;
 
 @FunctionalInterface
 public interface DuoFun {

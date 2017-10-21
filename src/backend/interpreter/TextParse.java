@@ -1,4 +1,4 @@
-package backend.Interpreter;
+package backend.interpreter;
 
 public class TextParse {
 
