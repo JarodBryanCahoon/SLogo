@@ -18,7 +18,7 @@ public class Turtle extends ConcreteObject{
 		private RenderSprite myRenderSprite;
 		private List<RenderSprite> prevRenderSprites;
 
-		public Turtle() {
+		public Turtle(String imagePath) {
 			myXPos = STARTING_POSITION[0];
 			myYPos = STARTING_POSITION[1];
 			myAngle = STARTING_ANGLE; 
