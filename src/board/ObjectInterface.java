@@ -1,4 +1,4 @@
-package boardObject;
+package board;
 
 /**
  * 
