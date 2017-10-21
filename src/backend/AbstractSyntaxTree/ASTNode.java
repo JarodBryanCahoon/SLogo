@@ -1,4 +1,4 @@
-package Interpreter;
+package backend.AbstractSyntaxTree;
 
 public class ASTNode {
 	private Expression val;
