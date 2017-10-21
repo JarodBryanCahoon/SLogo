@@ -22,6 +22,7 @@ public class Word {
 		else if (myName.matches("^#.*")) {
 			myType = "comment";
 		}
+		
 		else {
 			myType = "invalid";
 		}
