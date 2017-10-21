@@ -5,7 +5,7 @@ import java.lang.Math;
  * @author Jarod Cahoon
  * This class is for static methods which help calculate certain properties for the Turtle class
  */
-public class TurtleMath {
+public class BoardMath {
 	public static double[] xyDeltaCalc(double distance, double angle) {
 		double[] arr = {distance*Math.cos(toDegrees(angle)), distance*Math.sin(toDegrees(angle))};
 		return arr;

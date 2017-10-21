@@ -51,7 +51,7 @@ public class Turtle extends ConcreteObject{
 		}
 	
 		public double setHome() {
-			double distance = TurtleMath.pointDistance(0, 0, myXPos, myYPos);
+			double distance = BoardMath.pointDistance(0, 0, myXPos, myYPos);
 			myXPos = myYPos = 0;
 			return distance;
 		}
@@ -68,14 +68,14 @@ public class Turtle extends ConcreteObject{
 		
 		@Override
 		public double setPostion(double x, double y) {
-			double diff = TurtleMath.pointDistance(x, y, myXPos, myYPos);
+			double diff = BoardMath.pointDistance(x, y, myXPos, myYPos);
 			myXPos = x;
 			myYPos = y;
 			return diff;
 		}
 		
 		private void move(boolean b,double pixels){
-			double[] delta = TurtleMath.xyDeltaCalc(pixels, myAngle);
+			double[] delta = BoardMath.xyDeltaCalc(pixels, myAngle);
 			myXPos += b? delta[0]: -delta[0];
 			myYPos += b? delta[1]: -delta[0];
 		}
