@@ -1,4 +1,4 @@
-package Interpreter;
+package backend.AbstractSyntaxTree;
 
 public class StringExp extends Expression{
 	private String val;
