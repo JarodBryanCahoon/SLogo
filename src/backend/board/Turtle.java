@@ -8,6 +8,8 @@ import java.util.List;
  *
  */
 public class Turtle extends ConcreteObject{
+		public static final double STARTING_ANGLE = 90;
+		public static final double[] STARTING_POSITION = {0,0};
 		private double myXPos;
 		private double myYPos;
 		private double myAngle;
@@ -16,9 +18,10 @@ public class Turtle extends ConcreteObject{
 		private RenderSprite myRenderSprite;
 		private List<RenderSprite> prevRenderSprites;
 
-		public Turtle(String imagePath) {
-			myYPos = myXPos = 0;
-			myAngle = 90; 
+		public Turtle() {
+			myXPos = STARTING_POSITION[0];
+			myYPos = STARTING_POSITION[1];
+			myAngle = STARTING_ANGLE; 
 			myPenDown = true;
 			myOpacity = true;
 			myRenderSprite = new RenderSprite(myXPos, myYPos, imagePath);
@@ -47,14 +50,15 @@ public class Turtle extends ConcreteObject{
 			return addAngle;
 		}
 	
-		public double setAngle() {
-			// TODO Auto-generated method stub
+		public double setAngle(double angle) {
+			myAngle = angle;
 			return 0;
 		}
 	
 		public double setHome() {
-			// TODO Auto-generated method stub
-			return 0;
+			double distance = BoardMath.pointDistance(0, 0, myXPos, myYPos);
+			myXPos = myYPos = 0;
+			return distance;
 		}
 	
 		public double Hide() {
@@ -69,14 +73,14 @@ public class Turtle extends ConcreteObject{
 		
 		@Override
 		public double setPostion(double x, double y) {
-			double diff = TurtleMath.pointDistance(x, y, myXPos, myYPos);
+			double diff = BoardMath.pointDistance(x, y, myXPos, myYPos);
 			myXPos = x;
 			myYPos = y;
 			return diff;
 		}
 		
 		private void move(boolean b,double pixels){
-			double[] delta = TurtleMath.xyDeltaCalc(pixels, myAngle);
+			double[] delta = BoardMath.xyDeltaCalc(pixels, myAngle);
 			myXPos += b? delta[0]: -delta[0];
 			myYPos += b? delta[1]: -delta[0];
 		}
