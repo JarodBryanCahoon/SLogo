@@ -1,5 +1,5 @@
 package frontend.buttons;
 
-public interface ButtonStrategy {
+public interface iButtonStrategy {
 	void execute();
 }

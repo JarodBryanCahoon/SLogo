@@ -18,11 +18,11 @@ public abstract class Module {
 	
 	protected abstract Parent createParent() throws Exception;
 	
-	protected void addChildren(List<Node> myNodes) {
-		for(Node node : myNodes) {
-			myParent.getChildrenUnmodifiable().add(node);
-		}
-	}
+//	protected void addChildren(List<Node> myNodes) {
+//		for(Node node : myNodes) {
+//			myParent.getChildrenUnmodifiable().add(node);
+//		}
+//	}
 	
 	public Parent getParent() {
 		return myParent;

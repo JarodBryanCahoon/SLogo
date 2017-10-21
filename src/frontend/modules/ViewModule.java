@@ -6,6 +6,7 @@ import java.util.List;
 
 import frontend.xml.ModuleStyleReader;
 import frontend.xml.XMLReader;
+import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.layout.BorderPane;
@@ -19,16 +20,23 @@ public class ViewModule extends Module{
 		super(width, height);
 		ModuleStyleReader mStyleReader = new ModuleStyleReader(getClass().getClassLoader().getResource(moduleFileName).getFile());
 		myModules = mStyleReader.readFromFile();
+		displayWindows();
 	}
 	
 	private void displayWindows() {
-		
+		for(Module m : myModules) {
+			// display m
+		}
 	}
 
 	@Override
 	protected Parent createParent() throws Exception {
-		
-		return null;
+		Group myGroup = new Group();
+		for(Module m : myModules) {
+			Parent myParent = m.getParent();
+			myGroup.getChildren().add(myParent);
+		}
+		return myGroup;
 	}
 
 }

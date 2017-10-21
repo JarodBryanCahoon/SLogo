@@ -13,6 +13,7 @@ public class RenderModule extends Module{
 //	private List<Sprite> mySprite;
 	public RenderModule(int width, int height) throws Exception {
 		super(width, height);
+		initializeSprite();
 	}
 	
 	@Override
@@ -21,5 +22,11 @@ public class RenderModule extends Module{
 		return myGroup;
 	}
 	
+	private void initializeSprite() {
+		
+	}
 	
+	public void clearScreen() {
+		
+	}
 }
