@@ -7,9 +7,9 @@ public class IntegerExp extends Expression {
 		this.val = x;
 	}
 	
-	public void setVal(int x) { //Maybe a completely unneccessary setter. 
-		this.val = x;
-	}
+//	public void setVal(int x) { //Maybe a completely unneccessary setter. 
+//		this.val = x;
+//	}
 	
 	public Integer getVal() {
 		return val;
