@@ -12,7 +12,7 @@ public class ConsoleHistory extends Module implements Observer {
 	private VBox history;
 	private ScrollPane historyPane;
 	
-	public ConsoleHistory(int width, int height, InterpreterInterface backend) {
+	public ConsoleHistory(int width, int height, TestBackend backend) {
 		super(width, height);
 		historyPane.setMinSize(width,height);
 		backend.addObserver(this);
@@ -27,7 +27,8 @@ public class ConsoleHistory extends Module implements Observer {
 	
 	@Override
 	public void update(Observable backend, Object arg1) {
-		Text a = new Text(((InterpreterInterface) backend).getHistory());
+		Text a = new Text(((TestBackend) backend).getHistory());
+		a.setStyle("-fx-fill: black;-fx-font:16px 'Letter Gothic Std';");
 		history.getChildren().add(a);
 	}
 	

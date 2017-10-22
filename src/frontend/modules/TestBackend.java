@@ -5,14 +5,14 @@ import java.util.List;
 import java.util.Observable;
 
 /**Acts as the interface between Console and Manager
- * @author lasia
+ * @author lasia lo
  *
  */
 
-public class InterpreterInterface extends Observable {
+public class TestBackend extends Observable {
 	private List<String> history;
 	
-	public InterpreterInterface() {
+	public TestBackend() {
 		history = new ArrayList<String>();
 		
 	}
