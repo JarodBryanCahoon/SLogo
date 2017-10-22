@@ -24,20 +24,25 @@ public class Word {
 		}
 		else if(myName.matches("^:[a-zA-Z_]+$")) {
 			myType = "variable";
+			myExpression = new VariableExp(myName);
 		}
 		else if(myName.matches("^[a-zA-Z_]+(\\?)?$")) {
 			myType = "command";
+			myExpression = new OperatorExp(myName);
 		}
-		else if (myName.matches("^#.*")) {
-			myType = "comment";
-		}
-		
+//		else if (myName.matches("^#.*")) {
+//			myType = "comment";
+//		}	
 		else {
 			myType = "invalid";
 		}
 	}
 	
-	private Expression getExpression() {
+	public Expression getExpression() {
 		return myExpression;
+	}
+	
+	public String getType() {
+		return myType;
 	}
 }
