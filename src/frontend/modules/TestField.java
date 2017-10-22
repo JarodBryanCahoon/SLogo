@@ -20,6 +20,7 @@ public class TestField{
 
 	public TestField(int width, int height){
 		textFlow = new TextFlow();
+		textFlow.setStyle("-fx-background-color : gray;");
 		inputField = new StackPane();
 		inputField.setMinWidth(width);
 		createTextInput();
@@ -28,11 +29,16 @@ public class TestField{
 	private void createTextInput() {
 		
 		inputText = new TextField();
+		
+		inputText.setStyle("-fx-background-color: transparent;");
 		inputText.setOnKeyPressed(event -> doSomething(event));
 		
+		inputField.getChildren().add(textFlow);
 		inputField.getChildren().add(inputText);
 	}
 	private void doSomething(KeyEvent event) {
+		textFlow.getChildren().clear();
+		textFlow.getChildren().add(new Text(inputText.getText()));
 		
 		if (event.getCode() == KeyCode.ENTER)
 			System.out.println("Sending out!");
