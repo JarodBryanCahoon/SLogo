@@ -1,5 +1,6 @@
 package frontend.modules;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javafx.event.EventHandler;
@@ -11,10 +12,21 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 
 public class ConsoleModule extends Module {
-	private VBox vbox;
+	private VBox console;
+	private VBox history;
 	private TextField textField;
+	private ScrollPane historyPane;
+	
+	
+	private int myWidth;
+	private int myHeight;
+	
+	private List<String> testStrings = new ArrayList<String>();
+	private int k;
+	
 	public ConsoleModule(int width, int height) throws Exception {
 		super(width, height);
 		
@@ -22,34 +34,44 @@ public class ConsoleModule extends Module {
 	
 	@Override
 	protected Parent createParent(int width, int height) {
-		vbox = new VBox();
+		myWidth = width;
+		myHeight = height;
+		console = new VBox();
 		addHistory();
 		addMessageBox();
-		return vbox;
+		return console;
 	}
 	
 	private void addMessageBox() {
 		textField = new TextField();
-		textField.setMinSize(, minHeight);
 		textField.setOnKeyPressed(event -> {
 			if (event.getCode() == KeyCode.ENTER)
 				send();
 		});
-		vbox.getChildren().add(textField);
+		console.getChildren().add(textField);
 		
 		
 		}
 
 	private void send() {
+		testStrings.add(textField.getText());
 		textField.setText("");
+		updateHistory();
+		k++;
+		
 //		manager.Command(tobeSent);
 	}
 	
 	private void addHistory() {
-		ScrollPane historyPane = new ScrollPane();
-		TextArea textArea = new TextArea();
-		vbox.getChildren().add(historyPane);
+		history = new VBox();
+		historyPane = new ScrollPane(history);
+		historyPane.setMinSize(myWidth,myHeight);
+		console.getChildren().add(historyPane);
 //		List<Object> historyList = backend.getHistory();
+	}
+	
+	private void updateHistory() {
+		history.getChildren().add(new Text(testStrings.get(k)));
 	}
 	                  
 
