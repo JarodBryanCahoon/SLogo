@@ -1,9 +1,12 @@
 package frontend.modules;
 import javafx.scene.Group;
 import javafx.scene.Parent;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 
@@ -12,13 +15,18 @@ import javafx.scene.text.TextFlow;
  * @author lasia lo
  *
  */
+
+//TODO: Extract CSS
+
 public class ConsoleInput extends Module{
 	private Group myParent;
 	private TextField inputField;
 	private TextFlow syntaxField;
-	private InterpreterInterface backend;
+	private TestBackend backend;
+	
+	private int test;
 
-	public ConsoleInput(int width,int height,InterpreterInterface backend){
+	public ConsoleInput(int width,int height,TestBackend backend){
 		super(width, height);
 		this.backend = backend;
 				
@@ -35,17 +43,21 @@ public class ConsoleInput extends Module{
 	}
 	
 	private void addSyntaxField() {
+		Font.loadFont(
+				  ConsoleInput.class.getResource("Letter Gothic.otf").toExternalForm(), 
+				  10
+				);
 		syntaxField = new TextFlow();
-		syntaxField.setLayoutX(10.8);
-		syntaxField.setLayoutY(7.5);
-		syntaxField.setStyle("-fx-background-color : gray");
+		syntaxField.setLayoutX(10.9);
+		syntaxField.setLayoutY(10);
+		syntaxField.setStyle("-fx-background-color: black");
 	}
 
 	private void addInputField(int width) {
 		
 		inputField = new TextField();
 		inputField.setMinWidth(width);
-		inputField.setStyle("-fx-text-fill: white; -fx-font-size: 16;-fx-background-color: gray;");
+		inputField.setStyle("-fx-font:16px 'Letter Gothic Std';-fx-text-fill:white; -fx-background-color: black;");
 		inputField.setOnKeyPressed(event -> doSomething(event));
 	}
 	private void doSomething(KeyEvent event) {
@@ -69,8 +81,9 @@ public class ConsoleInput extends Module{
 
 	private void createText(String incomingText) {
 		syntaxField.getChildren().clear();
-		Text a = new Text(incomingText);
-		a.setStyle("-fx-fill: red; -fx-font-size: 16;");
+		Text a = new Text(incomingText.substring(0,incomingText.length()/2));
+		
+		a.setStyle("-fx-fill: gold;-fx-font:16px 'Letter Gothic Std';");
 		syntaxField.getChildren().add(a);
 	}
 
