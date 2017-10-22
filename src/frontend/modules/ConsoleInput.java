@@ -26,22 +26,18 @@ public class ConsoleInput extends Module{
 	private Group myParent;
 	private TextArea inputField;
 	private TextArea multiInputField;
-	private TextFlow syntaxField;
-	private TestBackend backend;
+	private InfoFactory backend;
 	private KeyCombination keyComb;
 	
 	private int test;
 
-	public ConsoleInput(int width,int height,TestBackend backend){
+	public ConsoleInput(int width,int height,InfoFactory backend){
 		super(width, height);
 		keyComb = new KeyCodeCombination(KeyCode.ENTER,KeyCombination.SHIFT_DOWN);
 		this.backend = backend;
 				
-//		addmultiField();
-		addSyntaxField();
 		addInputField(width);
 		myParent.getChildren().add(inputField);
-		myParent.getChildren().add(syntaxField);
 	}
 	
 	private void addmultiField() {
@@ -58,13 +54,6 @@ public class ConsoleInput extends Module{
 		return myParent;
 	}
 	
-	private void addSyntaxField() {
-
-		syntaxField = new TextFlow();
-		syntaxField.setLayoutX(10);
-		syntaxField.setLayoutY(5);
-		syntaxField.getStyleClass().add("syntaxField");
-	}
 
 	private void addInputField(int width) {
 		inputField = new TextArea();
@@ -90,7 +79,7 @@ public class ConsoleInput extends Module{
 		if (keyComb.match(event)) {
 			backend.addToHistory(text);
 			inputField.setText("");
-			syntaxField.getChildren().clear();
+			createText("");
 		}
 	}
 

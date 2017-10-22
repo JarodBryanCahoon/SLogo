@@ -8,21 +8,22 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 
 /**Acts as the interface between Console and Manager
+ * Provides colored text of information
+ * Temporary
  * @author lasia lo
  *
  */
 
-public class TestBackend extends Observable {
+public class InfoFactory extends Observable {
 	private List<String> history;
 	
-	public TestBackend() {
+	public InfoFactory() {
 		history = new ArrayList<String>();
 		
 	}
 	
 	public void addToHistory(String inputText) {
 		history.add(inputText);
-		
 		setChanged();
 		notifyObservers();
 	}
@@ -35,20 +36,26 @@ public class TestBackend extends Observable {
 		TextFlow[] toReturn = new TextFlow[lines.length];
 		for (int k = 0; k<lines.length;k++) {
 			Text text = new Text(lines[k]);
-			text.getStyleClass().add("text");
 			double fontHeight = text.getLayoutBounds().getHeight();
-			TextFlow textFlow = new TextFlow();
-			textFlow.getChildren().add(text);
-			textFlow.setLayoutX(10);
-			textFlow.setLayoutY(k*(fontHeight + 5)+5);
-			textFlow.getStyleClass().add("syntaxField");
-//			if (k==0)
-//				textFlow.setLayoutY(5);
+			text.getStyleClass().add("text");
+			if (lines[k].contains("s"))
+				text.getStyleClass().add("invalid");
+			TextFlow textFlow = createConsoleText(k, text, fontHeight);
 			toReturn[k] = textFlow;
 		}
 		
 		
 		return toReturn;
 		
+	}
+
+	
+	private TextFlow createConsoleText(int k, Text text, double fontHeight) {
+		TextFlow textFlow = new TextFlow();
+		textFlow.getChildren().add(text);
+		textFlow.setLayoutX(10);
+		textFlow.setLayoutY(k*(fontHeight + 5)+5);
+		textFlow.getStyleClass().add("syntaxField");
+		return textFlow;
 	}
 }

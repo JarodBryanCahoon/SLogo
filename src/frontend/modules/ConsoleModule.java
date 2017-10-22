@@ -15,7 +15,7 @@ import javafx.scene.layout.VBox;
 
 public class ConsoleModule extends Module {
 	private VBox console;
-	private TestBackend backend;
+	private InfoFactory backend;
 
 	private int myWidth;
 	private int myHeight;
@@ -25,7 +25,7 @@ public class ConsoleModule extends Module {
 	
 	public ConsoleModule(int width, int height){
 		super(width, height);
-		backend = new TestBackend();
+		backend = new InfoFactory();
 		myWidth = width;
 		myHeight = height;
 		addConsoleHistory();
