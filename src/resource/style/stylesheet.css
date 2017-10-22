@@ -1,0 +1,19 @@
+/* 
+    Document   : sstylesheet.css
+*/
+.root{
+	-fx-font:14px 'Letter Gothic Std';
+}
+.text{
+	-fx-fill: gold;
+}
+.inputField{
+	-fx-text-fill: silver; 
+	-fx-background-color: black
+}
+.inputField .content{
+	-fx-background-color: black;
+}
+.syntaxField{
+	-fx-background-color: black;
+}

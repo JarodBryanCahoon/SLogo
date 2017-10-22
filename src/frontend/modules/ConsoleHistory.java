@@ -28,6 +28,7 @@ public class ConsoleHistory extends Module implements Observer {
 	@Override
 	public void update(Observable backend, Object arg1) {
 		Text a = new Text(((TestBackend) backend).getHistory());
+		
 		a.setStyle("-fx-fill: black;-fx-font:16px 'Letter Gothic Std';");
 		history.getChildren().add(a);
 	}
