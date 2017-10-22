@@ -4,10 +4,10 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 public class VariableExp extends Expression{
-	String name;
-	double val1;
-	int val2;
-	boolean type;
+	private String name;
+	private double val1;
+	private int val2;
+	private boolean type;
 	
 	public VariableExp(String s) {
 		this.name = s;
