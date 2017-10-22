@@ -14,11 +14,18 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
+
+/**Console Window
+ * Contains Console inputfield and history
+ * @author lasia
+ *
+ */
+
 public class ConsoleModule extends Module {
 	private VBox console;
-	private VBox history;
+
 	private TextField textField;
-	private ScrollPane historyPane;
+
 	
 	
 	private int myWidth;
@@ -27,7 +34,7 @@ public class ConsoleModule extends Module {
 	private List<String> testStrings = new ArrayList<String>();
 	private int k;
 	
-	public ConsoleModule(int width, int height) throws Exception {
+	public ConsoleModule(int width, int height){
 		super(width, height);
 		
 	}
@@ -37,37 +44,23 @@ public class ConsoleModule extends Module {
 		myWidth = width;
 		myHeight = height;
 		console = new VBox();
-//		addHistory();
+		addConsoleHistory();
 		addConsoleInput();
 		return console;
 	}
 	
+	private void addConsoleHistory() {
+		Module ConsoleHistory = new ConsoleHistory(myWidth,myHeight);
+		console.getChildren().add(ConsoleHistory.getParent());
+	}
+
 	private void addConsoleInput(){
-		ConsoleInput test = new ConsoleInput(myWidth,myHeight);
-		console.getChildren().add(test.getText());
+		Module test = new ConsoleInput(myWidth,myHeight);
+		console.getChildren().add(test.getParent());
 	}
  
-	private void send() {
-		testStrings.add(textField.getText());
-		textField.setText("");
-		updateHistory();
-		k++;
-		
-//		manager.Command(tobeSent);
-	}
+}
 	
-	private void addHistory() {
-		history = new VBox();
-		historyPane = new ScrollPane(history);
-		historyPane.setMinSize(myWidth,myHeight);
-		console.getChildren().add(historyPane);
-//		List<Object> historyList = backend.getHistory();
-	}
-	
-	private void updateHistory() {
-		history.getChildren().add(new Text(testStrings.get(k)));
-	}
 	                  
 
-}
 
