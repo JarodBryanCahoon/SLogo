@@ -9,39 +9,41 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 
 public class TestField{
-	private HBox textInput;
-	private TextField text;
+	private StackPane inputField;
+	private TextField inputText;
+	private TextFlow textFlow;
 
 	public TestField(int width, int height){
-		textInput = new HBox();
-		textInput.setMinWidth(width);
+		textFlow = new TextFlow();
+		inputField = new StackPane();
+		inputField.setMinWidth(width);
 		createTextInput();
 	}
 
 	private void createTextInput() {
 		
-		text = new TextField();
-		text.setOnKeyPressed(event -> doSomething(event));
-		textInput.getChildren().add(text);
+		inputText = new TextField();
+		inputText.setOnKeyPressed(event -> doSomething(event));
+		
+		inputField.getChildren().add(inputText);
 	}
 	private void doSomething(KeyEvent event) {
-		int index = textInput.getChildren().indexOf(text);
-		if (event.getCode() == KeyCode.SPACE) {
-			textInput.getChildren().add(index,new Text(text.getText()+ " "));
-			text.setText("");
-		}
-		if (event.getCode() == KeyCode.BACK_SPACE && text.getText().equals(""))
-			if (index != 0)
-				textInput.getChildren().remove(index-1);
+		
 		if (event.getCode() == KeyCode.ENTER)
 			System.out.println("Sending out!");
 	}
 
+	private boolean isEmpty(TextField text) {
+		return text.getText().equals("");
+	}
+
 	public Node getText() {
-		return textInput;
+		return inputField;
 	}
 }
 
