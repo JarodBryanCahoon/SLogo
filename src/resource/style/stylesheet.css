@@ -1,0 +1,16 @@
+/* 
+    Document   : sstylesheet.css
+*/
+
+.text{
+	-fx-fill: gold;
+	-fx-font:16px 'Letter Gothic Std';
+}
+.inputField{
+	-fx-font:16px 'Letter Gothic Std';
+	-fx-text-fill:white; 
+	-fx-background-color: black;
+}
+.syntaxField{
+	-fx-background-color: transparent;
+}

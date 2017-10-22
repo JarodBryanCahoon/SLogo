@@ -44,20 +44,20 @@ public class ConsoleInput extends Module{
 	
 	private void addSyntaxField() {
 		Font.loadFont(
-				  ConsoleInput.class.getResource("Letter Gothic.otf").toExternalForm(), 
+				  ConsoleInput.class.getResource("/resource/style/Letter Gothic.otf").toExternalForm(), 
 				  10
 				);
 		syntaxField = new TextFlow();
 		syntaxField.setLayoutX(10.9);
-		syntaxField.setLayoutY(10);
-		syntaxField.setStyle("-fx-background-color: black");
+		syntaxField.setLayoutY(6);
+		syntaxField.getStyleClass().add("syntaxField");
 	}
 
 	private void addInputField(int width) {
 		
 		inputField = new TextField();
 		inputField.setMinWidth(width);
-		inputField.setStyle("-fx-font:16px 'Letter Gothic Std';-fx-text-fill:white; -fx-background-color: black;");
+		inputField.getStyleClass().add("inputField");
 		inputField.setOnKeyPressed(event -> doSomething(event));
 	}
 	private void doSomething(KeyEvent event) {
@@ -81,9 +81,8 @@ public class ConsoleInput extends Module{
 
 	private void createText(String incomingText) {
 		syntaxField.getChildren().clear();
-		Text a = new Text(incomingText.substring(0,incomingText.length()/2));
-		
-		a.setStyle("-fx-fill: gold;-fx-font:16px 'Letter Gothic Std';");
+		Text a = new Text(incomingText.substring(0,incomingText.length()));
+		a.getStyleClass().add("text");
 		syntaxField.getChildren().add(a);
 	}
 

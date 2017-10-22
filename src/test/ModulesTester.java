@@ -18,6 +18,7 @@ public class ModulesTester extends Application{
 		
 		Parent parent = test.getParent();
 		Scene scene = new Scene(parent);
+		scene.getStylesheets().add("/resource/style/" + "stylesheet.css");
 		stage.setTitle("Testing");
 		stage.setScene(scene);
 		stage.show();
