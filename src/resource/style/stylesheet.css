@@ -1,19 +1,44 @@
 /* 
     Document   : sstylesheet.css
 */
+
 .root{
 	-fx-font:14px 'Letter Gothic Std';
+	-fx-background-color: black;
 }
+/* 
+    Expression colors
+*/
 .text{
 	-fx-fill: gold;
 }
+.constant{
+	-fx-fill: pink;
+}
+.variable{
+	
+}
+.command{
+	
+}
+.invalid{
+	-fx-fill:silver
+}
+
+/* 
+  Console  
+*/
 .inputField{
 	-fx-text-fill: silver; 
-	-fx-background-color: black
+	-fx-background-color: black;
 }
 .inputField .content{
 	-fx-background-color: black;
 }
+
 .syntaxField{
-	-fx-background-color: black;
+	-fx-background-color: white;
 }
+/* 
+  Console History
+*/

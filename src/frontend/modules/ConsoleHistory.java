@@ -12,9 +12,10 @@ public class ConsoleHistory extends Module implements Observer {
 	private VBox history;
 	private ScrollPane historyPane;
 	
-	public ConsoleHistory(int width, int height, TestBackend backend) {
+	public ConsoleHistory(int width, int height, InfoFactory backend) {
 		super(width, height);
 		historyPane.setMinSize(width,height);
+
 		backend.addObserver(this);
 	}
 
@@ -22,14 +23,16 @@ public class ConsoleHistory extends Module implements Observer {
 	protected Parent createParent() {
 		history = new VBox();
 		historyPane = new ScrollPane(history);
+		history.getStyleClass().add("inputField");
+		historyPane.getStyleClass().add("inputField");
 		return historyPane;
 	}
 	
 	@Override
 	public void update(Observable backend, Object arg1) {
-		Text a = new Text(((TestBackend) backend).getHistory());
+		Text a = new Text(((InfoFactory) backend).getHistory());
 		
-		a.setStyle("-fx-fill: black;-fx-font:16px 'Letter Gothic Std';");
+		a.setStyle("-fx-fill: white;-fx-font:16px 'Letter Gothic Std';");
 		history.getChildren().add(a);
 	}
 	
