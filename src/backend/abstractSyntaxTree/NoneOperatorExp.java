@@ -1,4 +1,4 @@
-package backend.AbstractSyntaxTree;
+package backend.abstractSyntaxTree;
 
 public class NoneOperatorExp extends OperatorExp{
 	
@@ -9,5 +9,6 @@ public class NoneOperatorExp extends OperatorExp{
 	private void operate() {
 		//maybe this doesn't have to be here?
 	}
+
 	
 }

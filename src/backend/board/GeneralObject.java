@@ -22,7 +22,9 @@ public interface GeneralObject extends iRenderSprite {
 	
 	public double clearScreen();
 	
-	public double Hide();
+	public double hide();
 	
-	public double Show();	
+	public double show();
+	
+	public RenderSprite getRenderSprite();
 }

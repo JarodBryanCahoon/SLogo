@@ -2,6 +2,9 @@ package backend.board;
 
 import java.util.List;
 
+import backend.Utilities.vectors.Vector;
+import backend.Utilities.vectors.VectorMath;
+
 /**
  * 
  * @author Jarod Cahoon
@@ -10,13 +13,12 @@ import java.util.List;
 public class Turtle extends ConcreteObject{
 		public static final double STARTING_ANGLE = 90;
 		public static final double[] STARTING_POSITION = {0,0};
+		public static final String IMAGE_LOCATION = "";
 		private double myXPos;
 		private double myYPos;
 		private double myAngle;
 		private boolean myPenDown;
 		private boolean myOpacity;
-		private RenderSprite myRenderSprite;
-		private List<RenderSprite> prevRenderSprites;
 
 		public Turtle(String imagePath) {
 			myXPos = STARTING_POSITION[0];
@@ -24,7 +26,6 @@ public class Turtle extends ConcreteObject{
 			myAngle = STARTING_ANGLE; 
 			myPenDown = true;
 			myOpacity = true;
-			myRenderSprite = new RenderSprite(myXPos, myYPos, imagePath);
 		}
 		
 		public double moveForward(double pixels) {
@@ -43,16 +44,28 @@ public class Turtle extends ConcreteObject{
 		}
 	
 		public double turnRight(double addAngle) {
-			if(myAngle - addAngle <= 0)
-				myAngle = 360 - (addAngle - myAngle);
-			else
-				myAngle -= addAngle;
+			int modulo = (int) Math.abs(addAngle / 360 + 1);			
+			myAngle = 360 - addAngle;
+			myAngle = ( 360 * modulo ) % 360;
 			return addAngle;
 		}
 	
 		public double setAngle(double angle) {
+			double returnAngle = angleDifference(angle);
 			myAngle = angle;
-			return 0;
+			return returnAngle;
+		}
+
+		private double angleDifference(double angle) {
+			return (Math.abs(angle-myAngle) > 180) ? Math.abs(angle-myAngle)-180 : Math.abs(angle-myAngle);
+		}
+		
+		public double setTowards(double x, double y) {
+			double newAngle = VectorMath.angleBetweenXAxis(new Vector(x,y));
+			double angleDiff = angleDifference(newAngle);
+			myAngle = newAngle;
+			return angleDiff;
+			
 		}
 	
 		public double setHome() {
@@ -61,12 +74,12 @@ public class Turtle extends ConcreteObject{
 			return distance;
 		}
 	
-		public double Hide() {
+		public double hide() {
 			myOpacity = false;
 			return 0;
 		}
 	
-		public double Show() {
+		public double show() {
 			myOpacity = true;
 			return 1;
 		}
@@ -82,7 +95,7 @@ public class Turtle extends ConcreteObject{
 		private void move(boolean b,double pixels){
 			double[] delta = BoardMath.xyDeltaCalc(pixels, myAngle);
 			myXPos += b? delta[0]: -delta[0];
-			myYPos += b? delta[1]: -delta[0];
+			myYPos += b? delta[1]: -delta[1];
 		}
 
 		@Override
@@ -104,6 +117,23 @@ public class Turtle extends ConcreteObject{
 		public boolean isVisible() {
 			// TODO Auto-generated method stub
 			return false;
+		}
+		
+		public RenderSprite getSprite(){
+			return new RenderSprite(myXPos, myYPos, myAngle, IMAGE_LOCATION);
+		}
+		
+		public void undo(RenderSprite rs) {
+			myPenDown = false;
+			myXPos = rs.getX();
+			myYPos = rs.getY();
+			myOpacity = rs.isVisible();
+			myPenDown = rs.isPenDown();
+		}
+
+		@Override
+		public RenderSprite getRenderSprite() {
+			return myRenderSprite;
 		}
 
 }

@@ -1,4 +1,4 @@
-package backend.AbstractSyntaxTree;
+package backend.abstractSyntaxTree;
 
 import java.util.Collection;
 
@@ -15,6 +15,5 @@ public class PolyOperatorExp<T> extends OperatorExp{
 	public void operate() {
 		//unnecessary?
 	}
-	
 
 }

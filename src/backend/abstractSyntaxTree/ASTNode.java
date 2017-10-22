@@ -1,4 +1,11 @@
-package backend.AbstractSyntaxTree;
+package backend.abstractSyntaxTree;
+
+
+/* ASTNode.java
+ * @author Venkat Subramaniam
+ * Class that creates an AbstractSyntaxTree node.
+ * @version 10.21.17
+ */
 
 public class ASTNode {
 	private Expression val;
