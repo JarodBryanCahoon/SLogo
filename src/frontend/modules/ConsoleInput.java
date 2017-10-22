@@ -16,33 +16,35 @@ public class ConsoleInput extends Module{
 	private Group myParent;
 	private TextField inputField;
 	private TextFlow syntaxField;
+	private InterpreterInterface backend;
 
-	public ConsoleInput(int width,int height){
+	public ConsoleInput(int width,int height,InterpreterInterface backend){
 		super(width, height);
+		this.backend = backend;
+				
+		addSyntaxField();
+		addInputField(width);
+		myParent.getChildren().add(inputField);
+		myParent.getChildren().add(syntaxField);
 	}
 	
 	@Override
-	protected Parent createParent(int width, int height) {
+	protected Parent createParent() {
 		myParent = new Group();
-		addInputField();
-		addSyntaxField();
-		
-		myParent.getChildren().add(inputField);
-		myParent.getChildren().add(syntaxField);
 		return myParent;
 	}
 	
-	private void addInputField() {
+	private void addSyntaxField() {
 		syntaxField = new TextFlow();
 		syntaxField.setLayoutX(10.8);
 		syntaxField.setLayoutY(7.5);
 		syntaxField.setStyle("-fx-background-color : gray");
 	}
 
-	private void addSyntaxField() {
+	private void addInputField(int width) {
 		
 		inputField = new TextField();
-		inputField.setMinWidth(1000);
+		inputField.setMinWidth(width);
 		inputField.setStyle("-fx-text-fill: white; -fx-font-size: 16;-fx-background-color: gray;");
 		inputField.setOnKeyPressed(event -> doSomething(event));
 	}
@@ -58,9 +60,9 @@ public class ConsoleInput extends Module{
 			createText(incomingText);
 		}
 		
-	
-		
 		if (event.getCode() == KeyCode.ENTER) {
+			backend.addToHistory(incomingText);
+			inputField.setText("");
 			syntaxField.getChildren().clear();
 		}
 	}
