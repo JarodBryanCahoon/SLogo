@@ -3,20 +3,12 @@ package frontend.modules;
 import java.util.ArrayList;
 import java.util.List;
 
-import javafx.event.EventHandler;
-import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 
 
 /**Console Window
- * Contains Console inputfield and history
+ * Contains Console input and history
  * @author lasia
  *
  */
@@ -24,10 +16,6 @@ import javafx.scene.text.Text;
 public class ConsoleModule extends Module {
 	private VBox console;
 
-	private TextField textField;
-
-	
-	
 	private int myWidth;
 	private int myHeight;
 	
@@ -36,7 +24,6 @@ public class ConsoleModule extends Module {
 	
 	public ConsoleModule(int width, int height){
 		super(width, height);
-		
 	}
 	
 	@Override

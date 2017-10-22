@@ -1,8 +1,5 @@
 package frontend.modules;
-
-
 import javafx.scene.Group;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
@@ -10,62 +7,69 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 
-
-
 /**Input field of the console
  * Colors text in accordance to syntax
  * @author lasia lo
  *
  */
 public class ConsoleInput extends Module{
-	private Group inputField;
-	private TextField inputText;
-	private TextFlow textFlow;
+	private Group myParent;
+	private TextField inputField;
+	private TextFlow syntaxField;
 
 	public ConsoleInput(int width,int height){
 		super(width, height);
-
-	}
-	@Override
-	protected Parent createParent(int width, int height) {
-		inputField = new Group();
-		createTextFlow();
-		createTextField();
-		
-		inputField.getChildren().add(inputText);
-		inputField.getChildren().add(textFlow);
-		return inputField;
 	}
 	
-	private void createTextFlow() {
-		textFlow = new TextFlow();
-		textFlow.setLayoutX(10.8);
-		textFlow.setLayoutY(7.5);
-		textFlow.setStyle("-fx-background-color : gray");
+	@Override
+	protected Parent createParent(int width, int height) {
+		myParent = new Group();
+		addInputField();
+		addSyntaxField();
+		
+		myParent.getChildren().add(inputField);
+		myParent.getChildren().add(syntaxField);
+		return myParent;
+	}
+	
+	private void addInputField() {
+		syntaxField = new TextFlow();
+		syntaxField.setLayoutX(10.8);
+		syntaxField.setLayoutY(7.5);
+		syntaxField.setStyle("-fx-background-color : gray");
 	}
 
-	private void createTextField() {
+	private void addSyntaxField() {
 		
-		inputText = new TextField();
-		inputText.setMinWidth(1000);
-		inputText.setStyle("-fx-text-fill: white; -fx-font-size: 16;-fx-background-color: gray;");
-		inputText.setOnKeyPressed(event -> doSomething(event));
+		inputField = new TextField();
+		inputField.setMinWidth(1000);
+		inputField.setStyle("-fx-text-fill: white; -fx-font-size: 16;-fx-background-color: gray;");
+		inputField.setOnKeyPressed(event -> doSomething(event));
 	}
 	private void doSomething(KeyEvent event) {
-		textFlow.getChildren().clear();
-		String incomingText = inputText.getText();
-		if (event.getCode() == KeyCode.BACK_SPACE) {
-			incomingText = incomingText.substring(0,incomingText.length()-1);
+		String incomingText = inputField.getText();
+		
+		if (event.getCode() == KeyCode.SPACE) {
+			createText(incomingText);
 		}
 		
-		Text a = new Text(incomingText);
-		a.setStyle("-fx-fill: red; -fx-font-size: 16;");
-		textFlow.getChildren().add(a);
+		if (event.getCode() == KeyCode.BACK_SPACE && !incomingText.equals("")) {
+			incomingText = incomingText.substring(0,incomingText.length()-1);
+			createText(incomingText);
+		}
+		
+	
 		
 		if (event.getCode() == KeyCode.ENTER) {
-			textFlow.getChildren().clear();
-			
+			syntaxField.getChildren().clear();
 		}
+	}
+
+	private void createText(String incomingText) {
+		syntaxField.getChildren().clear();
+		Text a = new Text(incomingText);
+		a.setStyle("-fx-fill: red; -fx-font-size: 16;");
+		syntaxField.getChildren().add(a);
 	}
 
 }
