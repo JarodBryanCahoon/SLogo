@@ -13,17 +13,19 @@ import backend.Utilities.vectors.VectorMath;
 public class Turtle extends ConcreteObject{
 		public static final double STARTING_ANGLE = 90;
 		public static final double[] STARTING_POSITION = {0,0};
-		public static final String IMAGE_LOCATION = "";
+		private String myImage;
 		private double myXPos;
 		private double myYPos;
 		private double myAngle;
 		private boolean myPenDown;
 		private boolean myOpacity;
+		private int myTurtleId;
 
-		public Turtle(String imagePath) {
+		public Turtle(String imagePath, int id) {
 			myXPos = STARTING_POSITION[0];
 			myYPos = STARTING_POSITION[1];
 			myAngle = STARTING_ANGLE; 
+			myTurtleId = id;
 			myPenDown = true;
 			myOpacity = true;
 		}
@@ -119,10 +121,6 @@ public class Turtle extends ConcreteObject{
 			return false;
 		}
 		
-		public RenderSprite getSprite(){
-			return new RenderSprite(myXPos, myYPos, myAngle, IMAGE_LOCATION);
-		}
-		
 		public void undo(RenderSprite rs) {
 			myPenDown = false;
 			myXPos = rs.getX();
@@ -133,7 +131,7 @@ public class Turtle extends ConcreteObject{
 
 		@Override
 		public RenderSprite getRenderSprite() {
-			return myRenderSprite;
+			return new RenderSprite(myXPos, myYPos, myAngle, myImage);
 		}
 
 }
