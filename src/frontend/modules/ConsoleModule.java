@@ -37,22 +37,28 @@ public class ConsoleModule extends Module {
 		myWidth = width;
 		myHeight = height;
 		console = new VBox();
-		addHistory();
-		addMessageBox();
+//		addHistory();
+//		addMessageBox();
+		addSuperTesting();
 		return console;
 	}
 	
+	private void addSuperTesting(){
+		TestField test = new TestField(myWidth,myHeight);
+		console.getChildren().add(test.getText());
+	}
 	private void addMessageBox() {
 		textField = new TextField();
 		textField.setOnKeyPressed(event -> {
 			if (event.getCode() == KeyCode.ENTER)
 				send();
 		});
+		textField.setStyle("-fx-text-fill: green; -fx-font-size: 16;");
 		console.getChildren().add(textField);
 		
 		
 		}
-
+ 
 	private void send() {
 		testStrings.add(textField.getText());
 		textField.setText("");
