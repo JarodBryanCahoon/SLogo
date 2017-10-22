@@ -110,8 +110,6 @@ public class Turtle extends ConcreteObject{
 			return myYPos;
 		}
 
-
-
 		@Override
 		public double isVisible() {
 			return myOpacity? 1:0;
@@ -131,6 +129,16 @@ public class Turtle extends ConcreteObject{
 		
 		public double isPenDown() {
 			return myPenDown ? 1:0;
+		}
+		
+		public double penDown() {
+			myPenDown = true;
+			return 1;
+		}
+		
+		public double penUp() {
+			myPenDown = false;
+			return 0;
 		}
 		public void undo(RenderSprite rs) {
 			myPenDown = false;
