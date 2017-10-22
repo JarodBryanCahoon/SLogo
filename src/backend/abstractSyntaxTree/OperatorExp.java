@@ -5,4 +5,6 @@ public abstract class OperatorExp extends Expression{
 	public OperatorExp(String s) {
 		name=s;
 	}
+	
+	public String getType;
 }

@@ -15,6 +15,5 @@ public class PolyOperatorExp<T> extends OperatorExp{
 	public void operate() {
 		//unnecessary?
 	}
-	
 
 }

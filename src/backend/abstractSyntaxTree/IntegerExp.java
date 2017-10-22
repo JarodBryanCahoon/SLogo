@@ -2,7 +2,7 @@ package backend.abstractSyntaxTree;
 
 public class IntegerExp extends Expression {
 	private Integer val;
-	
+	private String myType = "int";
 	public IntegerExp(int x) {
 		this.val = x;
 	}
@@ -14,4 +14,9 @@ public class IntegerExp extends Expression {
 	public Integer getVal() {
 		return val;
 	}
+	
+	public String getType() {
+		return myType;
+	}
+	
 }
