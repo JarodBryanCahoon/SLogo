@@ -1,16 +1,19 @@
 /* 
     Document   : sstylesheet.css
 */
-
+.root{
+	-fx-font:14px 'Letter Gothic Std';
+}
 .text{
 	-fx-fill: gold;
-	-fx-font:16px 'Letter Gothic Std';
 }
 .inputField{
-	-fx-font:16px 'Letter Gothic Std';
-	-fx-text-fill:white; 
+	-fx-text-fill: silver; 
+	-fx-background-color: black
+}
+.inputField .content{
 	-fx-background-color: black;
 }
 .syntaxField{
-	-fx-background-color: transparent;
+	-fx-background-color: black;
 }
