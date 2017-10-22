@@ -110,23 +110,34 @@ public class Turtle extends ConcreteObject{
 			return myYPos;
 		}
 
-		@Override
-		public boolean isPenDown() {
-			return this.myPenDown;
-		}
+
 
 		@Override
-		public boolean isVisible() {
-			// TODO Auto-generated method stub
-			return false;
+		public double isVisible() {
+			return myOpacity? 1:0;
 		}
 		
+		public double getXCor() {
+			return myXPos;
+		}
+		
+		public double getYCor() {
+			return myYPos;
+		}
+		
+		public double myHeading() {
+			return myAngle;
+		}
+		
+		public double isPenDown() {
+			return myPenDown ? 1:0;
+		}
 		public void undo(RenderSprite rs) {
 			myPenDown = false;
 			myXPos = rs.getX();
 			myYPos = rs.getY();
-			myOpacity = rs.isVisible();
-			myPenDown = rs.isPenDown();
+			myOpacity = rs.isVisible()==1;
+			myPenDown = rs.isPenDown()==1;
 		}
 
 		@Override

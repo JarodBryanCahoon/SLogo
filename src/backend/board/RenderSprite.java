@@ -21,12 +21,12 @@ public class RenderSprite implements iRenderSprite {
 		
 	}
 	
-	public boolean isPenDown() {
-		return penDown;
+	public double isPenDown() {
+		return penDown? 1:0;
 	}
 	
-	public boolean isVisible() {
-		return isVisible;
+	public double isVisible() {
+		return isVisible? 1:0;
 	}
 	
 	public double getX() {
