@@ -23,19 +23,15 @@ public class ConfigReader extends XMLReader {
 
 	@Override
 	protected void readFromFile() throws XMLException {
-		NodeList nList = getNodeList("view");
-		System.out.println(nList.getLength());
-//		
-		Element element = (Element) getDocument().getElementsByTagName(VIEW_TAG).item(0);
 		try {
-			height = Integer.parseInt(element.getElementsByTagName(HEIGHT_TAG).item(0).getFirstChild().getNodeValue());
-			width = Integer.parseInt(element.getElementsByTagName(WIDTH_TAG).item(0).getFirstChild().getNodeValue());
-			title = element.getElementsByTagName(TITLE_TAG).item(0).getFirstChild().getTextContent();
+			Element element = (Element) getDocument().getElementsByTagName(VIEW_TAG).item(0);
+			height = Integer.parseInt(getContent(element, HEIGHT_TAG));
+			width = Integer.parseInt(getContent(element, WIDTH_TAG));
+			title = getContent(element, TITLE_TAG);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new XMLException();
 		}
-
 	}
 	
 	public int getWidth() {

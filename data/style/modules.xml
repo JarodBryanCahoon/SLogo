@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
 	<module>
-		<class>ConsoleModule</class>
+		<class>frontend.modules.ConsoleModule</class>
 		<width>10</width>
 		<height>10</height>
 	</module>
 
 	<module>
-		<class>RenderModule</class>
+		<class>frontend.modules.RenderModule</class>
 		<width>10</width>
 		<height>10</height>
 	</module>
