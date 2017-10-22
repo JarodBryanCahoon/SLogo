@@ -1,13 +1,76 @@
 package frontend.modules;
+import javafx.scene.Group;
+import javafx.scene.Parent;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 
-import javafx.scene.control.TextInputControl;
+/**Input field of the console
+ * Colors text in accordance to syntax
+ * @author lasia lo
+ *
+ */
+public class ConsoleInput extends Module{
+	private Group myParent;
+	private TextField inputField;
+	private TextFlow syntaxField;
 
-public class ConsoleInput extends TextInputControl{
-
-	protected ConsoleInput(Content content) {
-		super(content);
-		// TODO Auto-generated constructor stub
+	public ConsoleInput(int width,int height){
+		super(width, height);
 	}
 	
+	@Override
+	protected Parent createParent(int width, int height) {
+		myParent = new Group();
+		addInputField();
+		addSyntaxField();
+		
+		myParent.getChildren().add(inputField);
+		myParent.getChildren().add(syntaxField);
+		return myParent;
+	}
+	
+	private void addInputField() {
+		syntaxField = new TextFlow();
+		syntaxField.setLayoutX(10.8);
+		syntaxField.setLayoutY(7.5);
+		syntaxField.setStyle("-fx-background-color : gray");
+	}
+
+	private void addSyntaxField() {
+		
+		inputField = new TextField();
+		inputField.setMinWidth(1000);
+		inputField.setStyle("-fx-text-fill: white; -fx-font-size: 16;-fx-background-color: gray;");
+		inputField.setOnKeyPressed(event -> doSomething(event));
+	}
+	private void doSomething(KeyEvent event) {
+		String incomingText = inputField.getText();
+		
+		if (event.getCode() == KeyCode.SPACE) {
+			createText(incomingText);
+		}
+		
+		if (event.getCode() == KeyCode.BACK_SPACE && !incomingText.equals("")) {
+			incomingText = incomingText.substring(0,incomingText.length()-1);
+			createText(incomingText);
+		}
+		
+	
+		
+		if (event.getCode() == KeyCode.ENTER) {
+			syntaxField.getChildren().clear();
+		}
+	}
+
+	private void createText(String incomingText) {
+		syntaxField.getChildren().clear();
+		Text a = new Text(incomingText);
+		a.setStyle("-fx-fill: red; -fx-font-size: 16;");
+		syntaxField.getChildren().add(a);
+	}
 
 }
+
