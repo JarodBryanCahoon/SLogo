@@ -131,9 +131,4 @@ public class Turtle extends ConcreteObject{
 			myPenDown = rs.isPenDown();
 		}
 
-		@Override
-		public RenderSprite getRenderSprite() {
-			return myRenderSprite;
-		}
-
 }

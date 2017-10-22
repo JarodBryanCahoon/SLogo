@@ -33,9 +33,7 @@ public class ConsoleModule extends Module {
 	}
 	
 	@Override
-	protected Parent createParent(int width, int height) {
-		myWidth = width;
-		myHeight = height;
+	protected Parent createParent() {
 		console = new VBox();
 //		addHistory();
 //		addMessageBox();
