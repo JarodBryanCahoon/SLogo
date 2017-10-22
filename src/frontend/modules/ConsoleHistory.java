@@ -10,16 +10,16 @@ public class ConsoleHistory extends Module {
 	
 	public ConsoleHistory(int width, int height) {
 		super(width, height);
+		historyPane.setMinSize(width,height);
 	}
 
 	@Override
-	protected Parent createParent(int width, int height) {
+	protected Parent createParent() {
 		history = new VBox();
 		historyPane = new ScrollPane(history);
-		historyPane.setMinSize(width,height);
-//		List<Object> historyList = backend.getHistory();
 		return historyPane;
 	}
+	
 	
 
 

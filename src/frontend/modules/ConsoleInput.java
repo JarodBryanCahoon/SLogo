@@ -19,30 +19,31 @@ public class ConsoleInput extends Module{
 
 	public ConsoleInput(int width,int height){
 		super(width, height);
-	}
-	
-	@Override
-	protected Parent createParent(int width, int height) {
-		myParent = new Group();
-		addInputField();
 		addSyntaxField();
+		addInputField(width);
 		
 		myParent.getChildren().add(inputField);
 		myParent.getChildren().add(syntaxField);
+	}
+	
+	@Override
+	protected Parent createParent() {
+		myParent = new Group();
+		
 		return myParent;
 	}
 	
-	private void addInputField() {
+	private void addSyntaxField() {
 		syntaxField = new TextFlow();
 		syntaxField.setLayoutX(10.8);
 		syntaxField.setLayoutY(7.5);
 		syntaxField.setStyle("-fx-background-color : gray");
 	}
 
-	private void addSyntaxField() {
+	private void addInputField(int width) {
 		
 		inputField = new TextField();
-		inputField.setMinWidth(1000);
+		inputField.setMinWidth(width);
 		inputField.setStyle("-fx-text-fill: white; -fx-font-size: 16;-fx-background-color: gray;");
 		inputField.setOnKeyPressed(event -> doSomething(event));
 	}
@@ -58,10 +59,10 @@ public class ConsoleInput extends Module{
 			createText(incomingText);
 		}
 		
-	
-		
 		if (event.getCode() == KeyCode.ENTER) {
+			inputField.setText("");
 			syntaxField.getChildren().clear();
+			
 		}
 	}
 

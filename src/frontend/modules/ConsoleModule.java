@@ -24,15 +24,16 @@ public class ConsoleModule extends Module {
 	
 	public ConsoleModule(int width, int height){
 		super(width, height);
+		myWidth = width;
+		myHeight = height;
+		addConsoleHistory();
+		addConsoleInput();
 	}
 	
 	@Override
-	protected Parent createParent(int width, int height) {
-		myWidth = width;
-		myHeight = height;
+	protected Parent createParent() {
 		console = new VBox();
-		addConsoleHistory();
-		addConsoleInput();
+		
 		return console;
 	}
 	
