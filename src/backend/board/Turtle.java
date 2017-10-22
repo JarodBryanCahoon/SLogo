@@ -2,6 +2,9 @@ package backend.board;
 
 import java.util.List;
 
+import backend.Utilities.vectors.Vector;
+import backend.Utilities.vectors.VectorMath;
+
 /**
  * 
  * @author Jarod Cahoon
@@ -49,8 +52,21 @@ public class Turtle extends ConcreteObject{
 		}
 	
 		public double setAngle(double angle) {
+			double returnAngle = angleDifference(angle);
 			myAngle = angle;
-			return 0;
+			return returnAngle;
+		}
+
+		private double angleDifference(double angle) {
+			return (Math.abs(angle-myAngle) > 180) ? Math.abs(angle-myAngle)-180 : Math.abs(angle-myAngle);
+		}
+		
+		public double setTowards(double x, double y) {
+			double newAngle = VectorMath.angleBetweenXAxis(new Vector(x,y));
+			double angleDiff = angleDifference(newAngle);
+			myAngle = newAngle;
+			return angleDiff;
+			
 		}
 	
 		public double setHome() {
@@ -80,7 +96,7 @@ public class Turtle extends ConcreteObject{
 		private void move(boolean b,double pixels){
 			double[] delta = BoardMath.xyDeltaCalc(pixels, myAngle);
 			myXPos += b? delta[0]: -delta[0];
-			myYPos += b? delta[1]: -delta[0];
+			myYPos += b? delta[1]: -delta[1];
 		}
 
 		@Override
