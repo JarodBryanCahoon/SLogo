@@ -1,6 +1,6 @@
 package backend.board;
 
-public abstract class ConcreteObject implements GeneralObject {
+public abstract class ConcreteObject implements GeneralObject, iRenderSprite {
 	
 	public double moveForward() {
 		// TODO Auto-generated method stub
