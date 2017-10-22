@@ -25,11 +25,9 @@ import javafx.scene.text.TextFlow;
 public class ConsoleInput extends Module{
 	private Group myParent;
 	private TextArea inputField;
-	private TextArea multiInputField;
 	private InfoFactory backend;
 	private KeyCombination keyComb;
 	
-	private int test;
 
 	public ConsoleInput(int width,int height,InfoFactory backend){
 		super(width, height);
@@ -40,14 +38,6 @@ public class ConsoleInput extends Module{
 		myParent.getChildren().add(inputField);
 	}
 	
-	private void addmultiField() {
-		multiInputField = new TextArea();
-		multiInputField.getStyleClass().add("inputField");
-//		multiInputField.setEditable(false);
-		myParent.getChildren().add(multiInputField);
-		
-	}
-
 	@Override
 	protected Parent createParent() {
 		myParent = new Group();
@@ -60,22 +50,17 @@ public class ConsoleInput extends Module{
 		inputField.setPrefWidth(width);
 		inputField.getStyleClass().add("inputField");
 		inputField.setWrapText(true);
-		inputField.setOnKeyPressed(event -> doSomething(event));
-		inputField.textProperty().addListener(text ->doSomethingElse(text));
+		inputField.setOnKeyPressed(event -> send(event));
+		inputField.textProperty().addListener(text ->updateSyntax(text));
 	}
 	
-	private Object doSomethingElse(Observable in) {
+	private void updateSyntax(Observable in) {
 		String text = inputField.textProperty().getValue();
 		createText(text);
-		
-		return null;
 	}
 
-	private void doSomething(KeyEvent event) {
+	private void send(KeyEvent event) {
 		String text = inputField.textProperty().getValue();
-		if (event.getCode() == KeyCode.ENTER) {
-			createText(text);
-		}
 		if (keyComb.match(event)) {
 			backend.addToHistory(text);
 			inputField.setText("");

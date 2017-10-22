@@ -37,14 +37,17 @@
 }
 
 .syntaxField{
-	-fx-background-color: white;
+	-fx-background-color: black;
 }
 /* 
   Console History
 */
 .history{
-	
+		-fx-background-color: black;
+		-fx-fill: silver;
+		
 }
 .even{
-	
+		-fx-background-color: darkgray;
+		-fx-fill: silver;
 }

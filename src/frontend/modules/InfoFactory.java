@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 
+import javafx.geometry.Pos;
+import javafx.scene.control.Label;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 
@@ -27,9 +31,26 @@ public class InfoFactory extends Observable {
 		setChanged();
 		notifyObservers();
 	}
-	public String getHistory() {
+	public FlowPane getHistory() {
+		int index = history.size();
+		Text indexText = new Text(Integer.toString(index));
+		Text n = new Text(history.get(index-1));
 		
-		return history.get(history.size()-1);
+		FlowPane toReturn = new FlowPane();
+		toReturn.getStyleClass().add("odd");
+		indexText.getStyleClass().add("odd");
+		n.getStyleClass().add("odd");
+		if (index%2==0) {
+			toReturn.getStyleClass().add("even");
+			indexText.getStyleClass().add("even");
+			n.getStyleClass().add("even");
+		}
+		toReturn.getChildren().add(indexText);
+		toReturn.getChildren().add(n);
+	
+			
+		
+		return toReturn;
 	}
 	public TextFlow[] getConsole(String test) {
 		String lines[] = test.split("\\r?\\n");
@@ -40,7 +61,7 @@ public class InfoFactory extends Observable {
 			text.getStyleClass().add("text");
 			if (lines[k].contains("s"))
 				text.getStyleClass().add("invalid");
-			TextFlow textFlow = createConsoleText(k, text, fontHeight);
+			TextFlow textFlow = createText(k, text, fontHeight);
 			toReturn[k] = textFlow;
 		}
 		
@@ -50,7 +71,7 @@ public class InfoFactory extends Observable {
 	}
 
 	
-	private TextFlow createConsoleText(int k, Text text, double fontHeight) {
+	private TextFlow createText(int k, Text text, double fontHeight) {
 		TextFlow textFlow = new TextFlow();
 		textFlow.getChildren().add(text);
 		textFlow.setLayoutX(10);
