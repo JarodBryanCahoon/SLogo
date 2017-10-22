@@ -10,13 +10,12 @@ import java.util.List;
 public class Turtle extends ConcreteObject{
 		public static final double STARTING_ANGLE = 90;
 		public static final double[] STARTING_POSITION = {0,0};
+		public static final String IMAGE_LOCATION = "";
 		private double myXPos;
 		private double myYPos;
 		private double myAngle;
 		private boolean myPenDown;
 		private boolean myOpacity;
-		private RenderSprite myRenderSprite;
-		private List<RenderSprite> prevRenderSprites;
 
 		public Turtle(String imagePath) {
 			myXPos = STARTING_POSITION[0];
@@ -24,7 +23,6 @@ public class Turtle extends ConcreteObject{
 			myAngle = STARTING_ANGLE; 
 			myPenDown = true;
 			myOpacity = true;
-			myRenderSprite = new RenderSprite(myXPos, myYPos, imagePath);
 		}
 		
 		public double moveForward(double pixels) {
@@ -103,6 +101,18 @@ public class Turtle extends ConcreteObject{
 		public boolean isVisible() {
 			// TODO Auto-generated method stub
 			return false;
+		}
+		
+		public RenderSprite getSprite(){
+			return new RenderSprite(myXPos, myYPos, myAngle, IMAGE_LOCATION);
+		}
+		
+		public void undo(RenderSprite rs) {
+			myPenDown = false;
+			myXPos = rs.getX();
+			myYPos = rs.getY();
+			myOpacity = rs.isVisible();
+			myPenDown = rs.isPenDown();
 		}
 
 		@Override

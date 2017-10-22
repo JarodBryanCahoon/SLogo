@@ -8,10 +8,12 @@ public class RenderSprite implements iRenderSprite {
 	private Image myImage;
 	private boolean penDown;
 	private boolean isVisible;	
+	private double myAngle;
 	
-	public RenderSprite(double X, double Y, String imagePath) {
+	public RenderSprite(double X, double Y, double angle, String imagePath) {
 		myX = X;
 		myY = Y;
+		myAngle = angle;
 		myImage = new Image(imagePath);
 	}
 	
