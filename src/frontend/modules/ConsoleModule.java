@@ -38,26 +38,14 @@ public class ConsoleModule extends Module {
 		myHeight = height;
 		console = new VBox();
 //		addHistory();
-//		addMessageBox();
-		addSuperTesting();
+		addConsoleInput();
 		return console;
 	}
 	
-	private void addSuperTesting(){
-		TestField test = new TestField(myWidth,myHeight);
+	private void addConsoleInput(){
+		ConsoleInput test = new ConsoleInput(myWidth,myHeight);
 		console.getChildren().add(test.getText());
 	}
-	private void addMessageBox() {
-		textField = new TextField();
-		textField.setOnKeyPressed(event -> {
-			if (event.getCode() == KeyCode.ENTER)
-				send();
-		});
-		textField.setStyle("-fx-text-fill: green; -fx-font-size: 16;");
-		console.getChildren().add(textField);
-		
-		
-		}
  
 	private void send() {
 		testStrings.add(textField.getText());
