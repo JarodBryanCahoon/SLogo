@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import backend.board.RenderSprite;
 import frontend.xml.ModuleStyleReader;
 import frontend.xml.XMLReader;
 import javafx.scene.Group;
@@ -16,6 +17,7 @@ public class ViewModule extends Module{
 	private final static String moduleFileName = "modules.xml";
 
 	private List<Module> myModules;
+	private List<RenderSprite> mySprites;
 	
 	public ViewModule(int width, int height) throws Exception {
 		super(width, height);
@@ -39,4 +41,7 @@ public class ViewModule extends Module{
 		return myParent;
 	}
 
+	public void updateRenderSprite(RenderSprite newRender) {
+		
+	}
 }

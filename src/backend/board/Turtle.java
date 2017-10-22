@@ -28,6 +28,10 @@ public class Turtle extends ConcreteObject{
 			myOpacity = true;
 		}
 		
+		public void execute() {
+			
+		}
+		
 		public double moveForward(double pixels) {
 			move(true, pixels);
 			return pixels;
@@ -119,7 +123,7 @@ public class Turtle extends ConcreteObject{
 			return false;
 		}
 		
-		public RenderSprite getSprite(){
+		public RenderSprite getRenderSprite(){
 			return new RenderSprite(myXPos, myYPos, myAngle, IMAGE_LOCATION);
 		}
 		
@@ -130,5 +134,4 @@ public class Turtle extends ConcreteObject{
 			myOpacity = rs.isVisible();
 			myPenDown = rs.isPenDown();
 		}
-
 }
