@@ -8,7 +8,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class ModulesTester extends Application{
-	private int WIDTH, HEIGHT = 500;
+	private int WIDTH= 300;
+	private int HEIGHT = 500;
 	@Override
 	public void start(Stage stage) throws Exception {
 		
