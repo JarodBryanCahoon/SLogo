@@ -19,8 +19,9 @@ import org.xml.sax.SAXException;
 
 import exceptions.XMLException;
 import frontend.modules.Module;
+import frontend.modules.RenderModule;
 
-public class ModuleStyleReader extends XMLReader{
+public class ModuleStyleReader extends XMLReader {
 	// maybe convert to enum
 	private static final String WIDTH_TAG = "width";
 	private static final String HEIGHT_TAG = "height";
@@ -30,11 +31,11 @@ public class ModuleStyleReader extends XMLReader{
 
 	public ModuleStyleReader(String path) throws XMLException {
 		super(path);
-		myModules = new ArrayList<>();
 	}
 
 	@Override
 	protected void readFromFile() throws XMLException {
+		myModules = new ArrayList<Module>();
 		NodeList nList = this.getNodeList(MODULE_TAG);
 
 		for (int i = 0; i < nList.getLength(); i++) {
@@ -45,31 +46,32 @@ public class ModuleStyleReader extends XMLReader{
 				myModules.add(instFromElement(element));
 			}
 		}
+
 	}
-	
+
 	public List<Module> getModules() {
 		return myModules;
 	}
 
 	private Module instFromElement(Element element) throws XMLException {
-		String clsName = element.getAttribute(CLASS_TAG);
-		int width = Integer.parseInt(element.getAttribute(WIDTH_TAG));
-		int height = Integer.parseInt(element.getAttribute(HEIGHT_TAG));
+		String clsName = getContent(element, CLASS_TAG);
+		int width = Integer.parseInt(getContent(element, WIDTH_TAG));
+		int height = Integer.parseInt(getContent(element, HEIGHT_TAG));
 
 		Class<?> cls;
 		Constructor<?> constructor;
 		Module module = null;
-		
+
 		try {
 			cls = Class.forName(clsName);
-			constructor = cls.getDeclaredConstructor(String.class, int.class, int.class);
-			module = (Module) constructor.newInstance(clsName, width, height);
+			constructor = cls.getDeclaredConstructor(int.class, int.class);
+			module = (Module) constructor.newInstance(width, height);
 		} catch (ClassNotFoundException | NoSuchMethodException | SecurityException | InstantiationException
 				| IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
 			// TODO handle exception properly
 			e.printStackTrace();
 			throw new XMLException();
-		}		
+		}
 		return module;
 	}
 }

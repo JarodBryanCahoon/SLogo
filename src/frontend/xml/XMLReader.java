@@ -40,4 +40,8 @@ public abstract class XMLReader {
 	protected Document getDocument() {
 		return myDocument;
 	}
+	
+	protected String getContent(Element element, String tag) {
+		return element.getElementsByTagName(tag).item(0).getTextContent();
+	}
 }
