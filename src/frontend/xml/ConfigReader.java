@@ -11,7 +11,7 @@ public class ConfigReader extends XMLReader {
 
 	private static final String HEIGHT_TAG = "height";
 	private static final String WIDTH_TAG = "width";
-	private static final String TITLTE_TAG = "title";
+	private static final String TITLE_TAG = "title";
 	private final String VIEW_TAG = "view";
 	private int width;
 	private int height;
@@ -22,13 +22,20 @@ public class ConfigReader extends XMLReader {
 	}
 
 	@Override
-	protected void readFromFile(){
-		NodeList nList = getNodeList(VIEW_TAG);
-		
-		Element element = (Element) nList.item(0);
-		width = Integer.parseInt(element.getAttribute(WIDTH_TAG));
-		height = Integer.parseInt(element.getAttribute(HEIGHT_TAG));
-		title = element.getAttribute(VIEW_TAG);
+	protected void readFromFile() throws XMLException {
+		NodeList nList = getNodeList("view");
+		System.out.println(nList.getLength());
+//		
+		Element element = (Element) getDocument().getElementsByTagName(VIEW_TAG).item(0);
+		try {
+			height = Integer.parseInt(element.getElementsByTagName(HEIGHT_TAG).item(0).getFirstChild().getNodeValue());
+			width = Integer.parseInt(element.getElementsByTagName(WIDTH_TAG).item(0).getFirstChild().getNodeValue());
+			title = element.getElementsByTagName(TITLE_TAG).item(0).getFirstChild().getTextContent();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new XMLException();
+		}
+
 	}
 	
 	public int getWidth() {

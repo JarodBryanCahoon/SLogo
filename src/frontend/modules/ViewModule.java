@@ -31,12 +31,11 @@ public class ViewModule extends Module{
 
 	@Override
 	protected Parent createParent() throws Exception {
-		Group myGroup = new Group();
+		BorderPane myParent = new BorderPane();
 		for(Module m : myModules) {
-			Parent myParent = m.getParent();
-			myGroup.getChildren().add(myParent);
+			myParent.getChildren().add(m.getParent());
 		}
-		return myGroup;
+		return myParent;
 	}
 
 }

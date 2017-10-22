@@ -9,11 +9,13 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Main extends Application{
-	private final static String configFileName = "config.xml";
+	private final static String configFileName = "data/style/config.xml";
 	
 	@Override
 	public void start(Stage s) {
 		try {
+			System.out.println(getClass().getClassLoader().getResource(configFileName));
+
 			ConfigReader configReader = new ConfigReader(getClass().getClassLoader().getResource(configFileName).getPath());
 			ViewModule view = new ViewModule(configReader.getWidth(), configReader.getHeight());
 			
