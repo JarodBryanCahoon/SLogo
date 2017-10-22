@@ -1,4 +1,4 @@
-package backend.abstractsyntaxtree;
+package backend.abstractSyntaxTree;
 
 public class ASTNode {
 	private Expression val;

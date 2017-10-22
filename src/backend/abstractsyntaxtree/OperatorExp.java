@@ -1,4 +1,4 @@
-package backend.abstractsyntaxtree;
+package backend.abstractSyntaxTree;
 
 public abstract class OperatorExp extends Expression{
 	String name;

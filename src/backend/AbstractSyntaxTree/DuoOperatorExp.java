@@ -1,4 +1,4 @@
-package backend.AbstractSyntaxTree;
+package backend.abstractSyntaxTree;
 
 public class DuoOperatorExp extends OperatorExp {
 	private double arg1;
