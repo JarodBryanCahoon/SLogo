@@ -16,12 +16,14 @@ public class ConsoleInput extends Module{
 	private Group myParent;
 	private TextField inputField;
 	private TextFlow syntaxField;
+	private InterpreterInterface backend;
 
-	public ConsoleInput(int width,int height){
+	public ConsoleInput(int width,int height,InterpreterInterface backend){
 		super(width, height);
+		this.backend = backend;
+				
 		addSyntaxField();
 		addInputField(width);
-		
 		myParent.getChildren().add(inputField);
 		myParent.getChildren().add(syntaxField);
 	}
@@ -29,7 +31,6 @@ public class ConsoleInput extends Module{
 	@Override
 	protected Parent createParent() {
 		myParent = new Group();
-		
 		return myParent;
 	}
 	
@@ -60,9 +61,9 @@ public class ConsoleInput extends Module{
 		}
 		
 		if (event.getCode() == KeyCode.ENTER) {
+			backend.addToHistory(incomingText);
 			inputField.setText("");
 			syntaxField.getChildren().clear();
-			
 		}
 	}
 

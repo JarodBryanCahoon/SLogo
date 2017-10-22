@@ -15,6 +15,7 @@ import javafx.scene.layout.VBox;
 
 public class ConsoleModule extends Module {
 	private VBox console;
+	private InterpreterInterface backend;
 
 	private int myWidth;
 	private int myHeight;
@@ -24,6 +25,7 @@ public class ConsoleModule extends Module {
 	
 	public ConsoleModule(int width, int height){
 		super(width, height);
+		backend = new InterpreterInterface();
 		myWidth = width;
 		myHeight = height;
 		addConsoleHistory();
@@ -38,12 +40,12 @@ public class ConsoleModule extends Module {
 	}
 	
 	private void addConsoleHistory() {
-		Module ConsoleHistory = new ConsoleHistory(myWidth,myHeight);
+		Module ConsoleHistory = new ConsoleHistory(myWidth,myHeight,backend);
 		console.getChildren().add(ConsoleHistory.getParent());
 	}
 
 	private void addConsoleInput(){
-		Module test = new ConsoleInput(myWidth,myHeight);
+		Module test = new ConsoleInput(myWidth,myHeight,backend);
 		console.getChildren().add(test.getParent());
 	}
  
