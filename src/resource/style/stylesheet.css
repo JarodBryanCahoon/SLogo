@@ -10,16 +10,16 @@
     Expression colors
 */
 .text{
-	-fx-fill: gold;
+	-fx-fill: silver;
 }
 .constant{
 	-fx-fill: pink;
 }
 .variable{
-	
+	-fx-fill: greenyellow;
 }
 .command{
-	
+	-fx-fill: orangered;
 }
 .invalid{
 	-fx-fill:silver
@@ -29,6 +29,7 @@
   Console  
 */
 .inputField{
+	-fx-wrap-text: true;
 	-fx-text-fill: silver; 
 	-fx-background-color: black;
 }
@@ -42,12 +43,8 @@
 /* 
   Console History
 */
-.odd{
+.history{
 		-fx-background-color: black;
 		-fx-fill: silver;
 		
-}
-.even{
-		-fx-background-color: darkgray;
-		-fx-fill: silver;
 }

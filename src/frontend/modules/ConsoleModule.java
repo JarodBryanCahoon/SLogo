@@ -15,17 +15,14 @@ import javafx.scene.layout.VBox;
 
 public class ConsoleModule extends Module {
 	private VBox console;
-	private InfoFactory backend;
+	private InfoInterface backend;
 
 	private int myWidth;
 	private int myHeight;
 	
-	private List<String> testStrings = new ArrayList<String>();
-	private int k;
-	
 	public ConsoleModule(int width, int height){
 		super(width, height);
-		backend = new InfoFactory();
+		backend = new InfoInterface();
 		myWidth = width;
 		myHeight = height;
 		addConsoleHistory();

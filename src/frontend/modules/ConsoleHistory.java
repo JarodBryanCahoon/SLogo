@@ -10,7 +10,7 @@ public class ConsoleHistory extends Module implements Observer {
 	private VBox history;
 	private ScrollPane historyPane;
 	
-	public ConsoleHistory(int width, int height, InfoFactory backend) {
+	public ConsoleHistory(int width, int height, InfoInterface backend) {
 		super(width, height);
 		historyPane.setMinSize(width,height);
 		history.setMinSize(width-10,height-10);
@@ -28,7 +28,7 @@ public class ConsoleHistory extends Module implements Observer {
 	
 	@Override
 	public void update(Observable backend, Object arg1) {
-		history.getChildren().add(((InfoFactory) backend).getHistory());
+		history.getChildren().add(((InfoInterface) backend).getHistory());
 	}
 	
 	

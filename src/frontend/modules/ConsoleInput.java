@@ -20,16 +20,15 @@ import javafx.scene.text.TextFlow;
  *
  */
 
-//TODO: Extract CSS
 
 public class ConsoleInput extends Module{
 	private Group myParent;
 	private TextArea inputField;
-	private InfoFactory backend;
+	private InfoInterface backend;
 	private KeyCombination keyComb;
 	
 
-	public ConsoleInput(int width,int height,InfoFactory backend){
+	public ConsoleInput(int width,int height,InfoInterface backend){
 		super(width, height);
 		keyComb = new KeyCodeCombination(KeyCode.ENTER,KeyCombination.SHIFT_DOWN);
 		this.backend = backend;
@@ -49,7 +48,6 @@ public class ConsoleInput extends Module{
 		inputField = new TextArea();
 		inputField.setPrefWidth(width);
 		inputField.getStyleClass().add("inputField");
-		inputField.setWrapText(true);
 		inputField.setOnKeyPressed(event -> send(event));
 		inputField.textProperty().addListener(text ->updateSyntax(text));
 	}
