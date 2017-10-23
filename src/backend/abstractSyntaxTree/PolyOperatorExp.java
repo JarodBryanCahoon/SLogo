@@ -2,13 +2,13 @@ package backend.abstractSyntaxTree;
 
 import java.util.Collection;
 
-public class PolyOperatorExp<T> extends OperatorExp{
-	private Collection<T> args;
+public class PolyOperatorExp extends OperatorExp{
+	private Collection<String> args;
 	public PolyOperatorExp(String s) {
 		super(s);
 	}
 	
-	public void setArgs(Collection<T> c) {
+	public void setArgs(Collection c) {
 		args = c;
 	}
 	

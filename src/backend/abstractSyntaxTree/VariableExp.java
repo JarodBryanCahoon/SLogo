@@ -2,12 +2,14 @@ package backend.abstractSyntaxTree;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-
+/**
+ * 
+ * @author Venkat Subramaniam/Jarod Cahoon
+ *
+ */
 public class VariableExp extends Expression{
 	private String name;
-	private double val1;
-	private int val2;
-	private boolean type;
+	private Number value;
 	
 	public VariableExp(String s) {
 		this.name = s;
@@ -18,18 +20,14 @@ public class VariableExp extends Expression{
 		Method m = e.getClass().getMethod("getVal", null);
 		m.setAccessible(true);
 		if (e.getClass().getName().equals("DoubleExp")){
-			type=true;
-			val1 = (double) m.invoke(e, null);
+			value = new Double((double)m.invoke(e, null));
 		}
 		else {
-			val2 = (int) m.invoke(e, null);
+			value = new Integer((int) m.invoke(e, null));
 		}
 	}
 	
-	public double getVal() {
-		if(type) {
-			return this.val1;
-		}
-		return this.val2;
+	public Number getVal() {
+		return value; 
 	}
 }
