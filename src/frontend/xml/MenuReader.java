@@ -2,8 +2,8 @@ package frontend.xml;
 
 import exceptions.XMLException;
 import frontend.menus.CustomMenuButton;
-import frontend.menus.iMenuItemStrategy;
-import frontend.menus.menuItemStrategy;
+import frontend.menus.strategies.iMenuItemStrategy;
+import frontend.menus.strategies.menuItemStrategy;
 import frontend.modules.Module;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
@@ -24,7 +24,7 @@ public class MenuReader extends XMLReader {
 	private static final String ITEM_TAG = "item";
 	private static final String MENU_TAG = "menu";
 	private static final String STRATEGY_TAG = "strategy";
-	private Map<String, Menu> subMenus;
+	private Map<String, Menu> mySubMenus;
 	private Map<MenuItem, iMenuItemStrategy> strategies;
 	private Module myModule;
 
@@ -35,7 +35,7 @@ public class MenuReader extends XMLReader {
 
 	@Override
 	protected void readFromFile() throws XMLException {
-		subMenus = new HashMap<>();
+		mySubMenus = new HashMap<>();
 		strategies = new HashMap<>();
 		NodeList nList = this.getNodeList(MENU_TAG);
 
@@ -55,7 +55,7 @@ public class MenuReader extends XMLReader {
 		String menuName = StringLevelParse(itemHead, subItems.getLength(), NAME_TAG);
 //		System.out.println(menuName);
 		Menu newMenu = parseSubMenu(menu, itemHead, subItems.getLength());
-		subMenus.put(menuName, newMenu);
+		mySubMenus.put(menuName, newMenu);
 	}
 
 	private String StringLevelParse(Node head, int length, String tag) throws XMLException {
@@ -118,7 +118,7 @@ public class MenuReader extends XMLReader {
 //			try {
 //				Class cls = Class.forName(getContent(menuItem, STRATEGY_TAG));
 //				iMenuItemStrategy strategy = (iMenuItemStrategy) cls.getDeclaredConstructor(Module.class)
-//						.newInstance(myModule);
+//						.newInstance(myModule); // change to accomodate different windows
 //				newCustomMenu = new CustomMenuButton(newItem, strategy);
 //			} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | IllegalArgumentException
 //					| InvocationTargetException | NoSuchMethodException | SecurityException e) {
@@ -128,5 +128,9 @@ public class MenuReader extends XMLReader {
 //			
 //			return newCustomMenu.getItem();
 		}
+	}
+	
+	public Map<String, Menu> getSubMenus() {
+		return mySubMenus;
 	}
 }

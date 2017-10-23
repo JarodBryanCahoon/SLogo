@@ -1,18 +1,21 @@
-import java.io.File;
+package frontend.menus.strategies;
 
+import frontend.menus.CustomMenuButton;
 import frontend.modules.Module;
 import frontend.modules.ViewModule;
 import frontend.xml.ConfigReader;
-import frontend.xml.XMLReader;
-import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class Main extends Application{
-	public final static String configFileName = "config.xml";
+public class newWindow extends menuItemStrategy {
+	private static final String configFileName = "config.xml";
+	public newWindow(Module module) {
+		super(module);
+	}
 	
 	@Override
-	public void start(Stage s) {
+	public void execute() {
+		Stage s = new Stage();
 		try {
 			System.out.println(getClass().getClassLoader().getResource(configFileName));
 
@@ -27,10 +30,6 @@ public class Main extends Application{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 	}
-	
-    public static void main (String[] args) {
-        launch(args);
-    }
+
 }

@@ -14,23 +14,11 @@ public class MenuFactory {
 		
 	}
 	
-	public MenuBar create(Map<String, List<MenuItem>> subMenus) {
+	public MenuBar create(Map<String, Menu> subMenus) {
 		MenuBar nBar = new MenuBar();
 		
 		for(String menuText : subMenus.keySet()) {
-			Menu subMenu = new Menu(menuText);
-			
-			for(MenuItem item : subMenus.get(menuText)) {				
-				if(item instanceof Menu) {
-					// assume instantiated and subbuttons added in MenuReader
-					Menu doubleSubMenu = (Menu) item;
-					subMenu.getItems().add(doubleSubMenu);
-					continue;
-				}
-				
-				subMenu.getItems().add(item);
-			}
-			
+			Menu subMenu = new Menu(menuText);			
 			nBar.getMenus().add(subMenu);
 		}
 		
