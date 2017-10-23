@@ -21,7 +21,7 @@ public class CustomMenuButton {
 		myMenuItem.setOnAction(e -> myStrategy.execute());
 	}
 	
-	protected MenuItem getItem() {
+	public MenuItem getItem() {
 		return myMenuItem;
 	}
 

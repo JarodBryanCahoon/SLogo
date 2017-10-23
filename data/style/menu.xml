@@ -15,6 +15,10 @@
 				<type>button</type>
 				<strategy>newWindow</strategy>
 			</item>
+			<item>
+				<name>stupid</name>
+				<type>menu</type>
+			</item>
 		</item>
 
 		<item>
