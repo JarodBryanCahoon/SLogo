@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+	<menu>
+		<name>File</name>
+		<item>
+			<name>New...</name>
+			<type>menu</type>
+			<item>
+				<name>Turtle</name>
+				<type>button</type>
+				<strategy>newTurtle</strategy>
+			</item>
+			<item>
+				<name>Window</name>
+				<type>button</type>
+				<strategy>newWindow</strategy>
+			</item>
+			<item>
+				<name>stupid</name>
+				<type>menu</type>
+			</item>
+		</item>
+
+		<item>
+			<name>Export Preferences</name>
+			<type>button</type>
+			<strategy>export</strategy>
+		</item>
+	</menu>
+
+	<menu>
+		<name>View</name>
+		<item>
+			<name>Change Background Color</name>
+			<type>button</type>
+			<strategy>backColorChange</strategy>
+		</item>
+
+		<item>
+			<name>Change Pen Color</name>
+			<type>button</type>
+			<strategy>penColorChange</strategy>
+		</item>
+
+		<item>
+			<name>Set Image</name>
+			<type>button</type>
+			<strategy>imageChange</strategy>
+		</item>
+	</menu>
+
+
+</resources>

@@ -30,6 +30,10 @@ public class Turtle extends ConcreteObject{
 			myOpacity = true;
 		}
 		
+		public void execute() {
+			
+		}
+		
 		public double moveForward(double pixels) {
 			move(true, pixels);
 			return pixels;
@@ -130,7 +134,7 @@ public class Turtle extends ConcreteObject{
 		public double isPenDown() {
 			return myPenDown ? 1:0;
 		}
-		
+
 		public double penDown() {
 			myPenDown = true;
 			return 1;
