@@ -151,7 +151,7 @@ public class Turtle extends ConcreteObject{
 			myOpacity = rs.isVisible()==1;
 			myPenDown = rs.isPenDown()==1;
 		}
-
+		
 		@Override
 		public RenderSprite getRenderSprite() {
 			return new RenderSprite(myXPos, myYPos, myAngle, myImage);
