@@ -29,6 +29,7 @@ public class ConsoleHistory extends Module implements Observer {
 		historyPane = new ScrollPane(history);
 		history.getStyleClass().add("inputField");
 		historyPane.getStyleClass().add("inputField");
+		
 		return historyPane;
 	}
 	
@@ -48,7 +49,13 @@ public class ConsoleHistory extends Module implements Observer {
 		ft.play();
 	}
 	
-	
+	public void turn(int index, boolean on) {
+		if (on)
+			history.getChildren().get(index).setStyle("-fx-background-color: green;");
+		if (!on)
+			history.getChildren().get(index).setStyle("-fx-background-color: black;");
+			
+	}
 
 
 }
