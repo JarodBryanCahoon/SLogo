@@ -38,7 +38,7 @@ public class InfoInterface extends Observable {
 	
 	public FlowPane getHistory() {
 		int index = history.size();
-		Text indexText = new Text(Integer.toString(index));
+		Text indexText = new Text(Integer.toString(index) + "  ");
 		TextFlow historyText = createSentence(history.get(index-1));
 		FlowPane toReturn = new FlowPane();
 		

@@ -2,9 +2,13 @@ package frontend.modules;
 
 import java.util.Observable;
 import java.util.Observer;
+
+import javafx.animation.FadeTransition;
 import javafx.scene.Parent;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
+import javafx.util.Duration;
 
 public class ConsoleHistory extends Module implements Observer {
 	private VBox history;
@@ -15,6 +19,8 @@ public class ConsoleHistory extends Module implements Observer {
 		historyPane.setMinSize(width,height);
 		history.setMinSize(width-10,height-10);
 		backend.addObserver(this);
+		
+		
 	}
 
 	@Override
@@ -28,7 +34,18 @@ public class ConsoleHistory extends Module implements Observer {
 	
 	@Override
 	public void update(Observable backend, Object arg1) {
-		history.getChildren().add(((InfoInterface) backend).getHistory());
+		FlowPane toAdd = ((InfoInterface) backend).getHistory();
+		history.getChildren().add(toAdd);
+		fadeIn(toAdd);
+		
+		historyPane.setVvalue(1.0);
+	}
+
+	private void fadeIn(FlowPane toAdd) {
+		FadeTransition ft = new FadeTransition(Duration.millis(200),toAdd);
+		ft.setFromValue(0);
+		ft.setToValue(1);
+		ft.play();
 	}
 	
 	
