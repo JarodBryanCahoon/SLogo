@@ -14,10 +14,9 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 
 public class ViewModule extends Module{
-	private final static String moduleFileName = "modules.xml";
+	private final static String moduleFileName = "resources/style/modules.xml";
 
 	private List<Module> myModules;
-	private List<RenderSprite> mySprites;
 	
 	public ViewModule(int width, int height) throws Exception {
 		super(width, height);
@@ -39,9 +38,5 @@ public class ViewModule extends Module{
 			myParent.getChildren().add(m.getParent());
 		}
 		return myParent;
-	}
-
-	public void updateRenderSprite(RenderSprite newRender) {
-		
 	}
 }

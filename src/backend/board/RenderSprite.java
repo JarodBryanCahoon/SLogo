@@ -9,11 +9,13 @@ public class RenderSprite implements iRenderSprite {
 	private boolean penDown;
 	private boolean isVisible;	
 	private double myAngle;
+	private int myTurtleId;
 	
-	public RenderSprite(double X, double Y, double angle, String imagePath) {
+	public RenderSprite(double X, double Y, double angle, String imagePath, int id) {
 		myX = X;
 		myY = Y;
 		myAngle = angle;
+		myTurtleId = id;
 		myImage = new Image(imagePath);
 	}
 	
@@ -37,4 +39,7 @@ public class RenderSprite implements iRenderSprite {
 		return myY;
 	}
 
+	public int getId() {
+		return myTurtleId;
+	}
 }

@@ -5,11 +5,12 @@ import java.util.Observer;
 
 import backend.board.ConcreteObject;
 import backend.board.RenderSprite;
+import frontend.modules.RenderModule;
 import frontend.modules.ViewModule;
 
 public class SpriteObserver implements Observer{
-	private ViewModule myView;
-	public SpriteObserver(ViewModule view) {
+	private RenderModule myView;
+	public SpriteObserver(RenderModule view) {
 		myView = view;
 	}
 	

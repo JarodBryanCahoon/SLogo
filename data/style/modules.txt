@@ -1,2 +1,0 @@
-ConsoleModule 0 0 
-RenderModule 5 5

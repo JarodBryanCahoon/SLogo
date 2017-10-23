@@ -9,7 +9,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Main extends Application{
-	public final static String configFileName = "config.xml";
+	public final static String configFileName = "resources/style/config.xml";
 	
 	@Override
 	public void start(Stage s) {

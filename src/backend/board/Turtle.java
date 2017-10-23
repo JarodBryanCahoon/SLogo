@@ -154,6 +154,6 @@ public class Turtle extends ConcreteObject{
 		
 		@Override
 		public RenderSprite getRenderSprite() {
-			return new RenderSprite(myXPos, myYPos, myAngle, myImage);
+			return new RenderSprite(myXPos, myYPos, myAngle, myImage, myTurtleId);
 		}
 }
