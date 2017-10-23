@@ -32,7 +32,11 @@ public class Word {
 		}
 //		else if (myName.matches("^#.*")) {
 //			myType = "comment";
-//		}	
+//		}
+		else if(myName.matches("^\\[{1}.*\\]{1}$")){
+			myType = "list";
+			myExpression = new ListExp(myName);
+		}
 		else {
 			myType = "invalid";
 		}
