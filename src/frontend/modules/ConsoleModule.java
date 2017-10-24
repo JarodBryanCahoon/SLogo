@@ -20,10 +20,10 @@ public class ConsoleModule extends Module {
 	private TextField textField;
 	private ScrollPane historyPane;
 
-	private double myWidth;
-	private double myHeight;
+	private int myWidth;
+	private int myHeight;
 	
-	public ConsoleModule(double width, double height) throws Exception{
+	public ConsoleModule(int width, int height) throws Exception{
 		super(width, height);
 	}
 	

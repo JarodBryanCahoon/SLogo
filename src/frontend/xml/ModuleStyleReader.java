@@ -20,7 +20,6 @@ import org.xml.sax.SAXException;
 import exceptions.XMLException;
 import frontend.modules.Module;
 import frontend.modules.RenderModule;
-import frontend.modules.ConsoleModule;
 
 public class ModuleStyleReader extends XMLReader {
 	// maybe convert to enum
