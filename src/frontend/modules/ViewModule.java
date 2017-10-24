@@ -22,28 +22,18 @@ public class ViewModule extends Module{
 		super(width, height);
 	}
 	
-	private void displayWindows() {
-		for(Module m : myModules) {
-			// display m
-		}
-	}
-
 	@Override
 	protected Parent createParent() throws Exception {
 		ModuleStyleReader mStyleReader = new ModuleStyleReader(getClass().getClassLoader().getResource(moduleFileName).getFile());
 		myModules = mStyleReader.getModules();
 
-		BorderPane myParent = new BorderPane();
-		for(Module m : myModules) {
-			if(m instanceof RenderModule) {
-				myParent.setCenter(m.getParent());
-			} else {
-				myParent.getChildren().add(m.getParent());
-
-			}
-		}
-		
+		BorderPane myParent = new BorderPane(myModules.get(0).getParent(), myModules.get(1).getParent(), myModules.get(2).getParent(), null, null);
 		myParent.setPrefSize(getWidth(), getHeight());
+//		for(Module m : myModules) {
+//			myParent.getChildren().add(m.getParent());
+////			System.out.println(m.getParent().getBoundsInLocal().getWidth());
+//		}	
+//		myParent.setPrefSize(getWidth(), getHeight());
 		return myParent;
 	}
 }
