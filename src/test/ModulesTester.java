@@ -1,10 +1,7 @@
 package test;
 
 import frontend.modules.ConsoleModule;
-import frontend.modules.MenuModule;
 import frontend.modules.Module;
-import frontend.modules.RenderModule;
-import frontend.modules.ViewModule;
 import javafx.application.Application;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -17,7 +14,7 @@ public class ModulesTester extends Application{
 	public void start(Stage stage) throws Exception {
 		
 		// Change test to whatever module you want
-		Module test = new MenuModule (WIDTH,HEIGHT);
+		Module test = new ConsoleModule (WIDTH,HEIGHT);
 		
 		Parent parent = test.getParent();
 		Scene scene = new Scene(parent);
