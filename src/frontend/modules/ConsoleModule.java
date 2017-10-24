@@ -17,10 +17,10 @@ public class ConsoleModule extends Module {
 	private VBox console;
 	private InfoInterface backend;
 
-	private int myWidth;
-	private int myHeight;
+	private double myWidth;
+	private double myHeight;
 	
-	public ConsoleModule(int width, int height) throws Exception{
+	public ConsoleModule(double width, double height) throws Exception{
 		super(width, height);
 		backend = new InfoInterface();
 		myWidth = width;

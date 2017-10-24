@@ -28,12 +28,13 @@ public class ConsoleInput extends Module{
 	private KeyCombination keyComb;
 	
 
-	public ConsoleInput(int width,int height,InfoInterface backend) throws Exception{
-		super(width, height);
+	public ConsoleInput(double myWidth,double myHeight,InfoInterface backend) throws Exception{
+		super(myWidth, myHeight);
+		System.out.println("Console created");
 		keyComb = new KeyCodeCombination(KeyCode.ENTER,KeyCombination.SHIFT_DOWN);
 		this.backend = backend;
 				
-		addInputField(width);
+		addInputField(myWidth);
 		myParent.getChildren().add(inputField);
 	}
 	
@@ -44,7 +45,7 @@ public class ConsoleInput extends Module{
 	}
 	
 
-	private void addInputField(int width) {
+	private void addInputField(double width) {
 		inputField = new TextArea();
 		inputField.setPrefWidth(width);
 		inputField.getStyleClass().add("inputField");

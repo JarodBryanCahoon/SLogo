@@ -20,6 +20,7 @@ import org.xml.sax.SAXException;
 import exceptions.XMLException;
 import frontend.modules.Module;
 import frontend.modules.RenderModule;
+import frontend.modules.ConsoleModule;
 
 public class ModuleStyleReader extends XMLReader {
 	// maybe convert to enum
@@ -64,6 +65,7 @@ public class ModuleStyleReader extends XMLReader {
 
 		try {
 			cls = Class.forName(clsName);
+			System.out.println(cls);
 			constructor = cls.getDeclaredConstructor(double.class, double.class);
 			module = (Module) constructor.newInstance(width, height);
 		} catch (ClassNotFoundException | NoSuchMethodException | SecurityException | InstantiationException

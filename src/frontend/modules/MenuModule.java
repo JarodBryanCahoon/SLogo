@@ -6,6 +6,7 @@ import javafx.scene.control.MenuBar;
 public class MenuModule extends Module {
 	public MenuModule(double width, double height) throws Exception {
 		super(width, height);
+		System.out.println("Menu created");
 	}
 
 	@Override
