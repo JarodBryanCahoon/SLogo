@@ -20,10 +20,10 @@ public class ConsoleModule extends Module {
 	private TextField textField;
 	private ScrollPane historyPane;
 
-	private List<String> testStrings = new ArrayList<String>();
-	private int k;
+	private double myWidth;
+	private double myHeight;
 	
-	public ConsoleModule(double width, double height) throws Exception {
+	public ConsoleModule(double width, double height) throws Exception{
 		super(width, height);
 	}
 	
@@ -36,30 +36,14 @@ public class ConsoleModule extends Module {
 		return console;
 	}
 	
-	private void addSuperTesting(){
-		TestField test = new TestField(getWidth(), getHeight());
-		console.getChildren().add(test.getText());
+	private void addConsoleHistory() throws Exception {
+		Module ConsoleHistory = new ConsoleHistory(myWidth,myHeight,backend);
+		console.getChildren().add(ConsoleHistory.getParent());
 	}
-	
-	private void addMessageBox() {
-		textField = new TextField();
-		textField.setOnKeyPressed(event -> {
-			if (event.getCode() == KeyCode.ENTER)
-				send();
-		});
-		textField.setStyle("-fx-text-fill: green; -fx-font-size: 16;");
-		console.getChildren().add(textField);
-		
-		
-		}
- 
-	private void send() {
-		testStrings.add(textField.getText());
-		textField.setText("");
-		updateHistory();
-		k++;
-		
-//		manager.Command(tobeSent);
+
+	private void addConsoleInput() throws Exception{
+		Module test = new ConsoleInput(myWidth,myHeight,backend);
+		console.getChildren().add(test.getParent());
 	}
 	
 	private void addHistory() {
