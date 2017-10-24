@@ -2,7 +2,6 @@ package backend.interpreter;
 
 import java.util.ArrayList;
 import java.util.Map;
-import java.util.Observable;
 
 import backend.abstractSyntaxTree.ASTNode;
 
@@ -12,12 +11,12 @@ import backend.abstractSyntaxTree.ASTNode;
  * @version 10.21.17
  */ 
 
-public class Manager extends Observable {
-	private Map<String, ArrayList<?>> memory;
+public class Manager {
+	private Map<String, ArrayList<Object>> memory;
 	private TextParse parser;
 	
-	
 	public Manager() {
+		
 	}
 	
 	public void setCommand() {
