@@ -1,0 +1,50 @@
+/* 
+    Document   : sstylesheet.css
+*/
+
+.root{
+	-fx-font:14px 'Letter Gothic Std';
+	-fx-background-color: black;
+}
+/* 
+    Expression colors
+*/
+.text{
+	-fx-fill: silver;
+}
+.constant{
+	-fx-fill: pink;
+}
+.variable{
+	-fx-fill: greenyellow;
+}
+.command{
+	-fx-fill: orangered;
+}
+.invalid{
+	-fx-fill:silver
+}
+
+/* 
+  Console  
+*/
+.inputField{
+	-fx-wrap-text: true;
+	-fx-text-fill: silver; 
+	-fx-background-color: black;
+}
+.inputField .content{
+	-fx-background-color: black;
+}
+
+.syntaxField{
+	-fx-background-color: black;
+}
+/* 
+  Console History
+*/
+.history{
+		-fx-background-color: black;
+		-fx-fill: silver;
+		
+}
