@@ -32,7 +32,6 @@ public class RenderModule extends Module{
 		myGroup.setLayoutX(getWidth());
 		myGroup.setLayoutY(getHeight());
 //		myGroup.setPrefSize(getWidth(), getHeight());
-		myGroup.setStyle("-fx-background-color : black");
 		Button b = new Button("help");
 		myGroup.getChildren().add(b);
 		// add turtle

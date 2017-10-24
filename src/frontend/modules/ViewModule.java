@@ -27,12 +27,12 @@ public class ViewModule extends Module{
 		ModuleStyleReader mStyleReader = new ModuleStyleReader(getClass().getClassLoader().getResource(moduleFileName).getFile());
 		myModules = mStyleReader.getModules();
 
-		BorderPane myParent = new BorderPane();
+		BorderPane myParent = new BorderPane(myModules.get(0).getParent(), myModules.get(1).getParent(), myModules.get(2).getParent(), null, null);
 		myParent.setPrefSize(getWidth(), getHeight());
-		for(Module m : myModules) {
-			myParent.getChildren().add(m.getParent());
-//			System.out.println(m.getParent().getBoundsInLocal().getWidth());
-		}	
+//		for(Module m : myModules) {
+//			myParent.getChildren().add(m.getParent());
+////			System.out.println(m.getParent().getBoundsInLocal().getWidth());
+//		}	
 //		myParent.setPrefSize(getWidth(), getHeight());
 		return myParent;
 	}
