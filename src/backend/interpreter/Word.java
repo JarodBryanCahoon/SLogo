@@ -1,19 +1,29 @@
 package backend.interpreter;
 
 import backend.abstractSyntaxTree.Expression;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.ResourceBundle;
+
 import backend.abstractSyntaxTree.*;
 
 public class Word {
 	private String myName;
 	private String myType;
 	private Expression myExpression;
+	private int operatorNumber;
+//	private Map<String, Integer> commandNumbers = new HashMap<String, Integer>();
 	
-	public Word(String s) {	
+	
+	public Word(String s, ResourceBundle resources, Map<String, Integer> commandNumbers) {	
 		myName = s.toLowerCase();
-		determineType();
+		determineType(resources, commandNumbers);
+		
 	}
 	
-	private void determineType() {
+	
+	private void determineType(ResourceBundle rb, Map<String, Integer> map) {
 		if(myName.matches("^-?[0-9]+\\.[0-9]+$")){
 			myType = "constant";
 			myExpression = new DoubleExp(Double.parseDouble(myName));
@@ -28,11 +38,20 @@ public class Word {
 		}
 		else if(myName.matches("^[a-zA-Z_]+(\\?)?$")) {
 			myType = "command";
-			myExpression = new OperatorExp(myName);
+			String method = rb.getString(myName);
+			if (map.get(method)==0) {
+				myExpression = new NoneOperatorExp(method);
+				operatorNumber = 0;
+			}
+			if (map.get(method)==1) {
+				myExpression = new MonoOperatorExp(method);
+				operatorNumber = 1;
+			}
+			if(map.get(method)==2) {
+				myExpression = new DuoOperatorExp(method);
+				operatorNumber = 2;
+			}
 		}
-//		else if (myName.matches("^#.*")) {
-//			myType = "comment";
-//		}
 		else if(myName.matches("^\\[{1}.*\\]{1}$")){
 			myType = "list";
 			myExpression = new ListExp(myName);
@@ -48,5 +67,9 @@ public class Word {
 	
 	public String getType() {
 		return myType;
+	}
+	
+	public int getNumber() {
+		return operatorNumber;
 	}
 }

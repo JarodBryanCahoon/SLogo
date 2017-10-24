@@ -1,7 +1,7 @@
 package backend.abstractSyntaxTree;
 
 public class NoneOperatorExp extends OperatorExp{
-	
+	private int type = 0;
 	public NoneOperatorExp(String s) {
 		super(s);
 	}
@@ -9,6 +9,7 @@ public class NoneOperatorExp extends OperatorExp{
 	private void operate() {
 		//maybe this doesn't have to be here?
 	}
-
+	
+	
 	
 }
