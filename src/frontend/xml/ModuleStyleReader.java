@@ -55,8 +55,8 @@ public class ModuleStyleReader extends XMLReader {
 
 	private Module instFromElement(Element element) throws XMLException {
 		String clsName = getContent(element, CLASS_TAG);
-		int width = Integer.parseInt(getContent(element, WIDTH_TAG));
-		int height = Integer.parseInt(getContent(element, HEIGHT_TAG));
+		double width = (double) Integer.parseInt(getContent(element, WIDTH_TAG));
+		double height = (double) Integer.parseInt(getContent(element, HEIGHT_TAG));
 
 		Class<?> cls;
 		Constructor<?> constructor;
@@ -64,11 +64,10 @@ public class ModuleStyleReader extends XMLReader {
 
 		try {
 			cls = Class.forName(clsName);
-			constructor = cls.getDeclaredConstructor(int.class, int.class);
+			constructor = cls.getDeclaredConstructor(double.class, double.class);
 			module = (Module) constructor.newInstance(width, height);
 		} catch (ClassNotFoundException | NoSuchMethodException | SecurityException | InstantiationException
 				| IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
-			// TODO handle exception properly
 			e.printStackTrace();
 			throw new XMLException();
 		}

@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import backend.board.RenderSprite;
 import frontend.xml.ModuleStyleReader;
 import frontend.xml.XMLReader;
 import javafx.scene.Group;
@@ -13,7 +14,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 
 public class ViewModule extends Module{
-	private final static String moduleFileName = "modules.xml";
+	private final static String moduleFileName = "resources/style/modules.xml";
 
 	private List<Module> myModules;
 	
@@ -34,9 +35,15 @@ public class ViewModule extends Module{
 
 		BorderPane myParent = new BorderPane();
 		for(Module m : myModules) {
-			myParent.getChildren().add(m.getParent());
+			if(m instanceof RenderModule) {
+				myParent.setCenter(m.getParent());
+			} else {
+				myParent.getChildren().add(m.getParent());
+
+			}
 		}
+		
+		myParent.setPrefSize(getWidth(), getHeight());
 		return myParent;
 	}
-
 }

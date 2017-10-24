@@ -9,4 +9,7 @@ public interface iRenderSprite {
 	
 	double isVisible();
 		
+	double getAngle();
+	
+	int getId();
 }

@@ -33,7 +33,11 @@ public abstract class XMLReader {
 	
 	protected NodeList getNodeList(String tag) {
 		Element root = myDocument.getDocumentElement();
-		NodeList nList = myDocument.getElementsByTagName(tag);
+		return this.getNodeList(root, tag);
+	}
+	
+	protected NodeList getNodeList(Element e, String tag) {
+		NodeList nList = e.getElementsByTagName(tag);
 		return nList;
 	}
 	
