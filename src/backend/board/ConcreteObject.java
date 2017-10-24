@@ -44,12 +44,12 @@ public abstract class ConcreteObject extends Observable implements GeneralObject
 		return 0;
 	}
 
-	public double Hide() {
+	public double hide() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	public double Show() {
+	public double show() {
 		// TODO Auto-generated method stub
 		return 0;
 	}

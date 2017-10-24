@@ -27,4 +27,6 @@ public interface GeneralObject {
 	public double show();
 	
 	public RenderSprite getRenderSprite();
+	
+	public int getId();
 }

@@ -19,11 +19,12 @@ public class RenderSprite extends Observable implements iRenderSprite, Observer 
 	private boolean myOpacity;
 	
 	public RenderSprite(ConcreteObject sprite, String imagePath) {
-		myX = sprite.getX();
-		myY = sprite.getY();
-		myAngle = sprite.getAngle();
+		myX = Turtle.STARTING_POSITION[0];
+		myY = Turtle.STARTING_POSITION[1];
+		myAngle = Turtle.STARTING_ANGLE;
+		penDown = true;
 		myTurtleId = sprite.getId();
-		myOpacity = sprite.getOpacity();
+		myOpacity = true;
 		myImageView = new ImageView(getClass().getClassLoader().getResource(imagePath).getPath());
 	}
 	
@@ -68,13 +69,20 @@ public class RenderSprite extends Observable implements iRenderSprite, Observer 
 		myY = newVal.doubleValue();
 	}
 
-
-	public void changeAngle(ObservableValue<? extends Number> obs, Number oldVal, Number newVal) {
+	protected void changeAngle(ObservableValue<? extends Number> obs, Number oldVal, Number newVal) {
 		myAngle = newVal.doubleValue();
 	}
 
-	public void changeId(ObservableValue<? extends Number> obs, Number oldVal, Number newVal) {
+	protected void changeId(ObservableValue<? extends Number> obs, Number oldVal, Number newVal) {
 		myTurtleId = newVal.intValue();
+	}
+
+	protected void changePen(ObservableValue<? extends Boolean> obs, Boolean oldVal, Boolean newVal) {
+		penDown = newVal.booleanValue();
+	}
+
+	protected void changeOpacity(ObservableValue<? extends Boolean> obs, Boolean oldVal, Boolean newVal) {
+		myOpacity = newVal.booleanValue();
 	}
 
 	@Override
@@ -82,14 +90,4 @@ public class RenderSprite extends Observable implements iRenderSprite, Observer 
 		// TODO Auto-generated method stub
 		
 	}
-
-	public void changePen(ObservableValue<? extends Boolean> obs, Boolean oldVal, Boolean newVal) {
-		penDown = newVal.booleanValue();
-	}
-
-	public void changeOpacity(ObservableValue<? extends Boolean> obs, Boolean oldVal, Boolean newVal) {
-		myOpacity = newVal.booleanValue();
-	}
-	
-	
 }

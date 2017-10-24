@@ -48,7 +48,6 @@ public class Turtle extends ConcreteObject {
 			myTurtleId.addListener((obs, oldVal, newVal) -> myObserver.changeId(obs, oldVal, newVal) );
 			myPenDown.addListener((obs, oldVal, newVal) -> myObserver.changePen(obs, oldVal, newVal) );
 			myOpacity.addListener((obs, oldVal, newVal) -> myObserver.changeOpacity(obs, oldVal, newVal) );
-
 		}
 		
 		public double moveForward(double pixels) {
@@ -127,37 +126,6 @@ public class Turtle extends ConcreteObject {
 			myYPos.set(yHold);
 		}
 
-//		@Override
-//		public double getX() {
-//			return myXPos.get();
-//		}
-//
-//		@Override
-//		public double getY() {
-//			return myYPos.get();
-//		}
-//
-//		@Override
-//		public double isVisible() {
-//			return myOpacity.get()? 1:0;
-//		}
-		
-		public double getXCor() {
-			return myXPos.get();
-		}
-		
-		public double getYCor() {
-			return myYPos.get();
-		}
-		
-		public double myHeading() {
-			return myAngle.get();
-		}
-		
-		public double isPenDown() {
-			return myPenDown.get() ? 1:0;
-		}
-
 		public double penDown() {
 			myPenDown.set(true);
 			return 1;
@@ -187,6 +155,11 @@ public class Turtle extends ConcreteObject {
 //			for(RenderSprite obs : myObservers) {
 //				obs.update(this, 0);
 //			}
+		}
+
+		@Override
+		public int getId() {
+			return myTurtleId.get();
 		}
 
 }
