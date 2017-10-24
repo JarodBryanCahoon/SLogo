@@ -19,7 +19,7 @@ public class TestField{
 	private TextField inputText;
 	private TextFlow textFlow;
 
-	public TestField(int width, int height){
+	public TestField(double width, double height){
 		textFlow = new TextFlow();
 		textFlow.setLayoutX(10.8);
 		textFlow.setLayoutY(7.5);
@@ -39,6 +39,7 @@ public class TestField{
 		inputField.getChildren().add(inputText);
 		inputField.getChildren().add(textFlow);
 	}
+	
 	private void doSomething(KeyEvent event) {
 		textFlow.getChildren().clear();
 		String incomingText = inputText.getText();

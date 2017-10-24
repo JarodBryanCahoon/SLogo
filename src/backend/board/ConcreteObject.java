@@ -2,7 +2,7 @@ package backend.board;
 
 import java.util.Observable;
 
-public abstract class ConcreteObject extends Observable implements GeneralObject, iRenderSprite {
+public abstract class ConcreteObject extends Observable implements GeneralObject {
 	
 	public double moveForward() {
 		// TODO Auto-generated method stub
@@ -44,12 +44,12 @@ public abstract class ConcreteObject extends Observable implements GeneralObject
 		return 0;
 	}
 
-	public double Hide() {
+	public double hide() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	public double Show() {
+	public double show() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
@@ -58,5 +58,4 @@ public abstract class ConcreteObject extends Observable implements GeneralObject
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
 }

@@ -19,11 +19,7 @@ public class ConsoleModule extends Module {
 	private VBox history;
 	private TextField textField;
 	private ScrollPane historyPane;
-	
-	
-	private int myWidth;
-	private int myHeight;
-	
+
 	private List<String> testStrings = new ArrayList<String>();
 	private int k;
 	
@@ -41,9 +37,10 @@ public class ConsoleModule extends Module {
 	}
 	
 	private void addSuperTesting(){
-		TestField test = new TestField(myWidth,myHeight);
+		TestField test = new TestField(getWidth(), getHeight());
 		console.getChildren().add(test.getText());
 	}
+	
 	private void addMessageBox() {
 		textField = new TextField();
 		textField.setOnKeyPressed(event -> {
@@ -68,7 +65,7 @@ public class ConsoleModule extends Module {
 	private void addHistory() {
 		history = new VBox();
 		historyPane = new ScrollPane(history);
-		historyPane.setMinSize(myWidth,myHeight);
+		historyPane.setMinSize(getWidth(), getHeight());
 		console.getChildren().add(historyPane);
 //		List<Object> historyList = backend.getHistory();
 	}

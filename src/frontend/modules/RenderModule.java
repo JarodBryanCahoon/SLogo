@@ -16,6 +16,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
 public class RenderModule extends Module{
@@ -23,14 +24,16 @@ public class RenderModule extends Module{
 
 	public RenderModule(double width, double height) throws Exception {
 		super(width, height);
-		System.out.println("render created");
 	}
 	
 	@Override
 	protected Parent createParent() throws Exception {
-		Group myGroup = new Group();
-//		myGroup.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
-		myGroup.setStyle("-fx-background-color: #336699;");
+		Pane myGroup = new Pane();
+		myGroup.setLayoutX(getWidth());
+		myGroup.setLayoutY(getHeight());
+//		myGroup.setPrefSize(getWidth(), getHeight());
+		Button b = new Button("help");
+		myGroup.getChildren().add(b);
 		// add turtle
 		return myGroup;
 	}
