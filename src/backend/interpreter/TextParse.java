@@ -48,7 +48,7 @@ public class TextParse {
 		
 		while (!commandStack.isEmpty()) {
 			
-			CommandNumber comm = (CommandNumber) commandStack.pop();
+			CommandNumber comm =  commandStack.pop();
 			ASTNode[] e = new ASTNode[comm.getNumber()];
 			for (int i=0; i<comm.getNumber(); i++) {
 				ASTNode fun = (argumentStack.pop());
@@ -80,7 +80,7 @@ public class TextParse {
 				i=j;
 			}
 			Word w = new Word(t);
-			if (w.getType().equals("command")) {
+			if (w.getT .equals("command")) {
 				if(comm!=null) {
 				comm.setExpression();
 				}
