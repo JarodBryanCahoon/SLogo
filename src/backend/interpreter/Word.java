@@ -49,4 +49,7 @@ public class Word {
 	public String getType() {
 		return myType;
 	}
+	public String getName() {
+		return myName;
+	}
 }
