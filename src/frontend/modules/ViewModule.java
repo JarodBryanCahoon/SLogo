@@ -35,12 +35,8 @@ public class ViewModule extends Module{
 
 		BorderPane myParent = new BorderPane();
 		for(Module m : myModules) {
-			if(m instanceof RenderModule) {
-				myParent.setCenter(m.getParent());
-			} else {
-				myParent.getChildren().add(m.getParent());
+			myParent.getChildren().add(m.getParent());
 
-			}
 		}
 		
 		myParent.setPrefSize(getWidth(), getHeight());
