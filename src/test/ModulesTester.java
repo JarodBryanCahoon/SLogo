@@ -2,6 +2,7 @@ package test;
 
 import frontend.modules.ConsoleInput;
 import frontend.modules.ConsoleModule;
+import frontend.modules.MenuModule;
 import frontend.modules.Module;
 import frontend.modules.RenderModule;
 import frontend.modules.ViewModule;
@@ -21,7 +22,7 @@ public class ModulesTester extends Application{
 				  10
 				);
 		// Change test to whatever module you want
-		Module test = new ViewModule (WIDTH,HEIGHT);
+		Module test = new MenuModule (WIDTH,HEIGHT);
 		
 		Parent parent = test.getParent();
 		Scene scene = new Scene(parent);

@@ -65,7 +65,6 @@ public class ModuleStyleReader extends XMLReader {
 
 		try {
 			cls = Class.forName(clsName);
-			System.out.println(cls);
 			constructor = cls.getDeclaredConstructor(double.class, double.class);
 			module = (Module) constructor.newInstance(width, height);
 		} catch (ClassNotFoundException | NoSuchMethodException | SecurityException | InstantiationException
