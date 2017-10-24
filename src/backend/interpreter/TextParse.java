@@ -6,8 +6,6 @@ import java.util.Stack;
 
 import backend.abstractSyntaxTree.ASTNode;
 import backend.abstractSyntaxTree.Expression;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextFlow;
 
 
 /*TextParse.java
@@ -19,10 +17,6 @@ public class TextParse {
 	private ASTNode root;
 	private String commands;
 	private Map<String, ArrayList<Object>> myMap;
-	
-//	lasia made this temp constructor
-	public TextParse() {
-	}
 	
 	public TextParse(String s, Map<String, ArrayList<Object>> map) {
 		commands = s;
@@ -108,7 +102,6 @@ public class TextParse {
 	}
 	
 	
-	
 	private void addToComments(String s) {
 		if (!myMap.containsKey("Comments")){
 			myMap.put("Comments", new ArrayList<Object>());
@@ -120,19 +113,4 @@ public class TextParse {
 	public ASTNode getAST() {
 		return root;
 	}
-	
-//	Divides expression into Words, including spaces
-//	Should be temporary - should find a way to incorporate it with
-//	other methods to avoid duplicated code.
-	public Word[] lasiasmethod(String s) {
-		String[] commandList = s.split("\\b");
-		Word[] sentence = new Word[commandList.length];
-		
-		for (int k = 0; k< commandList.length; k++) {
-			Word word = new Word(commandList[k]);
-			sentence[k] = word;
-		}
-		return sentence;
-	}
-	
 }
