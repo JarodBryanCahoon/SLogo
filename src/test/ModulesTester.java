@@ -19,7 +19,7 @@ public class ModulesTester extends Application{
 				  10
 				);
 		// Change test to whatever module you want
-		Module test = new ConsoleModule (WIDTH,HEIGHT);
+		Module test = new ViewModule (WIDTH,HEIGHT);
 		
 		Parent parent = test.getParent();
 		Scene scene = new Scene(parent);

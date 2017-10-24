@@ -20,7 +20,7 @@ public class ConsoleModule extends Module {
 	private int myWidth;
 	private int myHeight;
 	
-	public ConsoleModule(int width, int height){
+	public ConsoleModule(int width, int height) throws Exception{
 		super(width, height);
 		backend = new InfoInterface();
 		myWidth = width;
@@ -36,12 +36,12 @@ public class ConsoleModule extends Module {
 		return console;
 	}
 	
-	private void addConsoleHistory() {
+	private void addConsoleHistory() throws Exception {
 		Module ConsoleHistory = new ConsoleHistory(myWidth,myHeight,backend);
 		console.getChildren().add(ConsoleHistory.getParent());
 	}
 
-	private void addConsoleInput(){
+	private void addConsoleInput() throws Exception{
 		Module test = new ConsoleInput(myWidth,myHeight,backend);
 		console.getChildren().add(test.getParent());
 	}

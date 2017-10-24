@@ -28,7 +28,7 @@ public class ConsoleInput extends Module{
 	private KeyCombination keyComb;
 	
 
-	public ConsoleInput(int width,int height,InfoInterface backend){
+	public ConsoleInput(int width,int height,InfoInterface backend) throws Exception{
 		super(width, height);
 		keyComb = new KeyCodeCombination(KeyCode.ENTER,KeyCombination.SHIFT_DOWN);
 		this.backend = backend;
