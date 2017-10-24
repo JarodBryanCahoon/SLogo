@@ -14,7 +14,7 @@ public class Main extends Application{
 	@Override
 	public void start(Stage s) {
 		try {
-			System.out.println(getClass().getClassLoader().getResource(configFileName));
+			System.out.println(getClass().getResource(configFileName).getPath());
 
 			ConfigReader configReader = new ConfigReader(getClass().getClassLoader().getResource(configFileName).getPath());
 			ViewModule view = new ViewModule(configReader.getWidth(), configReader.getHeight());

@@ -1,26 +1,28 @@
 package backend.board;
 
+import java.util.Observer;
+import java.util.Observable;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
-public class RenderSprite implements iRenderSprite {
+public class RenderSprite extends Observable implements iRenderSprite, Observer {
 	private double myX;
 	private double myY;
-	private Image myImage;
+	private ImageView myImageView;
 	private boolean penDown;
+	private int myPenWidth;
 	private boolean isVisible;	
 	private double myAngle;
 	private int myTurtleId;
+	private ConcreteObject myObserved;
 	
-	public RenderSprite(double X, double Y, double angle, String imagePath, int id) {
-		myX = X;
-		myY = Y;
-		myAngle = angle;
-		myTurtleId = id;
-		myImage = new Image(imagePath);
-	}
-	
-	public RenderSprite(GeneralObject sprite) {
-		
+	public RenderSprite(ConcreteObject sprite, String imagePath) {
+		myObserved = sprite;
+		myX = myObserved.getX();
+		myY = myObserved.getY();
+		myAngle = myObserved.getAngle();
+		myTurtleId = myObserved.getId();
+		myImageView = new ImageView(getClass().getClassLoader().getResource(imagePath).getPath());
 	}
 	
 	public double isPenDown() {
@@ -41,5 +43,20 @@ public class RenderSprite implements iRenderSprite {
 
 	public int getId() {
 		return myTurtleId;
+	}
+	
+	public ImageView getImage() {
+		return myImageView;
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public double getAngle() {
+		return myAngle;
 	}
 }

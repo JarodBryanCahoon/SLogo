@@ -1,6 +1,8 @@
 package backend.board;
 
-public abstract class ConcreteObject implements GeneralObject, iRenderSprite {
+import java.util.Observable;
+
+public abstract class ConcreteObject extends Observable implements GeneralObject, iRenderSprite {
 	
 	public double moveForward() {
 		// TODO Auto-generated method stub

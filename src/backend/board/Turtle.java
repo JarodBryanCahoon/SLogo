@@ -1,37 +1,42 @@
 package backend.board;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import backend.Utilities.vectors.Vector;
 import backend.Utilities.vectors.VectorMath;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.scene.image.ImageView;
 
 /**
  * 
  * @author Jarod Cahoon
  *
  */
-public class Turtle extends ConcreteObject{
+public class Turtle extends ConcreteObject {
 		public static final double STARTING_ANGLE = 90;
 		public static final double[] STARTING_POSITION = {0,0};
-		private String myImage;
-		private double myXPos;
-		private double myYPos;
-		private double myAngle;
-		private boolean myPenDown;
-		private boolean myOpacity;
-		private int myTurtleId;
+		private String myImagePath;
+		private SimpleDoubleProperty myXPos;
+		private SimpleDoubleProperty myYPos;
+		private SimpleDoubleProperty myAngle;
+		private SimpleBooleanProperty myPenDown;
+		private SimpleBooleanProperty myOpacity;
+		private SimpleIntegerProperty myTurtleId;
+		private List<RenderSprite> myObservers;
 
-		public Turtle(String imagePath, int id) {
-			myXPos = STARTING_POSITION[0];
-			myYPos = STARTING_POSITION[1];
-			myAngle = STARTING_ANGLE; 
-			myTurtleId = id;
-			myPenDown = true;
-			myOpacity = true;
-		}
-		
-		public void execute() {
-			
+		public Turtle(String imagePath, int id, RenderSprite obs) {
+			myXPos.set(STARTING_POSITION[0]);
+//			myXPos.addl
+			myYPos.set(STARTING_POSITION[1]);
+			myAngle.set(STARTING_ANGLE);; 
+			myTurtleId.set(id);
+			myPenDown.set(true);
+			myOpacity.set(true);
+			myObservers = new ArrayList<RenderSprite>();
+			myObservers.add(obs);
 		}
 		
 		public double moveForward(double pixels) {
@@ -45,115 +50,139 @@ public class Turtle extends ConcreteObject{
 		}
 		
 		public double turnLeft(double addAngle) {
-			myAngle = (myAngle+addAngle)%360;
+			myAngle.set((myAngle.get()+addAngle)%360);
 			return addAngle;
 		}
 	
 		public double turnRight(double addAngle) {
 			int modulo = (int) Math.abs(addAngle / 360 + 1);			
-			myAngle = 360 - addAngle;
-			myAngle = ( 360 * modulo ) % 360;
+			double holder = 360 - addAngle;
+			holder += ( 360 * modulo ) % 360;
+			myAngle.set(holder);
 			return addAngle;
 		}
 	
 		public double setAngle(double angle) {
 			double returnAngle = angleDifference(angle);
-			myAngle = angle;
+			myAngle.set(angle);
 			return returnAngle;
+		}
+		
+		public double getAngle() {
+			return myAngle.get();
 		}
 
 		private double angleDifference(double angle) {
-			return (Math.abs(angle-myAngle) > 180) ? Math.abs(angle-myAngle)-180 : Math.abs(angle-myAngle);
+			return (Math.abs(angle-myAngle.get()) > 180) ? Math.abs(angle-myAngle.get())-180 : Math.abs(angle-myAngle.get());
 		}
 		
 		public double setTowards(double x, double y) {
 			double newAngle = VectorMath.angleBetweenXAxis(new Vector(x,y));
 			double angleDiff = angleDifference(newAngle);
-			myAngle = newAngle;
+			myAngle.set(newAngle);
 			return angleDiff;
 			
 		}
 	
 		public double setHome() {
-			double distance = BoardMath.pointDistance(0, 0, myXPos, myYPos);
-			myXPos = myYPos = 0;
+			double distance = BoardMath.pointDistance(0, 0, myXPos.get(), myYPos.get());
+			myXPos.set(0);
+			myYPos.set(0);
 			return distance;
 		}
 	
 		public double hide() {
-			myOpacity = false;
+			myOpacity.set(false);
 			return 0;
 		}
 	
 		public double show() {
-			myOpacity = true;
+			myOpacity.set(true);
 			return 1;
 		}
 		
 		@Override
 		public double setPostion(double x, double y) {
-			double diff = BoardMath.pointDistance(x, y, myXPos, myYPos);
-			myXPos = x;
-			myYPos = y;
+			double diff = BoardMath.pointDistance(x, y, myXPos.get(), myYPos.get());
+			myXPos.set(x);
+			myYPos.set(y);
 			return diff;
 		}
 		
 		private void move(boolean b,double pixels){
-			double[] delta = BoardMath.xyDeltaCalc(pixels, myAngle);
-			myXPos += b? delta[0]: -delta[0];
-			myYPos += b? delta[1]: -delta[1];
+			double[] delta = BoardMath.xyDeltaCalc(pixels, myAngle.get());
+			double xHold = myXPos.get();
+			double yHold = myYPos.get();
+			xHold += b? delta[0]: -delta[0];
+			yHold += b? delta[1]: -delta[1];
+			myXPos.set(xHold);
+			myYPos.set(yHold);
 		}
 
 		@Override
 		public double getX() {
-			return myXPos;
+			return myXPos.get();
 		}
 
 		@Override
 		public double getY() {
-			return myYPos;
+			return myYPos.get();
 		}
 
 		@Override
 		public double isVisible() {
-			return myOpacity? 1:0;
+			return myOpacity.get()? 1:0;
 		}
 		
 		public double getXCor() {
-			return myXPos;
+			return myXPos.get();
 		}
 		
 		public double getYCor() {
-			return myYPos;
+			return myYPos.get();
 		}
 		
 		public double myHeading() {
-			return myAngle;
+			return myAngle.get();
 		}
 		
 		public double isPenDown() {
-			return myPenDown ? 1:0;
+			return myPenDown.get() ? 1:0;
 		}
 
 		public double penDown() {
-			myPenDown = true;
+			myPenDown.set(true);
 			return 1;
 		}
 		
 		public double penUp() {
-			myPenDown = false;
+			myPenDown.set(false);
 			return 0;
 		}
+		
 		public void undo(RenderSprite rs) {
-			myPenDown = false;
-			myXPos = rs.getX();
-			myYPos = rs.getY();
-			myOpacity = rs.isVisible()==1;
-			myPenDown = rs.isPenDown()==1;
+			myPenDown.set(false);
+			myXPos.set(rs.getX());
+			myYPos.set(rs.getY());
+			myAngle.set(rs.getAngle());
+			myOpacity.set(rs.isVisible()==1);
+			myPenDown.set(rs.isPenDown()==1);
 		}
 		
 		@Override
 		public RenderSprite getRenderSprite() {
-			return new RenderSprite(myXPos, myYPos, myAngle, myImage, myTurtleId);
+			return new RenderSprite(this, myImagePath);
+		}
+		
+		@Override
+		public void notifyObservers() {
+			for(RenderSprite obs : myObservers) {
+				obs.update(this, 0);
+			}
+		}
+
+		@Override
+		public int getId() {
+			return myTurtleId.get();
 		}
 }

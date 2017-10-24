@@ -27,9 +27,8 @@ public class ConsoleModule extends Module {
 	private List<String> testStrings = new ArrayList<String>();
 	private int k;
 	
-	public ConsoleModule(int width, int height) throws Exception {
+	public ConsoleModule(double width, double height) throws Exception {
 		super(width, height);
-		
 	}
 	
 	@Override

@@ -6,11 +6,11 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 
 public abstract class Module {
-	private int myWidth;
-	private int myHeight;
+	private double myWidth;
+	private double myHeight;
 	private Parent myParent;
 
-	public Module(int width, int height) throws Exception {
+	public Module(double width, double height) throws Exception {
 		myWidth = width;
 		myHeight = height;
 		myParent = createParent();
@@ -18,19 +18,15 @@ public abstract class Module {
 	
 	protected abstract Parent createParent() throws Exception;
 	
-//	protected void addChildren(List<Node> myNodes) {
-//		for(Node node : myNodes) {
-//			myParent.getChildrenUnmodifiable().add(node);
-//		}
-//	}
-	
 	public Parent getParent() {
 		return myParent;
 	}
 	
-	/* 
-	 * public backend getBackend() {
-	 * 	return backend
-	 * }
-	 */
+	protected double getWidth() {
+		return myWidth;
+	}
+	
+	protected double getHeight() {
+		return myHeight;
+	}
 }
