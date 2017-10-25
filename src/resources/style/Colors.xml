@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Colors>
+	<Root>
+		<fx-font></fx-font>	
+		<fx-text-fill></fx-text-fill>
+		<fx-background-color></fx-background-color>
+		<fx-wrap-text></fx-wrap-text>
+	</Root>
+	
+	
+	
+	<Keywords>
+	
+		<Variable>
+			<fx-fill></fx-fill>
+		</Variable>
+		<Text>
+			<fx-fill></fx-fill>	
+		</Text>
+		<Constant>
+			<fx-fill></fx-fill>
+		</Constant>
+		<Command>
+			<fx-fill></fx-fill>
+		</Command>
+		<Invalid>
+			<fx-fill></fx-fill>	
+		</Invalid>
+		
+	</Keywords>
+	
+	<Window>
+	
+		<Background></Background>
+		
+	</Window>
+	
+	<Render>
+		<Background></Background>
+roo		<Turtle></Turtle>
+		<PenColor></PenColor>
+		<PenWidth></PenWidth>
+	</Render>
+	
+
+</Colors>

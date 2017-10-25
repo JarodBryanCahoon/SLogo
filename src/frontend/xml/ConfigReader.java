@@ -1,5 +1,7 @@
 package frontend.xml;
 
+import java.io.IOException;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -17,7 +19,7 @@ public class ConfigReader extends XMLReader {
 	private int height;
 	private String title;
 
-	public ConfigReader(String path) throws XMLException {
+	public ConfigReader(String path) throws XMLException, IOException {
 		super(path);
 	}
 

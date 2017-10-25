@@ -5,7 +5,9 @@ import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -15,27 +17,27 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
 
 import exceptions.XMLException;
 import frontend.modules.Module;
 import frontend.modules.RenderModule;
 
 public class ModuleStyleReader extends XMLReader {
+	private static final String POSITION_TAG = "position";
 	// maybe convert to enum
 	private static final String WIDTH_TAG = "width";
 	private static final String HEIGHT_TAG = "height";
 	private static final String MODULE_TAG = "module";
 	private static final String CLASS_TAG = "class";
-	private List<Module> myModules;
+	private Map<Module, String> myModules;
 
-	public ModuleStyleReader(String path) throws XMLException {
+	public ModuleStyleReader(String path) throws XMLException, IOException {
 		super(path);
 	}
 
 	@Override
 	protected void readFromFile() throws XMLException {
-		myModules = new ArrayList<Module>();
+		myModules = new HashMap<>();
 		NodeList nList = this.getNodeList(MODULE_TAG);
 
 		for (int i = 0; i < nList.getLength(); i++) {
@@ -43,13 +45,13 @@ public class ModuleStyleReader extends XMLReader {
 
 			if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 				Element element = (Element) nNode;
-				myModules.add(instFromElement(element));
+				instFromElement(element);
 			}
 		}
 
 	}
 
-	public List<Module> getModules() {
+	public Map<Module, String> getModules() {
 		return myModules;
 	}
 
@@ -57,6 +59,7 @@ public class ModuleStyleReader extends XMLReader {
 		String clsName = getContent(element, CLASS_TAG);
 		double width = (double) Integer.parseInt(getContent(element, WIDTH_TAG));
 		double height = (double) Integer.parseInt(getContent(element, HEIGHT_TAG));
+		String pos = getContent(element, POSITION_TAG);
 
 		Class<?> cls;
 		Constructor<?> constructor;
@@ -66,6 +69,7 @@ public class ModuleStyleReader extends XMLReader {
 			cls = Class.forName(clsName);
 			constructor = cls.getDeclaredConstructor(double.class, double.class);
 			module = (Module) constructor.newInstance(width, height);
+			myModules.put(module, pos);
 		} catch (ClassNotFoundException | NoSuchMethodException | SecurityException | InstantiationException
 				| IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
 			e.printStackTrace();
