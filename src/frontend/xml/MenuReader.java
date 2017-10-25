@@ -3,11 +3,12 @@ package frontend.xml;
 import exceptions.XMLException;
 import frontend.menus.CustomMenuButton;
 import frontend.menus.strategies.iMenuItemStrategy;
-import frontend.menus.strategies.menuItemStrategy;
+import frontend.menus.strategies.MenuItemStrategy;
 import frontend.modules.Module;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,7 +29,7 @@ public class MenuReader extends XMLReader {
 	private Map<MenuItem, iMenuItemStrategy> strategies;
 	private Module myModule;
 
-	public MenuReader(String path, Module module) throws XMLException {
+	public MenuReader(String path, Module module) throws XMLException, IOException {
 		super(path);
 		myModule = module;
 	}
@@ -101,7 +102,7 @@ public class MenuReader extends XMLReader {
 
 	private void createMenuItem(Element menu, Element menuItem) {
 		if (getContent(menuItem, TYPE_TAG).equals(MENU_TAG)) {
-			System.out.println("menu " + getContent(menu, NAME_TAG));
+//			System.out.println("menu " + getContent(menu, NAME_TAG));
 			int length = menuItem.getChildNodes().getLength();
 			Node head = menuItem.getFirstChild();
 			while(head.getNodeType() != Node.ELEMENT_NODE) {
@@ -112,7 +113,7 @@ public class MenuReader extends XMLReader {
 			// return parseSubMenu(menuItem, head, length);
 		} else {
 			System.out.println("item " + getContent(menuItem, NAME_TAG));
-//			String name = getContent(menuItem, NAME_TAG);
+			String name = getContent(menuItem, NAME_TAG);
 //			MenuItem newItem = new MenuItem(name);
 //			CustomMenuButton newCustomMenu;
 //			try {

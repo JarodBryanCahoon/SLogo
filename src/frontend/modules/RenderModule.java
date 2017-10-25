@@ -42,15 +42,21 @@ public class RenderModule extends Module{
 	}
 	
 	public Element getXMLPreferences(Document doc) {
-		Element cls = doc.createElement(this.getClass().toString());
+		Element cls = doc.createElement(PreferenceXMLReader.RenderTags.MODULE.getTag());
 		
+		cls.appendChild(XMLReader.createTextElement(doc, PreferenceXMLReader.RenderTags.NAME.getTag(), this.getClass().getName().toString()));
 		cls.appendChild(XMLReader.createTextElement(doc, PreferenceXMLReader.RenderTags.STAGE_HEIGHT.getTag(), Double.toString(getHeight())));
 		cls.appendChild(XMLReader.createTextElement(doc, PreferenceXMLReader.RenderTags.STAGE_WIDTH.getTag(), Double.toString(getWidth())));
 		
-		for(RenderSprite rSprite : mySprites) {
-			Element xmlSprite = rSprite.getTurtleXML(doc);
-			cls.appendChild(xmlSprite);			
+		try {
+			for(RenderSprite rSprite : mySprites) {
+				Element xmlSprite = rSprite.getTurtleXML(doc);
+				cls.appendChild(xmlSprite);			
+			}
+		} catch(NullPointerException e) {
+			
 		}
+
 		
 		return cls;
 	}

@@ -58,7 +58,7 @@ public class Turtle extends ConcreteObject {
 		/////Keeep this stuff below, get rid of the stuff above
 		@Override
 		public RenderSprite getRenderSprite() {
-			return new RenderSprite(this, myImagePath);
+			return new RenderSprite(myTurtleId.get(), myImagePath, 0.0, 0.0);
 		}
 		
 		@Override
