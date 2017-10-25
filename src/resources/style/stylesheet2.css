@@ -16,13 +16,17 @@
 -fx-fill:pink;
 }
 .command{ 
--fx-fill:orangered;
+-fx-fill:green;
 }
 .invalid{ 
 -fx-fill:silver;
 }
 .window{ 
 -fx-background-color:black;
+}
+.window .content{ 
+-fx-background-color:black;
+-fx-text-fill:silver;
 }
 .render{ 
 -fx-background-color:;

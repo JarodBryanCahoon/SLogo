@@ -55,6 +55,12 @@ public class StylizeModule extends Module {
 		return null;
 	}
 
+	@Override
+	protected void stylize() {
+		myParent.
+		
+	}
+
 
 
 }

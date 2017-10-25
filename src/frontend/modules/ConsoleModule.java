@@ -54,6 +54,12 @@ public class ConsoleModule extends Module {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	protected void stylize() {
+		// TODO Auto-generated method stub
+		
+	}
  
 }
 	

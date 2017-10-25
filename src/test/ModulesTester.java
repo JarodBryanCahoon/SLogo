@@ -22,11 +22,11 @@ public class ModulesTester extends Application{
 				  10
 				);
 		// Change test to whatever module you want
-		Module test = new StylizeModule (WIDTH,HEIGHT);
+		Module test = new ConsoleModule (WIDTH,HEIGHT);
 		
 		Parent parent = test.getParent();
 		Scene scene = new Scene(parent);
-		scene.getStylesheets().add("/resources/style/" + "stylesheet2.css");
+		scene.getStylesheets().add("/resources/style/" + "stylesheet.css");
 		stage.setTitle("Testing");
 		stage.setScene(scene);
 		stage.show();

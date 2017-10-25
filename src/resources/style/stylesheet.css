@@ -28,12 +28,12 @@
 /* 
   Console  
 */
-.inputField{
+.window{
 	-fx-wrap-text: true;
-	-fx-text-fill: silver; 
+	-fx-text-fill: red; 
 	-fx-background-color: black;
 }
-.inputField .content{
+.window .content{
 	-fx-background-color: black;
 }
 

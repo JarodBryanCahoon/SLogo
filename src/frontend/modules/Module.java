@@ -21,7 +21,7 @@ public abstract class Module {
 	
 	protected abstract Parent createParent() throws Exception;
 	
-	
+	protected abstract void stylize();
 	
 	public Parent getParent() {
 		return myParent;
