@@ -15,7 +15,6 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
 
 import exceptions.XMLException;
 import frontend.modules.Module;
@@ -29,7 +28,7 @@ public class ModuleStyleReader extends XMLReader {
 	private static final String CLASS_TAG = "class";
 	private List<Module> myModules;
 
-	public ModuleStyleReader(String path) throws XMLException {
+	public ModuleStyleReader(String path) throws XMLException, IOException {
 		super(path);
 	}
 
