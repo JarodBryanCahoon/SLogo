@@ -21,6 +21,7 @@ public class ConsoleHistory extends Module implements Observer {
 		super(myWidth, myHeight);
 		historyPane.setMinSize(myWidth,myHeight);
 		history.setMinSize(myWidth-10,myHeight-10);
+		stylize();
 		backend.addObserver(this);
 		
 		
