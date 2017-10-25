@@ -2,7 +2,11 @@ package backend.board.interfacemovement;
 
 import backend.board.BoardMath;
 import backend.board.Turtle;
-
+/**
+ * 
+ * @author Jarod Cahoon
+ *
+ */
 public class SetPosition implements MoveInterface{
 	private double xMove;
 	private double yMove;

@@ -1,7 +1,11 @@
 package backend.board;
 
 import java.util.Observable;
-
+/**
+ * 
+ * @author Jarod Cahoon
+ *
+ */
 public abstract class ConcreteObject extends Observable implements GeneralObject {
 	
 	public double moveForward() {
