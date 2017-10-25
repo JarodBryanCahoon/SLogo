@@ -59,8 +59,7 @@ public class TextParse {
 	}
 
 	private void makeTree() {
-		String[] lineList = commands.split("/n");
-		
+		String[] lineList = commands.split("/n");	
 		for (String s: lineList) {
 			s=s.trim();
 			if (s.startsWith("#")){
@@ -70,6 +69,11 @@ public class TextParse {
 			}
 		}
 		String s = String.join(" ", lineList);
+		fillCommandQueue(s);
+		root = recursiveTree();
+	}
+
+	private void fillCommandQueue(String s) {
 		queue = new LinkedList<>();
 		String[] commandList = s.split(" ");
 		for(int i = 0; i<commandList.length; i++) {
@@ -89,7 +93,6 @@ public class TextParse {
 			Word w = new Word(t, rb, CommandNumbers);
 			queue.add(w);
 		}
-		root = recursiveTree();
 	}
 
 
