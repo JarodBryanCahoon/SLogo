@@ -11,7 +11,5 @@ public interface iRenderSprite {
 		
 	double getAngle();
 	
-	int getId();
-	
-	boolean getOpacity();
+	int getId();	
 }

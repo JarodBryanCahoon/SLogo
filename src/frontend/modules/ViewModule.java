@@ -8,6 +8,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
 import backend.board.RenderSprite;
 import frontend.xml.ModuleStyleReader;
 import frontend.xml.XMLReader;
@@ -28,10 +31,8 @@ public class ViewModule extends Module{
 		super(width, height);
 	}
 	
-	private void displayWindows() {
-		for(Module m : myModules) {
-			// display m
-		}
+	public Set<Module> getModules() {
+		return myModules;
 	}
 
 	@Override
@@ -54,4 +55,5 @@ public class ViewModule extends Module{
 		myParent.setPrefSize(getWidth(), getHeight());
 		return myParent;
 	}
+
 }

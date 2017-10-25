@@ -3,20 +3,15 @@ package frontend.modules;
 import java.util.List;
 import java.util.Observer;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
 import backend.board.RenderSprite;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 
 public class RenderModule extends Module{
 	private List<RenderSprite> mySprites;
@@ -27,9 +22,7 @@ public class RenderModule extends Module{
 	
 	@Override
 	protected Parent createParent() throws Exception {
-		Pane myGroup = new Pane();
-		myGroup.setLayoutX(1000);
-		myGroup.setLayoutY(getHeight());
+		Group myGroup = new Group();
 //		myGroup.setPrefSize(getWidth(), getHeight());
 		Button b = new Button("help");
 		myGroup.getChildren().add(b);
@@ -48,13 +41,19 @@ public class RenderModule extends Module{
 	
 	private void displaySprite(RenderSprite sprite) {
 		
-	}
+	}	
 	
-	private double translateX(double X) {
-		return X + getWidth() / 2;
-	}
-	
-	private double translateY(double Y) {
-		return Y + getHeight() / 2;
+	public Element getXMLPreferences(Document doc, Element root) {
+		Element cls = doc.createElement(this.getClass().toString());
+		root.appendChild(cls);
+		
+		Element height = doc.createElement("stage height");
+		Element width = doc.createElement("stage width");
+		
+		for(RenderSprite rSprite : mySprites) {
+			Element xmlSprite = rSprite.getTurtleXML(doc, cls);
+		}
+		
+		return cls;
 	}
 }

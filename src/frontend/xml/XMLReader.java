@@ -48,4 +48,10 @@ public abstract class XMLReader {
 	protected String getContent(Element element, String tag) {
 		return element.getElementsByTagName(tag).item(0).getTextContent();
 	}
+	
+	public static void createTextElement(Document doc, Element root, String tag, String text) {
+		Element e = doc.createElement(tag);
+		e.appendChild(doc.createTextNode(text));
+		root.appendChild(e);
+	}
 }
