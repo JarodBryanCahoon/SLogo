@@ -23,23 +23,28 @@ public class ColorReader extends XMLReader {
 
 	@Override
 	protected void readFromFile() throws IOException{
+		NodeList nList = getElement().getChildNodes();
 		file = new FileWriter("stylesheet2.css");
 		bf = new BufferedWriter(file);
 		writeHeader();
-		bf.write(".root{\n");
-		Element root = getNode("Root");
-		System.out.println(root.getTagName());
-//		for (int i = 0; i < nList.getLength();i++) {
-//			Node n = nList.item(i);
-//			n.
-//			System.out.println(n..getgetTextContent());
-//		}
+		
+		writeRoot(nList);
+		
 		
 		
 	}
 
+	private void writeRoot(NodeList nList) {
+		NodeList root = nList.item(1).getChildNodes();
+		for (int i = 1; i<root.getLength();i+=2) {
+			System.out.println(root.item(i).getTextContent());
+		}
+	}
+
 	private void writeHeader() throws IOException {
+		bf.write(".root{\n");
 		bf.write("/* Document: sstylesheet2.css");
+		bf.write("}");
 	}
 
 }

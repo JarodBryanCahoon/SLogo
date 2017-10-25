@@ -1,5 +1,8 @@
 package frontend.modules;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
 import frontend.xml.ColorReader;
 import frontend.xml.ColorReader;
 import javafx.scene.Parent;
@@ -44,6 +47,12 @@ public class StylizeModule extends Module {
 	}
 	private void addRender() {
 		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public Element getXMLPreferences(Document doc) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

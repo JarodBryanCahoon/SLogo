@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Colors>
 	<Root>
-		<fx-font></fx-font>	
-		<fx-text-fill></fx-text-fill>
-		<fx-background-color></fx-background-color>
-		<fx-wrap-text></fx-wrap-text>
+		<fx-font>14px 'Letter Gothic Std'</fx-font>	
+		<fx-text-fill>silver</fx-text-fill>
+		<fx-background-color>black</fx-background-color>
+		<fx-wrap-text>true</fx-wrap-text>
 	</Root>
-	
 	
 	
 	<Keywords>
@@ -31,16 +30,16 @@
 	
 	<Window>
 	
-		<Background></Background>
+		<fx-background-color></fx-background-color>
 		
 	</Window>
 	
 	<Render>
 		<Background></Background>
-roo		<Turtle></Turtle>
+		<Turtle></Turtle>
 		<PenColor></PenColor>
 		<PenWidth></PenWidth>
 	</Render>
 	
-
+	
 </Colors>
