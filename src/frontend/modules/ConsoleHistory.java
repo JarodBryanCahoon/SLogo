@@ -23,7 +23,7 @@ public class ConsoleHistory extends Module implements Observer {
 		history.setMinSize(myWidth-10,myHeight-10);
 		stylize();
 		backend.addObserver(this);
-		
+//		history.setOnMouseClicked(e->stylize());
 		
 	}
 
@@ -31,8 +31,6 @@ public class ConsoleHistory extends Module implements Observer {
 	protected Parent createParent() {
 		history = new VBox();
 		historyPane = new ScrollPane(history);
-	;
-		
 		return historyPane;
 	}
 	
@@ -66,8 +64,8 @@ public class ConsoleHistory extends Module implements Observer {
 		return null;
 	}
 
-	@Override
-	protected void stylize() {
+	private void stylize() {
+		history.getStyleClass().clear();
 		history.getStyleClass().add("window");
 		historyPane.getStyleClass().add("window");
 		
