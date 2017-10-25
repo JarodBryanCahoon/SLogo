@@ -3,6 +3,9 @@ package frontend.modules;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
 import javafx.scene.Parent;
 import javafx.scene.layout.VBox;
 
@@ -44,6 +47,12 @@ public class ConsoleModule extends Module {
 	private void addConsoleInput() throws Exception{
 		Module test = new ConsoleInput(myWidth,myHeight,backend);
 		console.getChildren().add(test.getParent());
+	}
+
+	@Override
+	public Element getXMLPreferences(Document doc) {
+		// TODO Auto-generated method stub
+		return null;
 	}
  
 }

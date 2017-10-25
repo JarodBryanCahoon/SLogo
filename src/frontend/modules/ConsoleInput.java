@@ -1,4 +1,7 @@
 package frontend.modules;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
 import javafx.beans.Observable;
 import javafx.scene.Group;
 import javafx.scene.Parent;
@@ -19,7 +22,6 @@ import javafx.scene.text.TextFlow;
  * @author lasia lo
  *
  */
-
 
 public class ConsoleInput extends Module{
 	private Group myParent;
@@ -71,6 +73,12 @@ public class ConsoleInput extends Module{
 		myParent.getChildren().clear();
 		myParent.getChildren().add(inputField);
 		myParent.getChildren().addAll(backend.getConsole(incomingText));
+	}
+
+	@Override
+	public Element getXMLPreferences(Document doc) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

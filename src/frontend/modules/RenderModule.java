@@ -41,15 +41,15 @@ public class RenderModule extends Module{
 		mySprites.add(sprite);
 	}
 	
-	public Element getXMLPreferences(Document doc, Element root) {
+	public Element getXMLPreferences(Document doc) {
 		Element cls = doc.createElement(this.getClass().toString());
-		root.appendChild(cls);
 		
-		XMLReader.createTextElement(doc, cls, PreferenceXMLReader.RenderTags.STAGE_HEIGHT.getTag(), Double.toString(getHeight()));
-		XMLReader.createTextElement(doc, cls, PreferenceXMLReader.RenderTags.STAGE_WIDTH.getTag(), Double.toString(getWidth()));
+		cls.appendChild(XMLReader.createTextElement(doc, PreferenceXMLReader.RenderTags.STAGE_HEIGHT.getTag(), Double.toString(getHeight())));
+		cls.appendChild(XMLReader.createTextElement(doc, PreferenceXMLReader.RenderTags.STAGE_WIDTH.getTag(), Double.toString(getWidth())));
 		
 		for(RenderSprite rSprite : mySprites) {
-			Element xmlSprite = rSprite.getTurtleXML(doc, cls);
+			Element xmlSprite = rSprite.getTurtleXML(doc);
+			cls.appendChild(xmlSprite);			
 		}
 		
 		return cls;

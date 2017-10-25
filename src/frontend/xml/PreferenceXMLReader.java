@@ -4,6 +4,7 @@ import exceptions.XMLException;
 
 public class PreferenceXMLReader extends XMLReader {
 	public enum RenderTags {
+		RESOURCES("resources"),
 		MYX("myX"),
 		MYY("myY"),
 		PEN("pen"),

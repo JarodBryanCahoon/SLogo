@@ -49,9 +49,9 @@ public abstract class XMLReader {
 		return element.getElementsByTagName(tag).item(0).getTextContent();
 	}
 	
-	public static void createTextElement(Document doc, Element root, String tag, String text) {
+	public static Element createTextElement(Document doc, String tag, String text) {
 		Element e = doc.createElement(tag);
 		e.appendChild(doc.createTextNode(text));
-		root.appendChild(e);
+		return e;
 	}
 }

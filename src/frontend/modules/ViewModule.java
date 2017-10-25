@@ -56,4 +56,10 @@ public class ViewModule extends Module{
 		return myParent;
 	}
 
+	@Override
+	public Element getXMLPreferences(Document doc) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
