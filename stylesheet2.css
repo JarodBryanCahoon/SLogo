@@ -1,0 +1,31 @@
+/* Document: sstylesheet2.css*/ 
+.root{ 
+fx-font:14px 'Letter Gothic Std';
+fx-text-fill:silver;
+fx-background-color:black;
+fx-wrap-text:true;
+}
+.variable{ 
+fx-fill:greenyellow;
+}
+.text{ 
+fx-fill:silver;
+}
+.constant{ 
+fx-fill:pink;
+}
+.command{ 
+fx-fill:orangered;
+}
+.invalid{ 
+fx-fill:silver;
+}
+.window{ 
+fx-background-color:black;
+}
+.render{ 
+fx-background-color:;
+turtle:;
+fx-fill:;
+fx-width:;
+}
