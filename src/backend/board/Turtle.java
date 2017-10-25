@@ -5,6 +5,7 @@ import java.util.List;
 
 import backend.Utilities.vectors.Vector;
 import backend.Utilities.vectors.VectorMath;
+import backend.board.interfacemovement.MoveInterface;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
@@ -48,6 +49,10 @@ public class Turtle extends ConcreteObject {
 			myTurtleId.addListener((obs, oldVal, newVal) -> myObserver.changeId(obs, oldVal, newVal) );
 			myPenDown.addListener((obs, oldVal, newVal) -> myObserver.changePen(obs, oldVal, newVal) );
 			myOpacity.addListener((obs, oldVal, newVal) -> myObserver.changeOpacity(obs, oldVal, newVal) );
+		}
+		
+		public double Act(MoveInterface m){
+			return m.act(this);
 		}
 		
 		public double moveForward(double pixels) {
@@ -160,6 +165,18 @@ public class Turtle extends ConcreteObject {
 		@Override
 		public int getId() {
 			return myTurtleId.get();
+		}
+		
+		public DoubleProperty getMyX() {
+			return this.myXPos;
+		}
+		
+		public DoubleProperty getMyY() {
+			return this.myYPos;
+		}
+		
+		public DoubleProperty getAngle() {
+			return this.myAngle;
 		}
 
 }
