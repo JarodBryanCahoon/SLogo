@@ -13,6 +13,7 @@ import backend.abstractSyntaxTree.ASTNode;
 
 public class Manager {
 	private Map<String, ArrayList<Object>> memory;
+	
 	private TextParse parser;
 	
 	public Manager() {

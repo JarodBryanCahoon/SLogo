@@ -1,13 +1,15 @@
 package backend.board;
 import java.lang.Math;
+
+import javafx.beans.property.DoubleProperty;
 /**
  * 
  * @author Jarod Cahoon
  * This class is for static methods which help calculate certain properties for the Turtle class
  */
 public class BoardMath {
-	public static double[] xyDeltaCalc(double distance, double angle) {
-		double[] arr = {distance*Math.cos(toDegrees(angle)), distance*Math.sin(toDegrees(angle))};
+	public static double[] xyDeltaCalc(double pixels, double d) {
+		double[] arr = {pixels*Math.cos(toDegrees(d)), pixels*Math.sin(toDegrees(d))};
 		return arr;
 	}
 	
