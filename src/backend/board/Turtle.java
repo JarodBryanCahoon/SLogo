@@ -55,42 +55,6 @@ public class Turtle extends ConcreteObject {
 			return m.act(this);
 		}
 		
-		public double setHome() {
-			double distance = BoardMath.pointDistance(0, 0, myXPos.get(), myYPos.get());
-			myXPos.set(0);
-			myYPos.set(0);
-			return distance;
-		}
-	
-		public double hide() {
-			myOpacity.set(false);
-			return 0;
-		}
-	
-		public double show() {
-			myOpacity.set(true);
-			return 1;
-		}
-		
-		@Override
-		public double setPostion(double x, double y) {
-			double diff = BoardMath.pointDistance(x, y, myXPos.get(), myYPos.get());
-			myXPos.set(x);
-			myYPos.set(y);
-			return diff;
-		}
-		
-
-		public double penDown() {
-			myPenDown.set(true);
-			return 1;
-		}
-		
-		public double penUp() {
-			myPenDown.set(false);
-			return 0;
-		}
-		
 		/////Keeep this stuff below, get rid of the stuff above
 		@Override
 		public RenderSprite getRenderSprite() {
