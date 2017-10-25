@@ -2,18 +2,21 @@
 <resources>
 	<module>
 		<class>frontend.modules.RenderModule</class>
+		<position>Center</position>
 		<width>10</width>
 		<height>10</height>
 	</module>
 
 	<module>
 		<class>frontend.modules.MenuModule</class>
+		<position>Top</position>
 		<width>10</width>
 		<height>10</height>
 	</module>
 
 	<module>
 		<class>frontend.modules.ConsoleModule</class>
+		<position>Right</position>
 		<width>10</width>
 		<height>10</height>
 	</module>

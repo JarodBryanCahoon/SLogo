@@ -1,6 +1,7 @@
 package frontend.xml;
 
 import java.io.File;
+import java.io.IOException;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -15,7 +16,7 @@ public abstract class XMLReader {
 	private String myPath;
 	private File myXmlFile;
 	private Document myDocument;
-	public XMLReader(String path) throws XMLException {
+	public XMLReader(String path) throws XMLException, IOException {
 		myPath = path;
 		try {
 			myXmlFile = new File(myPath);
@@ -29,8 +30,13 @@ public abstract class XMLReader {
 		readFromFile();
 	}
 	
-	protected abstract void readFromFile() throws XMLException;
+	protected abstract void readFromFile() throws XMLException, IOException;
 	
+	protected Element getElement() {
+		Element root = myDocument.getDocumentElement();
+		return root;
+		
+	}
 	protected NodeList getNodeList(String tag) {
 		Element root = myDocument.getDocumentElement();
 		return this.getNodeList(root, tag);
@@ -45,7 +51,16 @@ public abstract class XMLReader {
 		return myDocument;
 	}
 	
+	protected String getContent(Element element) {
+		return element.getTextContent();
+	}
 	protected String getContent(Element element, String tag) {
 		return element.getElementsByTagName(tag).item(0).getTextContent();
+	}
+	
+	public static Element createTextElement(Document doc, String tag, String text) {
+		Element e = doc.createElement(tag);
+		e.appendChild(doc.createTextNode(text));
+		return e;
 	}
 }
