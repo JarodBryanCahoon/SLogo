@@ -80,7 +80,7 @@ public class TextParse {
 				i=j;
 			}
 			Word w = new Word(t);
-			if (w.getT .equals("command")) {
+			if (w.getType().equals("command")) {
 				if(comm!=null) {
 				comm.setExpression();
 				}
