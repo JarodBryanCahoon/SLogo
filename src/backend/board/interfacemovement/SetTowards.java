@@ -3,7 +3,11 @@ package backend.board.interfacemovement;
 import backend.Utilities.vectors.Vector;
 import backend.Utilities.vectors.VectorMath;
 import backend.board.Turtle;
-
+/**
+ * 
+ * @author Jarod Cahoon
+ *
+ */
 public class SetTowards extends AbsoluteMovement{
 	private double myX;
 	private double myY;
