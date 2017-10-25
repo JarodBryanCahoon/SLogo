@@ -3,7 +3,6 @@ package backend.abstractSyntaxTree;
 public class DuoOperatorExp extends OperatorExp {
 	private double arg1;
 	private double arg2;
-	
 	public DuoOperatorExp(String s) {
 		super(s);
 	}
