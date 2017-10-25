@@ -32,7 +32,7 @@ public abstract class XMLReader {
 	
 	protected abstract void readFromFile() throws XMLException, IOException;
 	
-	protected Element getNode(String tag) {
+	protected Element getElement() {
 		Element root = myDocument.getDocumentElement();
 		return root;
 		

@@ -26,10 +26,10 @@ public class ModulesTester extends Application{
 		
 		Parent parent = test.getParent();
 		Scene scene = new Scene(parent);
-		scene.getStylesheets().add("/resources/style/" + "stylesheet.css");
+		scene.getStylesheets().add("/resources/style/" + "stylesheet2.css");
 		stage.setTitle("Testing");
 		stage.setScene(scene);
-//		stage.show();
+		stage.show();
 	}
 	
 	public static void main(String[] args) {
