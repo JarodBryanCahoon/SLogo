@@ -7,6 +7,8 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import backend.board.RenderSprite;
+import frontend.xml.PreferenceXMLReader;
+import frontend.xml.XMLReader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
@@ -39,16 +41,12 @@ public class RenderModule extends Module{
 		mySprites.add(sprite);
 	}
 	
-	private void displaySprite(RenderSprite sprite) {
-		
-	}	
-	
 	public Element getXMLPreferences(Document doc, Element root) {
 		Element cls = doc.createElement(this.getClass().toString());
 		root.appendChild(cls);
 		
-		Element height = doc.createElement("stage height");
-		Element width = doc.createElement("stage width");
+		XMLReader.createTextElement(doc, cls, PreferenceXMLReader.RenderTags.STAGE_HEIGHT.getTag(), Double.toString(getHeight()));
+		XMLReader.createTextElement(doc, cls, PreferenceXMLReader.RenderTags.STAGE_WIDTH.getTag(), Double.toString(getWidth()));
 		
 		for(RenderSprite rSprite : mySprites) {
 			Element xmlSprite = rSprite.getTurtleXML(doc, cls);

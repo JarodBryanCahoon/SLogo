@@ -5,6 +5,7 @@ import java.util.Observer;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+import frontend.xml.PreferenceXMLReader;
 import frontend.xml.XMLReader;
 
 import java.util.Observable;
@@ -123,14 +124,14 @@ public class RenderSprite extends Observable implements iRenderSprite, Observer 
 
 	public Element getTurtleXML(Document doc, Element root) {
 		Element xmlElement = doc.createElement(XML_SPRITE);
-		XMLReader.createTextElement(doc, root, "myX", Double.toString(myX));
-		XMLReader.createTextElement(doc, root, "myY", Double.toString(myY));
-		XMLReader.createTextElement(doc, root, "pen", Boolean.toString(penDown));
-		XMLReader.createTextElement(doc, root, "penWidth", Double.toString(myPenWidth));
-		XMLReader.createTextElement(doc, root, "isVisible", Boolean.toString(isVisible));
-		XMLReader.createTextElement(doc, root, "myAngle", Double.toString(myAngle));
-		XMLReader.createTextElement(doc, root, "id", Integer.toString(myTurtleId));
-		XMLReader.createTextElement(doc, root, "image path", myImagePath);
+		XMLReader.createTextElement(doc, root, PreferenceXMLReader.RenderTags.MYX.getTag(), Double.toString(myX));
+		XMLReader.createTextElement(doc, root, PreferenceXMLReader.RenderTags.MYY.getTag(), Double.toString(myY));
+		XMLReader.createTextElement(doc, root, PreferenceXMLReader.RenderTags.PEN.getTag(), Boolean.toString(penDown));
+		XMLReader.createTextElement(doc, root,PreferenceXMLReader.RenderTags.PEN_WIDTH.getTag(), Double.toString(myPenWidth));
+		XMLReader.createTextElement(doc, root, PreferenceXMLReader.RenderTags.VISIBILITY.getTag(), Boolean.toString(isVisible));
+		XMLReader.createTextElement(doc, root, PreferenceXMLReader.RenderTags.ANGLE.getTag(), Double.toString(myAngle));
+		XMLReader.createTextElement(doc, root, PreferenceXMLReader.RenderTags.ID.getTag(), Integer.toString(myTurtleId));
+		XMLReader.createTextElement(doc, root, PreferenceXMLReader.RenderTags.PATH.getTag(), myImagePath);
 		return xmlElement;
 	}
 }
