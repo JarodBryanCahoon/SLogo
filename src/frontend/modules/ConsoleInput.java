@@ -45,7 +45,6 @@ public class ConsoleInput extends Module{
 		myParent = new Group();
 		return myParent;
 	}
-	
 
 	private void addInputField(double width) {
 		inputField = new TextArea();
