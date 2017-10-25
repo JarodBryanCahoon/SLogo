@@ -1,45 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Colors>
-	<Root>
-		<fx-font>14px 'Letter Gothic Std'</fx-font>	
-		<fx-text-fill>silver</fx-text-fill>
+	<root>
+	<fx-font>14px 'Letter Gothic Std'</fx-font>	
+	<fx-text-fill>silver</fx-text-fill>
+	<fx-background-color>black</fx-background-color>
+	<fx-wrap-text>true</fx-wrap-text>
+	</root>
+
+
+
+	<variable>
+		<fx-fill>greenyellow</fx-fill>
+	</variable>
+	<text>
+		<fx-fill>silver</fx-fill>	
+	</text>
+	<constant>
+		<fx-fill>pink</fx-fill>
+	</constant>
+	<command>
+		<fx-fill>orangered</fx-fill>
+	</command>
+	<invalid>
+		<fx-fill>silver</fx-fill>	
+	</invalid>
+	
+
+	<window>
 		<fx-background-color>black</fx-background-color>
-		<fx-wrap-text>true</fx-wrap-text>
-	</Root>
+	</window>
+
 	
-	
-	<Keywords>
-	
-		<Variable>
-			<fx-fill></fx-fill>
-		</Variable>
-		<Text>
-			<fx-fill></fx-fill>	
-		</Text>
-		<Constant>
-			<fx-fill></fx-fill>
-		</Constant>
-		<Command>
-			<fx-fill></fx-fill>
-		</Command>
-		<Invalid>
-			<fx-fill></fx-fill>	
-		</Invalid>
-		
-	</Keywords>
-	
-	<Window>
-	
+
+	<render>
 		<fx-background-color></fx-background-color>
-		
-	</Window>
-	
-	<Render>
-		<Background></Background>
-		<Turtle></Turtle>
-		<PenColor></PenColor>
-		<PenWidth></PenWidth>
-	</Render>
-	
-	
+		<turtle></turtle>
+		<fx-fill></fx-fill>
+		<fx-width></fx-width>
+	</render>	
 </Colors>

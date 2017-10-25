@@ -1,6 +1,7 @@
 package frontend.xml;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -12,9 +13,10 @@ import org.w3c.dom.NodeList;
 import exceptions.XMLException;
 
 public class ColorReader extends XMLReader {
-	FileWriter file;
+	File file;
+	FileWriter fileWriter;
 	BufferedWriter bf;
-	private static final String CSSPATH = "/resources/style/stylesheet.css";
+	private static final String CSSPATH = "/src/resources/style/";
 	
 	public ColorReader(String path) throws IOException {
 		super(path);
@@ -23,28 +25,36 @@ public class ColorReader extends XMLReader {
 
 	@Override
 	protected void readFromFile() throws IOException{
-		NodeList nList = getElement().getChildNodes();
-		file = new FileWriter("stylesheet2.css");
-		bf = new BufferedWriter(file);
+		file = new File(System.getProperty("user.dir") +CSSPATH,"stylesheet2.css");
+		System.out.println(System.getProperty("user.dir"));
+		System.out.println(file);
+		NodeList document = getElement().getChildNodes();
+		fileWriter = new FileWriter(file);
+		bf = new BufferedWriter(fileWriter);
 		writeHeader();
 		
-		writeRoot(nList);
-		
+		writeBody(document);
+		bf.close();
 		
 		
 	}
 
-	private void writeRoot(NodeList nList) {
-		NodeList root = nList.item(1).getChildNodes();
-		for (int i = 1; i<root.getLength();i+=2) {
-			System.out.println(root.item(i).getTextContent());
+	private void writeBody(NodeList document) throws IOException {
+		for (int k = 1; k<document.getLength();k+=2) {
+			bf.write("." + document.item(k).getNodeName());
+			bf.write("{ \n");
+			NodeList region = document.item(k).getChildNodes();
+			for (int i = 1;i<region.getLength();i+=2) {
+				Node n = region.item(i);
+				bf.write("-" +n.getNodeName() + ":" + n.getTextContent()+";");
+				bf.write("\n");
+			}
+			bf.write("}\n");
 		}
 	}
 
 	private void writeHeader() throws IOException {
-		bf.write(".root{\n");
-		bf.write("/* Document: sstylesheet2.css");
-		bf.write("}");
+		bf.write("/*Document   : sstylesheet2.css*/ \n \n");
 	}
 
 }
