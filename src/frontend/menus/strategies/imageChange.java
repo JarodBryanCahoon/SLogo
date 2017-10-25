@@ -16,7 +16,7 @@ public class imageChange extends menuItemStrategy {
 
 	@Override
 	public void execute() {
-		RenderModule module = (RenderModule) getModule();
+		RenderModule module = (RenderModule) getView();
 		// create new window that allows pen color change
 	}
 

@@ -3,6 +3,9 @@ package frontend.modules;
 import java.util.Observable;
 import java.util.Observer;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
 import javafx.animation.FadeTransition;
 import javafx.scene.Parent;
 import javafx.scene.control.ScrollPane;
@@ -55,6 +58,12 @@ public class ConsoleHistory extends Module implements Observer {
 		if (!on)
 			history.getChildren().get(index).setStyle("-fx-background-color: black;");
 			
+	}
+
+	@Override
+	public Element getXMLPreferences(Document doc) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

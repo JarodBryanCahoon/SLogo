@@ -55,113 +55,12 @@ public class Turtle extends ConcreteObject {
 			return m.act(this);
 		}
 		
-		public double moveForward(double pixels) {
-			move(true, pixels);
-			return pixels;
-		}
-		
-		public double moveBackwards(double pixels) {
-			move(false, pixels);
-			return pixels;
-		}
-		
-		public double turnLeft(double addAngle) {
-			myAngle.set((myAngle.get()+addAngle)%360);
-			return addAngle;
-		}
-	
-		public double turnRight(double addAngle) {
-			int modulo = (int) Math.abs(addAngle / 360 + 1);			
-			double holder = 360 - addAngle;
-			holder += ( 360 * modulo ) % 360;
-			myAngle.set(holder);
-			return addAngle;
-		}
-	
-		public double setAngle(double angle) {
-			double returnAngle = angleDifference(angle);
-			myAngle.set(angle);
-			return returnAngle;
-		}
-
-		private double angleDifference(double angle) {
-			return (Math.abs(angle-myAngle.get()) > 180) ? Math.abs(angle-myAngle.get())-180 : Math.abs(angle-myAngle.get());
-		}
-		
-		public double setTowards(double x, double y) {
-			double newAngle = VectorMath.angleBetweenXAxis(new Vector(x,y));
-			double angleDiff = angleDifference(newAngle);
-			myAngle.set(newAngle);
-			return angleDiff;
-			
-		}
-	
-		public double setHome() {
-			double distance = BoardMath.pointDistance(0, 0, myXPos.get(), myYPos.get());
-			myXPos.set(0);
-			myYPos.set(0);
-			return distance;
-		}
-	
-		public double hide() {
-			myOpacity.set(false);
-			return 0;
-		}
-	
-		public double show() {
-			myOpacity.set(true);
-			return 1;
-		}
-		
-		@Override
-		public double setPostion(double x, double y) {
-			double diff = BoardMath.pointDistance(x, y, myXPos.get(), myYPos.get());
-			myXPos.set(x);
-			myYPos.set(y);
-			return diff;
-		}
-		
-		private void move(boolean b,double pixels){
-			double[] delta = BoardMath.xyDeltaCalc(pixels, myAngle.get());
-			double xHold = myXPos.get();
-			double yHold = myYPos.get();
-			xHold += b? delta[0]: -delta[0];
-			yHold += b? delta[1]: -delta[1];
-			myXPos.set(xHold);
-			myYPos.set(yHold);
-		}
-
-		public double penDown() {
-			myPenDown.set(true);
-			return 1;
-		}
-		
-		public double penUp() {
-			myPenDown.set(false);
-			return 0;
-		}
-		
-		public void undo(RenderSprite rs) {
-			myPenDown.set(false);
-			myXPos.set(rs.getX());
-			myYPos.set(rs.getY());
-			myAngle.set(rs.getAngle());
-			myOpacity.set(rs.isVisible()==1);
-			myPenDown.set(rs.isPenDown()==1);
-		}
-		
+		/////Keeep this stuff below, get rid of the stuff above
 		@Override
 		public RenderSprite getRenderSprite() {
 			return new RenderSprite(this, myImagePath);
 		}
 		
-		@Override
-		public void notifyObservers() {
-//			for(RenderSprite obs : myObservers) {
-//				obs.update(this, 0);
-//			}
-		}
-
 		@Override
 		public int getId() {
 			return myTurtleId.get();
@@ -177,6 +76,18 @@ public class Turtle extends ConcreteObject {
 		
 		public DoubleProperty getAngle() {
 			return this.myAngle;
+		}
+		
+		public BooleanProperty getPen() {
+			return myPenDown;
+		}
+		
+		public BooleanProperty getOpacity() {
+			return myOpacity;
+		}
+		
+		public IntegerProperty getID() {
+			return myTurtleId;
 		}
 
 }
