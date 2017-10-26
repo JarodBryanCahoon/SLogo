@@ -1,23 +1,18 @@
 package frontend.xml;
 
-import exceptions.XMLException;
-import frontend.menus.CustomMenuButton;
-import frontend.menus.strategies.iMenuItemStrategy;
-import frontend.menus.strategies.MenuItemStrategy;
-import frontend.modules.Module;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuItem;
-
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+
+import exceptions.XMLException;
+import frontend.menus.strategies.iMenuItemStrategy;
+import frontend.modules.Module;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuItem;
 
 public class MenuReader extends XMLReader {
 	private static final String TYPE_TAG = "type";

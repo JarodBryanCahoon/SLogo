@@ -1,7 +1,5 @@
 package frontend.menus.strategies;
 
-import frontend.menus.CustomMenuButton;
-import frontend.modules.Module;
 import frontend.modules.ViewModule;
 import frontend.xml.ConfigReader;
 import javafx.scene.Scene;

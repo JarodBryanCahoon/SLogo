@@ -1,5 +1,4 @@
 package backend.Utilities.vectors;
-import java.lang.Math;
 import backend.board.BoardMath;
 /**
  * 

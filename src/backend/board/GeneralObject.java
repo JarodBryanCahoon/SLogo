@@ -25,6 +25,6 @@ public interface GeneralObject {
 	public double hide();
 	
 	public double show();
-	
+		
 	public int getId();
 }

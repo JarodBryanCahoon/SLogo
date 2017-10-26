@@ -3,9 +3,6 @@ package test;
 import frontend.modules.ConsoleInput;
 import frontend.modules.ConsoleModule;
 import frontend.modules.Module;
-import frontend.modules.RenderModule;
-import frontend.modules.StylizeModule;
-import frontend.modules.ViewModule;
 import javafx.application.Application;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -23,7 +20,7 @@ public class ModulesTester extends Application{
 				  10
 				);
 		// Change test to whatever module you want
-		Module test = new ConsoleModule (WIDTH,HEIGHT);
+		Module test = new StylizeModule (WIDTH,HEIGHT);
 		
 		Parent parent = test.getParent();
 		scene = new Scene(parent);
@@ -32,13 +29,14 @@ public class ModulesTester extends Application{
 		stage.setTitle("Testing");
 		stage.setScene(scene);
 		stage.show();
+		style();
 	}
 	
 	private void style() {
-		System.out.println("poo2f");
 		scene.getStylesheets().clear();
 		scene.getStylesheets().add("/resources/style/" + "stylesheet2.css");
 	}
+	
 	public static void main(String[] args) {
 		launch(args);
 	}

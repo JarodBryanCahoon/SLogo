@@ -7,10 +7,10 @@ public class MonoOperatorExp extends OperatorExp {
 		super(s);
 	}
 	
-	public void setArg(double d) {
+	protected void setArg(double d) {
 		arg = d;
 	}
-	public void operate() {
+	protected void operate() {
 		//does this need to be here?
 	}
 

@@ -7,7 +7,7 @@ public class OperatorExp extends Expression{
 		name=s;
 	}
 	
-	public int getType() {
+	protected int getType() {
 		return type;
 	}
 	

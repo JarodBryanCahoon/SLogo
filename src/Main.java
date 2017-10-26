@@ -1,12 +1,7 @@
-import java.io.File;
-
-import frontend.modules.Module;
 import frontend.modules.ViewModule;
 import frontend.xml.ConfigReader;
-import frontend.xml.XMLReader;
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class Main extends Application{

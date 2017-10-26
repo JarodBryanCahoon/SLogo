@@ -1,8 +1,5 @@
 package frontend.modules;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -53,14 +50,7 @@ public class ConsoleModule extends Module {
 	public Element getXMLPreferences(Document doc) {
 		// TODO Auto-generated method stub
 		return null;
-	}
-
-	@Override
-	protected void stylize() {
-		// TODO Auto-generated method stub
-		
-	}
- 
+	} 
 }
 	
 	                  
