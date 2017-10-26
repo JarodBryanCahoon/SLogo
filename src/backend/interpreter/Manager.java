@@ -13,17 +13,23 @@ import backend.abstractSyntaxTree.ASTNode;
 
 public class Manager {
 	private Map<String, ArrayList<Object>> memory;
-	
 	private TextParse parser;
-	
+	private ASTNode root;
 	public Manager() {
-		
+		parser = new TextParse();
+		root = parser.getAST();
 	}
+	
 	
 	public void setCommand() {
 		
 	}
 	
+	private void executeCommands(ASTNode tree) {
+		if (tree==null) {
+			return;
+		}
+	}
 //	private ASTNode createTree() {
 //		ASTNode myNode = new ASTNode();
 //		return myNode;
