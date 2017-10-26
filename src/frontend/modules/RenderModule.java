@@ -7,6 +7,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import backend.board.RenderSprite;
+import exceptions.ErrorMessage;
 import frontend.xml.PreferenceXMLReader;
 import frontend.xml.XMLReader;
 import javafx.geometry.Insets;
@@ -17,7 +18,9 @@ import javafx.scene.control.Button;
 
 public class RenderModule extends Module{
 	private List<RenderSprite> mySprites;
-
+	private int turtleId = 0;
+	private static final String turtlePath = "/resources/turtle.png";
+			
 	public RenderModule(double width, double height) throws Exception {
 		super(width, height);
 	}
@@ -26,10 +29,14 @@ public class RenderModule extends Module{
 	protected Parent createParent() throws Exception {
 		Group myGroup = new Group();
 //		myGroup.setPrefSize(getWidth(), getHeight());
-		Button b = new Button("help");
-		myGroup.getChildren().add(b);
-		// add turtle
+		addTurtle(myGroup);
 		return myGroup;
+	}
+	
+	public void addTurtle(Group group) {
+		RenderSprite sprite = new RenderSprite(turtleId, turtlePath, getWidth(), getHeight());
+		group.getChildren().add(sprite.getImage());
+		turtleId++;
 	}
 	
 	public void clearScreen() {
@@ -54,7 +61,8 @@ public class RenderModule extends Module{
 				cls.appendChild(xmlSprite);			
 			}
 		} catch(NullPointerException e) {
-			
+			ErrorMessage message = new ErrorMessage("Could not write to File");
+			message.show();
 		}
 
 		

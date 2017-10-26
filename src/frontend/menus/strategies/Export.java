@@ -102,6 +102,11 @@ public class Export extends MenuItemStrategy {
 		DOMSource source = new DOMSource(doc);
 		StreamResult result = new StreamResult(new File(path));
 		transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-		transformer.transform(source, result);
+		try {
+			transformer.transform(source, result);	
+		} catch(Exception e) {
+			ErrorMessage error = new ErrorMessage("File Could Not Be Created");
+			error.show();
+		}
 	}
 }
