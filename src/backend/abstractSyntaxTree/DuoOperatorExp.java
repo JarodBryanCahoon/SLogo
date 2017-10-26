@@ -7,12 +7,12 @@ public class DuoOperatorExp extends OperatorExp {
 		super(s);
 	}
 
-	public void setArgs(double a, double b) {
+	protected void setArgs(double a, double b) {
 		arg1 = a;
 		arg2 = b;
 	}
 	
-	public void operate() {
+	protected void operate() {
 		//does this need to be here?
 	}
 }
