@@ -1,5 +1,6 @@
 package frontend.modules;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Observer;
 
@@ -28,7 +29,7 @@ public class RenderModule extends Module{
 	@Override
 	protected Parent createParent() throws Exception {
 		Group myGroup = new Group();
-//		myGroup.setPrefSize(getWidth(), getHeight());
+		mySprites = new ArrayList<>();
 		addTurtle(myGroup);
 		return myGroup;
 	}
@@ -36,12 +37,17 @@ public class RenderModule extends Module{
 	public void addTurtle(Group group) {
 		RenderSprite sprite = new RenderSprite(turtleId, turtlePath, getWidth(), getHeight());
 		group.getChildren().add(sprite.getImage());
+		mySprites.add(sprite);
 		turtleId++;
 	}
 	
 	public void clearScreen() {
-		((Group) getParent()).getChildren().removeAll(mySprites);
+		Group myGroup = (Group) getParent();
+		for(RenderSprite sprite : mySprites) {
+			myGroup.getChildren().remove(sprite.getImage());
+		}
 		mySprites.removeAll(mySprites);
+		turtleId = 0;
 	}
 	
 	public void addRenderSprite(RenderSprite sprite) {
@@ -63,9 +69,7 @@ public class RenderModule extends Module{
 		} catch(NullPointerException e) {
 			ErrorMessage message = new ErrorMessage("Could not write to File");
 			message.show();
-		}
-
-		
+		}		
 		return cls;
 	}
 }
