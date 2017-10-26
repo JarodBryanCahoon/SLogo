@@ -46,7 +46,6 @@ public class Turtle extends ConcreteObject {
 			myXPos.addListener( (obs, oldVal, newVal) -> myObserver.changeX(obs, oldVal, newVal));
 			myYPos.addListener( (obs, oldVal, newVal) -> myObserver.changeY(obs, oldVal, newVal));
 			myAngle.addListener( (obs, oldVal, newVal) -> myObserver.changeAngle(obs, oldVal, newVal) );
-			myTurtleId.addListener((obs, oldVal, newVal) -> myObserver.changeId(obs, oldVal, newVal) );
 			myPenDown.addListener((obs, oldVal, newVal) -> myObserver.changePen(obs, oldVal, newVal) );
 			myOpacity.addListener((obs, oldVal, newVal) -> myObserver.changeOpacity(obs, oldVal, newVal) );
 		}

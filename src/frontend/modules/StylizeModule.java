@@ -55,6 +55,11 @@ public class StylizeModule extends Module {
 		return null;
 	}
 
+	private void stylize() {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 
 }

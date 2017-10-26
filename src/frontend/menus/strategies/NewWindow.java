@@ -7,9 +7,9 @@ import frontend.xml.ConfigReader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class newWindow extends menuItemStrategy {
+public class NewWindow extends MenuItemStrategy {
 	private static final String configFileName = "config.xml";
-	public newWindow(Module module) {
+	public NewWindow(ViewModule module) {
 		super(module);
 	}
 	

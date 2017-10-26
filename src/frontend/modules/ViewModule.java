@@ -62,4 +62,10 @@ public class ViewModule extends Module{
 		return null;
 	}
 
+	@Override
+	protected void stylize() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
