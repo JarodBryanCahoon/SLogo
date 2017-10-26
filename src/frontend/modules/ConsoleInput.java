@@ -38,6 +38,7 @@ public class ConsoleInput extends Module{
 				
 		addInputField(myWidth);
 		myParent.getChildren().add(inputField);
+		stylize();
 	}
 	
 	@Override
@@ -49,7 +50,6 @@ public class ConsoleInput extends Module{
 	private void addInputField(double width) {
 		inputField = new TextArea();
 		inputField.setPrefWidth(width);
-		inputField.getStyleClass().add("inputField");
 		inputField.setOnKeyPressed(event -> send(event));
 		inputField.textProperty().addListener(text ->updateSyntax(text));
 	}
@@ -78,6 +78,12 @@ public class ConsoleInput extends Module{
 	public Element getXMLPreferences(Document doc) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	protected void stylize() {
+		inputField.getStyleClass().add("window");
+		
 	}
 
 }

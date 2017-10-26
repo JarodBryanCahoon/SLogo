@@ -21,8 +21,9 @@ public class ConsoleHistory extends Module implements Observer {
 		super(myWidth, myHeight);
 		historyPane.setMinSize(myWidth,myHeight);
 		history.setMinSize(myWidth-10,myHeight-10);
+		stylize();
 		backend.addObserver(this);
-		
+//		history.setOnMouseClicked(e->stylize());
 		
 	}
 
@@ -30,9 +31,6 @@ public class ConsoleHistory extends Module implements Observer {
 	protected Parent createParent() {
 		history = new VBox();
 		historyPane = new ScrollPane(history);
-		history.getStyleClass().add("inputField");
-		historyPane.getStyleClass().add("inputField");
-		
 		return historyPane;
 	}
 	
@@ -41,7 +39,7 @@ public class ConsoleHistory extends Module implements Observer {
 		FlowPane toAdd = ((InfoInterface) backend).getHistory();
 		history.getChildren().add(toAdd);
 		fadeIn(toAdd);
-		
+		stylize();
 		historyPane.setVvalue(1.0);
 	}
 
@@ -62,8 +60,15 @@ public class ConsoleHistory extends Module implements Observer {
 
 	@Override
 	public Element getXMLPreferences(Document doc) {
-		// TODO Auto-generated method stub
+
 		return null;
+	}
+
+	private void stylize() {
+		history.getStyleClass().clear();
+		history.getStyleClass().add("window");
+		historyPane.getStyleClass().add("window");
+		
 	}
 
 

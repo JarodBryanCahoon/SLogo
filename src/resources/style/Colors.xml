@@ -19,7 +19,7 @@
 		<fx-fill>pink</fx-fill>
 	</constant>
 	<command>
-		<fx-fill>orangered</fx-fill>
+		<fx-fill>green</fx-fill>
 	</command>
 	<invalid>
 		<fx-fill>silver</fx-fill>	
@@ -29,6 +29,10 @@
 	<window>
 		<fx-background-color>black</fx-background-color>
 	</window>
+	<window.content>
+		<fx-background-color>black</fx-background-color>
+		<fx-text-fill>silver</fx-text-fill>
+	</window.content>
 
 	
 
