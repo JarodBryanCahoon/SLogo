@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 public class ModulesTester extends Application{
 	private int WIDTH= 500;
 	private int HEIGHT = 500;
+	private Scene scene;
 	@Override
 	public void start(Stage stage) throws Exception {
 		Font.loadFont(
@@ -22,18 +23,25 @@ public class ModulesTester extends Application{
 				  10
 				);
 		// Change test to whatever module you want
-		Module test = new StylizeModule (WIDTH,HEIGHT);
+		Module test = new ConsoleModule (WIDTH,HEIGHT);
 		
 		Parent parent = test.getParent();
-		Scene scene = new Scene(parent);
-		scene.getStylesheets().add("/resources/style/" + "stylesheet2.css");
+		scene = new Scene(parent);
+		scene.setOnMouseClicked(e->style());
+	
 		stage.setTitle("Testing");
 		stage.setScene(scene);
 		stage.show();
 	}
 	
+	private void style() {
+		System.out.println("poo2f");
+		scene.getStylesheets().clear();
+		scene.getStylesheets().add("/resources/style/" + "stylesheet2.css");
+	}
 	public static void main(String[] args) {
 		launch(args);
 	}
+	
 
 }
