@@ -80,8 +80,7 @@ public class ConsoleInput extends Module{
 		return null;
 	}
 
-	@Override
-	protected void stylize() {
+	private void stylize() {
 		inputField.getStyleClass().add("window");
 		
 	}

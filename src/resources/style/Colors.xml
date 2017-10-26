@@ -2,44 +2,44 @@
 <Colors>
 	<root>
 	<fx-font>14px 'Letter Gothic Std'</fx-font>	
-	<fx-text-fill>silver</fx-text-fill>
+	<fx-text-fill>white</fx-text-fill>
 	<fx-background-color>black</fx-background-color>
 	<fx-wrap-text>true</fx-wrap-text>
 	</root>
 
 
 
-	<variable>
+	<Variable>
 		<fx-fill>greenyellow</fx-fill>
-	</variable>
-	<text>
-		<fx-fill>silver</fx-fill>	
-	</text>
-	<constant>
+	</Variable>
+	<Constant>
 		<fx-fill>pink</fx-fill>
-	</constant>
-	<command>
+	</Constant>
+	<Command>
 		<fx-fill>green</fx-fill>
-	</command>
-	<invalid>
+	</Command>
+	<Text>
 		<fx-fill>silver</fx-fill>	
-	</invalid>
+	</Text>
+	<Invalid>
+		<fx-fill>silver</fx-fill>	
+	</Invalid>
 	
 
-	<window>
+	<Window>
 		<fx-background-color>black</fx-background-color>
-	</window>
-	<window.content>
+	</Window>
+	<Window.content>
 		<fx-background-color>black</fx-background-color>
 		<fx-text-fill>silver</fx-text-fill>
-	</window.content>
+	</Window.content>
 
 	
 
-	<render>
-		<fx-background-color></fx-background-color>
-		<turtle></turtle>
-		<fx-fill></fx-fill>
-		<fx-width></fx-width>
-	</render>	
+	<Render>
+		<fx-background-color>red</fx-background-color>
+		<turtle>red</turtle>
+		<fx-fill>red</fx-fill>
+		<fx-width>red</fx-width>
+	</Render>	
 </Colors>
