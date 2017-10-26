@@ -104,7 +104,6 @@ public class TextParse {
 				return tree;
 			}
 			if(w.getNumber()==1) {
-				tree.setRight(null);
 				tree.setLeft(recursiveTree());
 			}
 			if(w.getNumber()==2) {
@@ -133,7 +132,7 @@ public class TextParse {
 //	Should be temporary - should find a way to incorporate it with
 //	other methods to avoid duplicated code.
 //probably don't need this? I've already divided stuff into words, including spaces, depending on when
-//it needs to be changed
+//it needs to be changed -Venkat
 	public Word[] lasiasmethod(String s) {
 		String[] commandList = s.split("\\b");
 		Word[] sentence = new Word[commandList.length];
