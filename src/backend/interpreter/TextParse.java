@@ -2,19 +2,13 @@ package backend.interpreter;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
 import java.util.ResourceBundle;
-import java.util.Stack;
-
 
 import backend.abstractSyntaxTree.ASTNode;
-import backend.abstractSyntaxTree.Expression;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextFlow;
 
 
 /*TextParse.java

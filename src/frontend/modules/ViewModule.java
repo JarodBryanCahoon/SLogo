@@ -1,24 +1,17 @@
 package frontend.modules;
 
-import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import backend.board.RenderSprite;
 import frontend.xml.ModuleStyleReader;
-import frontend.xml.XMLReader;
-import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
 
 public class ViewModule extends Module{
 	private static final String SET = "set";
@@ -61,11 +54,4 @@ public class ViewModule extends Module{
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-	@Override
-	protected void stylize() {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

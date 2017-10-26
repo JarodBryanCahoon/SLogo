@@ -1,12 +1,16 @@
 package backend.interpreter;
 
-import backend.abstractSyntaxTree.Expression;
-
-import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-import backend.abstractSyntaxTree.*;
+import backend.abstractSyntaxTree.DoubleExp;
+import backend.abstractSyntaxTree.DuoOperatorExp;
+import backend.abstractSyntaxTree.Expression;
+import backend.abstractSyntaxTree.IntegerExp;
+import backend.abstractSyntaxTree.ListExp;
+import backend.abstractSyntaxTree.MonoOperatorExp;
+import backend.abstractSyntaxTree.NoneOperatorExp;
+import backend.abstractSyntaxTree.VariableExp;
 
 public class Word {
 	private String myName;

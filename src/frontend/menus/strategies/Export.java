@@ -1,7 +1,6 @@
 package frontend.menus.strategies;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -23,7 +22,6 @@ import exceptions.XMLException;
 import frontend.modules.Module;
 import frontend.modules.ViewModule;
 import frontend.xml.PreferenceXMLReader;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;

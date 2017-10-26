@@ -1,11 +1,8 @@
 package frontend.modules;
 
-import java.util.List;
-
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import javafx.scene.Node;
 import javafx.scene.Parent;
 
 public abstract class Module {

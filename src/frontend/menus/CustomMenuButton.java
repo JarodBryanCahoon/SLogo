@@ -1,9 +1,6 @@
 package frontend.menus;
 
 import frontend.menus.strategies.iMenuItemStrategy;
-import frontend.modules.Module;
-import javafx.scene.Node;
-import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 
 public class CustomMenuButton {

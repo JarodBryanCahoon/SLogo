@@ -4,9 +4,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import frontend.xml.ColorReader;
-import frontend.xml.ColorReader;
 import javafx.scene.Parent;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
 /**Central control of style
