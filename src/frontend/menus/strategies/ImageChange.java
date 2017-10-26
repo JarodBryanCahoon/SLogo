@@ -5,8 +5,8 @@ import frontend.modules.Module;
 import frontend.modules.RenderModule;
 import frontend.modules.ViewModule;
 
-public class penColorChange extends menuItemStrategy {
-	public penColorChange(ViewModule module) {
+public class ImageChange extends MenuItemStrategy {
+	public ImageChange(ViewModule module) {
 		super(module);
 	}
 
