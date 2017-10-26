@@ -9,10 +9,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
 
-public class backColorChange extends menuItemStrategy {
+public class BackColorChange extends MenuItemStrategy {
 	private static final String PROMPT_TEXT = "Change Color...";
 
-	public backColorChange(Module module) {
+	public BackColorChange(ViewModule module) {
 		super(module);		
 	}
 

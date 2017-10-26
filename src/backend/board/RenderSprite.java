@@ -17,32 +17,27 @@ import javafx.scene.image.ImageView;
 public class RenderSprite extends Observable implements iRenderSprite, Observer {
 	private static final String TURTLE = "turtle";
 	private static final String XML_SPRITE = "sprite";
-	private double myX;
-	private double myY;
+	private double myX = Turtle.STARTING_POSITION[0];
+	private double myY = Turtle.STARTING_POSITION[1];
 	private ImageView myImageView;
-	private boolean penDown;
+	private boolean penDown = true;
 	private double myPenWidth;
-	private boolean isVisible;	
-	private double myAngle;
+	private boolean isVisible = true;	
+	private double myAngle = Turtle.STARTING_ANGLE;
+	private double myImageAngle;
 	private int myTurtleId;
-	private double stageWidth;
-	private double stageHeight;
 	private String myImagePath;
+	private RenderMath myRenderMath;
 	
 	public RenderSprite(int id, String imagePath, double width, double height) {
-		myX = Turtle.STARTING_POSITION[0];
-		myY = Turtle.STARTING_POSITION[1];
-		myAngle = Turtle.STARTING_ANGLE;
-		penDown = true;
+		myImageAngle = -myAngle;
 		myTurtleId = id;
-		isVisible = true;
 		myImagePath = imagePath;
-		myImageView = new ImageView(getClass().getClassLoader().getResource(myImagePath).getPath());
-		stageWidth = width;
-		stageHeight = height;
-		
-		myImageView.setX(translateX(myX));
-		myImageView.setY(translateY(myY));
+		myImageView = new ImageView(imagePath);		
+		myRenderMath = new RenderMath(width, height, myImageView);		
+		myImageView.setX(myRenderMath.xTranslate(myX));
+		myImageView.setY(myRenderMath.yTranslate(myY));
+		myImageView.setRotate(myImageAngle);
 	}
 	
 	public double isPenDown() {
@@ -83,21 +78,19 @@ public class RenderSprite extends Observable implements iRenderSprite, Observer 
 	}
 	
 	protected void changeX(ObservableValue<? extends Number> obs, Number oldVal, Number newVal) {
-		myX = newVal.doubleValue();
-		myImageView.setX(translateX(myX));
+		myX = myRenderMath.xTranslate(newVal.doubleValue());		
+		myImageView.setX(myRenderMath.imageX(myX));
 	}
 	
 	protected void changeY(ObservableValue<? extends Number> obs, Number oldVal, Number newVal) {
-		myY = newVal.doubleValue();
-		myImageView.setX(translateX(myX));
+		myY = myRenderMath.yTranslate(newVal.doubleValue());		
+		myImageView.setY(myRenderMath.imageY(myY));
 	}
 
 	protected void changeAngle(ObservableValue<? extends Number> obs, Number oldVal, Number newVal) {
 		myAngle = newVal.doubleValue();
-	}
-
-	protected void changeId(ObservableValue<? extends Number> obs, Number oldVal, Number newVal) {
-		myTurtleId = newVal.intValue();
+		myImageAngle = -myAngle;
+		myImageView.setRotate(myImageAngle);
 	}
 
 	protected void changePen(ObservableValue<? extends Boolean> obs, Boolean oldVal, Boolean newVal) {
@@ -106,6 +99,7 @@ public class RenderSprite extends Observable implements iRenderSprite, Observer 
 
 	protected void changeOpacity(ObservableValue<? extends Boolean> obs, Boolean oldVal, Boolean newVal) {
 		isVisible = newVal.booleanValue();
+		myImageView.setVisible(isVisible);
 	}
 
 	@Override
@@ -113,14 +107,6 @@ public class RenderSprite extends Observable implements iRenderSprite, Observer 
 		// TODO Auto-generated method stub
 		
 	}	
-	
-	private double translateX(double X) {
-		return X + stageWidth / 2;
-	}
-	
-	private double translateY(double Y) {
-		return Y + stageHeight / 2;
-	}
 
 	public Element getTurtleXML(Document doc) {
 		Element xmlElement = doc.createElement(XML_SPRITE);

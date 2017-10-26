@@ -13,6 +13,7 @@ import org.w3c.dom.NodeList;
 import exceptions.XMLException;
 
 public abstract class XMLReader {
+	public static final String XML_ERROR = "Your XML File was formatted incorrectly!";
 	private String myPath;
 	private File myXmlFile;
 	private Document myDocument;
