@@ -8,10 +8,15 @@ import java.io.IOException;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import com.sun.xml.internal.txw2.Document;
+
+import exceptions.XMLException;
+
 public class ColorReader extends XMLReader {
 	File file;
 	FileWriter fileWriter;
 	BufferedWriter bf;
+	NodeList document;
 	private static final String CSSPATH = "/src/resources/style/";
 	
 	public ColorReader(String path) throws IOException {
@@ -22,7 +27,7 @@ public class ColorReader extends XMLReader {
 	@Override
 	protected void readFromFile() throws IOException{
 		file = new File(System.getProperty("user.dir") +CSSPATH,"stylesheet2.css");
-		NodeList document = getElement().getChildNodes();
+		document = getElement().getChildNodes();
 		fileWriter = new FileWriter(file);
 		bf = new BufferedWriter(fileWriter);
 		writeHeader();
@@ -57,7 +62,25 @@ public class ColorReader extends XMLReader {
 		}
 		return name;
 	}
-
+	
+	public ArrayList<String> getWords() {
+		ArrayList<String> toReturn = new ArrayList<String>();
+		for (int i = 3;i<12; i+=2) {
+			toReturn.add(document.item(i).getNodeName());
+		}
+		return toReturn;
+	}
+	public String getWindow() {
+		return null;
+	}
+	public ArrayList<String> getRender() {
+		ArrayList<String> toReturn = new ArrayList<String>();
+		NodeList render = document.item(17).getChildNodes();
+		for (int i = 1; i<render.getLength(); i+=2) {
+			toReturn.add(render.item(i).getNodeName());
+		}
+		return toReturn;
+	}
 
 
 }

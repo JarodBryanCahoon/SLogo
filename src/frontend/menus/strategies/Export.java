@@ -2,6 +2,9 @@ package frontend.menus.strategies;
 
 import java.io.File;
 
+import java.io.FileNotFoundException;
+import java.nio.file.InvalidPathException;
+import java.nio.file.Paths;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -63,11 +66,11 @@ public class Export extends MenuItemStrategy {
 	//https://www.mkyong.com/java/how-to-create-xml-file-in-java-dom/
 	private void writeXML(String path) throws XMLException, TransformerException {
 		path = this.getClass().getProtectionDomain().getCodeSource().getLocation().getPath() + path;
-		File test = new File(path);
-		if(!test.mkdirs()) {
+		try {
+			Paths.get(path);
+		} catch (InvalidPathException | NullPointerException e) {
 			ErrorMessage error = new ErrorMessage("File Could Not Be Created");
 			error.show();
-			return;
 		}
 		
 		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
@@ -100,11 +103,6 @@ public class Export extends MenuItemStrategy {
 		DOMSource source = new DOMSource(doc);
 		StreamResult result = new StreamResult(new File(path));
 		transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-		try {
-			transformer.transform(source, result);	
-		} catch(Exception e) {
-			ErrorMessage error = new ErrorMessage("File Could Not Be Created");
-			error.show();
-		}
+		transformer.transform(source, result);	
 	}
 }

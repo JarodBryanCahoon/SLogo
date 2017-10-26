@@ -54,4 +54,9 @@ public class ViewModule extends Module{
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	protected void stylize() {
+		// TODO Auto-generated method stub
+		
+	}
 }

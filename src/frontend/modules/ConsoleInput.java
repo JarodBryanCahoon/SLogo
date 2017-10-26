@@ -72,5 +72,10 @@ public class ConsoleInput extends Module{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	private void stylize() {
+		inputField.getStyleClass().add("window");
+		
+	}
 }
 

@@ -2,35 +2,35 @@
  
 .root{ 
 -fx-font:14px 'Letter Gothic Std';
--fx-text-fill:silver;
+-fx-text-fill:white;
 -fx-background-color:black;
 -fx-wrap-text:true;
 }
-.variable{ 
+.Variable{ 
 -fx-fill:greenyellow;
 }
-.text{ 
+.Text{ 
 -fx-fill:silver;
 }
-.constant{ 
+.Constant{ 
 -fx-fill:pink;
 }
-.command{ 
+.Command{ 
 -fx-fill:green;
 }
-.invalid{ 
+.Invalid{ 
 -fx-fill:silver;
 }
-.window{ 
+.Window{ 
 -fx-background-color:black;
 }
-.window .content{ 
+.Window .content{ 
 -fx-background-color:black;
 -fx-text-fill:silver;
 }
-.render{ 
--fx-background-color:;
--turtle:;
--fx-fill:;
--fx-width:;
+.Render{ 
+-fx-background-color:red;
+-turtle:red;
+-fx-fill:red;
+-fx-width:red;
 }
