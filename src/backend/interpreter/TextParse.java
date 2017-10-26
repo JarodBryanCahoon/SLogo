@@ -1,20 +1,18 @@
 package backend.interpreter;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
 import java.util.ResourceBundle;
-import java.util.Stack;
-
+import java.util.Scanner;
 
 import backend.abstractSyntaxTree.ASTNode;
-import backend.abstractSyntaxTree.Expression;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextFlow;
 
 
 /*TextParse.java
@@ -24,6 +22,7 @@ import javafx.scene.text.TextFlow;
  */
 public class TextParse {
 	private static final String DEFAULT_RESOURCE_PACKAGE = "resources/";
+	public static final String CLASS_LIST = "resources/ClassList.txt";
 	private ASTNode root;
 	private String commands;
 	private Map<String, ArrayList<Object>> myMap;
@@ -35,7 +34,7 @@ public class TextParse {
 	public TextParse() {
 	}
 	
-	public TextParse(String s, Map<String, ArrayList<Object>> map, String filename) throws ClassNotFoundException {
+	public TextParse(String s, Map<String, ArrayList<Object>> map, String filename) throws ClassNotFoundException, FileNotFoundException {
 		commands = s;
 		myMap = map;
 		rb = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + filename);
@@ -43,16 +42,19 @@ public class TextParse {
 		makeTree();
 	}
 	
-	private void makeCommandNumbers() throws ClassNotFoundException {
+	private void makeCommandNumbers() throws ClassNotFoundException, FileNotFoundException {
 		CommandNumbers = new HashMap<String, Integer>();
+		File fl = new File(CLASS_LIST);
+		Scanner scan = new Scanner(fl);
 		ArrayList<String> classList = new ArrayList<>();
-		classList.add("backend.board.BoardMath");
-		classList.add("backend.board.Turtle");
-		for(String s: classList) {
-			Class<?> c = Class.forName(s);
+		while(scan.hasNextLine()) {
+			String st = scan.nextLine();
+			classList.add(st);
+			Class<?> c = Class.forName(st);
+			Constructor[] cons = c.getConstructors();
 			Method[] m = c.getDeclaredMethods();
-			for(Method i:m) {
-				CommandNumbers.put(i.getName(), i.getParameterCount());
+			for(Constructor con : cons) {
+				CommandNumbers.put(c.getName(), con.getParameterCount());
 			}
 		}
 		
