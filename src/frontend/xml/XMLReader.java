@@ -51,6 +51,11 @@ public abstract class XMLReader {
 		return nList;
 	}
 	
+	protected NodeList getNode(String tag) {
+		NodeList nList = getNodeList(tag);
+		return nList.item(0).getChildNodes();
+	}
+	
 	protected Document getDocument() {
 		return myDocument;
 	}

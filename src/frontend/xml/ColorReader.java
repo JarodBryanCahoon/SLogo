@@ -46,9 +46,9 @@ public class ColorReader extends XMLReader {
 	}
 	private void writeBody(NodeList document) throws IOException {
 		for (int k = 1; k<document.getLength();k+=2) {
-			String name = document.item(k).getNodeName();
-			bf.write("." + createName(name));
-			bf.write("{ \n");
+			String name = getNode("Word").item(k).getNodeName();
+			System.out.println(name);
+			bf.write(createName(name));
 			NodeList region = document.item(k).getChildNodes();
 			for (int i = 1;i<region.getLength();i+=2) {
 				Node n = region.item(i);
@@ -64,7 +64,7 @@ public class ColorReader extends XMLReader {
 			String[] n = name.split("\\.");
 			return String.join(" .",n);
 		}
-		return name;
+		return "."+ name+ "{ \n";
 	}
 	
 	public List<String> getWords() {

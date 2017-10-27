@@ -46,16 +46,14 @@ public class StylizeModule extends Module {
 	private void addSettings() {
 		settings = new GridPane();
 		settings.setHgap(25);
-		addWords();
-		addWindow();
-		addRender();
+//		addWords();
+//		addWindow();
+//		addRender();
 		myParent.getChildren().add(settings);
 		
 	}
 
 	private void addWords() {
-		Text subTitle = createText("Words");
-		settings.add(subTitle, 0, 0);
 		List<String> words = new ArrayList<String>();
 		words = myReader.getWords();
 			
@@ -85,7 +83,7 @@ public class StylizeModule extends Module {
 	}
 	private void addRender() {
 		List<String>words = myReader.getRender();
-		
+		System.out.println(words);
 		for (int k = 0; k<myReader.getWords().size()-1;k++){
 			String name = words.get(k);
 			String color = myReader.getContent(name);
