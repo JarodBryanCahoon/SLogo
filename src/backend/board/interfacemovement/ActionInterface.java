@@ -7,6 +7,6 @@ import backend.board.Turtle;
  *
  */
 @FunctionalInterface
-public interface MoveInterface{
+public interface ActionInterface{
 	public double act(Turtle co); 
 }

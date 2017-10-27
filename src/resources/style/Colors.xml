@@ -7,8 +7,6 @@
 	<fx-wrap-text>true</fx-wrap-text>
 	</root>
 
-
-
 	<Variable>
 		<fx-fill>greenyellow</fx-fill>
 	</Variable>
@@ -34,7 +32,10 @@
 		<fx-text-fill>silver</fx-text-fill>
 	</Window.content>
 
-	
+	<ColorPicker>
+		<fx-font>8px 'Letter Gothic Std'</fx-font>
+		<fx-background-color>white</fx-background-color>
+	</ColorPicker>
 
 	<Render>
 		<fx-background-color>red</fx-background-color>

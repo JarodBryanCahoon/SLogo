@@ -28,12 +28,12 @@ public class RenderModule extends Module{
 	
 	@Override
 	protected Parent createParent() throws Exception {
-//		stylize();
 		Group myGroup = new Group();
 		myCanvas = new Canvas();
 		myGroup.getChildren().add(myCanvas);
 		mySprites = new ArrayList<>();
 		addTurtle(myGroup);		
+		stylize();
 		return myGroup;
 	}
 	

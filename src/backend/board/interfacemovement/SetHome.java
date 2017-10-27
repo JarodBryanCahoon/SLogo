@@ -7,7 +7,7 @@ import backend.board.Turtle;
  * @author Jarod Cahoon
  *
  */
-public class SetHome implements MoveInterface{
+public class SetHome implements ActionInterface{
 	
 	public SetHome() {
 		
