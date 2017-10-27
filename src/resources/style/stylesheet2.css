@@ -33,14 +33,11 @@
 
 .Window .content{ 
 -fx-background-color:black;
--fx-text-fill:silver;
+-fx-text-fill:white;
 }
 
 .Render{ 
 -fx-background-color:red;
-}
-
-.Render{ 
 -turtle:red;
 -fx-fill:red;
 -fx-width:red;

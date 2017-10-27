@@ -33,16 +33,14 @@
 		</Window>
 		<Window.content>
 			<fx-background-color>black</fx-background-color>
-			<fx-text-fill>silver</fx-text-fill>
+			<fx-text-fill>white</fx-text-fill>
 		</Window.content>
 	</Windows>
 	
 	<Rendering>
-		<Render>
-			<fx-background-color>red</fx-background-color>
-		</Render>
 		
 		<Render>
+			<fx-background-color>red</fx-background-color>
 			<turtle>red</turtle>
 			<fx-fill>red</fx-fill>
 			<fx-width>red</fx-width>
