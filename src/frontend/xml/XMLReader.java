@@ -10,6 +10,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
+import exceptions.ErrorMessage;
 import exceptions.XMLException;
 
 public abstract class XMLReader {
@@ -25,7 +26,8 @@ public abstract class XMLReader {
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			myDocument = dBuilder.parse(myXmlFile);
 		} catch (Exception e) {
-			// TODO
+			ErrorMessage eMessage = new ErrorMessage("Could Not Read Config XML File");
+			eMessage.show();
 		}
 		myDocument.getDocumentElement().normalize();
 		readFromFile();

@@ -18,7 +18,6 @@ import javafx.geometry.Point2D;
 public class Turtle extends Observable{
 		public static final double STARTING_ANGLE = 90;
 		public static final double[] STARTING_POSITION = {0,0};
-		private List<DoubleProperty> myPos = new ArrayList<DoubleProperty>();
 		private DoubleProperty myXPos;
 		private DoubleProperty myYPos;
 		private DoubleProperty myAngle;
@@ -31,8 +30,6 @@ public class Turtle extends Observable{
 			addObserver(ob);
 			myXPos.set(ob.getX());
 			myYPos.set(ob.getY());
-			myPos.add(myXPos);
-			myPos.add(myYPos);
 			myAngle.set(ob.getAngle());
 			myTurtleId.set(ob.getId());
 			myPenDown.set(ob.isPenDown());
@@ -42,7 +39,7 @@ public class Turtle extends Observable{
 		public double Act(ActionInterface m){
 			double returnValue = m.act(this);
 			setChanged();
-			this.notifyObservers();
+			this.notifyObservers(this);
 			return returnValue;
 		}
 		

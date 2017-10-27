@@ -48,12 +48,7 @@ public class Export extends MenuItemStrategy {
 		
 		tField.setPromptText("Enter File Url");		
 		b.setOnMouseClicked(e -> {
-			try {
-				writeXML(tField.getText());
-			} catch (XMLException | TransformerException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+			writeXML(tField.getText());
 		});	
 		
 		hBox.getChildren().addAll(tField, b);
@@ -64,15 +59,26 @@ public class Export extends MenuItemStrategy {
 	}
 
 	//https://www.mkyong.com/java/how-to-create-xml-file-in-java-dom/
-	private void writeXML(String path) throws XMLException, TransformerException {
+	private void writeXML(String path) {
 		path = this.getClass().getProtectionDomain().getCodeSource().getLocation().getPath() + path;
 		try {
 			Paths.get(path);
 		} catch (InvalidPathException | NullPointerException e) {
-			ErrorMessage error = new ErrorMessage("File Could Not Be Created");
+			ErrorMessage error = new ErrorMessage("File Path is Invalid");
 			error.show();
 		}
 		
+		Document doc = createDocument();
+		
+		try {
+			write(path, doc);
+		} catch (TransformerFactoryConfigurationError | TransformerException e) {
+			ErrorMessage error = new ErrorMessage("Could not write to File");
+			error.show();
+		}			
+	}
+
+	private Document createDocument() {
 		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder docBuilder;
 		try {
@@ -91,9 +97,7 @@ public class Export extends MenuItemStrategy {
 			}
 			root.appendChild(e);
 		}
-		
-		write(path, doc);			
-
+		return doc;
 	}
 
 	private void write(String path, Document doc)

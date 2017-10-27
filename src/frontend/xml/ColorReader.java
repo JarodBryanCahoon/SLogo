@@ -67,17 +67,19 @@ public class ColorReader extends XMLReader {
 	}
 	
 	public List<String> getWords() {
-		ArrayList<String> toReturn = new ArrayList<String>();
+		List<String> toReturn = new ArrayList<String>();
 		for (int i = 3;i<12; i+=2) {
 			toReturn.add(document.item(i).getNodeName());
 		}
 		return toReturn;
 	}
+	
 	public String getWindow() {
 		return null;
 	}
+
 	public List<String> getRender() {
-		ArrayList<String> toReturn = new ArrayList<String>();
+		List<String> toReturn = new ArrayList<String>();
 		NodeList render = document.item(17).getChildNodes();
 		for (int i = 1; i<render.getLength(); i+=2) {
 			toReturn.add(render.item(i).getNodeName());

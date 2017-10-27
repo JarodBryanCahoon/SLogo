@@ -16,8 +16,6 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 
 public class RenderModule extends Module{
-	private static final double SELECTED = 1.0;
-	private static final double NONSELECTED = 0.5;
 	private List<RenderSprite> mySprites;
 	private int turtleId = 0;
 	private Canvas myCanvas;
@@ -30,7 +28,7 @@ public class RenderModule extends Module{
 	
 	@Override
 	protected Parent createParent() throws Exception {
-		stylize();
+//		stylize();
 		Group myGroup = new Group();
 		myCanvas = new Canvas();
 		myGroup.getChildren().add(myCanvas);
@@ -39,11 +37,10 @@ public class RenderModule extends Module{
 		return myGroup;
 	}
 	
-	public void addTurtle(Group group) {
+	private void addTurtle(Group group) {
 		RenderSprite sprite = new RenderSprite(turtleId, turtlePath, getWidth(), getHeight(), this);
 		group.getChildren().add(sprite.getImage());
 		mySprites.add(sprite);
-		selectTurtle(sprite.getId());
 		turtleId++;
 	}
 	
@@ -76,10 +73,6 @@ public class RenderModule extends Module{
 		turtleId = 0;
 	}
 	
-	public void addRenderSprite(RenderSprite sprite) {
-		mySprites.add(sprite);
-	}
-	
 	public Element getXMLPreferences(Document doc) {
 		Element cls = doc.createElement(PreferenceXMLReader.RenderTags.MODULE.getTag());
 		
@@ -101,11 +94,5 @@ public class RenderModule extends Module{
 	
 	private void stylize() {
 		myCanvas.getStyleClass().add("Render");
-	}
-
-	public void selectTurtle(int id) {
-		selectedSprite.getImage().setOpacity(NONSELECTED);
-		selectedSprite = findSpriteById(id);
-		selectedSprite.getImage().setOpacity(SELECTED);
 	}
 }

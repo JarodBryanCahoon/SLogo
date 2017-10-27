@@ -10,12 +10,15 @@ import frontend.xml.XMLReader;
 import javafx.scene.image.ImageView;
 
 public class RenderSprite extends Observable implements iRenderSprite, Observer {
+	private static final double SELECTED_DIFFERENCE = 0.5;
+	private static final double SELECTED = 1.0;
 	private static final String TURTLE = "turtle";
 	private static final String XML_SPRITE = "sprite";
 	private double myX = Turtle.STARTING_POSITION[0];
 	private double myY = Turtle.STARTING_POSITION[1];
 	private ImageView myImageView;
 	private boolean penDown = true;
+	private boolean isSelected = true;
 	private double myPenWidth;
 	private boolean isVisible = true;	
 	private double myAngle = Turtle.STARTING_ANGLE;
@@ -35,7 +38,7 @@ public class RenderSprite extends Observable implements iRenderSprite, Observer 
 		myImageView.setX(myRenderMath.xTranslate(myX));
 		myImageView.setY(myRenderMath.yTranslate(myY));
 		myImageView.setRotate(myImageAngle);
-		myImageView.setOnMouseClicked(e -> myRender.selectTurtle(myTurtleId));
+		myImageView.setOnMouseClicked(e -> selectTurtle());
 	}
 	
 	public boolean isPenDown() {
@@ -69,7 +72,17 @@ public class RenderSprite extends Observable implements iRenderSprite, Observer 
 	public void stylize() {
 		myImageView.getStyleClass().add(TURTLE);
 	}
-
+	
+	public boolean isSelected() {
+		return isSelected;
+	}
+	
+	public void selectTurtle() {
+		isSelected = !isSelected;
+		double isSelectedDouble = isSelected ? 0 : -1;
+		myImageView.setOpacity(SELECTED + isSelectedDouble * SELECTED_DIFFERENCE);
+	}
+	
 	@Override
 	public double getAngle() {
 		return myAngle;
