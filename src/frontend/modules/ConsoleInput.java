@@ -32,6 +32,7 @@ public class ConsoleInput extends Module{
 				
 		addInputField(myWidth);
 		myParent.getChildren().add(inputField);
+		stylize();
 	}
 	
 	@Override
@@ -55,6 +56,7 @@ public class ConsoleInput extends Module{
 	private void send(KeyEvent event) {
 		String text = inputField.textProperty().getValue();
 		if (keyComb.match(event)) {
+	
 			backend.addToHistory(text);
 			inputField.setText("");
 			createText("");
@@ -74,7 +76,7 @@ public class ConsoleInput extends Module{
 	}
 
 	private void stylize() {
-		inputField.getStyleClass().add("window");
+		inputField.getStyleClass().add("Window");
 		
 	}
 }

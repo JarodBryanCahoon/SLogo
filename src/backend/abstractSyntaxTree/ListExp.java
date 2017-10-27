@@ -10,12 +10,18 @@ public class ListExp extends Expression{
 		val = s.substring(2,s.length()-1).split(" ");	
 	}
 	
-	protected String[] getVal(){
+	protected String[] getArg(){
 		return val;
 	}
 
 	@Override
 	public String getKind() {
 		return kind;
+	}
+
+	@Override
+	public double getVal() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }

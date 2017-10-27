@@ -13,10 +13,10 @@
 -fx-fill:pink;
 }
 .Command{ 
--fx-fill:green;
+-fx-fill:orangered;
 }
 .Text{ 
--fx-fill:silver;
+-fx-fill:gold;
 }
 .Invalid{ 
 -fx-fill:silver;
