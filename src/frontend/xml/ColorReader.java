@@ -4,6 +4,8 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -63,18 +65,20 @@ public class ColorReader extends XMLReader {
 		return name;
 	}
 	
-	public ArrayList<String> getWords() {
-		ArrayList<String> toReturn = new ArrayList<String>();
+	public List<String> getWords() {
+		List<String> toReturn = new ArrayList<String>();
 		for (int i = 3;i<12; i+=2) {
 			toReturn.add(document.item(i).getNodeName());
 		}
 		return toReturn;
 	}
+	
 	public String getWindow() {
 		return null;
 	}
-	public ArrayList<String> getRender() {
-		ArrayList<String> toReturn = new ArrayList<String>();
+	
+	public List<String> getRender() {
+		List<String> toReturn = new ArrayList<String>();
 		NodeList render = document.item(17).getChildNodes();
 		for (int i = 1; i<render.getLength(); i+=2) {
 			toReturn.add(render.item(i).getNodeName());

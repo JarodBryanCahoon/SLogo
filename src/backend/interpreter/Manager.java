@@ -2,7 +2,7 @@ package backend.interpreter;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import backend.abstractSyntaxTree.ASTNode;
@@ -14,7 +14,7 @@ import backend.abstractSyntaxTree.ASTNode;
  */ 
 
 public class Manager {
-	private Map<String, ArrayList<Object>> memory = new HashMap<>();
+	private Map<String, List<Object>> memory;
 	private TextParse parser;
 	private TreeInterpreter treeInterpret;
 	

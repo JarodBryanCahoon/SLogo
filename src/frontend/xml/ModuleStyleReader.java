@@ -10,6 +10,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import exceptions.ErrorMessage;
 import exceptions.XMLException;
 import frontend.modules.Module;
 
@@ -39,7 +40,6 @@ public class ModuleStyleReader extends XMLReader {
 				instFromElement(element);
 			}
 		}
-
 	}
 
 	public Map<Module, String> getModules() {
@@ -59,12 +59,14 @@ public class ModuleStyleReader extends XMLReader {
 		try {
 			cls = Class.forName(clsName);
 			constructor = cls.getDeclaredConstructor(double.class, double.class);
+			System.out.println(clsName);
 			module = (Module) constructor.newInstance(width, height);
 			myModules.put(module, pos);
 		} catch (ClassNotFoundException | NoSuchMethodException | SecurityException | InstantiationException
 				| IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
 			e.printStackTrace();
-			throw new XMLException();
+			ErrorMessage eMessage = new ErrorMessage("Could Not Read Modules From File");
+			eMessage.show();
 		}
 		return module;
 	}

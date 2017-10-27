@@ -3,6 +3,7 @@ package test;
 import frontend.modules.ConsoleInput;
 import frontend.modules.ConsoleModule;
 import frontend.modules.Module;
+import frontend.modules.StylizeModule;
 import javafx.application.Application;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
