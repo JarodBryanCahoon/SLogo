@@ -30,7 +30,7 @@ public class TextParse {
 	private Queue<Word> queue = new LinkedList<>();
 	
 	public TextParse() {
-		rb = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "/languages/English");
+		rb = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "ArgumentNumbers");
 	}
 	public TextParse(Map<String, ArrayList<Object>> map, String filename) throws ClassNotFoundException, FileNotFoundException {
 		myMap = map;

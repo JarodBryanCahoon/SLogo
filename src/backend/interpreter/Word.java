@@ -39,7 +39,7 @@ public class Word {
 			myType = "Command";
 			try {
 				String method = rb.getString(myName);
-				
+				System.out.println(method);
 				if (map.get(method)==0) {
 					myExpression = new NoneOperatorExp(method);
 					operatorNumber = 0;
@@ -51,17 +51,18 @@ public class Word {
 				if(map.get(method)==2) {
 					myExpression = new DuoOperatorExp(method);
 					operatorNumber = 2;
+				System.out.println("Everything worked");
 				}
-				System.out.println("broken");
 			}catch (Exception MissingResourceException) {
+				myType = "Invalid";
 				}
 		}
 		else if(myName.matches("^\\[{1}.*\\]{1}$")){
-			myType = "list";
+			myType = "List";
 			myExpression = new ListExp(myName);
 		}
 		else {
-			myType = "invalid";
+			myType = "Invalid";
 		}
 	}
 
