@@ -6,7 +6,7 @@ import backend.board.Turtle;
  * @author Jarod Cahoon
  *
  */
-public class LeftTurn implements MoveInterface{
+public class LeftTurn implements ActionInterface{
 	double myAngle;
 	
 	public LeftTurn(double ang) {

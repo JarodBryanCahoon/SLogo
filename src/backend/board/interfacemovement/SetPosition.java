@@ -7,7 +7,7 @@ import backend.board.Turtle;
  * @author Jarod Cahoon
  *
  */
-public class SetPosition implements MoveInterface{
+public class SetPosition implements ActionInterface{
 	private double xMove;
 	private double yMove;
 	

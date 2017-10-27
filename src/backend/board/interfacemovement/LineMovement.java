@@ -9,7 +9,7 @@ import javafx.beans.property.DoubleProperty;
  * @author Jarod Cahoon
  *
  */
-public class LineMovement implements MoveInterface{
+public class LineMovement implements ActionInterface{
 	private DoubleProperty distance;
 	
 	

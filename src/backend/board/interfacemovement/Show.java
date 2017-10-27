@@ -6,7 +6,7 @@ import backend.board.Turtle;
  * @author Jarod Cahoon
  *
  */
-public class Show implements MoveInterface{
+public class Show implements ActionInterface{
 
 	public Show() {
 		
