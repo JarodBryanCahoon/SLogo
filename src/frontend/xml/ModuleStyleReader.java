@@ -13,6 +13,7 @@ import org.w3c.dom.NodeList;
 import exceptions.ErrorMessage;
 import exceptions.XMLException;
 import frontend.modules.Module;
+import frontend.modules.RenderModule;
 import frontend.modules.ViewModule;
 
 public class ModuleStyleReader extends XMLReader {

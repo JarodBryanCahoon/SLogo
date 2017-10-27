@@ -1,3 +1,5 @@
+import exceptions.ErrorMessage;
+import frontend.menus.strategies.NewWindow;
 import frontend.modules.ConsoleInput;
 import frontend.modules.ViewModule;
 import frontend.xml.ConfigReader;
@@ -11,6 +13,16 @@ public class Main extends Application{
 	
 	@Override
 	public void start(Stage s) {
+//		NewWindow w;
+//		try {
+//			w = new NewWindow(s);
+//			w.execute();
+//		} catch (Exception e) {
+//			ErrorMessage eMessage = new ErrorMessage("Could not instantiate window!");
+//			eMessage.show();
+//			return;
+//		}
+		
 		try {
 			Font.loadFont(
 					  ConsoleInput.class.getResource("/resources/style/Letter Gothic.otf").toExternalForm(), 
@@ -26,19 +38,13 @@ public class Main extends Application{
 			s.setScene(scene);
 			s.setTitle(configReader.getTitle());
 			s.show();
-			style(s.getScene());
+//			style(s.getScene());
 			System.out.println(scene.getHeight());
 
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			ErrorMessage eMessage = new ErrorMessage("Could Not Start!");
 		}
 		
-	}
-	
-	private void style(Scene scene) {
-		scene.getStylesheets().clear();
-		scene.getStylesheets().add("/resources/style/" + "stylesheet2.css");
 	}
 	
     public static void main (String[] args) {

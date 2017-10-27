@@ -35,6 +35,10 @@ public class RenderSprite extends Observable implements iRenderSprite, Observer 
 		myImagePath = imagePath;
 		myImageView = new ImageView(imagePath);		
 		myRenderMath = new RenderMath(width, height, myImageView);		
+		initImage();
+	}
+
+	private void initImage() {
 		myImageView.setX(myRenderMath.xTranslate(myX));
 		myImageView.setY(myRenderMath.yTranslate(myY));
 		myImageView.setRotate(myImageAngle);
@@ -150,5 +154,10 @@ public class RenderSprite extends Observable implements iRenderSprite, Observer 
 		XMLReader.createTextElement(doc, PreferenceXMLReader.RenderTags.ID.getTag(), Integer.toString(myTurtleId));
 		XMLReader.createTextElement(doc, PreferenceXMLReader.RenderTags.PATH.getTag(), myImagePath);
 		return xmlElement;
+	}
+	
+	public void changeImage(ImageView image) {
+		myImageView = image;
+		initImage();
 	}
 }
