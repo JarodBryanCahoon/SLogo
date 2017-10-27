@@ -9,14 +9,14 @@ import backend.board.interfacemovement.ActionInterface;
  * @author Jarod Cahoon
  *
  */
-public class Atan implements ActionInterface{
+public class Atan implements InactiveInterface{
 	double myNumOne;
 	
 	public Atan(double a) {
 		myNumOne = a;
 	}
 	
-	public double act(Turtle tu) {
+	public double act() {
 		 return Math.atan(Math.toDegrees(myNumOne));
 	}
 }

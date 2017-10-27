@@ -14,22 +14,25 @@ import backend.abstractSyntaxTree.ASTNode;
  */ 
 
 public class Manager {
-	private Map<String, ArrayList<Object>> memory = new HashMap<>();
-	private TextParse parser;
+	private Map<String, ArrayList<Object>> myMemory = new HashMap<>();
+	private TextParse myParser;
 	private TreeInterpreter treeInterpret;
-	
+	private int currentId;
 	
 	
 	public Manager(String filename) throws ClassNotFoundException, FileNotFoundException {
-	parser = new TextParse(memory, filename);
+	myParser = new TextParse(myMemory, filename);
 	}
 
 	
 	public void setCommand(String s) {
-		parser.setCommands(s);
-		treeInterpret = new TreeInterpreter(parser.getAST());
+		myParser.setCommands(s);
+		treeInterpret = new TreeInterpreter(myParser.getAST());
 	}
 	
+	public void addTurtle() {
+		
+	}
 //	private void executeCommands() {
 //
 //		if (tree==null) {
