@@ -30,9 +30,8 @@ public class TextParse {
 	private Queue<Word> queue = new LinkedList<>();
 	
 	public TextParse() {
-		
+		rb = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "/languages/English");
 	}
-	
 	public TextParse(Map<String, ArrayList<Object>> map, String filename) throws ClassNotFoundException, FileNotFoundException {
 		myMap = map;
 		rb = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + filename);
@@ -117,8 +116,6 @@ public class TextParse {
 		return tree;
 	}
 	
-	
-	
 	private void addToComments(String s) {
 		if (!myMap.containsKey("Comments")){
 			myMap.put("Comments", new ArrayList<Object>());
@@ -136,6 +133,7 @@ public class TextParse {
 		Word[] sentence = new Word[commandList.length];
 		
 		for (int k = 0; k< commandList.length; k++) {
+			System.out.println(commandList[k]);
 			Word word = new Word(commandList[k], rb, CommandNumbers);
 			sentence[k] = word;
 		}
