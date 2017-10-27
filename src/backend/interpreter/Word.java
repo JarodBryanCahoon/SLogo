@@ -37,7 +37,7 @@ public class Word {
 		}
 		else if(myName.matches("^[a-zA-Z_]+(\\?)?$")) {
 			myType = "command";
-			String method = rb.getString(myName);
+			String method = rb.getString(myName).split(",")[1];
 			if (map.get(method)==0) {
 				myExpression = new NoneOperatorExp(method);
 				operatorNumber = 0;
