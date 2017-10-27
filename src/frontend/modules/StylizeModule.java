@@ -7,9 +7,11 @@ import org.w3c.dom.Element;
 
 import frontend.xml.ColorReader;
 import javafx.scene.Parent;
+import javafx.scene.control.ColorPicker;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
@@ -43,42 +45,36 @@ public class StylizeModule extends Module {
 	
 	private void addSettings() {
 		settings = new GridPane();
-		addWords();
-		addWindow();
-		addRender();
+		addWords("Words",0);
 		
 		myParent.getChildren().add(settings);
 		
 	}
 
-	private void addWords() {
+	private void addWords(String section, int column) {
 		List<String> words = myReader.getWords();
 		for (int k = 0; k<myReader.getWords().size();k++){
-			String word = words.get(k);
-			Text text = new Text(word+ GAP);
-			text.getStyleClass().add("Text");
-			double size = text.getLayoutBounds().getHeight();
-			Rectangle rect = createRect(word,size);
+			String name = words.get(k);
+			String color = myReader.getContent(name);
+			ColorPick colorPick = new ColorPick(myReader,name,color);
+			Text text = createText(name);
 			
-			settings.add(text, 0, k);
-			settings.add(rect, 1, k);
+			settings.add(text, column, k);
+			settings.add(colorPick.getColorPicker(), column+1, k);
 		}
 	}
 
-	private Rectangle createRect(String word,double size) {
-		Rectangle rect = new Rectangle(size,size);
-		rect.getStyleClass().add(word);
-		rect.setOnMouseClicked(e->openColorPicker());
-		return rect;
+	private Text createText(String word) {
+		Text text = new Text(word+ GAP);
+		text.getStyleClass().add("Text");
+		return text;
 	}
 	
-	private Object openColorPicker() {
-		System.out.println("this works!");
-		return null;
+	private void changeColor() {
+		
 	}
 
 	private void addWindow() {
-		System.out.println(myReader.getContent("Variable"));
 	}
 	private void addRender() {
 		System.out.println(myReader.getRender());

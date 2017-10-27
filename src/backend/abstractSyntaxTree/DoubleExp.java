@@ -2,14 +2,14 @@ package backend.abstractSyntaxTree;
 
 public class DoubleExp extends Expression {
 	private double val;
-	private String kind = "argument";
+	private String kind = "numberArgument";
 	private String myType = "double";
 	
 	public DoubleExp(double d) {
 		this.val = d;
 	}
 	
-	protected double getVal() {
+	public double getVal() {
 		return this.val;
 	}
 	

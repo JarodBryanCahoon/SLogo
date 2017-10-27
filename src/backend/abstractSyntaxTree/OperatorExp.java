@@ -16,5 +16,11 @@ public class OperatorExp extends Expression{
 	public String getKind() {
 		return kind;
 	}
+
+	@Override
+	public double getVal() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 }
