@@ -7,16 +7,16 @@ import backend.board.interfacemovement.ActionInterface;
  * @author Jarod Cahoon
  *
  */
-public class Sum implements ActionInterface{
+public class Or implements ActionInterface{
 	double myNumOne;
 	double myNumTwo;
 	
-	public Sum(double a, double b) {
+	public Or(double a, double b) {
 		myNumOne = a;
 		myNumTwo = b;
 	}
 	
 	public double act(Turtle tu) {
-		return myNumOne+myNumTwo;
+		return (myNumOne != 0 || myNumTwo != 0) ? 1:0;
 	}
 }

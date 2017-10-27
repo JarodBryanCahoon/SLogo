@@ -6,7 +6,7 @@ import backend.board.Turtle;
  * @author Jarod Cahoon
  *
  */
-public class AbsoluteMovement implements MoveInterface{
+public class AbsoluteMovement implements ActionInterface{
 
 	
 	protected double angleDifference(double angle1, double angle2) {

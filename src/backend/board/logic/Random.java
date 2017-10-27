@@ -1,5 +1,7 @@
 package backend.board.logic;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 import backend.board.Turtle;
 import backend.board.interfacemovement.ActionInterface;
 /**
@@ -7,16 +9,14 @@ import backend.board.interfacemovement.ActionInterface;
  * @author Jarod Cahoon
  *
  */
-public class Sum implements ActionInterface{
+public class Random implements ActionInterface{
 	double myNumOne;
-	double myNumTwo;
 	
-	public Sum(double a, double b) {
+	public Random(double a) {
 		myNumOne = a;
-		myNumTwo = b;
 	}
 	
 	public double act(Turtle tu) {
-		return myNumOne+myNumTwo;
+		 return ThreadLocalRandom.current().nextDouble(0, myNumOne + 1);
 	}
 }

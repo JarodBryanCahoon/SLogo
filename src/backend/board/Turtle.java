@@ -2,8 +2,9 @@ package backend.board;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
 
-import backend.board.interfacemovement.MoveInterface;
+import backend.board.interfacemovement.ActionInterface;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
@@ -14,7 +15,7 @@ import javafx.geometry.Point2D;
  * @author Jarod Cahoon
  *
  */
-public class Turtle extends ConcreteObject {
+public class Turtle extends Observable{
 		public static final double STARTING_ANGLE = 90;
 		public static final double[] STARTING_POSITION = {0,0};
 		private List<DoubleProperty> myPos = new ArrayList<DoubleProperty>();
@@ -38,14 +39,13 @@ public class Turtle extends ConcreteObject {
 			myOpacity.set(ob.isVisible());
 		}
 		
-		public double Act(MoveInterface m){
+		public double Act(ActionInterface m){
 			double returnValue = m.act(this);
 			setChanged();
 			this.notifyObservers();
 			return returnValue;
 		}
 		
-		@Override
 		public int getId() {
 			return myTurtleId.get();
 		}
