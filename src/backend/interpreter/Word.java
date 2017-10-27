@@ -38,8 +38,7 @@ public class Word {
 		else if(myName.matches("^[a-zA-Z_]+(\\?)?$")) {
 			myType = "Command";
 			try {
-				String method = rb.getString(myName);
-				System.out.println(method);
+				String method = rb.getString(myName).split(",")[1];
 				if (map.get(method)==0) {
 					myExpression = new NoneOperatorExp(method);
 					operatorNumber = 0;
@@ -54,15 +53,8 @@ public class Word {
 				System.out.println("Everything worked");
 				}
 			}catch (Exception MissingResourceException) {
-				myType = "Invalid";
-				}
-		}
-		else if(myName.matches("^\\[{1}.*\\]{1}$")){
-			myType = "List";
-			myExpression = new ListExp(myName);
-		}
-		else {
-			myType = "Invalid";
+					myType = "Invalid";
+			}
 		}
 	}
 

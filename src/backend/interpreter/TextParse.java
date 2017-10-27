@@ -101,7 +101,7 @@ public class TextParse {
 	private ASTNode recursiveTree() {
 		Word w = queue.poll();
 		ASTNode tree = new ASTNode(w.getExpression());
-		if(w.getType().equals("command")) {
+		if(w.getType().equals("Command")) {
 			if(w.getNumber()==0) {
 				return tree;
 			}
