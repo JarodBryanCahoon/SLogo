@@ -17,6 +17,7 @@ public class ModulesTester extends Application{
 	private Scene scene;
 	@Override
 	public void start(Stage stage) throws Exception {
+		
 		Font.loadFont(
 				  ConsoleInput.class.getResource("/resources/style/Letter Gothic.otf").toExternalForm(), 
 				  10
@@ -40,6 +41,7 @@ public class ModulesTester extends Application{
 	}
 	
 	public static void main(String[] args) {
+		System.out.println("Hi");
 		launch(args);
 	}
 	

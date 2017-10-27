@@ -45,7 +45,8 @@ public class TextParse {
 	
 	private void makeCommandNumbers() throws ClassNotFoundException, FileNotFoundException {
 		CommandNumbers = new HashMap<String, Integer>();
-		File fl = new File("C:\\Users\\lasia\\Documents\\workspace\\slogo_team02\\src\\resources\\"+CLASS_LIST);
+		System.out.println(System.getProperty("user.dir"));
+//		File fl = new File(""+CLASS_LIST);
 		Scanner scan = new Scanner(fl);
 		ArrayList<String> classList = new ArrayList<>();
 		while(scan.hasNextLine()) {
