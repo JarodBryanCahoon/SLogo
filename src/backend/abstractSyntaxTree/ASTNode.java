@@ -9,6 +9,7 @@ package backend.abstractSyntaxTree;
 
 public class ASTNode {
 	private Expression val;
+	
 	private ASTNode left;
 	private ASTNode right;
 	
@@ -30,5 +31,18 @@ public class ASTNode {
 	
 	public void setLeft(ASTNode l) {
 		this.left = l;
+	}
+	
+	public Expression getExpression() {
+		return val;
+	}
+
+	public ASTNode getLeft() {
+		// TODO Auto-generated method stub
+		return left;
+	}
+	
+	public ASTNode getRight() {
+		return right;
 	}
 }
