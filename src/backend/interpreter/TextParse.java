@@ -22,7 +22,7 @@ import backend.abstractSyntaxTree.ASTNode;
  */
 public class TextParse {
 	private static final String DEFAULT_RESOURCE_PACKAGE = "resources/";
-	public static final String CLASS_LIST = "resources/ClassList.txt";
+	public static final String CLASS_LIST = "ClassList.txt";
 	private ASTNode root;
 	private Map<String, ArrayList<Object>> myMap;
 	private Map<String, Integer> CommandNumbers;
@@ -30,7 +30,7 @@ public class TextParse {
 	private Queue<Word> queue = new LinkedList<>();
 	
 	public TextParse() {
-		rb = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "/languages/English");
+		rb = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "/ArgumentNumbers");
 	}
 	public TextParse(Map<String, ArrayList<Object>> map, String filename) throws ClassNotFoundException, FileNotFoundException {
 		myMap = map;
