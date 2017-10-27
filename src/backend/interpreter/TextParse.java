@@ -29,8 +29,9 @@ public class TextParse {
 	private ResourceBundle rb;
 	private Queue<Word> queue = new LinkedList<>();
 	
-	public TextParse() {
+	public TextParse() throws ClassNotFoundException, FileNotFoundException {
 		rb = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "ArgumentNumbers");
+		makeCommandNumbers();
 	}
 	public TextParse(Map<String, ArrayList<Object>> map, String filename) throws ClassNotFoundException, FileNotFoundException {
 		myMap = map;
