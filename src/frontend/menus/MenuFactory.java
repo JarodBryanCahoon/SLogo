@@ -1,12 +1,9 @@
 package frontend.menus;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
 
 //https://docs.oracle.com/javafx/2/ui_controls/menu_controls.htm
 public class MenuFactory {	

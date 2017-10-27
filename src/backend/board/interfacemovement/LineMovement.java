@@ -1,17 +1,15 @@
 package backend.board.interfacemovement;
 
 import backend.board.BoardMath;
-import backend.board.ConcreteObject;
 import backend.board.Turtle;
 import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.*;
 
 /**
  * 
  * @author Jarod Cahoon
  *
  */
-public class LineMovement implements MoveInterface{
+public class LineMovement implements ActionInterface{
 	private DoubleProperty distance;
 	
 	

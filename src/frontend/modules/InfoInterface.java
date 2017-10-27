@@ -6,10 +6,7 @@ import java.util.Observable;
 
 import backend.interpreter.TextParse;
 import backend.interpreter.Word;
-import javafx.geometry.Pos;
-import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 

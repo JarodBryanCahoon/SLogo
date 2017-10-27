@@ -5,9 +5,9 @@ public interface iRenderSprite {
 	
 	double getY();
 	
-	double isPenDown();
+	boolean isPenDown();
 	
-	double isVisible();
+	boolean isVisible();
 		
 	double getAngle();
 	

@@ -8,14 +8,13 @@ import java.lang.reflect.Method;
  *
  */
 public class VariableExp extends Expression{
-	private String name;
+	private String kind = "variable";
 	private Number value;
 	
 	public VariableExp(String s) {
-		this.name = s;
 	}
 	
-	public void setVal(Expression e) throws NoSuchMethodException, SecurityException, 
+	protected void setVal(Expression e) throws NoSuchMethodException, SecurityException, 
 	IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		Method m = e.getClass().getMethod("getVal", null);
 		m.setAccessible(true);
@@ -27,7 +26,13 @@ public class VariableExp extends Expression{
 		}
 	}
 	
-	public Number getVal() {
+	protected Number getVal() {
 		return value; 
+	}
+
+	@Override
+	public String getKind() {
+		// TODO Auto-generated method stub
+		return kind;
 	}
 }

@@ -6,7 +6,7 @@ import backend.board.Turtle;
  * @author Jarod Cahoon
  *
  */
-public class Hide implements MoveInterface{
+public class Hide implements ActionInterface{
 
 	public Hide() {
 		

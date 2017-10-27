@@ -1,20 +1,18 @@
 package backend.interpreter;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
 import java.util.ResourceBundle;
-import java.util.Stack;
-
+import java.util.Scanner;
 
 import backend.abstractSyntaxTree.ASTNode;
-import backend.abstractSyntaxTree.Expression;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextFlow;
 
 
 /*TextParse.java
@@ -24,41 +22,46 @@ import javafx.scene.text.TextFlow;
  */
 public class TextParse {
 	private static final String DEFAULT_RESOURCE_PACKAGE = "resources/";
+	public static final String CLASS_LIST = "resources/ClassList.txt";
 	private ASTNode root;
-	private String commands;
 	private Map<String, ArrayList<Object>> myMap;
 	private Map<String, Integer> CommandNumbers;
 	private ResourceBundle rb;
-	private Queue<Word> queue;
+	private Queue<Word> queue = new LinkedList<>();
 	
-//	lasia made this temp constructor
 	public TextParse() {
+		
 	}
 	
-	public TextParse(String s, Map<String, ArrayList<Object>> map, String filename) throws ClassNotFoundException {
-		commands = s;
+	public TextParse(Map<String, ArrayList<Object>> map, String filename) throws ClassNotFoundException, FileNotFoundException {
 		myMap = map;
 		rb = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + filename);
 		makeCommandNumbers();
-		makeTree();
 	}
 	
-	private void makeCommandNumbers() throws ClassNotFoundException {
+	public void setCommands(String s) {
+		makeTree(s);
+	}
+	
+	private void makeCommandNumbers() throws ClassNotFoundException, FileNotFoundException {
 		CommandNumbers = new HashMap<String, Integer>();
+		File fl = new File(CLASS_LIST);
+		Scanner scan = new Scanner(fl);
 		ArrayList<String> classList = new ArrayList<>();
-		classList.add("backend.board.BoardMath");
-		classList.add("backend.board.Turtle");
-		for(String s: classList) {
-			Class<?> c = Class.forName(s);
-			Method[] m = c.getDeclaredMethods();
-			for(Method i:m) {
-				CommandNumbers.put(i.getName(), i.getParameterCount());
+		while(scan.hasNextLine()) {
+			String st = scan.nextLine();
+			classList.add(st);
+			Class<?> c = Class.forName(st);
+			Constructor<?>[] cons = c.getConstructors();
+			for(Constructor<?> con : cons) {
+				//returns the parameter numbers for the constructors.
+				CommandNumbers.put(c.getName(), con.getParameterCount());
 			}
 		}
 		
 	}
 
-	private void makeTree() {
+	private void makeTree(String commands) {
 		String[] lineList = commands.split("/n");	
 		for (String s: lineList) {
 			s=s.trim();
@@ -74,7 +77,6 @@ public class TextParse {
 	}
 
 	private void fillCommandQueue(String s) {
-		queue = new LinkedList<>();
 		String[] commandList = s.split(" ");
 		for(int i = 0; i<commandList.length; i++) {
 			String t = commandList[i];
@@ -91,6 +93,7 @@ public class TextParse {
 				i=j;
 			}
 			Word w = new Word(t, rb, CommandNumbers);
+			
 			queue.add(w);
 		}
 	}
@@ -128,12 +131,7 @@ public class TextParse {
 		return root;
 	}
 	
-//	Divides expression into Words, including spaces
-//	Should be temporary - should find a way to incorporate it with
-//	other methods to avoid duplicated code.
-//probably don't need this? I've already divided stuff into words, including spaces, depending on when
-//it needs to be changed -Venkat
-	public Word[] lasiasmethod(String s) {
+	public Word[] getWordsWithSpaces(String s) {
 		String[] commandList = s.split("\\b");
 		Word[] sentence = new Word[commandList.length];
 		

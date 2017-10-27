@@ -5,17 +5,11 @@ import org.w3c.dom.Element;
 import javafx.beans.Observable;
 import javafx.scene.Group;
 import javafx.scene.Parent;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextFlow;
 
 /**Input field of the console
  * Colors text in accordance to syntax
@@ -38,7 +32,6 @@ public class ConsoleInput extends Module{
 				
 		addInputField(myWidth);
 		myParent.getChildren().add(inputField);
-		stylize();
 	}
 	
 	@Override
@@ -84,6 +77,5 @@ public class ConsoleInput extends Module{
 		inputField.getStyleClass().add("window");
 		
 	}
-
 }
 

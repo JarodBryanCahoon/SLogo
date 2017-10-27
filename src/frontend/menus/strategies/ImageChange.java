@@ -1,8 +1,5 @@
 package frontend.menus.strategies;
 
-import exceptions.XMLException;
-import frontend.modules.Module;
-import frontend.modules.RenderModule;
 import frontend.modules.ViewModule;
 
 public class ImageChange extends MenuItemStrategy {

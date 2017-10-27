@@ -1,7 +1,5 @@
 package backend.board;
-import java.lang.Math;
 
-import javafx.beans.property.DoubleProperty;
 /**
  * 
  * @author Jarod Cahoon

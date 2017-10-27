@@ -1,10 +1,8 @@
 package test;
 
 import frontend.menus.strategies.Export;
-import frontend.modules.MenuModule;
 import frontend.modules.ViewModule;
 import frontend.xml.ConfigReader;
-import frontend.xml.MenuReader;
 import javafx.application.Application;
 import javafx.stage.Stage;
 

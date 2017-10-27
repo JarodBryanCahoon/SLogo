@@ -6,7 +6,7 @@ import backend.board.Turtle;
  * @author Jarod Cahoon
  *
  */
-public class PenUp implements MoveInterface{
+public class PenUp implements ActionInterface{
 	
 	public PenUp() {
 		
