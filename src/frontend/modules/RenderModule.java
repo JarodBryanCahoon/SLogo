@@ -1,7 +1,9 @@
 package frontend.modules;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -14,26 +16,29 @@ import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.shape.Line;
 
 public class RenderModule extends Module{
 	private List<RenderSprite> mySprites;
+	private Map<RenderSprite, List<Line>> spriteLines;
 	private int turtleId = 0;
 	private Canvas myCanvas;
 	private static final String turtlePath = "/resources/turtle.png";
-	private RenderSprite selectedSprite;	
 			
-	public RenderModule(double width, double height) throws Exception {
-		super(width, height);
+	public RenderModule(double width, double height, ViewModule view) throws Exception {
+		super(width, height, view);
 	}
 	
 	@Override
 	protected Parent createParent() throws Exception {
-//		stylize();
+		spriteLines = new HashMap<>();
+		mySprites = new ArrayList<>();
+
 		Group myGroup = new Group();
 		myCanvas = new Canvas();
 		myGroup.getChildren().add(myCanvas);
-		mySprites = new ArrayList<>();
 		addTurtle(myGroup);		
+		stylize();
 		return myGroup;
 	}
 	
@@ -41,6 +46,7 @@ public class RenderModule extends Module{
 		RenderSprite sprite = new RenderSprite(turtleId, turtlePath, getWidth(), getHeight(), this);
 		group.getChildren().add(sprite.getImage());
 		mySprites.add(sprite);
+		spriteLines.put(sprite, new ArrayList<>());
 		turtleId++;
 	}
 	
@@ -52,7 +58,10 @@ public class RenderModule extends Module{
 		}
 		
 		GraphicsContext gc = myCanvas.getGraphicsContext2D();
-		gc.strokeLine(oldX, oldY, sprite.getX(), sprite.getY());
+		Line newLine = new Line(oldX, oldY, sprite.getX(), sprite.getY());
+		// ask lasia about css
+		( (Group) getParent() ).getChildren().add(newLine);
+		spriteLines.get(sprite).add(newLine);
 	}
 	
 	private RenderSprite findSpriteById(int turtleId) {
@@ -66,11 +75,11 @@ public class RenderModule extends Module{
 	
 	public void clearScreen() {
 		Group myGroup = (Group) getParent();
-		for(RenderSprite sprite : mySprites) {
-			myGroup.getChildren().remove(sprite.getImage());
-		}
-		mySprites.removeAll(mySprites);
+		myGroup.getChildren().removeAll(myGroup.getChildren());
+		mySprites.clear();
+		spriteLines.clear();
 		turtleId = 0;
+		addTurtle(myGroup);
 	}
 	
 	public Element getXMLPreferences(Document doc) {
@@ -94,5 +103,15 @@ public class RenderModule extends Module{
 	
 	private void stylize() {
 		myCanvas.getStyleClass().add("Render");
+	}
+	
+	public List<RenderSprite> getSelectedSprites() {
+		List<RenderSprite> selectedSprites = new ArrayList<>();
+		for(RenderSprite s : mySprites) {
+			if(s.isSelected()) {
+				selectedSprites.add(s);
+			}
+		}
+		return selectedSprites;
 	}
 }

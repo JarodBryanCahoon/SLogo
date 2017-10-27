@@ -26,6 +26,7 @@ public abstract class XMLReader {
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			myDocument = dBuilder.parse(myXmlFile);
 		} catch (Exception e) {
+			e.printStackTrace();
 			ErrorMessage eMessage = new ErrorMessage("Could Not Read Config XML File");
 			eMessage.show();
 		}
@@ -48,6 +49,11 @@ public abstract class XMLReader {
 	protected NodeList getNodeList(Element e, String tag) {
 		NodeList nList = e.getElementsByTagName(tag);
 		return nList;
+	}
+	
+	protected NodeList getNode(String tag) {
+		NodeList nList = getNodeList(tag);
+		return nList.item(0).getChildNodes();
 	}
 	
 	protected Document getDocument() {

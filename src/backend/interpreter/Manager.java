@@ -16,12 +16,10 @@ import backend.abstractSyntaxTree.ASTNode;
 public class Manager {
 	private Map<String, List<Object>> memory;
 	private TextParse parser;
-	private TreeInterpreter treeInterpret;
-	
-	
+	private TreeInterpreter treeInterpret;	
 	
 	public Manager(String filename) throws ClassNotFoundException, FileNotFoundException {
-	parser = new TextParse(memory, filename);
+		parser = new TextParse(memory, filename);
 	}
 
 	

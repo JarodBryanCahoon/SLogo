@@ -17,8 +17,8 @@ public class ConsoleHistory extends Module implements Observer {
 	private VBox history;
 	private ScrollPane historyPane;
 	
-	public ConsoleHistory(double myWidth, double myHeight, InfoInterface backend) throws Exception {
-		super(myWidth, myHeight);
+	public ConsoleHistory(double myWidth, double myHeight, ViewModule view, InfoInterface backend) throws Exception {
+		super(myWidth, myHeight, view);
 		historyPane.setMinSize(myWidth,myHeight);
 		history.setMinSize(myWidth-10,myHeight-10);
 		stylize();
