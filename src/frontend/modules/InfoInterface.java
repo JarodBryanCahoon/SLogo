@@ -1,6 +1,7 @@
 package frontend.modules;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Observable;
 
@@ -27,7 +28,7 @@ public class InfoInterface extends Observable {
 	}
 	
 	public void addToHistory(String inputText) {
-		Word[] sentence = parser.lasiasmethod(inputText);
+		Word[] sentence = parser.getWordsWithSpaces(inputText);
 		history.add(sentence);
 		setChanged();
 		notifyObservers();
@@ -52,7 +53,8 @@ public class InfoInterface extends Observable {
 		TextFlow toReturn = new TextFlow();
 		for (Word w : words) {
 			Text text = new Text(w.getName());
-			text.getStyleClass().add("text");
+			text.getStyleClass().add("Text");
+			System.out.println(w.getType());
 			text.getStyleClass().add(w.getType());
 			toReturn.getChildren().add(text);
 		}
@@ -63,13 +65,11 @@ public class InfoInterface extends Observable {
 		String lines[] = test.split("\\r?\\n");
 		TextFlow[] toReturn = new TextFlow[lines.length];
 		for (int k = 0; k<lines.length;k++) {
-			Word[] sentence = parser.lasiasmethod(lines[k]);
+			Word[] sentence = parser.getWordsWithSpaces(lines[k]);
 			TextFlow textFlow = createSentence(sentence);
 			formatConsole(k,textFlow);
 			toReturn[k] = textFlow;
 		}
-		
-		
 		return toReturn;
 		
 	}
@@ -79,6 +79,6 @@ public class InfoInterface extends Observable {
 		double fontHeight = textFlow.getChildren().get(0).getLayoutBounds().getHeight();
 		textFlow.setLayoutX(10);
 		textFlow.setLayoutY(k*(fontHeight + 5)+5);
-		textFlow.getStyleClass().add("syntaxField");
+		textFlow.getStyleClass().add("Window");
 	}
 }

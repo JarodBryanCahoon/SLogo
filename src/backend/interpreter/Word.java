@@ -29,32 +29,36 @@ public class Word {
 	
 	private void determineType(ResourceBundle rb, Map<String, Integer> map) {
 		if(myName.matches("^-?[0-9]+\\.[0-9]+$")){
-			myType = "constant";
+			myType = "Constant";
 			myExpression = new DoubleExp(Double.parseDouble(myName));
 		}
 		else if(myName.matches("^-?[0-9]+$")){
-			myType = "constant";
+			myType = "Constant";
 			myExpression = new IntegerExp(Integer.parseInt(myName));
 		}
 		else if(myName.matches("^:[a-zA-Z_]+$")) {
-			myType = "variable";
+			myType = "Variable";
 			myExpression = new VariableExp(myName);
 		}
 		else if(myName.matches("^[a-zA-Z_]+(\\?)?$")) {
-			myType = "command";
-			String method = rb.getString(myName);
-			if (map.get(method)==0) {
-				myExpression = new NoneOperatorExp(method);
-				operatorNumber = 0;
-			}
-			if (map.get(method)==1) {
-				myExpression = new MonoOperatorExp(method);
-				operatorNumber = 1;
-			}
-			if(map.get(method)==2) {
-				myExpression = new DuoOperatorExp(method);
-				operatorNumber = 2;
-			}
+			myType = "Command";
+			try {
+				String method = rb.getString(myName);
+				if (map.get(method)==0) {
+					myExpression = new NoneOperatorExp(method);
+					operatorNumber = 0;
+				}
+				if (map.get(method)==1) {
+					myExpression = new MonoOperatorExp(method);
+					operatorNumber = 1;
+				}
+				if(map.get(method)==2) {
+					myExpression = new DuoOperatorExp(method);
+					operatorNumber = 2;
+				}
+			}catch (Exception MissingResourceException) {
+					myType = "Invalid";
+				}
 		}
 		else if(myName.matches("^\\[{1}.*\\]{1}$")){
 			myType = "list";
@@ -64,7 +68,8 @@ public class Word {
 			myType = "invalid";
 		}
 	}
-	
+
+
 	public Expression getExpression() {
 		return myExpression;
 	}
