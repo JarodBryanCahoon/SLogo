@@ -13,6 +13,7 @@ import org.w3c.dom.NodeList;
 
 import com.sun.xml.internal.txw2.Document;
 
+import exceptions.ErrorMessage;
 import exceptions.XMLException;
 
 public class ColorReader extends XMLReader {
@@ -88,9 +89,11 @@ public class ColorReader extends XMLReader {
 	}
 	public void setColor(String name, String color) {
 		try {
-		getElement().getElementsByTagName(name).item(0).getChildNodes().item(1).setTextContent(color);
+			getElement().getElementsByTagName(name).item(0).getChildNodes().item(1).setTextContent(color);
 		}
 		catch (Exception NullPointerException) {
+			ErrorMessage eMessage = new ErrorMessage("color not found");
+			eMessage.show();
 		}
 		getElement().getElementsByTagName("Variable").item(0).getChildNodes().item(1);
 	}

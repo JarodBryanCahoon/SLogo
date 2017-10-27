@@ -8,6 +8,7 @@ public class ErrorMessage {
 	private static final double ERROR_MARGINS = 0.5;
 	private static final String ERROR_TITLE = "Error! Error! Error! Alert!";
 	private static final String ERROR_MESSAGE = "We encountered an error:\n";
+	public static final String INVALID_PATH = "File Path is Invalid";
 	
 	Stage myStage;
 	public ErrorMessage(String error) {
