@@ -24,7 +24,8 @@ public class ModulesTester extends Application{
 				  10
 				);
 		// Change test to whatever module you want
-		Module test = new StylizeModule (WIDTH,HEIGHT);
+		ViewModule in = new ViewModule(HEIGHT, HEIGHT);
+		Module test = new StylizeModule (WIDTH,HEIGHT,in );
 		Parent parent = test.getParent();
 		scene = new Scene(parent);
 		scene.setOnMouseClicked(e->style());

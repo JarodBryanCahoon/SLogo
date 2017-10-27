@@ -45,24 +45,33 @@ public class ColorReader extends XMLReader {
 		bf.write("/*Document   : sstylesheet2.css*/ \n \n");
 	}
 	private void writeBody(NodeList document) throws IOException {
+//		NodeList parents = document.item(k).getChildNodes();
+		System.out.println("TESTING");
 		for (int k = 1; k<document.getLength();k+=2) {
-			String name = getNode("Word").item(k).getNodeName();
-			System.out.println(name);
-			bf.write(createName(name));
-			NodeList region = document.item(k).getChildNodes();
-			for (int i = 1;i<region.getLength();i+=2) {
-				Node n = region.item(i);
-				bf.write("-" +n.getNodeName() + ":" + n.getTextContent()+";");
-				bf.write("\n");
+			NodeList parent = document.item(k).getChildNodes();
+			System.out.println(parent);
+			
+			for (int j = 1; j<parent.getLength();j+=2) {
+				String name = parent.item(j).getNodeName();
+				System.out.print("    ");
+				System.out.println(name);
+				bf.write(createName(name));
+				
+				NodeList region = parent.item(j).getChildNodes();
+				for (int i = 1;i<region.getLength();i+=2) {
+					Node n = region.item(i);
+					bf.write("-" +n.getNodeName() + ":" + n.getTextContent()+";");
+					bf.write("\n");
+				}
+				bf.write("}\n\n");
 			}
-			bf.write("}\n");
 		}
 	}
 
 	private String createName(String name) {
 		if (name.contains(".")) {
 			String[] n = name.split("\\.");
-			return String.join(" .",n);
+			return "."+String.join(" .",n)+ "{ \n";
 		}
 		return "."+ name+ "{ \n";
 	}
