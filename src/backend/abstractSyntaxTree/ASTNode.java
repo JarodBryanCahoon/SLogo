@@ -9,6 +9,7 @@ package backend.abstractSyntaxTree;
 
 public class ASTNode {
 	private Expression val;
+	
 	private ASTNode left;
 	private ASTNode right;
 	

@@ -1,6 +1,8 @@
 package backend.interpreter;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 import backend.abstractSyntaxTree.ASTNode;
@@ -12,20 +14,22 @@ import backend.abstractSyntaxTree.ASTNode;
  */ 
 
 public class Manager {
-	private Map<String, ArrayList<Object>> memory;
+	private Map<String, ArrayList<Object>> memory = new HashMap<>();
 	private TextParse parser;
-	private ASTNode root;
-	public Manager() {
-		parser = new TextParse();
-		root = parser.getAST();
+	
+	
+	
+	public Manager(String filename) throws ClassNotFoundException, FileNotFoundException {
+	parser = new TextParse(memory, filename);
+	}
+
+	
+	public void setCommand(String s) {
+		parser.setCommands(s);
 	}
 	
-	
-	public void setCommand() {
-		
-	}
-	
-	private void executeCommands(ASTNode tree) {
+	private void executeCommands() {
+		ASTNode tree = parser.getAST();
 		if (tree==null) {
 			return;
 		}

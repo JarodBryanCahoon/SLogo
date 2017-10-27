@@ -9,7 +9,7 @@ public class ListExp extends Expression{
 		val = s.substring(2,s.length()-1).split(" ");	
 	}
 	
-	public String[] getVal(){
+	protected String[] getVal(){
 		return val;
 	}
 }
