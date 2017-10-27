@@ -28,7 +28,7 @@ public class Word {
 	
 	private void determineType(ResourceBundle rb, Map<String, Integer> map) {
 		if(myName.matches("^-?[0-9]+.[0-9]+$")){
-			myType = "constant";
+			myType = "Constant";
 			myExpression = new DoubleExp(Double.parseDouble(myName));
 		}
 		else if(myName.matches("^:[a-zA-Z_]+$")) {
@@ -38,7 +38,7 @@ public class Word {
 		else if(myName.matches("^[a-zA-Z_]+(\\?)?$")) {
 			myType = "Command";
 			try {
-				String method = rb.getString(myName);
+				String method = rb.getString(myName).split(",")[1];
 				if (map.get(method)==0) {
 					myExpression = new NoneOperatorExp(method);
 					operatorNumber = 0;
@@ -53,14 +53,7 @@ public class Word {
 				}
 			}catch (Exception MissingResourceException) {
 					myType = "Invalid";
-				}
-		}
-		else if(myName.matches("^\\[{1}.*\\]{1}$")){
-			myType = "list";
-			myExpression = new ListExp(myName);
-		}
-		else {
-			myType = "invalid";
+			}
 		}
 	}
 
