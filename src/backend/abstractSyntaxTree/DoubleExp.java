@@ -8,11 +8,11 @@ public class DoubleExp extends Expression {
 		this.val = d;
 	}
 	
-	public double getVal() {
+	protected double getVal() {
 		return this.val;
 	}
 	
-	public String getType() {
+	protected String getType() {
 		return myType;
 	}
 }

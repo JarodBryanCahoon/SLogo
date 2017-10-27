@@ -8,11 +8,11 @@ public class PolyOperatorExp extends OperatorExp{
 		super(s);
 	}
 	
-	public void setArgs(Collection c) {
+	protected void setArgs(Collection c) {
 		args = c;
 	}
 	
-	public void operate() {
+	protected void operate() {
 		//unnecessary?
 	}
 

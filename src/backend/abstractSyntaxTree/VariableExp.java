@@ -15,7 +15,7 @@ public class VariableExp extends Expression{
 		this.name = s;
 	}
 	
-	public void setVal(Expression e) throws NoSuchMethodException, SecurityException, 
+	protected void setVal(Expression e) throws NoSuchMethodException, SecurityException, 
 	IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		Method m = e.getClass().getMethod("getVal", null);
 		m.setAccessible(true);
@@ -27,7 +27,7 @@ public class VariableExp extends Expression{
 		}
 	}
 	
-	public Number getVal() {
+	protected Number getVal() {
 		return value; 
 	}
 }

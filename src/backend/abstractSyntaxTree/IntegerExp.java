@@ -11,11 +11,11 @@ public class IntegerExp extends Expression {
 //		this.val = x;
 //	}
 	
-	public Integer getVal() {
+	protected Integer getVal() {
 		return val;
 	}
 	
-	public String getType() {
+	protected String getType() {
 		return myType;
 	}
 	
