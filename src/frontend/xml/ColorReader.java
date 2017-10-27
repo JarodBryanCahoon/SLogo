@@ -17,11 +17,11 @@ import com.sun.xml.internal.txw2.Document;
 import exceptions.XMLException;
 
 public class ColorReader extends XMLReader {
+	private final String CSSPATH = "/src/resources/style/";
 	File file;
 	FileWriter fileWriter;
 	BufferedWriter bf;
 	NodeList document;
-	private static final String CSSPATH = "/src/resources/style/";
 	
 	public ColorReader(String path) throws IOException {
 		super(path);
