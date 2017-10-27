@@ -40,6 +40,8 @@ public class Word {
 			try {
 				String method = rb.getString(myName).split(",")[1];
 				System.out.println(method);
+				method = "backend.board.interfacemovement." + method;
+				System.out.println(map.entrySet());
 				if (map.get(method)==0) {
 					myExpression = new NoneOperatorExp(method);
 					operatorNumber = 0;
@@ -51,15 +53,12 @@ public class Word {
 				if(map.get(method)==2) {
 					myExpression = new DuoOperatorExp(method);
 					operatorNumber = 2;
-					System.out.println("Everything worked");
 				}
 			}catch (Exception MissingResourceException) {
 					myType = "Invalid";
 			}
 		}
 	}
-
-
 	public Expression getExpression() {
 		return myExpression;
 	}
