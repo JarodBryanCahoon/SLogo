@@ -9,14 +9,14 @@
 .Variable{ 
 -fx-fill:greenyellow;
 }
-.Text{ 
--fx-fill:silver;
-}
 .Constant{ 
 -fx-fill:pink;
 }
 .Command{ 
--fx-fill:green;
+-fx-fill:orangered;
+}
+.Text{ 
+-fx-fill:gold;
 }
 .Invalid{ 
 -fx-fill:silver;
@@ -27,6 +27,10 @@
 .Window .content{ 
 -fx-background-color:black;
 -fx-text-fill:silver;
+}
+.ColorPicker{ 
+-fx-font:8px 'Letter Gothic Std';
+-fx-background-color:white;
 }
 .Render{ 
 -fx-background-color:red;
