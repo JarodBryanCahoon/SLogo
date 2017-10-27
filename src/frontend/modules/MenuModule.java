@@ -19,7 +19,7 @@ public class MenuModule extends Module {
 	protected Parent createParent() throws Exception {
 		Group group = new Group();
 		MenuFactory factory = new MenuFactory();
-		MenuReader myReader = new MenuReader(getClass().getClassLoader().getResource("resources/style/menu.xml").getFile());
+		MenuReader myReader = new MenuReader(getClass().getClassLoader().getResource("resources/style/menu.xml").getFile(), getViewModule());
 		MenuBar myMenu = factory.create(myReader.getSubMenus());
 		return myMenu;
 	}

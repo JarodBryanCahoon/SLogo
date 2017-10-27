@@ -14,6 +14,8 @@ import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 
 public class RenderModule extends Module{
 	private List<RenderSprite> mySprites;
@@ -29,6 +31,9 @@ public class RenderModule extends Module{
 	@Override
 	protected Parent createParent() throws Exception {
 		Group myGroup = new Group();
+		Pane size = new StackPane();
+		size.setMinSize(getWidth(), getHeight());
+		myGroup.getChildren().add(size);
 		myCanvas = new Canvas();
 		myGroup.getChildren().add(myCanvas);
 		mySprites = new ArrayList<>();

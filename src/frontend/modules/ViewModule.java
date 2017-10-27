@@ -23,6 +23,7 @@ public class ViewModule extends Module{
 	
 	public ViewModule(int width, int height) throws Exception {
 		super(width, height);
+		System.out.println("my width " + getParent().getBoundsInLocal().getWidth());
 	}
 	
 	public Set<Module> getModules() {

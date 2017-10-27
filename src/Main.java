@@ -19,13 +19,16 @@ public class Main extends Application{
 			System.out.println(getClass().getResource(configFileName).getPath());
 
 			ConfigReader configReader = new ConfigReader(getClass().getClassLoader().getResource(configFileName).getPath());
+			System.out.println(configReader.getWidth() + " " + configReader.getHeight());
 			ViewModule view = new ViewModule(configReader.getWidth(), configReader.getHeight());
 			
-			Scene scene = new Scene(view.getParent());
+			Scene scene = new Scene(view.getParent(), configReader.getWidth(), configReader.getHeight());
 			s.setScene(scene);
 			s.setTitle(configReader.getTitle());
 			s.show();
 			style(s.getScene());
+			System.out.println(scene.getHeight());
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

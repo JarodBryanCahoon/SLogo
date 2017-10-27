@@ -30,9 +30,9 @@ public class MenuReader extends XMLReader {
 	private Map<MenuItem, iMenuItemStrategy> strategies;
 	private ViewModule myViewModule;
 
-	public MenuReader(String path) throws XMLException, IOException {
+	public MenuReader(String path, ViewModule viewModule) throws XMLException, IOException {
 		super(path);
-//		myViewModule = module;
+		myViewModule = viewModule;
 	}
 
 	@Override
@@ -54,9 +54,7 @@ public class MenuReader extends XMLReader {
 		Node itemHead = menu.getFirstChild();
 		NodeList subItems = menu.getChildNodes();
 		String menuName = StringLevelParse(itemHead, subItems.getLength(), NAME_TAG);
-//		System.out.println(menuName);
 		Menu newMenu = parseSubMenu(menu, itemHead, subItems.getLength());
-		System.out.println("new menu size: " + newMenu.getItems().size());
 		mySubMenus.put(menuName, newMenu);
 	}
 
@@ -96,13 +94,11 @@ public class MenuReader extends XMLReader {
 			}
 			current = current.getNextSibling();
 		}
-//		System.out.println("New menu: " + newMenu.getItems().size());
 		return newMenu;
 	}
 
 	private MenuItem createMenuItem(Element menu, Element menuItem) {
 		if (getContent(menuItem, TYPE_TAG).equals(MENU_TAG)) {
-//			System.out.println("menu " + getContent(menu, NAME_TAG));
 			int length = menuItem.getChildNodes().getLength();
 			Node head = menuItem.getFirstChild();
 			while(head.getNodeType() != Node.ELEMENT_NODE) {
@@ -110,22 +106,18 @@ public class MenuReader extends XMLReader {
 			}
 			
 			Menu subMenu = parseSubMenu(menuItem, head, length);
-			subMenu.setOnAction(e -> System.out.println("clicked"));
 			return subMenu;
 		} else {
-//			System.out.println("item " + getContent(menuItem, NAME_TAG));
 			String name = getContent(menuItem, NAME_TAG);
 			MenuItem newItem = new MenuItem(name);
 			CustomMenuButton newCustomMenu = null;
 			try {
-//				System.out.println(getContent(menuItem, STRATEGY_TAG));
 				Class cls = Class.forName(PREFIX + getContent(menuItem, STRATEGY_TAG));
 				iMenuItemStrategy strategy = (iMenuItemStrategy) cls.getDeclaredConstructor(ViewModule.class)
 						.newInstance(myViewModule); 
 				newCustomMenu = new CustomMenuButton(newItem, strategy);
 			} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | IllegalArgumentException
 					| InvocationTargetException | NoSuchMethodException | SecurityException e) {
-				e.printStackTrace();
 				ErrorMessage eMessage = new ErrorMessage("Could not read in menu buttons");
 				eMessage.show();
 			}
