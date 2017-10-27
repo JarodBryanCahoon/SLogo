@@ -22,7 +22,6 @@ public class Word {
 	public Word(String s, ResourceBundle resources, Map<String, Integer> commandNumbers) {	
 		myName = s;
 		determineType(resources, commandNumbers);
-		
 	}
 	
 	

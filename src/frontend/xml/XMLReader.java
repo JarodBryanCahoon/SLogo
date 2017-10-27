@@ -65,7 +65,7 @@ public abstract class XMLReader {
 		e.appendChild(doc.createTextNode(text));
 		return e;
 	}
-	public String getContent(String tag) {
+	public String getChildContent(String tag) {
 		String toReturn;
 		try {
 			toReturn = getElement().getElementsByTagName(tag).item(0).getChildNodes().item(1).getTextContent();
@@ -74,5 +74,8 @@ public abstract class XMLReader {
 			toReturn = "none";
 		}
 		return toReturn;
+	}
+	public String getContent(String tag) {
+		return getElement().getElementsByTagName(tag).item(0).getTextContent();
 	}
 }
