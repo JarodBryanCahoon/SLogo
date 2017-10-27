@@ -11,6 +11,7 @@ public class BackColorChange extends MenuItemStrategy {
 
 	@Override
 	public void execute() {
+		
 	}
 
 }

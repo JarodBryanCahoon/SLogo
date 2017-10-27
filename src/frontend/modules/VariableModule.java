@@ -9,8 +9,8 @@ import javafx.scene.layout.GridPane;
 public class VariableModule extends Module{
 	private GridPane myParent;
 	
-	public VariableModule(double width, double height) throws Exception {
-		super(width, height);
+	public VariableModule(double width, double height, ViewModule view) throws Exception {
+		super(width, height, view);
 	}
 
 	@Override

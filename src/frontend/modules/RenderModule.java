@@ -22,8 +22,8 @@ public class RenderModule extends Module{
 	private static final String turtlePath = "/resources/turtle.png";
 	private RenderSprite selectedSprite;	
 			
-	public RenderModule(double width, double height) throws Exception {
-		super(width, height);
+	public RenderModule(double width, double height, ViewModule view) throws Exception {
+		super(width, height, view);
 	}
 	
 	@Override

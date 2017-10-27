@@ -26,6 +26,7 @@ public abstract class XMLReader {
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			myDocument = dBuilder.parse(myXmlFile);
 		} catch (Exception e) {
+			e.printStackTrace();
 			ErrorMessage eMessage = new ErrorMessage("Could Not Read Config XML File");
 			eMessage.show();
 		}
