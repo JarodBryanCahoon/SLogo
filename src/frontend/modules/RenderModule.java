@@ -39,7 +39,7 @@ public class RenderModule extends Module{
 		return myGroup;
 	}
 	
-	public void addTurtle(Group group) {
+	private void addTurtle(Group group) {
 		RenderSprite sprite = new RenderSprite(turtleId, turtlePath, getWidth(), getHeight(), this);
 		group.getChildren().add(sprite.getImage());
 		mySprites.add(sprite);
@@ -74,10 +74,6 @@ public class RenderModule extends Module{
 		}
 		mySprites.removeAll(mySprites);
 		turtleId = 0;
-	}
-	
-	public void addRenderSprite(RenderSprite sprite) {
-		mySprites.add(sprite);
 	}
 	
 	public Element getXMLPreferences(Document doc) {

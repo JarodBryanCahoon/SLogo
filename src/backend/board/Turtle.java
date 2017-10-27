@@ -41,7 +41,7 @@ public class Turtle extends ConcreteObject {
 		public double Act(MoveInterface m){
 			double returnValue = m.act(this);
 			setChanged();
-			this.notifyObservers();
+			this.notifyObservers(this);
 			return returnValue;
 		}
 		

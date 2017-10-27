@@ -1,6 +1,7 @@
 package backend.interpreter;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import backend.abstractSyntaxTree.ASTNode;
@@ -12,7 +13,7 @@ import backend.abstractSyntaxTree.ASTNode;
  */ 
 
 public class Manager {
-	private Map<String, ArrayList<Object>> memory;
+	private Map<String, List<Object>> memory;
 	private TextParse parser;
 	private ASTNode root;
 	public Manager() {
