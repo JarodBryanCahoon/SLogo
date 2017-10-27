@@ -20,7 +20,6 @@ import javafx.scene.shape.Line;
 
 public class RenderModule extends Module{
 	private List<RenderSprite> mySprites;
-	private Map<RenderSprite, List<Line>> spriteLines;
 	private int turtleId = 0;
 	private Canvas myCanvas;
 	private static final String turtlePath = "/resources/turtle.png";
@@ -31,7 +30,6 @@ public class RenderModule extends Module{
 	
 	@Override
 	protected Parent createParent() throws Exception {
-		spriteLines = new HashMap<>();
 		mySprites = new ArrayList<>();
 
 		Group myGroup = new Group();
@@ -46,7 +44,6 @@ public class RenderModule extends Module{
 		RenderSprite sprite = new RenderSprite(turtleId, turtlePath, getWidth(), getHeight(), this);
 		group.getChildren().add(sprite.getImage());
 		mySprites.add(sprite);
-		spriteLines.put(sprite, new ArrayList<>());
 		turtleId++;
 	}
 	
@@ -58,10 +55,7 @@ public class RenderModule extends Module{
 		}
 		
 		GraphicsContext gc = myCanvas.getGraphicsContext2D();
-		Line newLine = new Line(oldX, oldY, sprite.getX(), sprite.getY());
-		// ask lasia about css
-		( (Group) getParent() ).getChildren().add(newLine);
-		spriteLines.get(sprite).add(newLine);
+		gc.strokeLine(oldX, oldY, sprite.getImage().getX(), sprite.getImage().getY());
 	}
 	
 	private RenderSprite findSpriteById(int turtleId) {
@@ -77,9 +71,10 @@ public class RenderModule extends Module{
 		Group myGroup = (Group) getParent();
 		myGroup.getChildren().removeAll(myGroup.getChildren());
 		mySprites.clear();
-		spriteLines.clear();
+		myCanvas = new Canvas();
 		turtleId = 0;
 		addTurtle(myGroup);
+		myGroup.getChildren().add(myCanvas);
 	}
 	
 	public Element getXMLPreferences(Document doc) {

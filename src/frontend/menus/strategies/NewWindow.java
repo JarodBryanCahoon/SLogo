@@ -13,6 +13,7 @@ public class NewWindow extends MenuItemStrategy {
 	private Stage myStage;
 	public NewWindow(ViewModule module) {
 		super(module);
+		myStage = new Stage();
 	}
 	
 	public NewWindow(Stage s) throws Exception {

@@ -3,6 +3,7 @@ package frontend.modules;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Map;
+import java.util.Properties;
 import java.util.Set;
 
 import org.w3c.dom.Document;
@@ -72,5 +73,9 @@ public class ViewModule extends Module{
 	protected void stylize() {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public void changeLanguage(Properties languageProperties) {
+		// backend.changeLanguage(languageProperties);
 	}
 }
