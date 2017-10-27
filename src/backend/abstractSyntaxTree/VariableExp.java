@@ -9,24 +9,18 @@ import java.lang.reflect.Method;
  */
 public class VariableExp extends Expression{
 	private String kind = "variable";
-	private Number value;
+	private double value;
+	private String name;
 	
 	public VariableExp(String s) {
+		name = s;
 	}
 	
-	protected void setVal(Expression e) throws NoSuchMethodException, SecurityException, 
-	IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-		Method m = e.getClass().getMethod("getVal", null);
-		m.setAccessible(true);
-		if (e.getClass().getName().equals("DoubleExp")){
-			value = new Double((double)m.invoke(e, null));
-		}
-		else {
-			value = new Integer((int) m.invoke(e, null));
-		}
+	protected void setVal(double d) {
+		value  =d;
 	}
 	
-	protected Number getVal() {
+	public double getVal() {
 		return value; 
 	}
 
@@ -34,5 +28,10 @@ public class VariableExp extends Expression{
 	public String getKind() {
 		// TODO Auto-generated method stub
 		return kind;
+	}
+	
+	public String getName() {
+		return name;
+		
 	}
 }

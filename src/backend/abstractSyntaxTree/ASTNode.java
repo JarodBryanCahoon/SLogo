@@ -36,4 +36,13 @@ public class ASTNode {
 	public Expression getExpression() {
 		return val;
 	}
+
+	public ASTNode getLeft() {
+		// TODO Auto-generated method stub
+		return left;
+	}
+	
+	public ASTNode getRight() {
+		return right;
+	}
 }

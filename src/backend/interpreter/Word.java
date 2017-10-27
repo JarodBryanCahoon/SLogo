@@ -6,7 +6,6 @@ import java.util.ResourceBundle;
 import backend.abstractSyntaxTree.DoubleExp;
 import backend.abstractSyntaxTree.DuoOperatorExp;
 import backend.abstractSyntaxTree.Expression;
-import backend.abstractSyntaxTree.IntegerExp;
 import backend.abstractSyntaxTree.ListExp;
 import backend.abstractSyntaxTree.MonoOperatorExp;
 import backend.abstractSyntaxTree.NoneOperatorExp;
@@ -28,13 +27,9 @@ public class Word {
 	
 	
 	private void determineType(ResourceBundle rb, Map<String, Integer> map) {
-		if(myName.matches("^-?[0-9]+\\.[0-9]+$")){
-			myType = "Constant";
+		if(myName.matches("^-?[0-9]+.[0-9]+$")){
+			myType = "constant";
 			myExpression = new DoubleExp(Double.parseDouble(myName));
-		}
-		else if(myName.matches("^-?[0-9]+$")){
-			myType = "Constant";
-			myExpression = new IntegerExp(Integer.parseInt(myName));
 		}
 		else if(myName.matches("^:[a-zA-Z_]+$")) {
 			myType = "Variable";
