@@ -25,7 +25,6 @@ public class ModulesTester extends Application{
 				);
 		// Change test to whatever module you want
 		Module test = new ConsoleModule (WIDTH,HEIGHT);
-		
 		Parent parent = test.getParent();
 		scene = new Scene(parent);
 		scene.setOnMouseClicked(e->style());
@@ -42,7 +41,6 @@ public class ModulesTester extends Application{
 	}
 	
 	public static void main(String[] args) {
-		System.out.println("Hi");
 		launch(args);
 	}
 	
