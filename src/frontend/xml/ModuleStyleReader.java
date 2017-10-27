@@ -59,10 +59,12 @@ public class ModuleStyleReader extends XMLReader {
 		try {
 			cls = Class.forName(clsName);
 			constructor = cls.getDeclaredConstructor(double.class, double.class);
+			System.out.println(clsName);
 			module = (Module) constructor.newInstance(width, height);
 			myModules.put(module, pos);
 		} catch (ClassNotFoundException | NoSuchMethodException | SecurityException | InstantiationException
 				| IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+			e.printStackTrace();
 			ErrorMessage eMessage = new ErrorMessage("Could Not Read Modules From File");
 			eMessage.show();
 		}
