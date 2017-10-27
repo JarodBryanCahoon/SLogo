@@ -43,7 +43,6 @@ public class MenuReader extends XMLReader {
 
 		for (int i = 0; i < nList.getLength(); i++) {
 			Node nNode = nList.item(i);
-			System.out.println(i);
 			if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 				Element menu = (Element) nNode;
 				parseMenu(menu);
@@ -57,6 +56,7 @@ public class MenuReader extends XMLReader {
 		String menuName = StringLevelParse(itemHead, subItems.getLength(), NAME_TAG);
 //		System.out.println(menuName);
 		Menu newMenu = parseSubMenu(menu, itemHead, subItems.getLength());
+		System.out.println("new menu size: " + newMenu.getItems().size());
 		mySubMenus.put(menuName, newMenu);
 	}
 
@@ -90,14 +90,13 @@ public class MenuReader extends XMLReader {
 			if (current.getNodeType() == Node.ELEMENT_NODE) {
 				Element menuItem = (Element) current;				
 				if (current.getNodeName().equals(ITEM_TAG)) {
-					createMenuItem(menu, menuItem);
-//					MenuItem newItem = createMenuItem(menu, menuItem);
-//					newMenu.getItems().add(newItem);
+					MenuItem newItem = createMenuItem(menu, menuItem);
+					newMenu.getItems().add(newItem);
 				}
 			}
 			current = current.getNextSibling();
 		}
-
+//		System.out.println("New menu: " + newMenu.getItems().size());
 		return newMenu;
 	}
 
@@ -109,16 +108,17 @@ public class MenuReader extends XMLReader {
 			while(head.getNodeType() != Node.ELEMENT_NODE) {
 				head = head.getNextSibling();
 			}
-			Element eHead = (Element) head;
-//			parseSubMenu(menuItem, head, length);
-			 return parseSubMenu(menuItem, head, length);
+			
+			Menu subMenu = parseSubMenu(menuItem, head, length);
+			subMenu.setOnAction(e -> System.out.println("clicked"));
+			return subMenu;
 		} else {
-			System.out.println("item " + getContent(menuItem, NAME_TAG));
+//			System.out.println("item " + getContent(menuItem, NAME_TAG));
 			String name = getContent(menuItem, NAME_TAG);
 			MenuItem newItem = new MenuItem(name);
 			CustomMenuButton newCustomMenu = null;
 			try {
-				System.out.println(getContent(menuItem, STRATEGY_TAG));
+//				System.out.println(getContent(menuItem, STRATEGY_TAG));
 				Class cls = Class.forName(PREFIX + getContent(menuItem, STRATEGY_TAG));
 				iMenuItemStrategy strategy = (iMenuItemStrategy) cls.getDeclaredConstructor(ViewModule.class)
 						.newInstance(myViewModule); 
