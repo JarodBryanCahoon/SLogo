@@ -32,4 +32,8 @@ public class ASTNode {
 	public void setLeft(ASTNode l) {
 		this.left = l;
 	}
+	
+	public Expression getExpression() {
+		return val;
+	}
 }
