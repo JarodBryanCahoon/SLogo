@@ -2,6 +2,7 @@ package backend.abstractSyntaxTree;
 
 public class DoubleExp extends Expression {
 	private double val;
+	private String kind = "argument";
 	private String myType = "double";
 	
 	public DoubleExp(double d) {
@@ -14,5 +15,9 @@ public class DoubleExp extends Expression {
 	
 	protected String getType() {
 		return myType;
+	}
+	
+	public String getKind() {
+		return kind;
 	}
 }

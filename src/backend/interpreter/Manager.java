@@ -16,6 +16,7 @@ import backend.abstractSyntaxTree.ASTNode;
 public class Manager {
 	private Map<String, ArrayList<Object>> memory = new HashMap<>();
 	private TextParse parser;
+	private TreeInterpreter treeInterpret;
 	
 	
 	
@@ -26,16 +27,13 @@ public class Manager {
 	
 	public void setCommand(String s) {
 		parser.setCommands(s);
+		treeInterpret = new TreeInterpreter(parser.getAST());
 	}
 	
-	private void executeCommands() {
-		ASTNode tree = parser.getAST();
-		if (tree==null) {
-			return;
-		}
-	}
-//	private ASTNode createTree() {
-//		ASTNode myNode = new ASTNode();
-//		return myNode;
+//	private void executeCommands() {
+//
+//		if (tree==null) {
+//			return;
+//		}
 //	}
 }
