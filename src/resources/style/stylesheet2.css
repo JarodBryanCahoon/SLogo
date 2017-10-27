@@ -8,7 +8,7 @@
 }
 
 .Variable{ 
--fx-fill:greenyellow;
+-fx-fill:orangered;
 }
 
 .Constant{ 
@@ -16,7 +16,7 @@
 }
 
 .Command{ 
--fx-fill:green;
+-fx-fill:gold;
 }
 
 .Text{ 

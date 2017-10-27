@@ -11,13 +11,13 @@
 	
 	<Word>
 		<Variable>
-			<fx-fill>greenyellow</fx-fill>
+			<fx-fill>orangered</fx-fill>
 		</Variable>
 		<Constant>
 			<fx-fill>pink</fx-fill>
 		</Constant>
 		<Command>
-			<fx-fill>green</fx-fill>
+			<fx-fill>gold</fx-fill>
 		</Command>
 		<Text>
 			<fx-fill>silver</fx-fill>	

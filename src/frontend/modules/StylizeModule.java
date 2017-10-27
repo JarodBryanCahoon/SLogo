@@ -63,15 +63,24 @@ public class StylizeModule extends Module {
 			String name = names.get(k);
 			String content = myReader.getNodeContentString(name);
 			createText(name,column,k+1);
-			createText(content,column+1,k+1);
+			createPicker(name,content,column+1,k+1);
 		}
 	}
+	
+	
 	
 
 	private void createText(String tag, int column,int row) {
 		Text title = new Text(tag);
 		title.getStyleClass().add("Text");
 		settings.add(title,column,row);
+	}
+	
+	private void createPicker(String title,String property,int column, int row) {
+		ColorPick colorPick = new ColorPick(myReader, title, property);
+		settings.add(colorPick.getColorPicker(), column, row);
+		
+		
 	}
 	@Override
 	public Element getXMLPreferences(Document doc) {
