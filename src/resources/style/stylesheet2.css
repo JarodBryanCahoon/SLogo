@@ -13,10 +13,10 @@
 -fx-fill:pink;
 }
 .Command{ 
--fx-fill:orangered;
+-fx-fill:green;
 }
 .Text{ 
--fx-fill:gold;
+-fx-fill:silver;
 }
 .Invalid{ 
 -fx-fill:silver;
@@ -28,13 +28,13 @@
 -fx-background-color:black;
 -fx-text-fill:silver;
 }
-.ColorPicker{ 
--fx-font:8px 'Letter Gothic Std';
--fx-background-color:white;
-}
 .Render{ 
 -fx-background-color:red;
 -turtle:red;
 -fx-fill:red;
 -fx-width:red;
+}
+.ColorPicker{ 
+-fx-font:8px 'Letter Gothic Std';
+-fx-background-color:white;
 }
