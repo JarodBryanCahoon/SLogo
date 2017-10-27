@@ -5,10 +5,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-<<<<<<< HEAD
-=======
 import java.util.Arrays;
->>>>>>> 185c50245f7c548d4f9adc4b0dd26a4cfe004603
 import java.util.List;
 
 import org.w3c.dom.Node;
