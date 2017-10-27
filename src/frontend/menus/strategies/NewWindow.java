@@ -22,10 +22,9 @@ public class NewWindow extends MenuItemStrategy {
 	
 	@Override
 	public void execute() {
-		try {
-			System.out.println(ConsoleInput.class.getResource("Letter Gothic.otf"));
+		try {		
 			Font.loadFont(
-					  ConsoleInput.class.getResource("resources/style/Letter Gothic.otf").toExternalForm(), 
+					  "src/resources/style/Letter Gothic.otf", 
 					  10
 					);
 
