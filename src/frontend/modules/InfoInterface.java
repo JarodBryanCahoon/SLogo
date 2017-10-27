@@ -1,5 +1,6 @@
 package frontend.modules;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -21,7 +22,7 @@ import javafx.scene.text.TextFlow;
 public class InfoInterface extends Observable {
 	private List<Word[]> history;
 	private TextParse parser;
-	public InfoInterface() {
+	public InfoInterface() throws ClassNotFoundException, FileNotFoundException {
 		history = new ArrayList<Word[]>();
 		parser = new TextParse();
 		
@@ -53,7 +54,6 @@ public class InfoInterface extends Observable {
 		TextFlow toReturn = new TextFlow();
 		for (Word w : words) {
 			Text text = new Text(w.getName());
-			text.getStyleClass().add("Text");
 			System.out.println(w.getType());
 			text.getStyleClass().add(w.getType());
 			toReturn.getChildren().add(text);

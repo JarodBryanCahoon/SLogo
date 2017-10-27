@@ -29,8 +29,9 @@ public class TextParse {
 	private ResourceBundle rb;
 	private Queue<Word> queue = new LinkedList<>();
 	
-	public TextParse() {
-		rb = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "/ArgumentNumbers");
+	public TextParse() throws ClassNotFoundException, FileNotFoundException {
+		rb = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "ArgumentNumbers");
+		makeCommandNumbers();
 	}
 	public TextParse(Map<String, ArrayList<Object>> map, String filename) throws ClassNotFoundException, FileNotFoundException {
 		myMap = map;
@@ -44,11 +45,13 @@ public class TextParse {
 	
 	private void makeCommandNumbers() throws ClassNotFoundException, FileNotFoundException {
 		CommandNumbers = new HashMap<String, Integer>();
-		File fl = new File(CLASS_LIST);
+		File fl = new File("C:\\Users\\lasia\\Documents\\workspace\\slogo_team02\\src\\resources\\"+CLASS_LIST);
 		Scanner scan = new Scanner(fl);
 		ArrayList<String> classList = new ArrayList<>();
 		while(scan.hasNextLine()) {
 			String st = scan.nextLine();
+			System.out.println("This works");
+			System.out.println(st);
 			classList.add(st);
 			Class<?> c = Class.forName(st);
 			Constructor<?>[] cons = c.getConstructors();
