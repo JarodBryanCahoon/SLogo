@@ -38,3 +38,7 @@
 -fx-fill:red;
 -fx-width:red;
 }
+.ColorPicker{ 
+-fx-font:8px 'Letter Gothic Std';
+-fx-background-color:white;
+}

@@ -34,22 +34,3 @@ backend.board.logic.Sin
 backend.board.logic.Sum
 backend.board.logic.Tan
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

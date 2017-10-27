@@ -8,6 +8,7 @@ import java.util.Set;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+import exceptions.ErrorMessage;
 import frontend.xml.ModuleStyleReader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -40,11 +41,10 @@ public class ViewModule extends Module{
 				Method method = myParent.getClass().getDeclaredMethod(SET + posMap.get(module), Node.class);
 				method.invoke(myParent, module.getParent());
 			} catch (InvocationTargetException e) {
-				e.printStackTrace();
+				ErrorMessage eMessage = new ErrorMessage("Could not create Module Parents");
+				eMessage.show();
 			}
-
 		}
-		
 		myParent.setPrefSize(getWidth(), getHeight());
 		return myParent;
 	}

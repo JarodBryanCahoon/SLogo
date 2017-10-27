@@ -10,6 +10,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
+import exceptions.ErrorMessage;
 import exceptions.XMLException;
 
 public abstract class XMLReader {
@@ -25,7 +26,8 @@ public abstract class XMLReader {
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			myDocument = dBuilder.parse(myXmlFile);
 		} catch (Exception e) {
-			// TODO
+			ErrorMessage eMessage = new ErrorMessage("Could Not Read Config XML File");
+			eMessage.show();
 		}
 		myDocument.getDocumentElement().normalize();
 		readFromFile();
@@ -62,7 +64,7 @@ public abstract class XMLReader {
 		e.appendChild(doc.createTextNode(text));
 		return e;
 	}
-	public String getContent(String tag) {
+	public String getChildContent(String tag) {
 		String toReturn;
 		try {
 			toReturn = getElement().getElementsByTagName(tag).item(0).getChildNodes().item(1).getTextContent();
@@ -71,5 +73,8 @@ public abstract class XMLReader {
 			toReturn = "none";
 		}
 		return toReturn;
+	}
+	public String getContent(String tag) {
+		return getElement().getElementsByTagName(tag).item(0).getTextContent();
 	}
 }

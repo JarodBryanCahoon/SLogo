@@ -22,17 +22,17 @@ import backend.abstractSyntaxTree.ASTNode;
  */
 public class TextParse {
 	private static final String DEFAULT_RESOURCE_PACKAGE = "resources/";
-	public static final String CLASS_LIST = "resources/ClassList.txt";
+	public static final String CLASS_LIST = "ClassList.txt";
 	private ASTNode root;
 	private Map<String, ArrayList<Object>> myMap;
 	private Map<String, Integer> CommandNumbers;
 	private ResourceBundle rb;
 	private Queue<Word> queue = new LinkedList<>();
 	
-	public TextParse() {
-		
+	public TextParse() throws ClassNotFoundException, FileNotFoundException {
+		rb = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "ArgumentNumbers");
+		makeCommandNumbers();
 	}
-	
 	public TextParse(Map<String, ArrayList<Object>> map, String filename) throws ClassNotFoundException, FileNotFoundException {
 		myMap = map;
 		rb = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + filename);
@@ -45,7 +45,7 @@ public class TextParse {
 	
 	private void makeCommandNumbers() throws ClassNotFoundException, FileNotFoundException {
 		CommandNumbers = new HashMap<String, Integer>();
-		File fl = new File(CLASS_LIST);
+		File fl = new File("C:\\Users\\lasia\\Documents\\workspace\\slogo_team02\\src\\resources\\"+CLASS_LIST);
 		Scanner scan = new Scanner(fl);
 		ArrayList<String> classList = new ArrayList<>();
 		while(scan.hasNextLine()) {
@@ -102,7 +102,7 @@ public class TextParse {
 	private ASTNode recursiveTree() {
 		Word w = queue.poll();
 		ASTNode tree = new ASTNode(w.getExpression());
-		if(w.getType().equals("command")) {
+		if(w.getType().equals("Command")) {
 			if(w.getNumber()==0) {
 				return tree;
 			}
@@ -116,8 +116,6 @@ public class TextParse {
 		}
 		return tree;
 	}
-	
-	
 	
 	private void addToComments(String s) {
 		if (!myMap.containsKey("Comments")){
@@ -136,6 +134,7 @@ public class TextParse {
 		Word[] sentence = new Word[commandList.length];
 		
 		for (int k = 0; k< commandList.length; k++) {
+			System.out.println(commandList[k]);
 			Word word = new Word(commandList[k], rb, CommandNumbers);
 			sentence[k] = word;
 		}

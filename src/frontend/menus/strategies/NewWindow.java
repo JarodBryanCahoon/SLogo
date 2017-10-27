@@ -1,5 +1,6 @@
 package frontend.menus.strategies;
 
+import exceptions.ErrorMessage;
 import frontend.modules.ViewModule;
 import frontend.xml.ConfigReader;
 import javafx.scene.Scene;
@@ -25,8 +26,8 @@ public class NewWindow extends MenuItemStrategy {
 			s.setTitle(configReader.getTitle());
 			s.show();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			ErrorMessage eMessage = new ErrorMessage("Could Not Create New Window");
+			eMessage.show();
 		}
 	}
 

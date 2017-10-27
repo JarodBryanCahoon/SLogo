@@ -118,8 +118,8 @@ public class MenuReader extends XMLReader {
 //				newCustomMenu = new CustomMenuButton(newItem, strategy);
 //			} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | IllegalArgumentException
 //					| InvocationTargetException | NoSuchMethodException | SecurityException e) {
-//				e.printStackTrace();
-//				throw new XMLException();
+//				ErrorMessage eMessage = new ErrorMessage("Could not read in menu buttons");
+//				eMessage.show();
 //			}
 //			
 //			return newCustomMenu.getItem();

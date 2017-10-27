@@ -42,5 +42,11 @@
 		<turtle>red</turtle>
 		<fx-fill>red</fx-fill>
 		<fx-width>red</fx-width>
-	</Render>	
+	</Render>
+		
+	<ColorPicker>
+		<fx-font>8px 'Letter Gothic Std'</fx-font>
+		<fx-background-color>white</fx-background-color>
+	</ColorPicker>
+
 </Colors>
