@@ -9,14 +9,14 @@ import backend.board.interfacemovement.ActionInterface;
  * @author Jarod Cahoon
  *
  */
-public class Tan implements ActionInterface{
+public class Tan implements InactiveInterface{
 	double myNumOne;
 	
 	public Tan(double a) {
 		myNumOne = a;
 	}
 	
-	public double act(Turtle tu) {
+	public double act() {
 		 return Math.tan(Math.toDegrees(myNumOne));
 	}
 }

@@ -7,7 +7,7 @@ import backend.board.interfacemovement.ActionInterface;
  * @author Jarod Cahoon
  *
  */
-public class Remainder implements ActionInterface{
+public class Remainder implements InactiveInterface{
 	double myNumOne;
 	double myNumTwo;
 	
@@ -16,7 +16,7 @@ public class Remainder implements ActionInterface{
 		myNumTwo = b;
 	}
 	
-	public double act(Turtle tu) {
+	public double act() {
 		return myNumOne%myNumTwo;
 	}
 }

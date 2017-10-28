@@ -64,17 +64,13 @@ public class MenuReader extends XMLReader {
 		for (int i = 0; i < length; i++) {
 			if (current.getNodeType() == Node.ELEMENT_NODE) {
 				if (current.getNodeName().equals(tag)) {
-					name = current.getTextContent();
-					break;
+					return current.getTextContent();					
 				}
 			}
 			current = current.getNextSibling();
 		}
 
-		if (name == null) {
-			throw new XMLException();
-		}
-		return name;
+		throw new XMLException();
 	}
 
 	private Menu parseSubMenu(Element menu, Node head, int length) {

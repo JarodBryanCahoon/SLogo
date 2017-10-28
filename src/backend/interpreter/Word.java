@@ -21,7 +21,6 @@ import exceptions.ErrorMessage;
  *
  */
 public class Word {
-	private static final String SYNTAX_PATH = "src/resources/languages/Syntax.properties";
 	private static final String CONSTANT = "Constant";
 	private static final String VARIABLE = "Variable";
 	private static final String COMMAND = "Command";
@@ -37,21 +36,9 @@ public class Word {
 	
 	public Word(String s, ResourceBundle resources, Map<String, Integer> commandNumbers) {	
 		myName = s;
-		addPropertiesFile();
+		SyntaxReader syntaxReader = new SyntaxReader();
+		myProperties = syntaxReader.getProperties();
 		determineType(resources, commandNumbers);
-	}
-	
-	private void addPropertiesFile() {
-		myProperties = new Properties();
-		InputStream input = null;
-
-		try {
-
-			input = new FileInputStream(SYNTAX_PATH);
-			myProperties.load(input);
-		} catch (IOException ex) {
-			ErrorMessage eMessage = new ErrorMessage("Could Not Load Properties File");
-		}
 	}
 	
 	private void determineType(ResourceBundle rb, Map<String, Integer> map) {

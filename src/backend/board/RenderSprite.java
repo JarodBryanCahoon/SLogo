@@ -39,8 +39,8 @@ public class RenderSprite extends Observable implements iRenderSprite, Observer 
 	}
 
 	private void initImage() {
-		myImageView.setX(myRenderMath.xTranslate(myX));
-		myImageView.setY(myRenderMath.yTranslate(myY));
+		myImageView.setX(myRenderMath.imageX(myX));
+		myImageView.setY(myRenderMath.imageY(myY));
 		myImageView.setRotate(myImageAngle);
 		myImageView.setOnMouseClicked(e -> selectTurtle());
 	}
@@ -98,7 +98,7 @@ public class RenderSprite extends Observable implements iRenderSprite, Observer 
 	 */
 	private double changeX(Turtle turtle) {
 		double myOldX = myX;
-		myX = myRenderMath.xTranslate(turtle.getMyX().get());		
+		myX = turtle.getMyX().get();		
 		myImageView.setX(myRenderMath.imageX(myX));
 		return myOldX;
 	}
@@ -109,7 +109,7 @@ public class RenderSprite extends Observable implements iRenderSprite, Observer 
 	 */
 	private double changeY(Turtle turtle) {
 		double myOldY = myY;
-		myY = myRenderMath.yTranslate(turtle.getMyY().get());		
+		myY = turtle.getMyY().get();		
 		myImageView.setY(myRenderMath.imageY(myY));
 		return myOldY;
 	}
