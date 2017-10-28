@@ -67,9 +67,7 @@ public class Word {
 			myType = COMMAND;
 			try {
 				String method = rb.getString(myName).split(",")[1];
-				System.out.println(method);
 				method = PREFIX + method;
-				System.out.println(map.entrySet());
 				if (map.get(method)==0) {
 					myExpression = new NoneOperatorExp(method);
 					operatorNumber = 0;
@@ -85,6 +83,9 @@ public class Word {
 			}catch (Exception MissingResourceException) {
 					myType = "Invalid";
 			}
+		}
+		else {
+			myType = "Invalid";
 		}
 	}
 	public Expression getExpression() {
