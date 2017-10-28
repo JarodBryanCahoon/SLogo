@@ -8,11 +8,7 @@ import backend.board.Turtle;
 import backend.board.TurtleCollection;
 
 public abstract class SomeParamTurtle extends TurtleNode{
-	private List<Turtle> myTurtleList;
-	private List<ASTNode> myNodeList;
-	
 	public SomeParamTurtle(TurtleCollection turtles) {
 		super(turtles);
-		myNodeList = new ArrayList<>();
 	}
 }

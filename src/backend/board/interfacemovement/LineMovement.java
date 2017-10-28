@@ -12,10 +12,7 @@ import backend.board.TurtleCollection;
  * @author Jarod Cahoon
  *
  */
-public class LineMovement extends SomeParamTurtle{
-	private List<Turtle> myTurtleList;
-	private List<ASTNode> myChildren;
-	
+public abstract class LineMovement extends SomeParamTurtle{	
 	public LineMovement(TurtleCollection turtles) {
 		super(turtles);
 	}
@@ -30,10 +27,5 @@ public class LineMovement extends SomeParamTurtle{
 		turt.getMyY().set(yHold);
 		
 		return pixels;
-	}
-
-	@Override
-	public double act(Turtle co) {
-		return 0;
 	}
 }

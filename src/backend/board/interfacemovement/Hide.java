@@ -10,8 +10,6 @@ import backend.board.TurtleCollection;
  *
  */
 public class Hide extends NoParamTurtle{
-	private List<Turtle> myTurtleList;
-	
 	public Hide(TurtleCollection turtles) {
 		super(turtles);
 	}

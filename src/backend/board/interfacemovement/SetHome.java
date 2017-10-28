@@ -11,8 +11,6 @@ import backend.board.TurtleCollection;
  *
  */
 public class SetHome extends NoParamTurtle{
-	private List<Turtle> myTurtleList;
-	
 	public SetHome(TurtleCollection turtles) {
 		super(turtles);
 	}

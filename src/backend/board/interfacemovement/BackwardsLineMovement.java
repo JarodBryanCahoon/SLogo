@@ -11,10 +11,6 @@ import backend.board.TurtleCollection;
  *
  */
 public class BackwardsLineMovement extends LineMovement {
-	double myDistance;
-	private List<Turtle> myTurtList;
-	private List<ASTNode> myChildren;
-	
 	public BackwardsLineMovement(TurtleCollection turtles) {
 		super(turtles);
 	}

@@ -7,8 +7,6 @@ import backend.board.TurtleCollection;
 
 public abstract class NoParamTurtle extends TurtleNode{
 	private int myChildNumber = 0;
-	private List<Turtle> myTurtleList;
-	
 	public NoParamTurtle(TurtleCollection turtles) {
 		super(turtles);
 	}

@@ -9,19 +9,9 @@ import backend.board.TurtleCollection;
  * @author Jarod Cahoon
  *
  */
-public class PenUp extends NoParamTurtle{
-	private List<Turtle> myTurtleList;
-	
+public class PenUp extends NoParamTurtle{	
 	public PenUp(TurtleCollection turtles) {
 		super(turtles);
-	}
-	
-	public double execute() {
-		double num = 0;
-		for (Turtle t: myTurtleList) {
-			num=act(t);
-		}
-		return num;
 	}
 	
 	@Override

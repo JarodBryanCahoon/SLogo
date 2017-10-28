@@ -11,9 +11,6 @@ import backend.board.TurtleCollection;
  *
  */
 public class SetAngle extends SomeParamTurtle{
-	private List<Turtle> myTurtleList;
-	private List<ASTNode> myChildren;
-	
 	public SetAngle(TurtleCollection turtles) {
 		super(turtles);
 	}

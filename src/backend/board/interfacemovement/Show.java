@@ -11,9 +11,6 @@ import backend.board.TurtleCollection;
  *
  */
 public class Show extends NoParamTurtle{
-	private List<Turtle> myTurtleList;
-	private List<ASTNode> myChildren;
-	
 	public Show(TurtleCollection turtles) {
 		super(turtles);
 	}

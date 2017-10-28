@@ -11,9 +11,6 @@ import backend.board.TurtleCollection;
  *
  */
 public class LeftTurn extends SomeParamTurtle{
-	private List<Turtle> myTurtleList;
-	private List<ASTNode> myChildren;
-	
 	public LeftTurn(TurtleCollection turtles) {
 		super(turtles);
 	}

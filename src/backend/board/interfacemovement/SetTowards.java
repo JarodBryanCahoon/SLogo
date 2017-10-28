@@ -14,9 +14,6 @@ import backend.board.TurtleCollection;
  *
  */
 public class SetTowards extends SomeParamTurtle {
-	private List<Turtle> myTurtleList;
-	private List<ASTNode> myChildren;
-
 	public SetTowards(TurtleCollection turtles) {
 		super(turtles);
 	}

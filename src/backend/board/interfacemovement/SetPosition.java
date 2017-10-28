@@ -12,9 +12,6 @@ import backend.board.TurtleCollection;
  *
  */
 public class SetPosition extends SomeParamTurtle{
-	private List<Turtle> myTurtleList;
-	private List<ASTNode> myChildren;
-	
 	public SetPosition(TurtleCollection turtles) {
 		super(turtles);
 	}

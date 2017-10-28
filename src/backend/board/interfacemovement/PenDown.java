@@ -9,9 +9,7 @@ import backend.board.TurtleCollection;
  * @author Jarod Cahoon
  *
  */
-public class PenDown extends NoParamTurtle{
-	private List<Turtle> myTurtleList;
-	
+public class PenDown extends NoParamTurtle{	
 	public PenDown(TurtleCollection turtles) {
 		super(turtles);
 	}
