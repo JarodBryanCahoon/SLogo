@@ -21,5 +21,9 @@ public class Hide extends NoParamTurtle{
 		return 0;
 	}
 	
+	@Override
+	public double execute() {
+		return 0;
+	}
 
 }
