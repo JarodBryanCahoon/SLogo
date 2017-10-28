@@ -23,21 +23,20 @@ import exceptions.ErrorMessage;
 import exceptions.XMLException;
 
 public abstract class XMLWriter {
+	private String myPath;
+	private Document myDocument;
 	public XMLWriter(String path) {
-		Document doc = createDocument(path);
-		doc.appendChild(createChild());
-		
-		write(path, doc);		
+		myDocument = createDocument(path);
+		myDocument.appendChild(createChild());		
 	}
 	
 	public XMLWriter(String path, Element root) {
-		Document doc = createDocument(path);
-		doc.appendChild(root);
-		
-		write(path, doc);
+		myDocument = createDocument(path);
+		myDocument.appendChild(root);
 	}
 
 	private Document createDocument(String path) {
+		myPath = path;
 		try {
 			Paths.get(path);
 		} catch (InvalidPathException | NullPointerException e) {
@@ -59,12 +58,12 @@ public abstract class XMLWriter {
 	
 	public abstract Element createChild();
 	
-	private void write(String path, Document doc) {
+	public void write() {
 		try {
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
 			Transformer transformer = transformerFactory.newTransformer();
-			DOMSource source = new DOMSource(doc);
-			StreamResult result = new StreamResult(new File(path));
+			DOMSource source = new DOMSource(myDocument);
+			StreamResult result = new StreamResult(new File(myPath));
 			transformer.setOutputProperty(OutputKeys.INDENT, "yes");
 			transformer.transform(source, result);	
 		} catch (TransformerFactoryConfigurationError | TransformerException e) {

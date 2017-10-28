@@ -26,6 +26,7 @@ public class ViewModule extends Module{
 	
 	public ViewModule(int width, int height) throws Exception {
 		super(width, height);
+		setViewModule(this);
 		initSubModules();
 		for(Module m : myModules) {
 			m.setViewModule(this);
@@ -43,7 +44,7 @@ public class ViewModule extends Module{
 	
 	private void initSubModules() throws XMLException, IOException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException {
 		BorderPane myParent = (BorderPane) getParent();
-		ModuleStyleReader mStyleReader = new ModuleStyleReader(getClass().getClassLoader().getResource(moduleFileName).getFile());
+		ModuleStyleReader mStyleReader = new ModuleStyleReader(getClass().getClassLoader().getResource(moduleFileName).getFile(), this);
 		myModules = mStyleReader.getModules().keySet();
 		Map<Module, String> posMap = mStyleReader.getModules();
 		
