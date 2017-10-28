@@ -7,28 +7,19 @@ import backend.board.Turtle;
  * @author Jarod Cahoon
  *
  */
-public class Quotient implements ASTNode{
-	double myNumOne;
-	double myNumTwo;
+public class Quotient extends MathNode{
 	
-	public Quotient(double a, double b) {
-		myNumOne = a;
-		myNumTwo = b;
+	public Quotient() {
+		super();
 	}
 	
-	public double act() {
-		return myNumOne*myNumTwo;
-	}
 
 	@Override
 	public double execute() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public void setChildren(ASTNode n) {
-		// TODO Auto-generated method stub
-		
+		double quotient = 0;
+		for (ASTNode n: super.getChildren()) {
+			quotient/=n.execute();
+		}
+		return quotient;
 	}
 }

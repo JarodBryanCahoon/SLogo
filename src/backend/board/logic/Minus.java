@@ -7,26 +7,15 @@ import backend.board.Turtle;
  * @author Jarod Cahoon
  *
  */
-public class Minus implements ASTNode{
-	double myNumOne;
+public class Minus extends MathNode{
 	
-	public Minus(double a) {
-		myNumOne = a;
+	public Minus() {
+		super();
 	}
 	
-	public double act() {
-		return -myNumOne;
-	}
-
 	@Override
 	public double execute() {
-		// TODO Auto-generated method stub
-		return 0;
+		return -super.getChildren().get(0).execute();
 	}
 
-	@Override
-	public void setChildren(ASTNode n) {
-		// TODO Auto-generated method stub
-		
-	}
 }

@@ -7,24 +7,15 @@ import backend.board.Turtle;
  * @author Jarod Cahoon
  *
  */
-public class Pi implements ASTNode{
+public class Pi extends NoParamMath{
 	
 	public Pi() {
 	}
 	
-	public double act() {
-		return Math.PI;
-	}
 
 	@Override
 	public double execute() {
-		// TODO Auto-generated method stub
-		return 0;
+		return Math.PI;
 	}
 
-	@Override
-	public void setChildren(ASTNode n) {
-		// TODO Auto-generated method stub
-		
-	}
 }

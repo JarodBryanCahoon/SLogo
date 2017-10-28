@@ -4,31 +4,19 @@ import backend.abstractSyntaxTree.ASTNode;
 import backend.board.Turtle;
 /**
  * 
- * @author Jarod Cahoon
+ * @author Jarod Cahoon, Venkat Subrmaniam
  *
  */
-public class IsLess implements ASTNode{
-	double myNumOne;
-	double myNumTwo;
-	
-	public IsLess(double a, double b) {
-		myNumOne = a;
-		myNumTwo = b;
-	}
-	
-	public double act() {
-		return (myNumOne<myNumTwo) ? 1:0;
+public class IsLess extends MathNode{
+	public IsLess() {
+		super();
 	}
 
 	@Override
 	public double execute() {
-		// TODO Auto-generated method stub
-		return 0;
+		double myNumOne = super.getChildren().get(0).execute();
+		double myNumTwo = super.getChildren().get(1).execute();
+		return (myNumOne<myNumTwo) ? 1:0;
 	}
 
-	@Override
-	public void setChildren(ASTNode n) {
-		// TODO Auto-generated method stub
-		
-	}
 }

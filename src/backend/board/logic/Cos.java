@@ -1,34 +1,21 @@
 package backend.board.logic;
 
-import java.util.concurrent.ThreadLocalRandom;
 
-import backend.abstractSyntaxTree.ASTNode;
 
 /**
  * 
- * @author Jarod Cahoon
+ * @author Jarod Cahoon, Venkat Subramniam
  *
  */
-public class Cos implements ASTNode{
-	double myNumOne;
+public class Cos extends MathNode{
 	
-	public Cos(double a) {
-		myNumOne = a;
-	}
-	
-	public double act() {
-		 return Math.cos(Math.toDegrees(myNumOne));
+	public Cos() {
+		super();
 	}
 
 	@Override
 	public double execute() {
-		// TODO Auto-generated method stub
-		return 0;
+		 return Math.cos(Math.toDegrees(super.getChildren().get(0).execute()));
 	}
 
-	@Override
-	public void setChildren(ASTNode n) {
-		// TODO Auto-generated method stub
-		
-	}
 }
