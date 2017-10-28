@@ -7,6 +7,7 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Queue;
@@ -15,6 +16,7 @@ import java.util.Scanner;
 
 import backend.abstractSyntaxTree.ASTNode;
 import backend.board.logic.Tan;
+
 
 
 /*TextParse.java
@@ -27,7 +29,7 @@ public class TextParse {
 	private static final String DEFAULT_RESOURCE_PACKAGE = "resources/";
 	public static final String CLASS_LIST = "ClassList.txt";
 	private ASTNode root;
-	private Map<String, ArrayList<Object>> myMap;
+	private Map<String, List<Object>> myMap;
 	private Map<String, Integer> CommandNumbers;
 	private ResourceBundle rb;
 	private Queue<Word> queue = new LinkedList<>();
@@ -40,7 +42,7 @@ public class TextParse {
 		myProperties = sReader.getProperties();
 	}
 	
-	public TextParse(Map<String, ArrayList<Object>> map, String filename) throws ClassNotFoundException, FileNotFoundException {
+	public TextParse(Map<String, List<Object>> map, String filename) throws ClassNotFoundException, FileNotFoundException {
 		myMap = map;
 		rb = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + filename);
 		makeCommandNumbers();
@@ -112,17 +114,20 @@ public class TextParse {
 
 	private ASTNode recursiveTree() {
 		Word w = queue.poll();
-		ASTNode tree = new ASTNode(w.getExpression());
+		ASTNode tree = w.getNode();
 		if(w.getType().equals("Command")) {
-			if(w.getNumber()==0) {
-				return tree;
-			}
-			if(w.getNumber()==1) {
-				tree.setLeft(recursiveTree());
-			}
-			if(w.getNumber()==2) {
-				tree.setLeft(recursiveTree());
-				tree.setRight(recursiveTree());
+//			if(w.getNumber()==0) {
+//				return tree;
+//			}
+//			if(w.getNumber()==1) {
+//				tree.setChildren((recursiveTree()));
+//			}
+//			if(w.getNumber()==2) {
+//				tree.setChildren(recursiveTree());
+//				tree.setChildren(recursiveTree());
+//			}
+			for(int i = 0; i<w.getNumber(); i++) {
+				tree.setChildren(recursiveTree());
 			}
 		}
 		return tree;
@@ -136,7 +141,7 @@ public class TextParse {
 		
 	}
 
-	public ASTNode getAST() {
+	public ASTNode getTree() {
 		return root;
 	}
 	
