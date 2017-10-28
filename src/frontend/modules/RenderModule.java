@@ -29,8 +29,9 @@ public class RenderModule extends Module{
 	private Canvas myCanvas;
 	private static final String turtlePath = "/resources/turtle.png";
 			
-	public RenderModule(double width, double height, ViewModule view) throws Exception {
-		super(width, height, view);
+	public RenderModule(double width, double height) throws Exception {
+		super(width, height);
+		addTurtle();		
 	}
 	
 	@Override
@@ -41,14 +42,14 @@ public class RenderModule extends Module{
 		
 		myCanvas = new Canvas();
 		myPane.getChildren().add(myCanvas);
-		addTurtle(myPane);		
 		stylize();
 		return myPane;
 	}
 	
-	private void addTurtle(Pane myGroup) {
+	public void addTurtle() {
+		Pane myPane = (Pane) getParent();
 		RenderSprite sprite = new RenderSprite(turtleId, turtlePath, getWidth(), getHeight(), this);
-		myGroup.getChildren().add(sprite.getImage());
+		myPane.getChildren().add(sprite.getImage());
 		mySprites.add(sprite);
 		turtleId++;
 	}
@@ -82,7 +83,7 @@ public class RenderModule extends Module{
 		myPane.getChildren().remove(myCanvas);
 		myCanvas = new Canvas();
 		turtleId = 0;
-		addTurtle(myPane);
+		addTurtle();
 		myPane.getChildren().add(myCanvas);
 	}
 	

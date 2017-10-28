@@ -24,11 +24,9 @@ public class ModuleStyleReader extends XMLReader {
 	private static final String MODULE_TAG = "module";
 	private static final String CLASS_TAG = "class";
 	private Map<Module, String> myModules;
-	private ViewModule myViewModule;
 
-	public ModuleStyleReader(String path, ViewModule view) throws XMLException, IOException {
+	public ModuleStyleReader(String path) throws XMLException, IOException {
 		super(path);
-		myViewModule = view;
 	}
 
 	@Override
@@ -62,8 +60,8 @@ public class ModuleStyleReader extends XMLReader {
 
 		try {
 			cls = Class.forName(clsName);
-			constructor = cls.getDeclaredConstructor(double.class, double.class, ViewModule.class);
-			module = (Module) constructor.newInstance(width, height, myViewModule);
+			constructor = cls.getDeclaredConstructor(double.class, double.class);
+			module = (Module) constructor.newInstance(width, height);
 			myModules.put(module, pos);
 		} catch (ClassNotFoundException | NoSuchMethodException | SecurityException | InstantiationException
 				| IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {

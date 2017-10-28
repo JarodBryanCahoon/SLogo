@@ -12,6 +12,7 @@ import java.util.Scanner;
 
 import exceptions.ErrorMessage;
 import frontend.modules.ViewModule;
+import frontend.popups.PopUp;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
