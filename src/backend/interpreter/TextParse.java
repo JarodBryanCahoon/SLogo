@@ -14,6 +14,7 @@ import java.util.ResourceBundle;
 import java.util.Scanner;
 
 import backend.abstractSyntaxTree.ASTNode;
+import backend.board.logic.Tan;
 
 
 /*TextParse.java
@@ -60,6 +61,7 @@ public class TextParse {
 		while(scan.hasNextLine()) {
 			String st = scan.nextLine();
 			classList.add(st);
+//			System.out.println(st);
 			Class<?> c = Class.forName(st);
 			Constructor<?>[] cons = c.getConstructors();
 			for(Constructor<?> con : cons) {
