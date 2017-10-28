@@ -9,6 +9,10 @@ import frontend.xml.PreferenceXMLReader;
 import frontend.xml.XMLReader;
 import javafx.scene.image.ImageView;
 
+/**
+ * @author Albert
+ *
+ */
 public class RenderSprite extends Observable implements iRenderSprite, Observer {
 	private static final double SELECTED_DIFFERENCE = 0.5;
 	private static final double SELECTED = 1.0;
@@ -43,34 +47,6 @@ public class RenderSprite extends Observable implements iRenderSprite, Observer 
 		myImageView.setY(myRenderMath.imageY(myY));
 		myImageView.setRotate(myImageAngle);
 		myImageView.setOnMouseClicked(e -> selectTurtle());
-	}
-	
-	public boolean isPenDown() {
-		return penDown;
-	}
-	
-	public double getPenWidth() {
-		return myPenWidth;
-	}
-	
-	public boolean isVisible() {
-		return isVisible;
-	}
-	
-	public double getX() {
-		return myX;
-	}
-	
-	public double getY() {
-		return myY;
-	}
-
-	public int getId() {
-		return myTurtleId;
-	}
-	
-	public ImageView getImage() {
-		return myImageView;
 	}
 	
 	public void stylize() {
@@ -136,7 +112,7 @@ public class RenderSprite extends Observable implements iRenderSprite, Observer 
 		double oldY = changeY(turtle);
 		changePen(turtle);
 
-		if(penDown) {
+		if(penDown && hasMoved(oldX, oldY)) {
 			myRender.drawLine(myTurtleId, oldX, oldY);
 		}
 		changeAngle(turtle);
@@ -159,5 +135,76 @@ public class RenderSprite extends Observable implements iRenderSprite, Observer 
 	public void changeImage(ImageView image) {
 		myImageView = image;
 		initImage();
+	}
+	
+	private boolean hasMoved(double oldX, double oldY) {
+		return ! (oldX == myX && oldY == myY);
+	}
+
+	private void setChangedNotify() {
+		setChanged();
+		notifyObservers();
+	}
+	
+	@Override
+	public void setX(double X) {
+		myX = X;
+		setChangedNotify();
+	}
+
+	@Override
+	public void setY(double Y) {
+		myY = Y;
+		setChangedNotify();
+	}
+
+	@Override
+	public void setPenDown(boolean isPenDown) {
+		penDown = isPenDown;
+		setChangedNotify();
+	}
+
+	@Override
+	public void setVisible(boolean isVisible) {
+		this.isVisible = isVisible;
+		setChangedNotify();
+	}
+
+	@Override
+	public void setAngle(double angle) {
+		myAngle = angle;
+		setChangedNotify();
+	}
+	
+	public RenderMath getMath() {
+		return myRenderMath;
+	}
+	
+	public boolean isPenDown() {
+		return penDown;
+	}
+	
+	public double getPenWidth() {
+		return myPenWidth;
+	}
+	
+	public boolean isVisible() {
+		return isVisible;
+	}
+	
+	public double getX() {
+		return myX;
+	}
+	
+	public double getY() {
+		return myY;
+	}
+
+	public int getId() {
+		return myTurtleId;
+	}
+	
+	public ImageView getImage() {
+		return myImageView;
 	}
 }

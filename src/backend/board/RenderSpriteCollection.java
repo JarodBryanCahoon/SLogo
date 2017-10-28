@@ -51,4 +51,10 @@ public class RenderSpriteCollection extends Observable implements iRenderSprite,
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public RenderMath getMath() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

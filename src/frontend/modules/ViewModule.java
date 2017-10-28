@@ -24,7 +24,9 @@ public class ViewModule extends Module{
 	
 	public ViewModule(int width, int height) throws Exception {
 		super(width, height);
-		System.out.println("my width " + getParent().getBoundsInLocal().getWidth());
+		for(Module m : myModules) {
+			m.setViewModule(this);
+		}
 	}
 	
 	public Set<Module> getModules() {
@@ -33,7 +35,7 @@ public class ViewModule extends Module{
 
 	@Override
 	protected Parent createParent() throws Exception {
-		ModuleStyleReader mStyleReader = new ModuleStyleReader(getClass().getClassLoader().getResource(moduleFileName).getFile(), this);
+		ModuleStyleReader mStyleReader = new ModuleStyleReader(getClass().getClassLoader().getResource(moduleFileName).getFile());
 		myModules = mStyleReader.getModules().keySet();
 		Map<Module, String> posMap = mStyleReader.getModules();
 		BorderPane myParent = new BorderPane();

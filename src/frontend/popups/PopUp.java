@@ -1,4 +1,4 @@
-package frontend.menus.strategies;
+package frontend.popups;
 
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -14,7 +14,7 @@ public class PopUp {
 		myStage.show();
 	}
 	
-	protected void hide() {
+	public void hide() {
 		myStage.hide();
 	}
 }

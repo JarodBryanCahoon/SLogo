@@ -8,6 +8,7 @@ import backend.board.RenderSprite;
 import exceptions.ErrorMessage;
 import exceptions.XMLException;
 import frontend.modules.ViewModule;
+import frontend.popups.TextPromptWindow;
 import javafx.scene.image.ImageView;
 
 public class ImageChange extends MenuItemStrategy {

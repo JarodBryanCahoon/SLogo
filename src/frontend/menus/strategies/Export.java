@@ -24,6 +24,7 @@ import exceptions.ErrorMessage;
 import exceptions.XMLException;
 import frontend.modules.Module;
 import frontend.modules.ViewModule;
+import frontend.popups.TextPromptWindow;
 import frontend.xml.PreferenceXMLReader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
