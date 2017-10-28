@@ -30,4 +30,10 @@ public class LineMovement implements ActionInterface{
 		return 0;
 	}
 
+	@Override
+	public double execute() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

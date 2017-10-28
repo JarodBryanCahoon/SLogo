@@ -1,5 +1,8 @@
 package backend.board.interfacemovement;
 
+import java.util.List;
+
+import backend.abstractSyntaxTree.ASTNode;
 import backend.board.Turtle;
 /**
  * 
@@ -7,10 +10,12 @@ import backend.board.Turtle;
  *
  */
 public class BackwardsLineMovement extends LineMovement {
-double myDistance;
+	double myDistance;
+	public ASTNode myChild;
+	private List<Turtle> myTurtList;
 	
-	public BackwardsLineMovement(double b) {
-		myDistance =  b;
+	public BackwardsLineMovement(List<Turtle> l ) {
+		myTurtList = l;
 	}
 	
 	@Override
@@ -18,4 +23,11 @@ double myDistance;
 		return this.move(true, myDistance, co);
 	}
 	
+	public double execute() {
+		double value = 0;
+		for(Turtle t : myTurtList) {
+			//value = this.move(true, myChild.execute(), t);
+		}
+		return value;
+	}
 }

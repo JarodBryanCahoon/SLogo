@@ -17,5 +17,10 @@ public class LeftTurn implements ActionInterface{
 		co.getAngle().set((co.getAngle().get()+myAngle)%360);
 		return myAngle;
 	}
+	@Override
+	public double execute() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
 }

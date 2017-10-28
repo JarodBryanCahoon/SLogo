@@ -20,5 +20,10 @@ public class RightTurn implements ActionInterface {
 		co.getAngle().set(holder);
 		return myAngle;
 	}
+	@Override
+	public double execute() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 }
