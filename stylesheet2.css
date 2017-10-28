@@ -16,7 +16,7 @@
 }
 
 .Command{ 
--fx-fill:gold;
+-fx-fill:0xb31a1aff;
 }
 
 .Text{ 
@@ -37,7 +37,7 @@
 }
 
 .Render{ 
--fx-background-color:red;
+-fx-background-color:0xccccccff;
 -fx-fill:blue;
 -fx-width:red;
 -turtle:red;

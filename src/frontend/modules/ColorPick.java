@@ -1,5 +1,7 @@
 package frontend.modules;
 
+import java.io.IOException;
+
 import frontend.xml.ColorReader;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.paint.Color;
@@ -16,18 +18,20 @@ public class ColorPick {
 		this.myReader = myReader;
 		String color = myReader.getChildNode(name,index);
 		colorpick = new ColorPicker(Color.valueOf(color));
-		colorpick.setOnAction(e->changecolor());
+		colorpick.setOnAction(e->{
+			try {
+				changecolor();
+			} catch (IOException e1) {
+			}
+		});
 		colorpick.getStyleClass().add("ColorPicker");
 	}
 
-	public void changecolor() {
-		System.out.println(name);
-		System.out.println(myReader.getNodeListString(name));
-		System.out.println(myReader.getChildNode(name,index));
-//		System.out.println(colorpick.getValue());
+	public void changecolor() throws IOException {
 		String color = colorpick.getValue().toString();
 		myReader.setColor(name,index,color);
 	}
+	
 	public ColorPicker getColorPicker() {
 		return colorpick;
 	}

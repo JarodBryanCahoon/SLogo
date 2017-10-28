@@ -86,4 +86,5 @@ public abstract class XMLReader {
 		e.appendChild(doc.createTextNode(text));
 		return e;
 	}
+	
 }

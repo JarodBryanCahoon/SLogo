@@ -35,7 +35,7 @@ public class ModulesTester extends Application{
 		style();
 	}
 	
-	private void style() {
+	public void style() {
 		scene.getStylesheets().clear();
 		scene.getStylesheets().add("/resources/style/" + "stylesheet2.css");
 	}

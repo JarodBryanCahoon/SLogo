@@ -15,6 +15,7 @@ import javax.xml.transform.stream.StreamResult;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 
 import exceptions.ErrorMessage;
 
@@ -46,7 +47,8 @@ public abstract class XMLWriter {
 		}
 		
 		Document doc = createDocument();
-		doc.appendChild(root);
+		Node toAdd =doc.importNode(root, true);
+		doc.appendChild(toAdd);
 		
 		try {
 			write(path, doc);

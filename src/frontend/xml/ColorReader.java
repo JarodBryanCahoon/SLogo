@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
@@ -18,26 +19,30 @@ import exceptions.XMLException;
 
 public class ColorReader extends XMLReader {
 	private final String CSSPATH = System.getProperty("user.dir")+"/src/resources/style/";
-	private final String FILENAME = "stylesheet2.css";
-	File file;
-	FileWriter fileWriter;
-	BufferedWriter bf;
-	NodeList document;
+	private final String CSSFILENAME = "stylesheet2.css";
+	private String xmlPath;
+	
+	private File file;
+	private FileWriter fileWriter;
+	private BufferedWriter bf;
+	private NodeList document;
 	
 	public ColorReader(String path) throws IOException {
 		super(path);
+		this.xmlPath = path;
 
 	}
 
 	@Override
 	protected void readFromFile() throws IOException{
-		file = new File(CSSPATH,FILENAME);
+		file = new File(System.getProperty("user.dir")+"/src/resources/style/",CSSFILENAME);
 		document = getElement().getChildNodes();
 		fileWriter = new FileWriter(file);
 		bf = new BufferedWriter(fileWriter);
 		writeHeader();
 		writeBody(document);
 		bf.close();
+		System.out.println("dones");
 		
 		
 	}
@@ -72,13 +77,13 @@ public class ColorReader extends XMLReader {
 		return "."+ name+ "{ \n";
 	}
 	
-	public void setColor(String name, int index, String color) {
+	public void setColor(String name, int index, String color) throws IOException {
 		NodeList nList =getNodeList(name).item(0).getChildNodes();
 		Node node = nList.item(index);
+		color = "#" +color.substring(2);
 		node.setTextContent(color);
-		System.out.println(node.getNodeName());
-		System.out.println(node.getTextContent());
-		GenericWriter writer = new GenericWriter(CSSPATH+FILENAME,getElement());
+		GenericWriter writer = new GenericWriter(xmlPath,getElement());
+		readFromFile();
 		
 	}
 	
