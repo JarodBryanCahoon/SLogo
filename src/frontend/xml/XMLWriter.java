@@ -4,6 +4,9 @@ import java.io.File;
 import java.nio.file.InvalidPathException;
 import java.nio.file.Paths;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerConfigurationException;
@@ -17,27 +20,24 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import exceptions.ErrorMessage;
+import exceptions.XMLException;
 
 public abstract class XMLWriter {
 	public XMLWriter(String path) {
-		try {
-			Paths.get(path);
-		} catch (InvalidPathException | NullPointerException e) {
-			ErrorMessage error = new ErrorMessage(ErrorMessage.INVALID_PATH);
-			error.show();
-		}
+		Document doc = createDocument(path);
+		doc.appendChild(createChild());
 		
-		Document doc = createDocument();
-		
-		try {
-			write(path, doc);
-		} catch (TransformerFactoryConfigurationError | TransformerException e) {
-			ErrorMessage error = new ErrorMessage("Could not write to File");
-			error.show();
-		}		
+		write(path, doc);		
 	}
 	
 	public XMLWriter(String path, Element root) {
+		Document doc = createDocument(path);
+		doc.appendChild(root);
+		
+		write(path, doc);
+	}
+
+	private Document createDocument(String path) {
 		try {
 			Paths.get(path);
 		} catch (InvalidPathException | NullPointerException e) {
@@ -45,26 +45,32 @@ public abstract class XMLWriter {
 			error.show();
 		}
 		
-		Document doc = createDocument();
-		doc.appendChild(root);
-		
+		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+		DocumentBuilder docBuilder;
 		try {
-			write(path, doc);
+			docBuilder = docFactory.newDocumentBuilder();
+		} catch (ParserConfigurationException e) {
+			throw new XMLException();
+		}
+		
+		Document doc = docBuilder.newDocument();
+		return doc;
+	}
+	
+	public abstract Element createChild();
+	
+	private void write(String path, Document doc) {
+		try {
+			TransformerFactory transformerFactory = TransformerFactory.newInstance();
+			Transformer transformer = transformerFactory.newTransformer();
+			DOMSource source = new DOMSource(doc);
+			StreamResult result = new StreamResult(new File(path));
+			transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+			transformer.transform(source, result);	
 		} catch (TransformerFactoryConfigurationError | TransformerException e) {
 			ErrorMessage error = new ErrorMessage("Could not write to File");
 			error.show();
 		}
 	}
-	
-	public abstract Document createDocument();
-	
-	private void write(String path, Document doc)
-			throws TransformerFactoryConfigurationError, TransformerConfigurationException, TransformerException {
-		TransformerFactory transformerFactory = TransformerFactory.newInstance();
-		Transformer transformer = transformerFactory.newTransformer();
-		DOMSource source = new DOMSource(doc);
-		StreamResult result = new StreamResult(new File(path));
-		transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-		transformer.transform(source, result);	
-	}
+
 }

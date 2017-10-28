@@ -10,7 +10,7 @@ public class GenericWriter extends XMLWriter {
 	}
 
 	@Override
-	public Document createDocument() {
+	public Element createChild() {
 		// do nothing
 		return null;
 	}
