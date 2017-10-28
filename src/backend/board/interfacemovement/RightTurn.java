@@ -17,6 +17,16 @@ public class RightTurn extends SomeParamTurtle {
 		super(l);
 	}
 	
+
+	@Override
+	public double execute() {
+		double num = 0;
+		for (Turtle t: myTurtleList) {
+			num=act(t);
+		}
+		return num;
+	}
+	
 	@Override
 	public double act(Turtle co) {
 		double angle = myChildren.get(0).execute();
