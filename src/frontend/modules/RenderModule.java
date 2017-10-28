@@ -29,8 +29,8 @@ public class RenderModule extends Module{
 	private Canvas myCanvas;
 	private static final String turtlePath = "/resources/turtle.png";
 			
-	public RenderModule(double width, double height) throws Exception {
-		super(width, height);
+	public RenderModule(double width, double height, ViewModule view) throws Exception {
+		super(width, height, view);
 		addTurtle();		
 	}
 	
