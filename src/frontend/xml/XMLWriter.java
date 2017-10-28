@@ -33,7 +33,8 @@ public abstract class XMLWriter {
 	
 	public XMLWriter(String path, Element root) {
 		myDocument = createDocument(path);
-		myDocument.appendChild(root);
+		Node toAdd =myDocument.importNode(root, true);
+		myDocument.appendChild(toAdd);
 	}
 
 	private Document createDocument(String path) {
@@ -54,9 +55,7 @@ public abstract class XMLWriter {
 		}
 		
 		Document doc = docBuilder.newDocument();
-		return doc;
-		Node toAdd =doc.importNode(root, true);
-		doc.appendChild(toAdd);
+
 		return doc;
 	}
 	
