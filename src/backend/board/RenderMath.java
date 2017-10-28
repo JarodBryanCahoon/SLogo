@@ -38,6 +38,7 @@ public class RenderMath {
 	}
 	
 	public double imageX(double X) {
+		
 		return X + myWidth / 2 - myImageView.getBoundsInLocal().getWidth() / 2;
 	}
 	

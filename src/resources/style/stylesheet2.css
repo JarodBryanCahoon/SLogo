@@ -1,52 +1,71 @@
 /*Document   : sstylesheet2.css*/ 
  
+.root{ 
+-fx-font:14px 'Letter Gothic Std';
+-fx-text-fill:white;
+-fx-background-color:black;
+-fx-wrap-text:true;
+}
+
 .Variable{ 
--root:
-			14px 'Letter Gothic Std'	
-			white
-			black
-			true
-		;
+-fx-fill:orangered;
 }
+
 .Constant{ 
--Variable:
-			greenyellow
-		;
--Constant:
-			pink
-		;
--Command:
-			green
-		;
--Text:
-			silver	
-		;
--Invalid:
-			silver	
-		;
+-fx-fill:pink;
 }
+
 .Command{ 
--Window:
-			black
-		;
--Window.content:
-			black
-			silver
-		;
+-fx-fill:gold;
 }
+
 .Text{ 
--Render:
-			red
-		;
--Render:
-			red
-			red
-			red
-		;
+-fx-fill:silver;
 }
+
 .Invalid{ 
--ColorPicker:
-			8px 'Letter Gothic Std'
-			white
-		;
+-fx-fill:silver;
 }
+.Window{ 
+-fx-background-color:black;
+}
+.Window .content{ 
+-fx-background-color:black;
+-fx-text-fill:silver;
+}
+.ColorPicker{ 
+-fx-font:8px 'Letter Gothic Std';
+-fx-background-color:white;
+}
+.Render{ 
+-fx-background-color:red;
+-turtle:red;
+-fx-fill:red;
+-fx-width:red;
+}
+.ColorPicker{ 
+-fx-font:8px 'Letter Gothic Std';
+-fx-background-color:white;
+}
+
+.Window{ 
+-fx-background-color:black;
+}
+
+.Window .content{ 
+-fx-background-color:black;
+-fx-text-fill:white;
+}
+
+.Render{ 
+-fx-background-color:red;
+-turtle:red;
+-fx-fill:red;
+-fx-width:red;
+}
+
+.ColorPicker{ 
+-fx-font:8px 'Letter Gothic Std';
+-fx-background-color:white;
+}
+

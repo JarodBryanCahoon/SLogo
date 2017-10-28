@@ -46,43 +46,34 @@ public class ColorReader extends XMLReader {
 	}
 	private void writeBody(NodeList document) throws IOException {
 		for (int k = 1; k<document.getLength();k+=2) {
-			String name = getNode("Word").item(k).getNodeName();
-			System.out.println(name);
-			bf.write(createName(name));
-			NodeList region = document.item(k).getChildNodes();
-			for (int i = 1;i<region.getLength();i+=2) {
-				Node n = region.item(i);
-				bf.write("-" +n.getNodeName() + ":" + n.getTextContent()+";");
-				bf.write("\n");
+
+			NodeList parent = document.item(k).getChildNodes();
+			for (int j = 1; j<parent.getLength();j+=2) {
+				String name = parent.item(j).getNodeName();
+				bf.write(createName(name));
+				
+				NodeList region = parent.item(j).getChildNodes();
+				for (int i = 1;i<region.getLength();i+=2) {
+					Node n = region.item(i);
+					bf.write("-" +n.getNodeName() + ":" + n.getTextContent()+";");
+					bf.write("\n");
+				}
+				
+				bf.write("}\n\n");
 			}
-			bf.write("}\n");
 		}
 	}
 
 	private String createName(String name) {
 		if (name.contains(".")) {
 			String[] n = name.split("\\.");
-			return String.join(" .",n);
+			return "."+String.join(" .",n)+ "{ \n";
 		}
 		return "."+ name+ "{ \n";
 	}
 	
-	public List<String> getWords() {
-		List<String> toReturn = new ArrayList<String>();
-		for (int i = 3;i<12; i+=2) {
-			toReturn.add(document.item(i).getNodeName());
-		}
-		return toReturn;
-	}
 	
-	public List<String> getRender() {
-		List<String> toReturn = new ArrayList<String>();
-		NodeList render = document.item(17).getChildNodes();
-		for (int i = 1; i<render.getLength(); i+=2) {
-			toReturn.add(render.item(i).getNodeName());
-		}
-		return toReturn;
-	}
+	
 	public void setColor(String name, String color) {
 		try {
 			getElement().getElementsByTagName(name).item(0).getChildNodes().item(1).setTextContent(color);

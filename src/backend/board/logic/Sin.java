@@ -9,14 +9,14 @@ import backend.board.interfacemovement.ActionInterface;
  * @author Jarod Cahoon
  *
  */
-public class Sin implements ActionInterface{
+public class Sin implements InactiveInterface{
 	double myNumOne;
 	
 	public Sin(double a) {
 		myNumOne = a;
 	}
 	
-	public double act(Turtle tu) {
+	public double act() {
 		 return Math.sin(Math.toDegrees(myNumOne));
 	}
 }

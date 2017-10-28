@@ -10,16 +10,15 @@ public abstract class Module {
 	private double myHeight;
 	private Parent myParent;
 	private ViewModule myViewModule;
-
-	public Module(double width, double height, ViewModule view) throws Exception {
+	
+	public Module(double width, double height) throws Exception {
 		myWidth = width;
 		myHeight = height;
-		myViewModule = view;
 		myParent = createParent();
 	}
 	
-	public Module(double width, double height) throws Exception {
-		this(width, height, null);
+	protected void setViewModule(ViewModule v) {
+		myViewModule = v;
 	}
 	
 	protected abstract Parent createParent() throws Exception;

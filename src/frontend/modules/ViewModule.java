@@ -3,6 +3,7 @@ package frontend.modules;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Map;
+import java.util.Properties;
 import java.util.Set;
 
 import org.w3c.dom.Document;
@@ -23,7 +24,9 @@ public class ViewModule extends Module{
 	
 	public ViewModule(int width, int height) throws Exception {
 		super(width, height);
-		System.out.println("my width " + getParent().getBoundsInLocal().getWidth());
+		for(Module m : myModules) {
+			m.setViewModule(this);
+		}
 	}
 	
 	public Set<Module> getModules() {
@@ -32,7 +35,7 @@ public class ViewModule extends Module{
 
 	@Override
 	protected Parent createParent() throws Exception {
-		ModuleStyleReader mStyleReader = new ModuleStyleReader(getClass().getClassLoader().getResource(moduleFileName).getFile(), this);
+		ModuleStyleReader mStyleReader = new ModuleStyleReader(getClass().getClassLoader().getResource(moduleFileName).getFile());
 		myModules = mStyleReader.getModules().keySet();
 		Map<Module, String> posMap = mStyleReader.getModules();
 		BorderPane myParent = new BorderPane();
@@ -72,5 +75,9 @@ public class ViewModule extends Module{
 	protected void stylize() {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public void changeLanguage(Properties languageProperties) {
+		// backend.changeLanguage(languageProperties);
 	}
 }

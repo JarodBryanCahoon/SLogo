@@ -64,17 +64,13 @@ public class MenuReader extends XMLReader {
 		for (int i = 0; i < length; i++) {
 			if (current.getNodeType() == Node.ELEMENT_NODE) {
 				if (current.getNodeName().equals(tag)) {
-					name = current.getTextContent();
-					break;
+					return current.getTextContent();					
 				}
 			}
 			current = current.getNextSibling();
 		}
 
-		if (name == null) {
-			throw new XMLException();
-		}
-		return name;
+		throw new XMLException();
 	}
 
 	private Menu parseSubMenu(Element menu, Node head, int length) {
@@ -112,7 +108,7 @@ public class MenuReader extends XMLReader {
 			MenuItem newItem = new MenuItem(name);
 			CustomMenuButton newCustomMenu = null;
 			try {
-				Class cls = Class.forName(PREFIX + getContent(menuItem, STRATEGY_TAG));
+				Class<?> cls = Class.forName(PREFIX + getContent(menuItem, STRATEGY_TAG));
 				iMenuItemStrategy strategy = (iMenuItemStrategy) cls.getDeclaredConstructor(ViewModule.class)
 						.newInstance(myViewModule); 
 				newCustomMenu = new CustomMenuButton(newItem, strategy);

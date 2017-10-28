@@ -17,8 +17,8 @@ public class ConsoleHistory extends Module implements Observer {
 	private VBox history;
 	private ScrollPane historyPane;
 	
-	public ConsoleHistory(double myWidth, double myHeight, ViewModule view, InfoInterface backend) throws Exception {
-		super(myWidth, myHeight, view);
+	public ConsoleHistory(double myWidth, double myHeight, InfoInterface backend) throws Exception {
+		super(myWidth, myHeight);
 		historyPane.setMinSize(myWidth,myHeight);
 		history.setMinSize(myWidth-10,myHeight-10);
 		stylize();
@@ -65,8 +65,8 @@ public class ConsoleHistory extends Module implements Observer {
 	}
 
 	private void stylize() {
-		history.getStyleClass().add("window");
-		historyPane.getStyleClass().add("window");
+		history.getStyleClass().add("Window");
+		historyPane.getStyleClass().add("Window");
 		
 	}
 

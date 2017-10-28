@@ -13,6 +13,7 @@ public class NewWindow extends MenuItemStrategy {
 	private Stage myStage;
 	public NewWindow(ViewModule module) {
 		super(module);
+		myStage = new Stage();
 	}
 	
 	public NewWindow(Stage s) throws Exception {
@@ -29,7 +30,6 @@ public class NewWindow extends MenuItemStrategy {
 					);
 
 			ConfigReader configReader = new ConfigReader(configFileName);
-			System.out.println(configReader.getWidth() + " " + configReader.getHeight());
 			ViewModule view = new ViewModule(configReader.getWidth(), configReader.getHeight());
 			
 			Scene scene = new Scene(view.getParent(), configReader.getWidth(), configReader.getHeight());

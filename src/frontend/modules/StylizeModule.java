@@ -27,9 +27,9 @@ public class StylizeModule extends Module {
 	private ColorReader myReader;
 	private GridPane settings;
 	
-	public StylizeModule(double width, double height, ViewModule view) throws Exception {
-		super(width, height, view);
-	
+	public StylizeModule(double width, double height) throws Exception {
+		super(width, height);
+		myParent.setMinWidth(width);	
 	}
 
 	@Override
@@ -46,55 +46,41 @@ public class StylizeModule extends Module {
 	private void addSettings() {
 		settings = new GridPane();
 		settings.setHgap(25);
-//		addWords();
-//		addWindow();
-//		addRender();
+		System.out.println("\nTESTING\n");
+		addWords("Word",0);
+		addWords("Windows",2);
+		addWords("Rendering",4);
 		myParent.getChildren().add(settings);
 		
 	}
 
-	private void addWords() {
-		List<String> words = new ArrayList<String>();
-		words = myReader.getWords();
-			
-		for (int k = 0; k<myReader.getWords().size();k++){
-			String name = words.get(k);
-			String color = myReader.getChildContent(name);
-			ColorPick colorPick = new ColorPick(myReader,name,color);
-			Text text = createText(name);
-			
-			settings.add(text, 0, k+1);
-			settings.add(colorPick.getColorPicker(), 1, k+1);
+	private void addWords(String tag,int column) {
+		createText(tag, column,0);
+		
+		List<String> names = myReader.getNodeString(tag);
+		for (int k = 0;k<names.size();k++) {
+			String name = names.get(k);
+			String content = myReader.getNodeContentString(name);
+			createText(name,column,k+1);
+			createPicker(name,content,column+1,k+1);
 		}
 	}
+	
+	
+	
 
-	private Text createText(String word) {
-		Text text = new Text(word);
-		text.getStyleClass().add("Text");
-		return text;
+	private void createText(String tag, int column,int row) {
+		Text title = new Text(tag);
+		title.getStyleClass().add("Text");
+		settings.add(title,column,row);
 	}
-
-	private void addWindow() {
-		Text text = createText("Window");
-		ColorPick colorPick = new ColorPick(myReader,"Window",myReader.getChildContent("Window"));
-		settings.add(text, 2,1 );
-		settings.add(colorPick.getColorPicker(), 3,1);
+	
+	private void createPicker(String title,String property,int column, int row) {
+		ColorPick colorPick = new ColorPick(myReader, title, property);
+		settings.add(colorPick.getColorPicker(), column, row);
+		
 		
 	}
-	private void addRender() {
-		List<String>words = myReader.getRender();
-		System.out.println(words);
-		for (int k = 0; k<myReader.getWords().size()-1;k++){
-			String name = words.get(k);
-			String color = myReader.getContent(name);
-			ColorPick colorPick = new ColorPick(myReader,name,color);
-			Text text = createText(name);
-			
-			settings.add(text, 4, k+1);
-			settings.add(colorPick.getColorPicker(), 5, k+1);
-		}
-	}
-
 	@Override
 	public Element getXMLPreferences(Document doc) {
 		// TODO Auto-generated method stub

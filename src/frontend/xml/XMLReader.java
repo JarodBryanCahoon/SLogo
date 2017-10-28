@@ -2,6 +2,8 @@ package frontend.xml;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -51,9 +53,19 @@ public abstract class XMLReader {
 		return nList;
 	}
 	
-	protected NodeList getNode(String tag) {
-		NodeList nList = getNodeList(tag);
-		return nList.item(0).getChildNodes();
+	public List<String> getNodeString(String tag) {
+		NodeList nList = getNodeList(tag).item(0).getChildNodes();
+		ArrayList<String> toReturn = new ArrayList<String>();
+		
+		for (int k = 1; k<nList.getLength();k+=2) {
+			toReturn.add(nList.item(k).getNodeName());
+		}
+		
+		return toReturn;
+	}
+	public String getNodeContentString(String tag){
+		NodeList nList = getNodeList(tag).item(0).getChildNodes();
+		return nList.item(1).getTextContent();
 	}
 	
 	protected Document getDocument() {
@@ -69,18 +81,5 @@ public abstract class XMLReader {
 		Element e = doc.createElement(tag);
 		e.appendChild(doc.createTextNode(text));
 		return e;
-	}
-	public String getChildContent(String tag) {
-		String toReturn;
-		try {
-			toReturn = getElement().getElementsByTagName(tag).item(0).getChildNodes().item(1).getTextContent();
-		}
-		catch(Exception NullPointerException){
-			toReturn = "none";
-		}
-		return toReturn;
-	}
-	public String getContent(String tag) {
-		return getElement().getElementsByTagName(tag).item(0).getTextContent();
 	}
 }
