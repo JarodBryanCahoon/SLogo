@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -38,18 +39,19 @@ public class TextParse {
 	
 	public TextParse() throws ClassNotFoundException, FileNotFoundException {
 		rb = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "ArgumentNumbers");
-		makeCommandNumbers();
-		SyntaxReader sReader = new SyntaxReader();
-		myProperties = sReader.getProperties();
+		createSyntaxReader();
 	}
 	
 	public TextParse(Map<String, List<Object>> map, String filename) throws ClassNotFoundException, FileNotFoundException {
 		myMap = map;
 		rb = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + filename);
+		createSyntaxReader();
+	}
+
+	private void createSyntaxReader() throws ClassNotFoundException, FileNotFoundException {
 		makeCommandNumbers();
 		SyntaxReader sReader = new SyntaxReader();
 		myProperties = sReader.getProperties();
-		// please refactor this venkat
 	}
 	
 	public void setCommands(String s) {
@@ -58,24 +60,10 @@ public class TextParse {
 	
 	private void makeCommandNumbers() throws ClassNotFoundException, FileNotFoundException {
 		CommandNumbers = new HashMap<String, Integer>();
-//		File fl = new File("src/resources/"+CLASS_LIST);
-//		Scanner scan = new Scanner(fl);
-//		ArrayList<String> classList = new ArrayList<>();
-//		while(scan.hasNextLine()) {
-//			String st = scan.nextLine();
-//			classList.add(st);
-////			System.out.println(st);
-//			Class<?> c = Class.forName(st);
-//			Constructor<?>[] cons = c.getConstructors();
-//			for(Constructor<?> con : cons) {
-//				//returns the parameter numbers for the constructors.
-//				CommandNumbers.put(c.getName(), con.getParameterCount());
-//			}
-//		}
 		
 		Enumeration<String> enuKeys = rb.getKeys();
 		while (enuKeys.hasMoreElements()) {
-			String key = enuKeys.nextElement();
+			String key = rb.getString(enuKeys.nextElement());
 			String[] list = key.split(",");
 			CommandNumbers.put(list[1], Integer.parseInt(list[0]));
 		}
