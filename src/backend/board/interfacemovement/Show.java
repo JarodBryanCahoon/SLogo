@@ -16,6 +16,11 @@ public class Show implements ActionInterface{
 		co.getOpacity().set(true);
 		return 1;
 	}
+	@Override
+	public double execute() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 
 }
