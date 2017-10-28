@@ -2,33 +2,18 @@ package backend.board.logic;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-import backend.abstractSyntaxTree.ASTNode;
-import backend.board.Turtle;
 /**
  * 
- * @author Jarod Cahoon
+ * @author Jarod Cahoon, Venkat Subramaniam
  *
  */
-public class Random implements ASTNode{
-	double myNumOne;
-	
-	public Random(double a) {
-		myNumOne = a;
+public class Random extends MathNode{
+	public Random() {
+		super();
 	}
 	
-	public double act() {
-		 return ThreadLocalRandom.current().nextDouble(0, myNumOne + 1);
-	}
-
 	@Override
 	public double execute() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public void setChildren(ASTNode n) {
-		// TODO Auto-generated method stub
-		
+		 return ThreadLocalRandom.current().nextDouble(0, super.getChildren().get(0).execute() + 1);
 	}
 }

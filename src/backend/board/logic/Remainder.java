@@ -4,31 +4,18 @@ import backend.abstractSyntaxTree.ASTNode;
 import backend.board.Turtle;
 /**
  * 
- * @author Jarod Cahoon
+ * @author Jarod Cahoon, Venkat Subramaniam
  *
  */
-public class Remainder implements ASTNode{
-	double myNumOne;
-	double myNumTwo;
+public class Remainder extends MathNode{
 	
-	public Remainder(double a, double b) {
-		myNumOne = a;
-		myNumTwo = b;
+	public Remainder() {
+		super();
 	}
-	
-	public double act() {
-		return myNumOne%myNumTwo;
-	}
+
 
 	@Override
 	public double execute() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public void setChildren(ASTNode n) {
-		// TODO Auto-generated method stub
-		
+		return super.getChildren().get(0).execute()%super.getChildren().get(0).execute();
 	}
 }
