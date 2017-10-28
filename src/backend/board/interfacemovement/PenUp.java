@@ -3,6 +3,7 @@ package backend.board.interfacemovement;
 import java.util.List;
 
 import backend.board.Turtle;
+import backend.board.TurtleCollection;
 /**
  * 
  * @author Jarod Cahoon
@@ -11,10 +12,9 @@ import backend.board.Turtle;
 public class PenUp extends NoParamTurtle{
 	private List<Turtle> myTurtleList;
 	
-	public PenUp(List<Turtle> l) {
-		super(l);
+	public PenUp(TurtleCollection turtles) {
+		super(turtles);
 	}
-
 	
 	public double execute() {
 		double num = 0;
@@ -23,11 +23,10 @@ public class PenUp extends NoParamTurtle{
 		}
 		return num;
 	}
+	
 	@Override
 	public double act(Turtle co) {
 		co.getPen().set(false);
 		return 0;
 	}
-
-
 }

@@ -3,19 +3,18 @@ package backend.board.interfacemovement;
 import java.util.List;
 
 import backend.board.Turtle;
+import backend.board.TurtleCollection;
 
-public class NoParamTurtle extends TurtleNode{
+public abstract class NoParamTurtle extends TurtleNode{
 	private int myChildNumber = 0;
 	private List<Turtle> myTurtleList;
 	
-	public NoParamTurtle(List<Turtle> l) {
-		super(l);
+	public NoParamTurtle(TurtleCollection turtles) {
+		super(turtles);
 	}
 
 	
 	public int getChildNumber() {
 		return myChildNumber;
 	}
-
-
 }

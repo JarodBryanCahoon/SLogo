@@ -4,6 +4,7 @@ import java.util.List;
 
 import backend.abstractSyntaxTree.ASTNode;
 import backend.board.Turtle;
+import backend.board.TurtleCollection;
 /**
  * 
  * @author Jarod Cahoon
@@ -13,18 +14,8 @@ public class RightTurn extends SomeParamTurtle {
 	private List<Turtle> myTurtleList;
 	private List<ASTNode> myChildren;
 	
-	public RightTurn(List<Turtle> l) {
-		super(l);
-	}
-	
-
-	@Override
-	public double execute() {
-		double num = 0;
-		for (Turtle t: myTurtleList) {
-			num=act(t);
-		}
-		return num;
+	public RightTurn(TurtleCollection turtles) {
+		super(turtles);
 	}
 	
 	@Override
@@ -36,10 +27,4 @@ public class RightTurn extends SomeParamTurtle {
 		co.getAngle().set(holder);
 		return angle;
 	}
-	
-	@Override
-	public void setChildren(ASTNode n) {
-		myChildren.add(n);
-	}
-
 }
