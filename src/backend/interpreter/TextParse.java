@@ -5,7 +5,6 @@ import java.io.FileNotFoundException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -15,6 +14,7 @@ import java.util.Queue;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 
+import backend.abstractSyntaxTree.ASTNode;
 import backend.abstractSyntaxTree.ASTNode;
 
 
@@ -37,16 +37,16 @@ public class TextParse {
 	public TextParse() throws ClassNotFoundException, FileNotFoundException {
 		rb = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "ArgumentNumbers");
 		makeCommandNumbers();
-//		SyntaxReader sReader = new SyntaxReader();
-//		myProperties = sReader.getProperties();
+		SyntaxReader sReader = new SyntaxReader();
+		myProperties = sReader.getProperties();
 	}
 	
 	public TextParse(Map<String, List<Object>> map, String filename) throws ClassNotFoundException, FileNotFoundException {
 		myMap = map;
 		rb = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + filename);
 		makeCommandNumbers();
-//		SyntaxReader sReader = new SyntaxReader();
-//		myProperties = sReader.getProperties();
+		SyntaxReader sReader = new SyntaxReader();
+		myProperties = sReader.getProperties();
 		// please refactor this venkat
 	}
 	
@@ -56,27 +56,20 @@ public class TextParse {
 	
 	private void makeCommandNumbers() throws ClassNotFoundException, FileNotFoundException {
 		CommandNumbers = new HashMap<String, Integer>();
-//		File fl = new File("src/resources/"+CLASS_LIST);
-//		Scanner scan = new Scanner(fl);
-//		ArrayList<String> classList = new ArrayList<>();
-//		while(scan.hasNextLine()) {
-//			String st = scan.nextLine();
-//			classList.add(st);
-//			Class<?> c = Class.forName(st);
-//			Constructor<?>[] cons = c.getConstructors();
-//			for(Constructor<?> con : cons) {
-//				//returns the parameter numbers for the constructors.
-//				CommandNumbers.put(c.getName(), con.getParameterCount());
-//			}
-//		}
-		Enumeration<String> enuKeys = rb.getKeys();
-		while (enuKeys.hasMoreElements()) {
-			String key = enuKeys.nextElement();
-			String[] fun = rb.getString(key).split(",");
-			if(CommandNumbers.get(fun[1])==0) {
-				CommandNumbers.put(fun[1], Integer.parseInt(fun[0]));
+		File fl = new File("src/resources/"+CLASS_LIST);
+		Scanner scan = new Scanner(fl);
+		ArrayList<String> classList = new ArrayList<>();
+		while(scan.hasNextLine()) {
+			String st = scan.nextLine();
+			classList.add(st);
+			Class<?> c = Class.forName(st);
+			Constructor<?>[] cons = c.getConstructors();
+			for(Constructor<?> con : cons) {
+				//returns the parameter numbers for the constructors.
+				CommandNumbers.put(c.getName(), con.getParameterCount());
 			}
-		}	
+		}
+		
 	}
 
 	private void makeTree(String commands) {
@@ -119,17 +112,20 @@ public class TextParse {
 
 	private ASTNode recursiveTree() {
 		Word w = queue.poll();
-		ASTNode tree = new ASTNode(w.getExpression());
+		ASTNode tree = w.getNode();
 		if(w.getType().equals("Command")) {
-			if(w.getNumber()==0) {
-				return tree;
-			}
-			if(w.getNumber()==1) {
-				tree.setLeft(recursiveTree());
-			}
-			if(w.getNumber()==2) {
-				tree.setLeft(recursiveTree());
-				tree.setRight(recursiveTree());
+//			if(w.getNumber()==0) {
+//				return tree;
+//			}
+//			if(w.getNumber()==1) {
+//				tree.setChildren((recursiveTree()));
+//			}
+//			if(w.getNumber()==2) {
+//				tree.setChildren(recursiveTree());
+//				tree.setChildren(recursiveTree());
+//			}
+			for(int i = 0; i<w.getNumber(); i++) {
+				tree.setChildren(recursiveTree());
 			}
 		}
 		return tree;
@@ -143,7 +139,7 @@ public class TextParse {
 		
 	}
 
-	public ASTNode getAST() {
+	public ASTNode getTree() {
 		return root;
 	}
 	
@@ -158,10 +154,5 @@ public class TextParse {
 		}
 		return sentence;
 	}
-	
-//	public static void main (String args[]) {
-//		String s = "34";
-//		Word w = new Word(s);
-//	}
 	
 }

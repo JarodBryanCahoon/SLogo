@@ -4,6 +4,7 @@ import java.util.List;
 
 import backend.Utilities.vectors.Vector;
 import backend.Utilities.vectors.VectorMath;
+import backend.abstractSyntaxTree.ASTNode;
 import backend.board.Turtle;
 
 /**
@@ -13,7 +14,7 @@ import backend.board.Turtle;
  */
 public class SetTowards extends SomeParamTurtle {
 	private List<Turtle> myTurtleList;
-	private List<Node> myChildren;
+	private List<ASTNode> myChildren;
 
 	public SetTowards(List<Turtle> l) {
 		super(l);
@@ -30,7 +31,7 @@ public class SetTowards extends SomeParamTurtle {
 		return (Math.abs(angle1 - angle2) > 180) ? Math.abs(angle1 - angle2) - 180 : Math.abs(angle1 - angle2);
 	}
 	@Override
-	public void setChildren(Node n) {
+	public void setChildren(ASTNode n) {
 		myChildren.add(n);
 	}
 }

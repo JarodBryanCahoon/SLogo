@@ -2,17 +2,18 @@ package backend.board.interfacemovement;
 
 import java.util.List;
 
+import backend.abstractSyntaxTree.ASTNode;
 import backend.board.Turtle;
 
-public class TurtleGrandClass implements Node {
+public class TurtleNode implements ASTNode {
 	
 	private List<Turtle> myTurtleList;
 	
-	public TurtleGrandClass(List<Turtle> l) {
+	public TurtleNode(List<Turtle> l) {
 		myTurtleList = l;
 	}
 	
-	protected double act(Turtle turt) {
+	public double act(Turtle turt) {
 		return 0;
 	}
 	
@@ -26,7 +27,7 @@ public class TurtleGrandClass implements Node {
 	}
 
 	@Override
-	public void setChildren(Node n) {
+	public void setChildren(ASTNode n) {
 		// TODO Auto-generated method stub
 	}
 

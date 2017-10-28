@@ -4,7 +4,7 @@ import java.util.List;
 
 import backend.board.Turtle;
 
-public class NoParamTurtle extends TurtleGrandClass{
+public class NoParamTurtle extends TurtleNode{
 	private int myChildNumber = 0;
 	private List<Turtle> myTurtleList;
 	

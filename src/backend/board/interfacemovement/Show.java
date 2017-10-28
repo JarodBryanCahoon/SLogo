@@ -2,6 +2,7 @@ package backend.board.interfacemovement;
 
 import java.util.List;
 
+import backend.abstractSyntaxTree.ASTNode;
 import backend.board.Turtle;
 /**
  * 
@@ -10,7 +11,7 @@ import backend.board.Turtle;
  */
 public class Show extends NoParamTurtle{
 	private List<Turtle> myTurtleList;
-	private List<Node> myChildren;
+	private List<ASTNode> myChildren;
 	
 	public Show(List<Turtle> l) {
 		super(l);
@@ -26,7 +27,7 @@ public class Show extends NoParamTurtle{
 		return 0;
 	}
 	@Override
-	public void setChildren(Node n) {
+	public void setChildren(ASTNode n) {
 		myChildren.add(n);
 	}
 	
