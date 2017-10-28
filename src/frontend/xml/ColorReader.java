@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
@@ -17,27 +18,31 @@ import exceptions.ErrorMessage;
 import exceptions.XMLException;
 
 public class ColorReader extends XMLReader {
-	private final String CSSPATH = "/src/resources/style/";
-	File file;
-	FileWriter fileWriter;
-	BufferedWriter bf;
-	NodeList document;
+	private final String CSSPATH = System.getProperty("user.dir")+"/src/resources/style/";
+	private final String CSSFILENAME = "stylesheet2.css";
+	private String xmlPath;
+	
+	private File file;
+	private FileWriter fileWriter;
+	private BufferedWriter bf;
+	private NodeList document;
 	
 	public ColorReader(String path) throws IOException {
 		super(path);
+		this.xmlPath = path;
 
 	}
 
 	@Override
 	protected void readFromFile() throws IOException{
-		file = new File(System.getProperty("user.dir") +CSSPATH,"stylesheet2.css");
+		file = new File(System.getProperty("user.dir")+"/src/resources/style/",CSSFILENAME);
 		document = getElement().getChildNodes();
 		fileWriter = new FileWriter(file);
 		bf = new BufferedWriter(fileWriter);
 		writeHeader();
-		
 		writeBody(document);
 		bf.close();
+		System.out.println("dones");
 		
 		
 	}
@@ -72,17 +77,16 @@ public class ColorReader extends XMLReader {
 		return "."+ name+ "{ \n";
 	}
 	
-	
-	
-	public void setColor(String name, String color) {
-		try {
-			getElement().getElementsByTagName(name).item(0).getChildNodes().item(1).setTextContent(color);
-		}
-		catch (Exception NullPointerException) {
-			ErrorMessage eMessage = new ErrorMessage("color not found");
-			eMessage.show();
-		}
-		getElement().getElementsByTagName("Variable").item(0).getChildNodes().item(1);
+	public void setColor(String name, int index, String color) throws IOException {
+		NodeList nList =getNodeList(name).item(0).getChildNodes();
+		Node node = nList.item(index);
+		color = "#" +color.substring(2);
+		node.setTextContent(color);
+		GenericWriter writer = new GenericWriter(xmlPath,getElement());
+		readFromFile();
+		
 	}
+	
+
 	
 }
