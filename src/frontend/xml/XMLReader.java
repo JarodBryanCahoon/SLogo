@@ -54,7 +54,7 @@ public abstract class XMLReader {
 		return nList;
 	}
 	
-	public List<String> getNodeString(String tag) {
+	public List<String> getNodeListString(String tag) {
 		NodeList nList = getNodeList(tag).item(0).getChildNodes();
 		ArrayList<String> toReturn = new ArrayList<String>();
 		
@@ -65,8 +65,11 @@ public abstract class XMLReader {
 		return toReturn;
 	}
 	public String getNodeContentString(String tag){
+		return getChildNode(tag,1);
+	}
+	public String getChildNode(String tag,int index) {
 		NodeList nList = getNodeList(tag).item(0).getChildNodes();
-		return nList.item(1).getTextContent();
+		return nList.item(index).getTextContent();
 	}
 	
 	protected Document getDocument() {
@@ -83,4 +86,5 @@ public abstract class XMLReader {
 		e.appendChild(doc.createTextNode(text));
 		return e;
 	}
+	
 }

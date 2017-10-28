@@ -9,7 +9,7 @@ import backend.board.Turtle;
  * @author Jarod Cahoon
  *
  */
-public class Random implements InactiveInterface{
+public class Random implements ASTNode{
 	double myNumOne;
 	
 	public Random(double a) {
@@ -18,5 +18,17 @@ public class Random implements InactiveInterface{
 	
 	public double act() {
 		 return ThreadLocalRandom.current().nextDouble(0, myNumOne + 1);
+	}
+
+	@Override
+	public double execute() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void setChildren(ASTNode n) {
+		// TODO Auto-generated method stub
+		
 	}
 }

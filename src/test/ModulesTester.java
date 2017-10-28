@@ -24,8 +24,7 @@ public class ModulesTester extends Application{
 				  10
 				);
 		// Change test to whatever module you want
-		ViewModule in = new ViewModule(HEIGHT, HEIGHT);
-		Module test = new ConsoleModule (WIDTH,HEIGHT,in );
+		Module test = new StylizeModule (WIDTH,HEIGHT);
 		Parent parent = test.getParent();
 		scene = new Scene(parent);
 		scene.setOnMouseClicked(e->style());
@@ -36,7 +35,7 @@ public class ModulesTester extends Application{
 		style();
 	}
 	
-	private void style() {
+	public void style() {
 		scene.getStylesheets().clear();
 		scene.getStylesheets().add("/resources/style/" + "stylesheet2.css");
 	}

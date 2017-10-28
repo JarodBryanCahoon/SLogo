@@ -18,6 +18,7 @@ import javax.xml.transform.stream.StreamResult;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 
 import exceptions.ErrorMessage;
 import exceptions.XMLException;
@@ -38,6 +39,7 @@ public abstract class XMLWriter {
 	}
 
 	private Document createDocument(String path) {
+		myPath = path;
 		try {
 			Paths.get(path);
 		} catch (InvalidPathException | NullPointerException e) {
@@ -54,6 +56,9 @@ public abstract class XMLWriter {
 		}
 		
 		Document doc = docBuilder.newDocument();
+		return doc;
+		Node toAdd =doc.importNode(root, true);
+		doc.appendChild(toAdd);
 		return doc;
 	}
 	

@@ -8,7 +8,7 @@
 }
 
 .Variable{ 
--fx-fill:orangered;
+-fx-fill:white;
 }
 
 .Constant{ 
@@ -16,52 +16,31 @@
 }
 
 .Command{ 
--fx-fill:gold;
+-fx-fill:white;
 }
 
 .Text{ 
--fx-fill:silver;
+-fx-fill:white;
 }
 
 .Invalid{ 
--fx-fill:silver;
-}
-.Window{ 
--fx-background-color:black;
-}
-.Window .content{ 
--fx-background-color:black;
--fx-text-fill:silver;
-}
-.ColorPicker{ 
--fx-font:8px 'Letter Gothic Std';
--fx-background-color:white;
-}
-.Render{ 
--fx-background-color:red;
--turtle:red;
--fx-fill:red;
--fx-width:red;
-}
-.ColorPicker{ 
--fx-font:8px 'Letter Gothic Std';
--fx-background-color:white;
+-fx-fill:white;
 }
 
 .Window{ 
--fx-background-color:black;
+-fx-background-color:#000000ff;
 }
 
 .Window .content{ 
--fx-background-color:black;
+-fx-background-color:#000000ff;
 -fx-text-fill:white;
 }
 
 .Render{ 
--fx-background-color:red;
--turtle:red;
--fx-fill:red;
+-fx-background-color:white;
+-fx-fill:#e6e6e6ff;
 -fx-width:red;
+-turtle:red;
 }
 
 .ColorPicker{ 
