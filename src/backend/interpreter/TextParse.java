@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
+import java.util.Properties;
 import java.util.Queue;
 import java.util.ResourceBundle;
 import java.util.Scanner;
@@ -21,6 +22,7 @@ import backend.abstractSyntaxTree.ASTNode;
  * @version 10.21.17
  */
 public class TextParse {
+	private static final String NEWLINE = "Newline";
 	private static final String DEFAULT_RESOURCE_PACKAGE = "resources/";
 	public static final String CLASS_LIST = "ClassList.txt";
 	private ASTNode root;
@@ -28,15 +30,22 @@ public class TextParse {
 	private Map<String, Integer> CommandNumbers;
 	private ResourceBundle rb;
 	private Queue<Word> queue = new LinkedList<>();
+	private Properties myProperties;
 	
 	public TextParse() throws ClassNotFoundException, FileNotFoundException {
 		rb = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "ArgumentNumbers");
 		makeCommandNumbers();
+		SyntaxReader sReader = new SyntaxReader();
+		myProperties = sReader.getProperties();
 	}
+	
 	public TextParse(Map<String, ArrayList<Object>> map, String filename) throws ClassNotFoundException, FileNotFoundException {
 		myMap = map;
 		rb = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + filename);
 		makeCommandNumbers();
+		SyntaxReader sReader = new SyntaxReader();
+		myProperties = sReader.getProperties();
+		// please refactor this venkat
 	}
 	
 	public void setCommands(String s) {
@@ -45,7 +54,7 @@ public class TextParse {
 	
 	private void makeCommandNumbers() throws ClassNotFoundException, FileNotFoundException {
 		CommandNumbers = new HashMap<String, Integer>();
-		File fl = new File("C:\\Users\\lasia\\Documents\\workspace\\slogo_team02\\src\\resources\\"+CLASS_LIST);
+		File fl = new File("src/resources/"+CLASS_LIST);
 		Scanner scan = new Scanner(fl);
 		ArrayList<String> classList = new ArrayList<>();
 		while(scan.hasNextLine()) {
@@ -62,7 +71,7 @@ public class TextParse {
 	}
 
 	private void makeTree(String commands) {
-		String[] lineList = commands.split("/n");	
+		String[] lineList = commands.split(myProperties.getProperty(NEWLINE));	
 		for (String s: lineList) {
 			s=s.trim();
 			if (s.startsWith("#")){

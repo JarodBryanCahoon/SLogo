@@ -13,6 +13,8 @@ import org.w3c.dom.NodeList;
 import exceptions.ErrorMessage;
 import exceptions.XMLException;
 import frontend.modules.Module;
+import frontend.modules.RenderModule;
+import frontend.modules.ViewModule;
 
 public class ModuleStyleReader extends XMLReader {
 	private static final String POSITION_TAG = "position";
@@ -22,9 +24,11 @@ public class ModuleStyleReader extends XMLReader {
 	private static final String MODULE_TAG = "module";
 	private static final String CLASS_TAG = "class";
 	private Map<Module, String> myModules;
+	private ViewModule myViewModule;
 
-	public ModuleStyleReader(String path) throws XMLException, IOException {
+	public ModuleStyleReader(String path, ViewModule view) throws XMLException, IOException {
 		super(path);
+		myViewModule = view;
 	}
 
 	@Override
@@ -58,9 +62,8 @@ public class ModuleStyleReader extends XMLReader {
 
 		try {
 			cls = Class.forName(clsName);
-			constructor = cls.getDeclaredConstructor(double.class, double.class);
-			System.out.println(clsName);
-			module = (Module) constructor.newInstance(width, height);
+			constructor = cls.getDeclaredConstructor(double.class, double.class, ViewModule.class);
+			module = (Module) constructor.newInstance(width, height, myViewModule);
 			myModules.put(module, pos);
 		} catch (ClassNotFoundException | NoSuchMethodException | SecurityException | InstantiationException
 				| IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {

@@ -31,7 +31,7 @@ public class ModulesTester extends Application{
 	
 		stage.setTitle("Testing");
 		stage.setScene(scene);
-		stage.show();
+//		stage.show();
 		style();
 	}
 	
@@ -43,6 +43,4 @@ public class ModulesTester extends Application{
 	public static void main(String[] args) {
 		launch(args);
 	}
-	
-
 }

@@ -1,29 +1,24 @@
+import exceptions.ErrorMessage;
+import frontend.menus.strategies.NewWindow;
+import frontend.modules.ConsoleInput;
 import frontend.modules.ViewModule;
 import frontend.xml.ConfigReader;
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-public class Main extends Application{
-	public final static String configFileName = "resources/style/config.xml";
-	
+public class Main extends Application{	
 	@Override
 	public void start(Stage s) {
+		NewWindow w;
 		try {
-			System.out.println(getClass().getResource(configFileName).getPath());
-
-			ConfigReader configReader = new ConfigReader(getClass().getClassLoader().getResource(configFileName).getPath());
-			ViewModule view = new ViewModule(configReader.getWidth(), configReader.getHeight());
-			
-			Scene scene = new Scene(view.getParent());
-			s.setScene(scene);
-			s.setTitle(configReader.getTitle());
-			s.show();
+			w = new NewWindow(s);
+			w.execute();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+			ErrorMessage eMessage = new ErrorMessage("Could not instantiate window!");
+			eMessage.show();
+		}		
 	}
 	
     public static void main (String[] args) {

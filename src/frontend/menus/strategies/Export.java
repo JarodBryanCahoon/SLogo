@@ -39,32 +39,16 @@ public class Export extends MenuItemStrategy {
 
 	@Override
 	public void execute() {
-		Stage s = new Stage();		
-		Pane myPane = new Pane();
-		HBox hBox = new HBox();
-		
-		TextField tField = new TextField();		
-		Button b = new Button("Save");
-		
-		tField.setPromptText("Enter File Url");		
-		b.setOnMouseClicked(e -> {
-			writeXML(tField.getText());
-		});	
-		
-		hBox.getChildren().addAll(tField, b);
-		myPane.getChildren().add(hBox);
-		Scene scene = new Scene(myPane);
-		s.setScene(scene);
-		s.show();
+		TextPromptWindow textWindow = new TextPromptWindow("Save", "Load Fire URL..", e -> writeXML(e));
 	}
 
 	//https://www.mkyong.com/java/how-to-create-xml-file-in-java-dom/
 	private void writeXML(String path) {
-		path = this.getClass().getProtectionDomain().getCodeSource().getLocation().getPath() + path;
+//		path = this.getClass().getProtectionDomain().getCodeSource().getLocation().getPath() + path;
 		try {
 			Paths.get(path);
 		} catch (InvalidPathException | NullPointerException e) {
-			ErrorMessage error = new ErrorMessage("File Path is Invalid");
+			ErrorMessage error = new ErrorMessage(ErrorMessage.INVALID_PATH);
 			error.show();
 		}
 		

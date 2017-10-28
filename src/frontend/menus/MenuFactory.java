@@ -13,9 +13,10 @@ public class MenuFactory {
 	
 	public MenuBar create(Map<String, Menu> subMenus) {
 		MenuBar nBar = new MenuBar();
-		
+
 		for(String menuText : subMenus.keySet()) {
-			Menu subMenu = new Menu(menuText);			
+			Menu subMenu = subMenus.get(menuText);
+			System.out.println(menuText + " " + subMenu.getItems().size());
 			nBar.getMenus().add(subMenu);
 		}
 		
