@@ -21,7 +21,6 @@ public class ErrorMessage {
 		// lasia help css
 		
 		Scene scene = new Scene(textArea);
-		scene.getStylesheets().add("Window");
 		myStage.initStyle(StageStyle.UNDECORATED);
 		myStage.setScene(scene);
 	}

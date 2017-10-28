@@ -29,7 +29,7 @@ public class ModulesTester extends Application{
 		Parent parent = test.getParent();
 		scene = new Scene(parent);
 		scene.setOnMouseClicked(e->style());
-	
+		
 		stage.setTitle("Testing");
 		stage.setScene(scene);
 		stage.show();
