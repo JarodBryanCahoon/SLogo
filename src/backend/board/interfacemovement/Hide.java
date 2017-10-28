@@ -1,15 +1,18 @@
 package backend.board.interfacemovement;
 
+import java.util.List;
+
 import backend.board.Turtle;
 /**
  * 
  * @author Jarod Cahoon
  *
  */
-public class Hide implements ActionInterface{
-
-	public Hide() {
-		
+public class Hide extends NoParamTurtle{
+	private List<Turtle> myTurtleList;
+	
+	public Hide(List<Turtle> l) {
+		super(l);
 	}
 	
 	@Override
@@ -17,12 +20,5 @@ public class Hide implements ActionInterface{
 		co.getOpacity().set(false);
 		return 0;
 	}
-
-	@Override
-	public double execute() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	
 
 }

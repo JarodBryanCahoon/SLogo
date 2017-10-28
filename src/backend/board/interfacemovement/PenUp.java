@@ -1,15 +1,18 @@
 package backend.board.interfacemovement;
 
+import java.util.List;
+
 import backend.board.Turtle;
 /**
  * 
  * @author Jarod Cahoon
  *
  */
-public class PenUp implements ActionInterface{
+public class PenUp extends NoParamTurtle{
+	private List<Turtle> myTurtleList;
 	
-	public PenUp() {
-		
+	public PenUp(List<Turtle> l) {
+		super(l);
 	}
 
 	@Override
@@ -18,10 +21,5 @@ public class PenUp implements ActionInterface{
 		return 0;
 	}
 
-	@Override
-	public double execute() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 }
