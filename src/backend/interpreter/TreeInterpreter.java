@@ -9,8 +9,8 @@ public class TreeInterpreter {
 	private static final String OPERATOR = "command";
 	private static final String ARGUMENT = "argument";
 	private static final String VARIABLE = "variable"
-;	private double value1 = Double.MIN_VALUE;
-	private double value2 = Double.MIN_VALUE;
+;	private double value1 = Double.NaN;
+	private double value2 = Double.NaN;
 	private String var;
 //	private boolean operated=false;
 	
@@ -26,10 +26,10 @@ public class TreeInterpreter {
 		execute(root.getRight());
 		//do something to root
 		if (root.getExpression().getKind().equals(ARGUMENT)) {
-			if(value1==Double.MIN_VALUE) {
+			if(value1==Double.NaN){
 				value1 = root.getExpression().getVal();
 			}
-			if (value2==Double.MIN_VALUE) {
+			else if (value2==Double.NaN) {
 				value2 = root.getExpression().getVal();
 			}
 		}
