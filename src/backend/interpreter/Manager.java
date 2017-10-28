@@ -14,6 +14,7 @@ import backend.abstractSyntaxTree.ASTNode;
  */ 
 
 public class Manager {
+	private Map<String, O>
 	private Map<String, List<Object>> memory;
 	private TextParse parser;
 	private TreeInterpreter treeInterpret;
