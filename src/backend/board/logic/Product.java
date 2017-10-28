@@ -7,28 +7,18 @@ import backend.board.Turtle;
  * @author Jarod Cahoon
  *
  */
-public class Product implements ASTNode{
-	double myNumOne;
-	double myNumTwo;
+public class Product extends MathNode{
 	
-	public Product(double a, double b) {
-		myNumOne = a;
-		myNumTwo = b;
+	public Product() {
+		super();
 	}
 	
-	public double act() {
-		return myNumOne*myNumTwo;
-	}
-
 	@Override
 	public double execute() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public void setChildren(ASTNode n) {
-		// TODO Auto-generated method stub
-		
+		double product = 0;
+		for (ASTNode n: super.getChildren()) {
+			product*=n.execute();
+		}
+		return product;
 	}
 }

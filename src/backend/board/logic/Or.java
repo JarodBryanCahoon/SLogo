@@ -1,34 +1,20 @@
 package backend.board.logic;
 
-import backend.abstractSyntaxTree.ASTNode;
-import backend.board.Turtle;
 /**
  * 
- * @author Jarod Cahoon
+ * @author Jarod Cahoon, Venkat Subramaniam
  *
  */
-public class Or implements ASTNode{
-	double myNumOne;
-	double myNumTwo;
+public class Or extends MathNode{
 	
-	public Or(double a, double b) {
-		myNumOne = a;
-		myNumTwo = b;
-	}
-	
-	public double act() {
-		return (myNumOne != 0 || myNumTwo != 0) ? 1:0;
+	public Or() {
+		super();
 	}
 
 	@Override
 	public double execute() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public void setChildren(ASTNode n) {
-		// TODO Auto-generated method stub
-		
+		double myNumOne = super.getChildren().get(0).execute();
+		double myNumTwo = super.getChildren().get(1).execute();
+		return (myNumOne != 0 || myNumTwo != 0) ? 1:0;
 	}
 }

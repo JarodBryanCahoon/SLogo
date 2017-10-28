@@ -50,6 +50,7 @@ public class StylizeModule extends Module {
 		addWords("Word",0);
 		addWords("Windows",2);
 		addWords("Rendering",4);
+		addRendering(4);
 		myParent.getChildren().add(settings);
 		
 	}
@@ -57,13 +58,16 @@ public class StylizeModule extends Module {
 	private void addWords(String tag,int column) {
 		createText(tag, column,0);
 		
-		List<String> names = myReader.getNodeString(tag);
+		List<String> names = myReader.getNodeListString(tag);
 		for (int k = 0;k<names.size();k++) {
 			String name = names.get(k);
-			String content = myReader.getNodeContentString(name);
 			createText(name,column,k+1);
-			createPicker(name,content,column+1,k+1);
+			createPicker(name,1,column+1,k+1);
 		}
+	}
+	private void addRendering(int column) {
+		createText("Pen",column,2);
+		createPicker("Render",3,column+1,2);
 	}
 	
 	
@@ -75,8 +79,8 @@ public class StylizeModule extends Module {
 		settings.add(title,column,row);
 	}
 	
-	private void createPicker(String title,String property,int column, int row) {
-		ColorPick colorPick = new ColorPick(myReader, title, property);
+	private void createPicker(String title,int index,int column, int row) {
+		ColorPick colorPick = new ColorPick(myReader, title, index);
 		settings.add(colorPick.getColorPicker(), column, row);
 		
 		

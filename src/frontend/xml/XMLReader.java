@@ -48,31 +48,14 @@ public abstract class XMLReader {
 		Element root = myDocument.getDocumentElement();
 		return this.getNodeList(root, tag);
 	}
-	
 	protected NodeList getNodeList(Element e, String tag) {
 		NodeList nList = e.getElementsByTagName(tag);
 		return nList;
 	}
 	
-	public List<String> getNodeString(String tag) {
-		NodeList nList = getNodeList(tag).item(0).getChildNodes();
-		ArrayList<String> toReturn = new ArrayList<String>();
-		
-		for (int k = 1; k<nList.getLength();k+=2) {
-			toReturn.add(nList.item(k).getNodeName());
-		}
-		
-		return toReturn;
-	}
-	public String getNodeContentString(String tag){
-		NodeList nList = getNodeList(tag).item(0).getChildNodes();
-		return nList.item(1).getTextContent();
-	}
-	
 	protected Document getDocument() {
 		return myDocument;
 	}
-	
 	
 	protected String getContent(Element element, String tag) {
 		return element.getElementsByTagName(tag).item(0).getTextContent();
@@ -83,4 +66,23 @@ public abstract class XMLReader {
 		e.appendChild(doc.createTextNode(text));
 		return e;
 	}
+	
+	public List<String> getNodeListString(String tag) {
+		NodeList nList = getNodeList(tag).item(0).getChildNodes();
+		ArrayList<String> toReturn = new ArrayList<String>();
+		
+		for (int k = 1; k<nList.getLength();k+=2) {
+			toReturn.add(nList.item(k).getNodeName());
+		}
+		
+		return toReturn;
+	}
+	public String getNodeContentString(String tag){
+		return getChildNode(tag,1);
+	}
+	public String getChildNode(String tag,int index) {
+		NodeList nList = getNodeList(tag).item(0).getChildNodes();
+		return nList.item(index).getTextContent();
+	}
+	
 }

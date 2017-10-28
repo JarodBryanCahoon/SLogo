@@ -4,29 +4,18 @@ import backend.abstractSyntaxTree.ASTNode;
 import backend.board.Turtle;
 /**
  * 
- * @author Jarod Cahoon
+ * @author Jarod Cahoon, Venkat Subramaniam
  *
  */
-public class Not implements ASTNode{
-	double myNumOne;
+public class Not extends MathNode{
 	
-	public Not(double a, double b) {
-		myNumOne = a;
+	public Not() {
+		super();
 	}
 	
-	public double act() {
-		return (myNumOne == 0) ? 1:0;
-	}
-
 	@Override
 	public double execute() {
-		// TODO Auto-generated method stub
-		return 0;
+		return (super.getChildren().get(0).execute() == 0) ? 1:0;
 	}
 
-	@Override
-	public void setChildren(ASTNode n) {
-		// TODO Auto-generated method stub
-		
-	}
 }

@@ -6,29 +6,18 @@ import backend.abstractSyntaxTree.ASTNode;
 import backend.board.Turtle;
 /**
  * 
- * @author Jarod Cahoon
+ * @author Jarod Cahoon, Venkat Subramaniam
  *
  */
-public class Log implements ASTNode{
-	double myNumOne;
+public class Log extends MathNode{
 	
-	public Log(double a) {
-		myNumOne = a;
-	}
-	
-	public double act() {
-		 return Math.log(myNumOne);
+	public Log() {
+		super();
 	}
 
 	@Override
 	public double execute() {
-		// TODO Auto-generated method stub
-		return 0;
+		return Math.log(super.getChildren().get(0).execute());
 	}
 
-	@Override
-	public void setChildren(ASTNode n) {
-		// TODO Auto-generated method stub
-		
-	}
 }

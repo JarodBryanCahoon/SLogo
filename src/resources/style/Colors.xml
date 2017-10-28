@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <Colors>
 	<Base>
 		<root>
@@ -11,28 +11,28 @@
 	
 	<Word>
 		<Variable>
-			<fx-fill>orangered</fx-fill>
+			<fx-fill>white</fx-fill>
 		</Variable>
 		<Constant>
 			<fx-fill>pink</fx-fill>
 		</Constant>
 		<Command>
-			<fx-fill>gold</fx-fill>
+			<fx-fill>white</fx-fill>
 		</Command>
 		<Text>
-			<fx-fill>silver</fx-fill>	
+			<fx-fill>white</fx-fill>	
 		</Text>
 		<Invalid>
-			<fx-fill>silver</fx-fill>	
+			<fx-fill>white</fx-fill>	
 		</Invalid>
 	</Word>
 	
 	<Windows>
 		<Window>
-			<fx-background-color>black</fx-background-color>
+			<fx-background-color>#000000ff</fx-background-color>
 		</Window>
 		<Window.content>
-			<fx-background-color>black</fx-background-color>
+			<fx-background-color>#000000ff</fx-background-color>
 			<fx-text-fill>white</fx-text-fill>
 		</Window.content>
 	</Windows>
@@ -40,10 +40,11 @@
 	<Rendering>
 		
 		<Render>
-			<fx-background-color>red</fx-background-color>
-			<turtle>red</turtle>
-			<fx-fill>red</fx-fill>
+			<fx-background-color>white</fx-background-color>
+		
+			<fx-fill>#e6e6e6ff</fx-fill>
 			<fx-width>red</fx-width>
+			<turtle>red</turtle>
 		</Render>
 	</Rendering>
 		

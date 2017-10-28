@@ -7,28 +7,17 @@ import backend.board.Turtle;
  * @author Jarod Cahoon
  *
  */
-public class Difference implements ASTNode{
-	double myNumOne;
-	double myNumTwo;
+public class Difference extends MathNode{
 	
-	public Difference(double a, double b) {
-		myNumOne = a;
-		myNumTwo = b;
-	}
-	
-	public double act() {
-		return myNumOne-myNumTwo;
+	public Difference() {
+		super();
 	}
 
 	@Override
 	public double execute() {
-		// TODO Auto-generated method stub
-		return 0;
+		double myNumOne = super.getChildren().get(0).execute();
+		double myNumTwo = super.getChildren().get(1).execute();
+		return myNumOne-myNumTwo;
 	}
 
-	@Override
-	public void setChildren(ASTNode n) {
-		// TODO Auto-generated method stub
-		
-	}
 }

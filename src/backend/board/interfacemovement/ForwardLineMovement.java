@@ -20,6 +20,14 @@ public class ForwardLineMovement extends LineMovement {
 	}
 	
 	@Override
+	public double execute() {
+		double num = 0;
+		for (Turtle t: myTurtList) {
+			num= act(t);
+		}
+		return num;
+	}
+	@Override
 	public double act(Turtle co) {
 		return this.move(true, myDistance, co);
 	}

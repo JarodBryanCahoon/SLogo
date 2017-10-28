@@ -6,29 +6,18 @@ import backend.abstractSyntaxTree.ASTNode;
 import backend.board.Turtle;
 /**
  * 
- * @author Jarod Cahoon
+ * @author Jarod Cahoon, Venkat Subramaniam
  *
  */
-public class Atan implements ASTNode{
+public class Atan extends MathNode{
 	double myNumOne;
 	
-	public Atan(double a) {
-		myNumOne = a;
-	}
-	
-	public double act() {
-		 return Math.atan(Math.toDegrees(myNumOne));
+	public Atan() {
+		super();
 	}
 
 	@Override
 	public double execute() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public void setChildren(ASTNode n) {
-		// TODO Auto-generated method stub
-		
+		return Math.atan(Math.toDegrees(super.getChildren().get(0).execute()));
 	}
 }
