@@ -17,7 +17,7 @@ public class LeftTurn extends SomeParamTurtle{
 	
 	@Override
 	public double act(Turtle co) {
-		double angle = myChildren.get(0).execute();
+		double angle = super.getChildren().get(0).execute();
 		co.getAngle().set((co.getAngle().get()+angle)%360);
 		return angle;
 	}

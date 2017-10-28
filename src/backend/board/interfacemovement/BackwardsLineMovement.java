@@ -17,6 +17,6 @@ public class BackwardsLineMovement extends LineMovement {
 	
 	@Override
 	public double act(Turtle co) {
-		return this.move(true, myDistance, co);
+		return this.move(true, super.getChildren().get(0).execute(), co);
 	}
 }

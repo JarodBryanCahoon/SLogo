@@ -17,7 +17,7 @@ public class SetAngle extends SomeParamTurtle{
 	
 	@Override
 	public double act(Turtle co) {
-		double angle = myChildren.get(0).execute();
+		double angle = super.getChildren().get(0).execute();
 		double returnAngle = angleDifference(angle, co.getAngle().get());
 		co.getAngle().set(angle);
 		return returnAngle;

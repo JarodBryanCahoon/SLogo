@@ -18,8 +18,8 @@ public class SetPosition extends SomeParamTurtle{
 	
 	@Override
 	public double act(Turtle co) {
-		double xMove = myChildren.get(0).execute(); // These are hard coded but can be remove later
-		double yMove = myChildren.get(1).execute(); 
+		double xMove =super.getChildren().get(0).execute(); // These are hard coded but can be remove later
+		double yMove = super.getChildren().get(1).execute(); 
 		double diff = BoardMath.pointDistance(xMove, yMove, co.getMyX().get(), co.getMyY().get());
 		co.getMyX().set(xMove);
 		co.getMyY().set(yMove);

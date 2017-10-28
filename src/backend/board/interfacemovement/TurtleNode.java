@@ -5,7 +5,7 @@ import backend.board.Turtle;
 import backend.board.TurtleCollection;
 
 /**
- * @author Albert
+ * @author Albert, Venkat
  *
  */
 public abstract class TurtleNode implements ASTNode {
@@ -29,6 +29,5 @@ public abstract class TurtleNode implements ASTNode {
 
 	@Override
 	public void setChildren(ASTNode n) {
-		// TODO Auto-generated method stub
 	}
 }

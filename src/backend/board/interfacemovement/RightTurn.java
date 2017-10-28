@@ -17,7 +17,7 @@ public class RightTurn extends SomeParamTurtle {
 	
 	@Override
 	public double act(Turtle co) {
-		double angle = myChildren.get(0).execute();
+		double angle = super.getChildren().get(0).execute();
 		int modulo = (int) Math.abs(angle / 360 + 1);			
 		double holder = 360 - angle;
 		holder += ( 360 * modulo ) % 360;
