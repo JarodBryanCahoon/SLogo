@@ -7,7 +7,7 @@ import backend.board.Turtle;
  * @author Jarod Cahoon
  *
  */
-public class NotEqual implements InactiveInterface{
+public class NotEqual implements ASTNode{
 	double myNumOne;
 	double myNumTwo;
 	
@@ -18,5 +18,17 @@ public class NotEqual implements InactiveInterface{
 	
 	public double act() {
 		return (myNumOne != myNumTwo) ? 1:0;
+	}
+
+	@Override
+	public double execute() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void setChildren(ASTNode n) {
+		// TODO Auto-generated method stub
+		
 	}
 }

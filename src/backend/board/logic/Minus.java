@@ -7,7 +7,7 @@ import backend.board.Turtle;
  * @author Jarod Cahoon
  *
  */
-public class Minus implements InactiveInterface{
+public class Minus implements ASTNode{
 	double myNumOne;
 	
 	public Minus(double a) {
@@ -16,5 +16,17 @@ public class Minus implements InactiveInterface{
 	
 	public double act() {
 		return -myNumOne;
+	}
+
+	@Override
+	public double execute() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void setChildren(ASTNode n) {
+		// TODO Auto-generated method stub
+		
 	}
 }

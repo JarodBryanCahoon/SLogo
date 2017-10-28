@@ -15,6 +15,14 @@ public class PenUp extends NoParamTurtle{
 		super(l);
 	}
 
+	
+	public double execute() {
+		double num = 0;
+		for (Turtle t: myTurtleList) {
+			num=act(t);
+		}
+		return num;
+	}
 	@Override
 	public double act(Turtle co) {
 		co.getPen().set(false);
