@@ -8,21 +8,22 @@ public class ColorPick {
 	private ColorPicker colorpick;
 	private ColorReader myReader;
 	private String name;
-	private String property;
+	private int index;
 	
-	public ColorPick(ColorReader myReader, String title, String property) {
+	public ColorPick(ColorReader myReader, String title,int index) {
 		this.name = title;
-		this.property = property;
+		this.index = index;
 		this.myReader = myReader;
-		colorpick = new ColorPicker(Color.valueOf(property));
+		String color = myReader.getChildNode(name,index);
+		colorpick = new ColorPicker(Color.valueOf(color));
 		colorpick.setOnAction(e->changecolor());
 		colorpick.getStyleClass().add("ColorPicker");
 	}
 
 	public void changecolor() {
 		System.out.println(name);
-		System.out.println(myReader.getNodeString(name));
-		System.out.println(property);
+		System.out.println(myReader.getNodeListString(name));
+		System.out.println(myReader.getChildNode(name,index));
 //		System.out.println(colorpick.getValue());
 //		myReader.setColor("bleh","b;e");
 	}
