@@ -1,34 +1,33 @@
 package backend.board.interfacemovement;
 
-import java.util.List;
-
 import backend.abstractSyntaxTree.ASTNode;
 import backend.board.Turtle;
+import backend.board.TurtleCollection;
 
-public class TurtleNode implements ASTNode {
+/**
+ * @author Albert, Venkat
+ *
+ */
+public abstract class TurtleNode implements ASTNode {
 	
-	private List<Turtle> myTurtleList;
+	private TurtleCollection myTurtles;
 	
-	public TurtleNode(List<Turtle> l) {
-		myTurtleList = l;
+	public TurtleNode(TurtleCollection turtles) {
+		myTurtles = turtles;
 	}
 	
-	public double act(Turtle turt) {
-		return 0;
+	protected TurtleCollection getTurtles() {
+		return myTurtles;		
 	}
+	
+	public abstract double act(Turtle turt);
 	
 	@Override
 	public double execute() {
-		double d = 0;
-		for(Turtle t : myTurtleList) {
-			d = this.act(t);
-		}
-		return d;
+		return myTurtles.act(this);
 	}
 
 	@Override
 	public void setChildren(ASTNode n) {
-		// TODO Auto-generated method stub
 	}
-
 }

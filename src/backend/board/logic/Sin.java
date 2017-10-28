@@ -1,34 +1,18 @@
 package backend.board.logic;
 
-import java.util.concurrent.ThreadLocalRandom;
-
-import backend.abstractSyntaxTree.ASTNode;
-import backend.board.Turtle;
 /**
  * 
- * @author Jarod Cahoon
+ * @author Jarod Cahoon, Venkat Subramaniam
  *
  */
-public class Sin implements ASTNode{
-	double myNumOne;
-	
-	public Sin(double a) {
-		myNumOne = a;
-	}
-	
-	public double act() {
-		 return Math.sin(Math.toDegrees(myNumOne));
-	}
+public class Sin extends MathNode{
 
+	public Sin() {
+		super();
+	}
+	
 	@Override
 	public double execute() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public void setChildren(ASTNode n) {
-		// TODO Auto-generated method stub
-		
+		 return Math.sin(Math.toDegrees(super.getChildren().get(0).execute()));
 	}
 }

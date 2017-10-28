@@ -4,27 +4,19 @@ import java.util.List;
 
 import backend.abstractSyntaxTree.ASTNode;
 import backend.board.Turtle;
+import backend.board.TurtleCollection;
 /**
  * 
  * @author Jarod Cahoon
  *
  */
 public class BackwardsLineMovement extends LineMovement {
-	double myDistance;
-	private List<Turtle> myTurtList;
-	private List<ASTNode> myChildren;
-	
-	public BackwardsLineMovement(List<Turtle> l ) {
-		super(l);
+	public BackwardsLineMovement(TurtleCollection turtles) {
+		super(turtles);
 	}
 	
 	@Override
 	public double act(Turtle co) {
-		return this.move(true, myDistance, co);
-	}
-	
-	@Override
-	public void setChildren(ASTNode n) {
-		myChildren.add(n);
+		return this.move(true, super.getChildren().get(0).execute(), co);
 	}
 }

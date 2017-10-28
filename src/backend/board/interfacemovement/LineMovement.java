@@ -5,19 +5,16 @@ import java.util.List;
 import backend.abstractSyntaxTree.ASTNode;
 import backend.board.BoardMath;
 import backend.board.Turtle;
-import javafx.beans.property.DoubleProperty;
+import backend.board.TurtleCollection;
 
 /**
  * 
  * @author Jarod Cahoon
  *
  */
-public class LineMovement extends SomeParamTurtle{
-	private List<Turtle> myTurtleList;
-	private List<ASTNode> myChildren;
-	
-	public LineMovement(List<Turtle> l) {
-		super(l);
+public abstract class LineMovement extends SomeParamTurtle{	
+	public LineMovement(TurtleCollection turtles) {
+		super(turtles);
 	}
 	
 	protected double move(boolean b, double pixels, Turtle turt){
@@ -31,21 +28,4 @@ public class LineMovement extends SomeParamTurtle{
 		
 		return pixels;
 	}
-
-	@Override
-	public double act(Turtle co) {
-		return 0;
-	}
-
-	@Override
-	public double execute() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	
-	@Override
-	public void setChildren(ASTNode n) {
-		myChildren.add(n);
-	}
-
 }

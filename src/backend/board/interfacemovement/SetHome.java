@@ -4,16 +4,15 @@ import java.util.List;
 
 import backend.board.BoardMath;
 import backend.board.Turtle;
+import backend.board.TurtleCollection;
 /**
  * 
  * @author Jarod Cahoon
  *
  */
 public class SetHome extends NoParamTurtle{
-	private List<Turtle> myTurtleList;
-	
-	public SetHome(List<Turtle> l) {
-		super(l);
+	public SetHome(TurtleCollection turtles) {
+		super(turtles);
 	}
 
 	@Override
@@ -23,6 +22,4 @@ public class SetHome extends NoParamTurtle{
 		co.getMyY().set(0);
 		return distance;
 	}
-	
-
 }

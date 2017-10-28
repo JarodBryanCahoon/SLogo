@@ -3,38 +3,20 @@ package backend.board.interfacemovement;
 import java.util.List;
 
 import backend.abstractSyntaxTree.ASTNode;
-import backend.abstractSyntaxTree.ASTNode;
 import backend.board.Turtle;
+import backend.board.TurtleCollection;
 /**
  * 
  * @author Jarod Cahoon
  *
  */
-public class ForwardLineMovement extends LineMovement {
-	double myDistance;
-	private List<ASTNode> myChildren;
-	private List<Turtle> myTurtList;
-	
-	public ForwardLineMovement(List<Turtle> l ) {
-		super(l);
+public class ForwardLineMovement extends LineMovement {	
+	public ForwardLineMovement(TurtleCollection turtles) {
+		super(turtles);
 	}
 	
-	@Override
-	public double execute() {
-		double num = 0;
-		for (Turtle t: myTurtList) {
-			num= act(t);
-		}
-		return num;
-	}
 	@Override
 	public double act(Turtle co) {
-		return this.move(true, myDistance, co);
+		return this.move(true, super.getChildren().get(0).execute(), co);
 	}
-	
-	@Override
-	public void setChildren(ASTNode n) {
-		myChildren.add(n);
-	}
-	
 }
