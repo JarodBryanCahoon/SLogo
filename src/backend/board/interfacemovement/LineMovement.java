@@ -1,5 +1,7 @@
 package backend.board.interfacemovement;
 
+import java.util.List;
+
 import backend.board.BoardMath;
 import backend.board.Turtle;
 import javafx.beans.property.DoubleProperty;
@@ -9,9 +11,13 @@ import javafx.beans.property.DoubleProperty;
  * @author Jarod Cahoon
  *
  */
-public class LineMovement implements ActionInterface{
-	private DoubleProperty distance;
+public class LineMovement extends SomeParamTurtle{
+	private List<Turtle> myTurtleList;
+	private List<Node> myChildren;
 	
+	public LineMovement(List<Turtle> l) {
+		super(l);
+	}
 	
 	protected double move(boolean b, double pixels, Turtle turt){
 		double[] delta = BoardMath.xyDeltaCalc(pixels, turt.getAngle().get());
@@ -27,6 +33,12 @@ public class LineMovement implements ActionInterface{
 
 	@Override
 	public double act(Turtle co) {
+		return 0;
+	}
+
+	@Override
+	public double execute() {
+		// TODO Auto-generated method stub
 		return 0;
 	}
 

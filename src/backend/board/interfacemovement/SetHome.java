@@ -1,5 +1,7 @@
 package backend.board.interfacemovement;
 
+import java.util.List;
+
 import backend.board.BoardMath;
 import backend.board.Turtle;
 /**
@@ -7,10 +9,11 @@ import backend.board.Turtle;
  * @author Jarod Cahoon
  *
  */
-public class SetHome implements ActionInterface{
+public class SetHome extends NoParamTurtle{
+	private List<Turtle> myTurtleList;
 	
-	public SetHome() {
-		
+	public SetHome(List<Turtle> l) {
+		super(l);
 	}
 
 	@Override
