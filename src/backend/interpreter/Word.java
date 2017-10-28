@@ -9,15 +9,16 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.ResourceBundle;
 
-import backend.abstractSyntaxTree.DoubleExp;
-import backend.abstractSyntaxTree.DuoOperatorExp;
-import backend.abstractSyntaxTree.Expression;
-import backend.abstractSyntaxTree.ListExp;
-import backend.abstractSyntaxTree.MonoOperatorExp;
-import backend.abstractSyntaxTree.NoneOperatorExp;
-import backend.abstractSyntaxTree.VariableExp;
+import backend.abstractSyntaxTree.ASTNode;
+//import backend.abstractSyntaxTree.DoubleExp;
+//import backend.abstractSyntaxTree.DuoOperatorExp;
+//import backend.abstractSyntaxTree.Expression;
+//import backend.abstractSyntaxTree.ListExp;
+//import backend.abstractSyntaxTree.MonoOperatorExp;
+//import backend.abstractSyntaxTree.NoneOperatorExp;
+//import backend.abstractSyntaxTree.VariableExp;
 import backend.board.Turtle;
-import exceptions.ErrorMessage;
+//import exceptions.ErrorMessage;
 
 /**
  * @author Albert
@@ -30,7 +31,8 @@ public class Word {
 	private String myName;
 	private String myType;
 	private String nodeType;
-	private Expression myExpression;//myNode
+//	private Expression myExpression;//myNode
+	private ASTNode myNode;
 	//private Node myNode;
 	private int operatorNumber;
 	private Properties myProperties;
@@ -77,13 +79,12 @@ public class Word {
 				if (methodType.equals("Turtle")) {
 					nodeType = "Turtle";
 					ctr = c.getConstructor(List.class);
-					//myNode =  (Node) ctr.newInstance(turtles);
+					myNode =  (ASTNode) ctr.newInstance(turtles);
 				}
 				else {
 					ctr = c.getConstructor();
-					//myNode = (Node) ctr.newInstance();
+					myNode = (ASTNode) ctr.newInstance();
 				}
-				
 				
 			}catch (Exception MissingResourceException) {
 					myType = "Invalid";
@@ -93,8 +94,12 @@ public class Word {
 			myType = "Invalid";
 		}
 	}
-	public Expression getExpression() {
-		return myExpression;
+//	public Expression getExpression() {
+//		return myExpression;
+//	}
+	
+	public ASTNode getNode() {
+		return myNode;
 	}
 	
 	public String getType() {

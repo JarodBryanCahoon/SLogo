@@ -12,7 +12,7 @@ import backend.board.Turtle;
 public class BackwardsLineMovement extends LineMovement {
 	double myDistance;
 	private List<Turtle> myTurtList;
-	private List<Node> myChildren;
+	private List<ASTNode> myChildren;
 	
 	public BackwardsLineMovement(List<Turtle> l ) {
 		super(l);
@@ -24,7 +24,7 @@ public class BackwardsLineMovement extends LineMovement {
 	}
 	
 	@Override
-	public void setChildren(Node n) {
+	public void setChildren(ASTNode n) {
 		myChildren.add(n);
 	}
 }

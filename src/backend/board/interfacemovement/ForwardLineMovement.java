@@ -3,6 +3,7 @@ package backend.board.interfacemovement;
 import java.util.List;
 
 import backend.abstractSyntaxTree.ASTNode;
+import backend.abstractSyntaxTree.ASTNode;
 import backend.board.Turtle;
 /**
  * 
@@ -11,7 +12,7 @@ import backend.board.Turtle;
  */
 public class ForwardLineMovement extends LineMovement {
 	double myDistance;
-	private List<Node> myChildren;
+	private List<ASTNode> myChildren;
 	private List<Turtle> myTurtList;
 	
 	public ForwardLineMovement(List<Turtle> l ) {
@@ -24,7 +25,7 @@ public class ForwardLineMovement extends LineMovement {
 	}
 	
 	@Override
-	public void setChildren(Node n) {
+	public void setChildren(ASTNode n) {
 		myChildren.add(n);
 	}
 	

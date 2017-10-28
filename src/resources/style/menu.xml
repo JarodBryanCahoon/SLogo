@@ -41,7 +41,16 @@
 		<item>
 			<name>Set Image</name>
 			<type>button</type>
-			<strategy>BackColorChange</strategy>
+			<strategy>ImageChange</strategy>
+		</item>
+	</menu>
+
+	<menu>
+		<name>Help Me!</name>
+		<item>
+			<name>Bobby D's Help Page</name>
+			<type>button</type>
+			<strategy>Help</strategy>
 		</item>
 	</menu>
 

@@ -20,5 +20,6 @@ public class Hide extends NoParamTurtle{
 		co.getOpacity().set(false);
 		return 0;
 	}
+	
 
 }

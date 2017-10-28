@@ -31,6 +31,7 @@ public abstract class XMLReader {
 			e.printStackTrace();
 			ErrorMessage eMessage = new ErrorMessage("Could Not Read Config XML File");
 			eMessage.show();
+			return;
 		}
 		myDocument.getDocumentElement().normalize();
 		readFromFile();

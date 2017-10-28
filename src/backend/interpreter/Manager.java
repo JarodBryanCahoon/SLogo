@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import backend.abstractSyntaxTree.ASTNode;
+import backend.abstractSyntaxTree.ASTNode;
 
 /*Manager.java
  * @author Venkat Subramaniam
@@ -14,30 +15,33 @@ import backend.abstractSyntaxTree.ASTNode;
  */ 
 
 public class Manager {
-	private Map<String, O>
-	private Map<String, List<Object>> memory;
-	private TextParse parser;
-	private TreeInterpreter treeInterpret;
+
+	private Map<String, List<Object>> myMemory;
+	private TextParse myParser;
 	private int currentId;
+	private double output;
+
 	
 	
 	public Manager(String filename) throws ClassNotFoundException, FileNotFoundException {
-	myParser = new TextParse(myMemory, filename);
+		myParser = new TextParse(myMemory, filename);
 	}
 
 	
-	public void setCommand(String s) {
+	public void setAndExecuteCommand(String s) {
 		myParser.setCommands(s);
-		treeInterpret = new TreeInterpreter(myParser.getAST());
+		ASTNode tree = myParser.getTree();
+		output = tree.execute();
+	}
+	
+	public double getOutput() {
+		return output;
 	}
 	
 	public void addTurtle() {
 		
 	}
-//	private void executeCommands() {
-//
-//		if (tree==null) {
-//			return;
-//		}
-//	}
+	private void executeCommands() {
+		
+	}
 }

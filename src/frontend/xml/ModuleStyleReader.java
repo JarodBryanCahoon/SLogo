@@ -60,6 +60,7 @@ public class ModuleStyleReader extends XMLReader {
 
 		try {
 			cls = Class.forName(clsName);
+			System.out.println(clsName);
 			constructor = cls.getDeclaredConstructor(double.class, double.class);
 			module = (Module) constructor.newInstance(width, height);
 			myModules.put(module, pos);

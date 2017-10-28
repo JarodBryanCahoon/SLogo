@@ -2,6 +2,7 @@ package backend.board.interfacemovement;
 
 import java.util.List;
 
+import backend.abstractSyntaxTree.ASTNode;
 import backend.board.BoardMath;
 import backend.board.Turtle;
 import javafx.beans.property.DoubleProperty;
@@ -13,7 +14,7 @@ import javafx.beans.property.DoubleProperty;
  */
 public class LineMovement extends SomeParamTurtle{
 	private List<Turtle> myTurtleList;
-	private List<Node> myChildren;
+	private List<ASTNode> myChildren;
 	
 	public LineMovement(List<Turtle> l) {
 		super(l);
@@ -43,7 +44,7 @@ public class LineMovement extends SomeParamTurtle{
 	}
 	
 	@Override
-	public void setChildren(Node n) {
+	public void setChildren(ASTNode n) {
 		myChildren.add(n);
 	}
 

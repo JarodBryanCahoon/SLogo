@@ -3,18 +3,19 @@ package backend.board.interfacemovement;
 import java.util.ArrayList;
 import java.util.List;
 
+import backend.abstractSyntaxTree.ASTNode;
 import backend.board.Turtle;
 
-public class SomeParamTurtle extends TurtleGrandClass{
+public class SomeParamTurtle extends TurtleNode{
 	private List<Turtle> myTurtleList;
-	private List<Node> myNodeList;
+	private List<ASTNode> myNodeList;
 	
 	public SomeParamTurtle(List<Turtle> l) {
 		super(l);
 		myNodeList = new ArrayList<>();
 	}
 	@Override
-	public void setChildren(Node n){
+	public void setChildren(ASTNode n){
 		
 	}
 }
