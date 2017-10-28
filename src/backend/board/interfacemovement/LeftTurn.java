@@ -1,26 +1,26 @@
 package backend.board.interfacemovement;
 
+import java.util.List;
+
 import backend.board.Turtle;
 /**
  * 
  * @author Jarod Cahoon
  *
  */
-public class LeftTurn implements ActionInterface{
-	double myAngle;
+public class LeftTurn extends SomeParamTurtle{
+	private List<Turtle> myTurtleList;
+	private List<Node> myChildren;
 	
-	public LeftTurn(double ang) {
-		myAngle = ang;
+	public LeftTurn(List<Turtle> l) {
+		super(l);
 	}
+	
 	@Override
-	public double act(Turtle co) {
-		co.getAngle().set((co.getAngle().get()+myAngle)%360);
-		return myAngle;
-	}
-	@Override
-	public double execute() {
-		// TODO Auto-generated method stub
-		return 0;
+	protected double act(Turtle co) {
+		double angle = myChildren.get(0).execute();
+		co.getAngle().set((co.getAngle().get()+angle)%360);
+		return angle;
 	}
 
 }

@@ -6,8 +6,6 @@ import backend.board.Turtle;
  * @author Jarod Cahoon
  *
  */
-public interface ActionInterface{
-	public double act(Turtle co); 
-	
+public interface Node{
 	public double execute();
 }

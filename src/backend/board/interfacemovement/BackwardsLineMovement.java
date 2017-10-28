@@ -11,11 +11,11 @@ import backend.board.Turtle;
  */
 public class BackwardsLineMovement extends LineMovement {
 	double myDistance;
-	public ASTNode myChild;
 	private List<Turtle> myTurtList;
+	private List<Node> myChildren;
 	
 	public BackwardsLineMovement(List<Turtle> l ) {
-		myTurtList = l;
+		super(l);
 	}
 	
 	@Override
@@ -23,11 +23,4 @@ public class BackwardsLineMovement extends LineMovement {
 		return this.move(true, myDistance, co);
 	}
 	
-	public double execute() {
-		double value = 0;
-		for(Turtle t : myTurtList) {
-			//value = this.move(true, myChild.execute(), t);
-		}
-		return value;
-	}
 }

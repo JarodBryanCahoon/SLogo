@@ -3,7 +3,7 @@ package backend.board.logic;
 import java.util.concurrent.ThreadLocalRandom;
 
 import backend.board.Turtle;
-import backend.board.interfacemovement.ActionInterface;
+import backend.board.interfacemovement.Node;
 /**
  * 
  * @author Jarod Cahoon

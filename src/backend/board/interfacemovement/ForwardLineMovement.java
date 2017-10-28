@@ -11,24 +11,16 @@ import backend.board.Turtle;
  */
 public class ForwardLineMovement extends LineMovement {
 	double myDistance;
-	public ASTNode myChild;
+	private List<Node> myChildren;
 	private List<Turtle> myTurtList;
 	
 	public ForwardLineMovement(List<Turtle> l ) {
-		myTurtList = l;
+		super(l);
 	}
 	
 	@Override
 	public double act(Turtle co) {
 		return this.move(true, myDistance, co);
-	}
-	
-	public double execute() {
-		double value = 0;
-		for(Turtle t : myTurtList) {
-			//value = this.move(true, myChild.execute(), t);
-		}
-		return value;
 	}
 	
 }
