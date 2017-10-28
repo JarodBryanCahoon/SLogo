@@ -8,19 +8,19 @@
 			<item>
 				<name>Turtle</name>
 				<type>button</type>
-				<strategy>BackColorChange</strategy>
+				<strategy>NewTurtle</strategy>
 			</item>
-<!-- 			<item>
+			<item>
 				<name>Window</name>
 				<type>button</type>
-				<strategy>newWindow</strategy>
-			</item> -->
+				<strategy>NewWindow</strategy>
+			</item>
 		</item>
 
 		<item>
 			<name>Export Preferences</name>
 			<type>button</type>
-			<strategy>BackColorChange</strategy>
+			<strategy>Export</strategy>
 		</item>
 	</menu>
 

@@ -108,7 +108,7 @@ public class MenuReader extends XMLReader {
 			MenuItem newItem = new MenuItem(name);
 			CustomMenuButton newCustomMenu = null;
 			try {
-				Class cls = Class.forName(PREFIX + getContent(menuItem, STRATEGY_TAG));
+				Class<?> cls = Class.forName(PREFIX + getContent(menuItem, STRATEGY_TAG));
 				iMenuItemStrategy strategy = (iMenuItemStrategy) cls.getDeclaredConstructor(ViewModule.class)
 						.newInstance(myViewModule); 
 				newCustomMenu = new CustomMenuButton(newItem, strategy);

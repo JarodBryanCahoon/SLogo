@@ -30,7 +30,6 @@ public class NewWindow extends MenuItemStrategy {
 					);
 
 			ConfigReader configReader = new ConfigReader(configFileName);
-			System.out.println(configReader.getWidth() + " " + configReader.getHeight());
 			ViewModule view = new ViewModule(configReader.getWidth(), configReader.getHeight());
 			
 			Scene scene = new Scene(view.getParent(), configReader.getWidth(), configReader.getHeight());

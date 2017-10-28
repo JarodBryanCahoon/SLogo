@@ -3,6 +3,7 @@ package backend.board;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
+import java.util.Observer;
 
 import backend.board.interfacemovement.ActionInterface;
 import javafx.beans.property.BooleanProperty;
@@ -15,7 +16,7 @@ import javafx.geometry.Point2D;
  * @author Jarod Cahoon
  *
  */
-public class Turtle extends Observable{
+public class Turtle extends Observable implements Observer{
 		public static final double STARTING_ANGLE = 90;
 		public static final double[] STARTING_POSITION = {0,0};
 		private DoubleProperty myXPos;
@@ -24,16 +25,12 @@ public class Turtle extends Observable{
 		private BooleanProperty myPenDown;
 		private BooleanProperty myOpacity;
 		private IntegerProperty myTurtleId;
+		private RenderMath myRenderMath;
 
-		// https://stackoverflow.com/questions/23335522/how-do-i-write-a-new-listchangelisteneritem-with-lambda
-		public Turtle(String imagePath, int id, RenderSprite ob) {
+		public Turtle(String imagePath, int id, RenderSprite ob, RenderMath math) {
 			addObserver(ob);
-			myXPos.set(ob.getX());
-			myYPos.set(ob.getY());
-			myAngle.set(ob.getAngle());
-			myTurtleId.set(ob.getId());
-			myPenDown.set(ob.isPenDown());
-			myOpacity.set(ob.isVisible());
+			readRenderSprite(ob);
+			myRenderMath = math;
 		}
 		
 		public double Act(ActionInterface m){
@@ -41,6 +38,10 @@ public class Turtle extends Observable{
 			setChanged();
 			this.notifyObservers(this);
 			return returnValue;
+		}
+		
+		public RenderMath getMath() {
+			return myRenderMath;
 		}
 		
 		public int getId() {
@@ -69,5 +70,20 @@ public class Turtle extends Observable{
 		
 		public IntegerProperty getID() {
 			return myTurtleId;
+		}
+		
+		private void readRenderSprite(RenderSprite ob) {
+			myXPos.set(ob.getX());
+			myYPos.set(ob.getY());
+			myAngle.set(ob.getAngle());
+			myTurtleId.set(ob.getId());
+			myPenDown.set(ob.isPenDown());
+			myOpacity.set(ob.isVisible());
+		}
+
+		@Override
+		public void update(Observable arg0, Object arg1) {
+			RenderSprite rs = (RenderSprite) arg0;
+			readRenderSprite(rs);
 		}
 }
