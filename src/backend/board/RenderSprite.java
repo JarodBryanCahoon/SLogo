@@ -98,24 +98,56 @@ public class RenderSprite extends Observable implements iRenderSprite, Observer 
 	 */
 	private double changeY(Turtle turtle) {
 		double myOldY = myY;
-		myY = turtle.getMyY().get();		
-		myImageView.setY(myRenderMath.imageY(myY));
+		double newY = turtle.getMyY().get();
+		setY(newY);
 		return myOldY;
 	}
 
-	private void changeAngle(Turtle turtle) {
-		myAngle = turtle.getAngle().get();
+	@Override
+	public void setY(double newY) {
+		myY = newY;
+		myImageView.setY(myRenderMath.imageY(myY));
+		setChangedNotify();
+	}
+
+	private void changeAngle(Turtle turtle) {		
+		setAngle(turtle.getAngle().get());
+	}
+
+	@Override
+	public void setAngle(double newAngle) {
+		myAngle = newAngle;
 		myImageAngle = -myAngle;
 		myImageView.setRotate(myImageAngle);
+		setChangedNotify();
 	}
 
 	private void changePen(Turtle turtle) {
-		penDown = turtle.getPen().get();
+		setPenDown(turtle.getPen().get());
 	}
 
 	private void changeOpacity(Turtle turtle) {
-		isVisible = turtle.getOpacity().get();
+		setVisible(turtle.getOpacity().get());
+	}
+	
+	@Override
+	public void setX(double X) {
+		myX = X;
+		myImageView.setX(myRenderMath.imageX(myX));
+		setChangedNotify();
+	}
+
+	@Override
+	public void setPenDown(boolean isPenDown) {
+		penDown = isPenDown;
+		setChangedNotify();
+	}
+
+	@Override
+	public void setVisible(boolean isVisible) {
+		this.isVisible = isVisible;
 		myImageView.setVisible(isVisible);
+		setChangedNotify();
 	}
 
 	@Override
@@ -157,36 +189,6 @@ public class RenderSprite extends Observable implements iRenderSprite, Observer 
 	private void setChangedNotify() {
 		setChanged();
 		notifyObservers();
-	}
-	
-	@Override
-	public void setX(double X) {
-		myX = X;
-		setChangedNotify();
-	}
-
-	@Override
-	public void setY(double Y) {
-		myY = Y;
-		setChangedNotify();
-	}
-
-	@Override
-	public void setPenDown(boolean isPenDown) {
-		penDown = isPenDown;
-		setChangedNotify();
-	}
-
-	@Override
-	public void setVisible(boolean isVisible) {
-		this.isVisible = isVisible;
-		setChangedNotify();
-	}
-
-	@Override
-	public void setAngle(double angle) {
-		myAngle = angle;
-		setChangedNotify();
 	}
 	
 	public RenderMath getMath() {
