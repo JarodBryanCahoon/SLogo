@@ -1,31 +1,50 @@
-/* Document: sstylesheet2.css*/ 
+/*Document   : sstylesheet2.css*/ 
+ 
 .root{ 
-fx-font:14px 'Letter Gothic Std';
-fx-text-fill:silver;
-fx-background-color:black;
-fx-wrap-text:true;
+-fx-font:14px 'Letter Gothic Std';
+-fx-text-fill:white;
+-fx-background-color:black;
+-fx-wrap-text:true;
 }
-.variable{ 
-fx-fill:greenyellow;
+
+.Variable{ 
+-fx-fill:orangered;
 }
-.text{ 
-fx-fill:silver;
+
+.Constant{ 
+-fx-fill:pink;
 }
-.constant{ 
-fx-fill:pink;
+
+.Command{ 
+-fx-fill:gold;
 }
-.command{ 
-fx-fill:orangered;
+
+.Text{ 
+-fx-fill:silver;
 }
-.invalid{ 
-fx-fill:silver;
+
+.Invalid{ 
+-fx-fill:silver;
 }
-.window{ 
-fx-background-color:black;
+
+.Window{ 
+-fx-background-color:black;
 }
-.render{ 
-fx-background-color:;
-turtle:;
-fx-fill:;
-fx-width:;
+
+.Window .content{ 
+-fx-background-color:black;
+-fx-text-fill:white;
 }
+
+.Render{ 
+-fx-background-color:red;
+-fx-fill:blue;
+-fx-width:red;
+-turtle:red;
+}
+
+.ColorPicker{ 
+-fx-font:8px 'Letter Gothic Std';
+-fx-background-color:white;
+}
+

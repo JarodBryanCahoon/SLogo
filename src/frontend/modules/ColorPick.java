@@ -25,7 +25,8 @@ public class ColorPick {
 		System.out.println(myReader.getNodeListString(name));
 		System.out.println(myReader.getChildNode(name,index));
 //		System.out.println(colorpick.getValue());
-//		myReader.setColor("bleh","b;e");
+		String color = colorpick.getValue().toString();
+		myReader.setColor(name,index,color);
 	}
 	public ColorPicker getColorPicker() {
 		return colorpick;

@@ -17,7 +17,8 @@ import exceptions.ErrorMessage;
 import exceptions.XMLException;
 
 public class ColorReader extends XMLReader {
-	private final String CSSPATH = "/src/resources/style/";
+	private final String CSSPATH = System.getProperty("user.dir")+"/src/resources/style/";
+	private final String FILENAME = "stylesheet2.css";
 	File file;
 	FileWriter fileWriter;
 	BufferedWriter bf;
@@ -30,12 +31,11 @@ public class ColorReader extends XMLReader {
 
 	@Override
 	protected void readFromFile() throws IOException{
-		file = new File(System.getProperty("user.dir") +CSSPATH,"stylesheet2.css");
+		file = new File(CSSPATH,FILENAME);
 		document = getElement().getChildNodes();
 		fileWriter = new FileWriter(file);
 		bf = new BufferedWriter(fileWriter);
 		writeHeader();
-		
 		writeBody(document);
 		bf.close();
 		
@@ -72,7 +72,15 @@ public class ColorReader extends XMLReader {
 		return "."+ name+ "{ \n";
 	}
 	
-	
+	public void setColor(String name, int index, String color) {
+		NodeList nList =getNodeList(name).item(0).getChildNodes();
+		Node node = nList.item(index);
+		node.setTextContent(color);
+		System.out.println(node.getNodeName());
+		System.out.println(node.getTextContent());
+		GenericWriter writer = new GenericWriter(CSSPATH+FILENAME,getElement());
+		
+	}
 	
 
 	
