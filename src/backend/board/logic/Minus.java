@@ -1,7 +1,7 @@
 package backend.board.logic;
 
 import backend.board.Turtle;
-import backend.board.interfacemovement.ActionInterface;
+import backend.board.interfacemovement.Node;
 /**
  * 
  * @author Jarod Cahoon

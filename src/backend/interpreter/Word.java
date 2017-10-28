@@ -3,6 +3,8 @@ package backend.interpreter;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Constructor;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.ResourceBundle;
@@ -14,6 +16,7 @@ import backend.abstractSyntaxTree.ListExp;
 import backend.abstractSyntaxTree.MonoOperatorExp;
 import backend.abstractSyntaxTree.NoneOperatorExp;
 import backend.abstractSyntaxTree.VariableExp;
+import backend.board.Turtle;
 import exceptions.ErrorMessage;
 
 /**
@@ -24,12 +27,14 @@ public class Word {
 	private static final String CONSTANT = "Constant";
 	private static final String VARIABLE = "Variable";
 	private static final String COMMAND = "Command";
-	private static final String PREFIX = "backend.board.interfacemovement.";
 	private String myName;
 	private String myType;
-	private Expression myExpression;
+	private String nodeType;
+	private Expression myExpression;//myNode
+	//private Node myNode;
 	private int operatorNumber;
 	private Properties myProperties;
+	private List<Turtle> turtles;
 
 //	private Map<String, Integer> commandNumbers = new HashMap<String, Integer>();
 	
@@ -44,29 +49,42 @@ public class Word {
 	private void determineType(ResourceBundle rb, Map<String, Integer> map) {
 		if(myName.matches(myProperties.getProperty(CONSTANT))){ 
 			myType = CONSTANT;
-			myExpression = new DoubleExp(Double.parseDouble(myName));
+			//myExpression = new DoubleExp(Double.parseDouble(myName));
+			//myNode = new ConstantNode(Double.parseDouble(myName));
 		}
 		else if(myName.matches(myProperties.getProperty(VARIABLE))) {
 			myType = VARIABLE;
-			myExpression = new VariableExp(myName);
+			//myExpression = new VariableExp(myName);
+			//myNode = new VariableNode(myName);
 		}
 		else if(myName.matches(myProperties.getProperty(COMMAND))) {
 			myType = COMMAND;
 			try {
 				String method = rb.getString(myName).split(",")[1];
-				method = PREFIX + method;
+				String methodType = rb.getString(myName).split(",")[2];
 				if (map.get(method)==0) {
-					myExpression = new NoneOperatorExp(method);
 					operatorNumber = 0;
 				}
 				if (map.get(method)==1) {
-					myExpression = new MonoOperatorExp(method);
 					operatorNumber = 1;
 				}
 				if(map.get(method)==2) {
-					myExpression = new DuoOperatorExp(method);
 					operatorNumber = 2;
 				}
+				Class<?> c = Class.forName(method);
+				Constructor <?>ctr;
+				//Node myNode;
+				if (methodType.equals("Turtle")) {
+					nodeType = "Turtle";
+					ctr = c.getConstructor(List.class);
+					//myNode =  (Node) ctr.newInstance(turtles);
+				}
+				else {
+					ctr = c.getConstructor();
+					//myNode = (Node) ctr.newInstance();
+				}
+				
+				
 			}catch (Exception MissingResourceException) {
 					myType = "Invalid";
 			}
@@ -89,5 +107,9 @@ public class Word {
 	}
 	public int getNumber() {
 		return operatorNumber;
+	}
+	public static void main (String args[]) {
+		String s = "34";
+		
 	}
 }

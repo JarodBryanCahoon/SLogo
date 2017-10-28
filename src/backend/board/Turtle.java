@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
-import backend.board.interfacemovement.ActionInterface;
+import backend.board.interfacemovement.Node;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
@@ -33,7 +33,7 @@ public class Turtle extends Observable implements Observer{
 			myRenderMath = math;
 		}
 		
-		public double Act(ActionInterface m){
+		public double Act(Node m){
 			double returnValue = m.act(this);
 			setChanged();
 			this.notifyObservers(this);
