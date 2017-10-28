@@ -17,7 +17,7 @@ import javafx.geometry.Point2D;
  * @author Jarod Cahoon
  *
  */
-public class Turtle extends Observable implements Observer{
+public class Turtle extends Observable implements ITurtle, Observer{
 		public static final double STARTING_ANGLE = 90;
 		public static final double[] STARTING_POSITION = {0,0};
 		private DoubleProperty myXPos;
@@ -27,6 +27,7 @@ public class Turtle extends Observable implements Observer{
 		private BooleanProperty myOpacity;
 		private IntegerProperty myTurtleId;
 		private RenderMath myRenderMath;
+		private BooleanProperty isSelected;
 
 		public Turtle(String imagePath, int id, RenderSprite ob, RenderMath math) {
 			addObserver(ob);
@@ -34,7 +35,7 @@ public class Turtle extends Observable implements Observer{
 			myRenderMath = math;
 		}
 		
-		public double Act(TurtleNode m){
+		public double act(TurtleNode m){
 			double returnValue = m.act(this);
 			setChanged();
 			this.notifyObservers(this);
@@ -73,6 +74,10 @@ public class Turtle extends Observable implements Observer{
 			return myTurtleId;
 		}
 		
+		public boolean isSelected() {
+			return isSelected.get();
+		}
+		
 		private void readRenderSprite(RenderSprite ob) {
 			myXPos.set(ob.getX());
 			myYPos.set(ob.getY());
@@ -80,6 +85,7 @@ public class Turtle extends Observable implements Observer{
 			myTurtleId.set(ob.getId());
 			myPenDown.set(ob.isPenDown());
 			myOpacity.set(ob.isVisible());
+			isSelected.set(ob.isSelected());
 		}
 
 		@Override

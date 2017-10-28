@@ -27,8 +27,8 @@ public class StylizeModule extends Module {
 	private ColorReader myReader;
 	private GridPane settings;
 	
-	public StylizeModule(double width, double height) throws Exception {
-		super(width, height);
+	public StylizeModule(double width, double height, ViewModule view) throws Exception {
+		super(width, height, view);
 		myParent.setMinWidth(width);	
 	}
 

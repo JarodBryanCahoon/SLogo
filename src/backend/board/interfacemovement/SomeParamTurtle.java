@@ -10,8 +10,8 @@ public class SomeParamTurtle extends TurtleNode{
 	private List<Turtle> myTurtleList;
 	private List<ASTNode> myNodeList;
 	
-	public SomeParamTurtle(List<Turtle> l) {
-		super(l);
+	public SomeParamTurtle(List<Turtle> turtles) {
+		super(turtles);
 		myNodeList = new ArrayList<>();
 	}
 	@Override

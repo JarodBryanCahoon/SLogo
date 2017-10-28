@@ -15,16 +15,9 @@ public class GenericWriter extends XMLWriter {
 	}
 
 	@Override
-	public Document createDocument() {
-		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
-		DocumentBuilder docBuilder;
-		try {
-			docBuilder = docFactory.newDocumentBuilder();
-		} catch (ParserConfigurationException e) {
-			throw new XMLException();
-		}
-		Document doc = docBuilder.newDocument();
-		return doc;
+	public Element createChild() {
+		// do nothing
+		return null;
 	}
 
 }
