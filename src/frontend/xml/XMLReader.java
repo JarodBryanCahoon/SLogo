@@ -48,10 +48,23 @@ public abstract class XMLReader {
 		Element root = myDocument.getDocumentElement();
 		return this.getNodeList(root, tag);
 	}
-	
 	protected NodeList getNodeList(Element e, String tag) {
 		NodeList nList = e.getElementsByTagName(tag);
 		return nList;
+	}
+	
+	protected Document getDocument() {
+		return myDocument;
+	}
+	
+	protected String getContent(Element element, String tag) {
+		return element.getElementsByTagName(tag).item(0).getTextContent();
+	}
+	
+	public static Element createTextElement(Document doc, String tag, String text) {
+		Element e = doc.createElement(tag);
+		e.appendChild(doc.createTextNode(text));
+		return e;
 	}
 	
 	public List<String> getNodeListString(String tag) {
@@ -70,21 +83,6 @@ public abstract class XMLReader {
 	public String getChildNode(String tag,int index) {
 		NodeList nList = getNodeList(tag).item(0).getChildNodes();
 		return nList.item(index).getTextContent();
-	}
-	
-	protected Document getDocument() {
-		return myDocument;
-	}
-	
-	
-	protected String getContent(Element element, String tag) {
-		return element.getElementsByTagName(tag).item(0).getTextContent();
-	}
-	
-	public static Element createTextElement(Document doc, String tag, String text) {
-		Element e = doc.createElement(tag);
-		e.appendChild(doc.createTextNode(text));
-		return e;
 	}
 	
 }
