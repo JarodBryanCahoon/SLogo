@@ -7,14 +7,14 @@ import backend.board.interfacemovement.ActionInterface;
  * @author Jarod Cahoon
  *
  */
-public class Minus implements ActionInterface{
+public class Minus implements InactiveInterface{
 	double myNumOne;
 	
 	public Minus(double a) {
 		myNumOne = a;
 	}
 	
-	public double act(Turtle tu) {
+	public double act() {
 		return -myNumOne;
 	}
 }

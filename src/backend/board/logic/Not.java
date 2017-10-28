@@ -7,14 +7,14 @@ import backend.board.interfacemovement.ActionInterface;
  * @author Jarod Cahoon
  *
  */
-public class Not implements ActionInterface{
+public class Not implements InactiveInterface{
 	double myNumOne;
 	
 	public Not(double a, double b) {
 		myNumOne = a;
 	}
 	
-	public double act(Turtle tu) {
+	public double act() {
 		return (myNumOne == 0) ? 1:0;
 	}
 }

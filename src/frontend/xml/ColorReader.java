@@ -74,7 +74,6 @@ public class ColorReader extends XMLReader {
 		}
 		return toReturn;
 	}
-	
 	public List<String> getRender() {
 		List<String> toReturn = new ArrayList<String>();
 		NodeList render = document.item(17).getChildNodes();
