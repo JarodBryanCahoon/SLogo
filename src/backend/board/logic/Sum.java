@@ -1,34 +1,23 @@
 package backend.board.logic;
 
 import backend.abstractSyntaxTree.ASTNode;
-import backend.board.Turtle;
 /**
  * 
- * @author Jarod Cahoon
+ * @author Jarod Cahoon, Venkat Subramaniam
  *
  */
-public class Sum implements ASTNode{
-	double myNumOne;
-	double myNumTwo;
+public class Sum extends MathNode{
 	
-	public Sum(double a, double b) {
-		myNumOne = a;
-		myNumTwo = b;
-	}
-	
-	public double act() {
-		return myNumOne+myNumTwo;
+	public Sum() {
+		super();
 	}
 
 	@Override
 	public double execute() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public void setChildren(ASTNode n) {
-		// TODO Auto-generated method stub
-		
+		double sum = 0;
+		for(ASTNode n:super.getChildren()) {
+			sum+=n.execute();
+		}
+		return sum;
 	}
 }
