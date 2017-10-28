@@ -41,8 +41,7 @@ public class InfoInterface extends Observable {
 		TextFlow historyText = createSentence(history.get(index-1));
 		FlowPane toReturn = new FlowPane();
 		
-		toReturn.getStyleClass().add("history");
-		indexText.getStyleClass().add("text");
+		indexText.getStyleClass().add("Text");
 		toReturn.getChildren().add(indexText);
 		toReturn.getChildren().add(historyText);
 	

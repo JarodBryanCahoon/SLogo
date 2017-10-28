@@ -9,26 +9,43 @@
 		</root>
 	</Base>
 	
-
-	<Window>
-		<fx-background-color>black</fx-background-color>
-	</Window>
-	<Window.content>
-		<fx-background-color>black</fx-background-color>
-		<fx-text-fill>silver</fx-text-fill>
-	</Window.content>
-
-	<ColorPicker>
-		<fx-font>8px 'Letter Gothic Std'</fx-font>
-		<fx-background-color>white</fx-background-color>
-	</ColorPicker>
-
-	<Render>
-		<fx-background-color>red</fx-background-color>
-		<turtle>red</turtle>
-		<fx-fill>red</fx-fill>
-		<fx-width>red</fx-width>
-	</Render>
+	<Word>
+		<Variable>
+			<fx-fill>orangered</fx-fill>
+		</Variable>
+		<Constant>
+			<fx-fill>pink</fx-fill>
+		</Constant>
+		<Command>
+			<fx-fill>gold</fx-fill>
+		</Command>
+		<Text>
+			<fx-fill>silver</fx-fill>	
+		</Text>
+		<Invalid>
+			<fx-fill>silver</fx-fill>	
+		</Invalid>
+	</Word>
+	
+	<Windows>
+		<Window>
+			<fx-background-color>black</fx-background-color>
+		</Window>
+		<Window.content>
+			<fx-background-color>black</fx-background-color>
+			<fx-text-fill>white</fx-text-fill>
+		</Window.content>
+	</Windows>
+	
+	<Rendering>
+		
+		<Render>
+			<fx-background-color>red</fx-background-color>
+			<turtle>red</turtle>
+			<fx-fill>red</fx-fill>
+			<fx-width>red</fx-width>
+		</Render>
+	</Rendering>
 		
 	<Colorpickering>
 		<ColorPicker>
