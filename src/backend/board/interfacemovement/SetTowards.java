@@ -29,4 +29,8 @@ public class SetTowards extends SomeParamTurtle {
 	protected double angleDifference(double angle1, double angle2) {
 		return (Math.abs(angle1 - angle2) > 180) ? Math.abs(angle1 - angle2) - 180 : Math.abs(angle1 - angle2);
 	}
+	@Override
+	public void setChildren(Node n) {
+		myChildren.add(n);
+	}
 }

@@ -13,8 +13,8 @@ public class SomeParamTurtle extends TurtleGrandClass{
 		super(l);
 		myNodeList = new ArrayList<>();
 	}
-
-	public List<Node> getChildren(){
-		return myNodeList;
+	@Override
+	public void setChildren(Node n){
+		
 	}
 }

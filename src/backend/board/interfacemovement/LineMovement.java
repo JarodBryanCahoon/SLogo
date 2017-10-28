@@ -41,5 +41,10 @@ public class LineMovement extends SomeParamTurtle{
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	
+	@Override
+	public void setChildren(Node n) {
+		myChildren.add(n);
+	}
 
 }

@@ -25,4 +25,9 @@ public class TurtleGrandClass implements Node {
 		return d;
 	}
 
+	@Override
+	public void setChildren(Node n) {
+		// TODO Auto-generated method stub
+	}
+
 }

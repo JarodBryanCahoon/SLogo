@@ -1,5 +1,7 @@
 package backend.board.interfacemovement;
 
+import java.util.List;
+
 import backend.board.Turtle;
 /**
  * 
@@ -8,4 +10,5 @@ import backend.board.Turtle;
  */
 public interface Node{
 	public double execute();
+	public void setChildren(Node n);
 }

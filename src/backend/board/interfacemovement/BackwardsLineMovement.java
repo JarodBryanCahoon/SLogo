@@ -23,4 +23,8 @@ public class BackwardsLineMovement extends LineMovement {
 		return this.move(true, myDistance, co);
 	}
 	
+	@Override
+	public void setChildren(Node n) {
+		myChildren.add(n);
+	}
 }

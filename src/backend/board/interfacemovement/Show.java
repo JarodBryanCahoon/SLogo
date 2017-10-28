@@ -25,6 +25,10 @@ public class Show extends NoParamTurtle{
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	@Override
+	public void setChildren(Node n) {
+		myChildren.add(n);
+	}
 	
 
 }

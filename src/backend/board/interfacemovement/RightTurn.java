@@ -25,5 +25,10 @@ public class RightTurn extends SomeParamTurtle {
 		co.getAngle().set(holder);
 		return angle;
 	}
+	
+	@Override
+	public void setChildren(Node n) {
+		myChildren.add(n);
+	}
 
 }

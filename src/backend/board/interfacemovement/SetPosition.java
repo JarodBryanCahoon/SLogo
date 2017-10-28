@@ -26,6 +26,10 @@ public class SetPosition extends SomeParamTurtle{
 		return diff;
 	}
 	
+	@Override
+	public void setChildren(Node n) {
+		myChildren.add(n);
+	}
 	
 
 }
