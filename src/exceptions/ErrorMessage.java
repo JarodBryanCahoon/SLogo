@@ -3,6 +3,7 @@ package exceptions;
 import javafx.scene.Scene;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class ErrorMessage {
 	private static final double ERROR_MARGINS = 0.5;
@@ -20,9 +21,9 @@ public class ErrorMessage {
 		// lasia help css
 		
 		Scene scene = new Scene(textArea);
+		scene.getStylesheets().add("Window");
+		myStage.initStyle(StageStyle.UNDECORATED);
 		myStage.setScene(scene);
-		
-		myStage.setTitle(ERROR_TITLE);
 	}
 
 	public void show() {
