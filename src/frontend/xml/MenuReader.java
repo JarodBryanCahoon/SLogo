@@ -3,6 +3,7 @@ package frontend.xml;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.w3c.dom.Element;
@@ -27,7 +28,6 @@ public class MenuReader extends XMLReader {
 	private static final String PREFIX = "frontend.menus.strategies.";
 
 	private Map<String, Menu> mySubMenus;
-	private Map<MenuItem, iMenuItemStrategy> strategies;
 	private ViewModule myViewModule;
 
 	public MenuReader(String path, ViewModule viewModule) throws XMLException, IOException {
@@ -37,8 +37,7 @@ public class MenuReader extends XMLReader {
 
 	@Override
 	protected void readFromFile() throws XMLException {
-		mySubMenus = new HashMap<>();
-		strategies = new HashMap<>();
+		mySubMenus = new LinkedHashMap<>();
 		NodeList nList = this.getNodeList(MENU_TAG);
 
 		for (int i = 0; i < nList.getLength(); i++) {

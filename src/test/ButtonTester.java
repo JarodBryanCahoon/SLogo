@@ -1,6 +1,7 @@
 package test;
 
 import frontend.menus.strategies.ChangeLanguage;
+import frontend.menus.strategies.Help;
 import frontend.menus.strategies.NewWindow;
 import frontend.modules.ViewModule;
 import javafx.application.Application;
@@ -12,7 +13,7 @@ public class ButtonTester extends Application{
 	public void start(Stage stage) throws Exception {
 
 		ViewModule v = new ViewModule(500, 500);
-		ChangeLanguage e = new ChangeLanguage(v);
+		Help e = new Help(v);
 		e.execute();
 	}
 	

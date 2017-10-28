@@ -1,5 +1,6 @@
 package frontend.modules;
 
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Map;
@@ -10,6 +11,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import exceptions.ErrorMessage;
+import exceptions.XMLException;
 import frontend.xml.ModuleStyleReader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -24,6 +26,7 @@ public class ViewModule extends Module{
 	
 	public ViewModule(int width, int height) throws Exception {
 		super(width, height);
+		initSubModules();
 		for(Module m : myModules) {
 			m.setViewModule(this);
 		}
@@ -34,11 +37,15 @@ public class ViewModule extends Module{
 	}
 
 	@Override
-	protected Parent createParent() throws Exception {
+	protected Parent createParent() throws Exception {				
+		return new BorderPane();
+	}
+	
+	private void initSubModules() throws XMLException, IOException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException {
+		BorderPane myParent = (BorderPane) getParent();
 		ModuleStyleReader mStyleReader = new ModuleStyleReader(getClass().getClassLoader().getResource(moduleFileName).getFile());
 		myModules = mStyleReader.getModules().keySet();
 		Map<Module, String> posMap = mStyleReader.getModules();
-		BorderPane myParent = new BorderPane();
 		
 		for(Module module : myModules) {
 			try {
@@ -59,7 +66,6 @@ public class ViewModule extends Module{
 		}
 		
 		myParent.setPrefSize(getWidth(), getHeight());
-		return myParent;
 	}
 
 	@Override

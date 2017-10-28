@@ -18,17 +18,17 @@ public class ImageChange extends MenuItemStrategy {
 
 	@Override
 	public void execute() {
-		TextPromptWindow tWindow = new TextPromptWindow("Load", "Load Image URL...", e -> execute(e));
+		TextPromptWindow tWindow = new TextPromptWindow("Load", "Load Image URL...", e -> changeImage(e));
 	}
 	
-	private void execute(String path) {
+	private void changeImage(String path) {
 		 try {
-			 ImageView newImage = loadImage(path);
+			 ImageView newImage = loadImage(this.getClass().getClassLoader().getResource(path).getPath());
 			 List<RenderSprite> selectedSprites = getView().getRenderModule().getSelectedSprites();
 			 for(RenderSprite s : selectedSprites) {  // ???
 				 s.changeImage(newImage);
 			 }			 
-		 } catch (XMLException e) {
+		 } catch (XMLException | NullPointerException e) {
 			 ErrorMessage eMessage = new ErrorMessage(ErrorMessage.INVALID_PATH);
 			 eMessage.show();
 		 }
@@ -38,7 +38,8 @@ public class ImageChange extends MenuItemStrategy {
 		try {
 			ImageView image = new ImageView(path);
 			return image;
-		} catch (InvalidPathException | NullPointerException e) {
+		} catch (NullPointerException | IllegalArgumentException e) {
+			e.printStackTrace();
 			throw new XMLException();
 		}
 	}
