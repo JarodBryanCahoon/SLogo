@@ -4,10 +4,15 @@ import java.util.Observable;
 import java.util.Observer;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+
 import frontend.modules.RenderModule;
+import frontend.popups.TurtleView;
 import frontend.xml.PreferenceXMLReader;
 import frontend.xml.XMLReader;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 
 /**
  * @author Albert
@@ -46,7 +51,15 @@ public class RenderSprite extends Observable implements iRenderSprite, Observer 
 		myImageView.setX(myRenderMath.imageX(myX));
 		myImageView.setY(myRenderMath.imageY(myY));
 		myImageView.setRotate(myImageAngle);
-		myImageView.setOnMouseClicked(e -> selectTurtle());
+		myImageView.setOnMouseClicked(e -> handleMouseInput(e));
+	}
+	
+	private void handleMouseInput(MouseEvent event) {
+		if(event.getButton().equals(MouseButton.PRIMARY)) {
+			selectTurtle();
+		} else if(event.getButton().equals(MouseButton.SECONDARY)) {
+			TurtleView view = new TurtleView(this);
+		}
 	}
 	
 	public void stylize() {
