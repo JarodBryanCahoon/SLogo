@@ -65,7 +65,7 @@ public class RenderSprite extends Observable implements iRenderSprite, Observer 
 	
 	private void handleDrag(MouseEvent event) {
 		setX(myRenderMath.logoX(event.getSceneX() - myImageView.getBoundsInLocal().getWidth() / 2));
-		setY(myRenderMath.logoY(event.getSceneY() - myImageView.getBoundsInLocal().getHeight()));
+		setY(myRenderMath.logoY(event.getSceneY()));
 	}
 	
 	public void stylize() {
@@ -164,10 +164,6 @@ public class RenderSprite extends Observable implements iRenderSprite, Observer 
 	public void changeImage(ImageView image) {
 		myImageView = image;
 		initImage();
-	}
-	
-	private boolean hasMoved(double oldX, double oldY) {
-		return ! (oldX == myX && oldY == myY);
 	}
 
 	private void setChangedNotify() {

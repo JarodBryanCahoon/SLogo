@@ -61,7 +61,7 @@ public class ConsoleInput extends Module{
 			backend.addToHistory(text);
 			inputField.setText("");
 			createText("");
-			} catch (SyntaxException e) {
+			} catch (SyntaxException | NullPointerException e) {
 				inputField.setStyle("-fx-border-color: red");
 			}
 			
