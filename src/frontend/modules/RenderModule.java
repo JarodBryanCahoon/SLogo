@@ -25,13 +25,14 @@ import javafx.scene.shape.Line;
  */
 public class RenderModule extends Module{
 	private List<RenderSprite> mySprites;
-	private int turtleId = 0;
+	private int turtleId = 1;
 	private Canvas myCanvas;
 	private static final String turtlePath = "/resources/turtle.png";
 			
 	public RenderModule(double width, double height, ViewModule view) throws Exception {
 		super(width, height, view);
-		addTurtle();		
+		addTurtle();
+		
 	}
 	
 	@Override
@@ -46,12 +47,13 @@ public class RenderModule extends Module{
 		return myPane;
 	}
 	
-	public void addTurtle() {
+	public RenderSprite addTurtle() {
 		Pane myPane = (Pane) getParent();
 		RenderSprite sprite = new RenderSprite(turtleId, turtlePath, getWidth(), getHeight(), this);
 		myPane.getChildren().add(sprite.getImage());
 		mySprites.add(sprite);
 		turtleId++;
+		return sprite;
 	}
 	
 	//https://docs.oracle.com/javafx/2/canvas/jfxpub-canvas.htm
@@ -82,7 +84,6 @@ public class RenderModule extends Module{
 		mySprites.clear();
 		myPane.getChildren().remove(myCanvas);
 		myCanvas = new Canvas();
-		turtleId = 0;
 		addTurtle();
 		myPane.getChildren().add(myCanvas);
 	}
@@ -110,13 +111,7 @@ public class RenderModule extends Module{
 		myCanvas.getStyleClass().add("Render");
 	}
 	
-	public List<RenderSprite> getSelectedSprites() {
-		List<RenderSprite> selectedSprites = new ArrayList<>();
-		for(RenderSprite s : mySprites) {
-			if(s.isSelected()) {
-				selectedSprites.add(s);
-			}
-		}
-		return selectedSprites;
+	public List<RenderSprite> getSprites() {
+		return mySprites;
 	}
 }

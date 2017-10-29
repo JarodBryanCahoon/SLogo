@@ -18,7 +18,7 @@ public abstract class SomeParamTurtle extends TurtleNode{
 		myChildren.add(n);
 	}
 	
-	protected List<ASTNode> getChildren(){
+	protected List<ASTNode> getChildren() {
 		return myChildren;
 	}
 }
