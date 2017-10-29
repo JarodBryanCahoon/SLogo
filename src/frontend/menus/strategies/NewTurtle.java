@@ -10,7 +10,7 @@ public class NewTurtle extends MenuItemStrategy {
 
 	@Override
 	public void execute() {
-		
+		this.getView().getManager().addTurtle();
 	}
 
 }

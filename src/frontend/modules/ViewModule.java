@@ -65,6 +65,7 @@ public class ViewModule extends Module{
 					myRenderModule = (RenderModule) module;
 				}
 			} catch (InvocationTargetException e) {
+				e.printStackTrace();
 				ErrorMessage eMessage = new ErrorMessage("Could not create Module Parents");
 				eMessage.show();
 			}

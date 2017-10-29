@@ -64,7 +64,7 @@ public class RenderSprite extends Observable implements iRenderSprite, Observer 
 	}
 	
 	private void handleDrag(MouseEvent event) {
-		setX(myRenderMath.logoX(event.getSceneX()));
+		setX(myRenderMath.logoX(event.getSceneX() - myImageView.getBoundsInLocal().getWidth() / 2));
 		setY(myRenderMath.logoY(event.getSceneY()));
 	}
 	
@@ -105,34 +105,10 @@ public class RenderSprite extends Observable implements iRenderSprite, Observer 
 		setChangedNotify();
 	}
 	
-	private void readX(double X) {
-		myX = X;
-		myImageView.setX(myRenderMath.imageX(myX));
-	}
-	
-	private void readY(double newY) {
-		myY = newY;
-//		System.out.println("Render Y " + newY);
-		myImageView.setY(myRenderMath.imageY(myY));
-//		System.out.println("translated render Y " + myRenderMath.imageY(myY));
-//		System.out.println(myImageView.getY());
-	}
-
-
-	private void readAngle(double newAngle) {
-		myAngle = newAngle;
-		myImageAngle = -myAngle;
-		myImageView.setRotate(myImageAngle);
-	}
-
 	@Override
 	public void setPen(boolean isPenDown) {
 		readPen(isPenDown);
 		setChangedNotify();
-	}
-
-	private void readPen(boolean isPenDown) {
-		penDown = isPenDown;
 	}
 
 	@Override
@@ -140,7 +116,27 @@ public class RenderSprite extends Observable implements iRenderSprite, Observer 
 		readVisibility(isVisible);
 		setChangedNotify();
 	}
+	
+	private void readX(double X) {
+		myX = X;
+		myImageView.setX(myRenderMath.imageX(myX));
+	}
+	
+	private void readY(double newY) {
+		myY = newY;
+		myImageView.setY(myRenderMath.imageY(myY));
+	}
 
+	private void readAngle(double newAngle) {
+		myAngle = newAngle;
+		myImageAngle = -myAngle;
+		myImageView.setRotate(myImageAngle);
+	}
+
+	private void readPen(boolean isPenDown) {
+		penDown = isPenDown;
+	}
+	
 	private void readVisibility(boolean isVisible) {
 		this.isVisible = isVisible;
 		myImageView.setVisible(isVisible);
@@ -153,28 +149,21 @@ public class RenderSprite extends Observable implements iRenderSprite, Observer 
 		double oldX = turtle.getMyX();
 		double oldY = turtle.getMyY();
 
-//		System.out.println("Old Y" + oldY);
-//		System.out.println("Old Y" + turtle.getMyY());
-//		System.out.println("Old Y" + turtle.getMyY());
-
-
-		setX(turtle.getMyX());
-		setY(turtle.getMyY());
-		setPen(turtle.getPen());
-		if(penDown && hasMoved(oldX, oldY)) {
+		readX(turtle.getMyX());
+		readY(turtle.getMyY());
+		
+		if(penDown) {
 			myRender.drawLine(myTurtleId, oldX, oldY);
 		}
-		setAngle(turtle.getAngle());
-		setVisibility(turtle.getOpacity());	
+		
+		readPen(turtle.getPen());
+		readAngle(turtle.getAngle());
+		readVisibility(turtle.getOpacity());	
 	}	
 	
 	public void changeImage(ImageView image) {
 		myImageView = image;
 		initImage();
-	}
-	
-	private boolean hasMoved(double oldX, double oldY) {
-		return ! (oldX == myX && oldY == myY);
 	}
 
 	private void setChangedNotify() {

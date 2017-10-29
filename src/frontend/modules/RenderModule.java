@@ -63,7 +63,8 @@ public class RenderModule extends Module{
 		if(sprite == null) {
 			return;
 		}
-		
+		System.out.println("drawing line");
+
 		GraphicsContext gc = myCanvas.getGraphicsContext2D();
 		gc.strokeLine(oldX, oldY, sprite.getImage().getX(), sprite.getImage().getY());
 	}
