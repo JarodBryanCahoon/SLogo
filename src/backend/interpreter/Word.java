@@ -24,6 +24,7 @@ import backend.board.TurtleCollection;
 import backend.board.logic.ConstantNode;
 //import exceptions.ErrorMessage;
 import exceptions.ErrorMessage;
+import exceptions.SyntaxException;
 
 /**
  * @author Albert
@@ -43,7 +44,7 @@ public class Word {
 	private Properties myProperties;
 	private TurtleCollection myTurtles;
 
-	public Word(String s, ResourceBundle resources, Map<String, Integer> commandNumbers, TurtleCollection turtles) {
+	public Word(String s, ResourceBundle resources, Map<String, Integer> commandNumbers, TurtleCollection turtles) throws SyntaxException {
 		myName = s;
 		SyntaxReader syntaxReader = new SyntaxReader();
 		myProperties = syntaxReader.getProperties();
@@ -51,7 +52,7 @@ public class Word {
 		determineType(resources, commandNumbers);
 	}
 
-	private void determineType(ResourceBundle rb, Map<String, Integer> map) {
+	private void determineType(ResourceBundle rb, Map<String, Integer> map) throws SyntaxException {
 		System.out.println("determine type");
 		if (myName.matches(myProperties.getProperty(CONSTANT))) {
 			myType = CONSTANT;
@@ -83,8 +84,8 @@ public class Word {
 				} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
 						| IllegalArgumentException | InvocationTargetException | NoSuchMethodException
 						| SecurityException e) {
-					ErrorMessage eMessage = new ErrorMessage("Could not find command");
-					eMessage.show();
+					e.printStackTrace();
+					throw new SyntaxException();
 				}
 
 			} catch (MissingResourceException e) {

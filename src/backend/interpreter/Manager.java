@@ -36,13 +36,15 @@ public class Manager extends Observable {
 	public Manager(String filename, ViewModule view) throws ClassNotFoundException, FileNotFoundException {
 		myParser = new TextParse();
 		myViewModule = view;
-		myInfoInterface = new InfoInterface();
 		myHistory = new History();
+		myInfoInterface = new InfoInterface(myHistory);
 	}
 	
 	public void addToHistory(String text) {
 		myHistory.add(myParser.getWordsWithSpaces(text, myTurtles));
+		
 		double output = setAndExecuteCommand(text);
+		System.out.println("executed");
 		setChanged();
 		notifyObservers();
 	}
