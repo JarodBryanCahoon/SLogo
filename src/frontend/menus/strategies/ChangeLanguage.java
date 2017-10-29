@@ -25,6 +25,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
 public class ChangeLanguage extends MenuItemStrategy {
+	private static final String UNFLAG_PATH = "/resources/style/unflag.gif";
 	private static final String LANGUAGE_PATH = "Languages.txt";
 	private final String PREFIX_PATH = "src/resources/languages/";
 	private final String PROPERTIES_SUFFIX = ".properties";
@@ -47,8 +48,7 @@ public class ChangeLanguage extends MenuItemStrategy {
 		readLanguageLabels(languageLabels);     
 		myChoiceBox.getItems().addAll(languageLabels);
 		myChoiceBox.getSelectionModel().selectedItemProperty().addListener( (options, oldValue, newValue) -> changeLanguage(options, oldValue, newValue));
-//		System.out.println(getClass().getResource("/turtle.png").getPath());
-		hBox.getChildren().add(new ImageView("/resources/style/unflag.gif"));
+		hBox.getChildren().add(new ImageView(UNFLAG_PATH));
 		hBox.getChildren().add(myChoiceBox);
 		return hBox;
 	}

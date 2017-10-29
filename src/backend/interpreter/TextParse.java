@@ -1,6 +1,9 @@
 package backend.interpreter;
 
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashMap;
@@ -33,10 +36,20 @@ public class TextParse {
 	private ResourceBundle rb;
 	private Queue<Word> queue = new LinkedList<>();
 	private Properties myProperties;
+	private Map<String, String> languageMap;
 	
 	public TextParse() throws ClassNotFoundException, FileNotFoundException {
 		rb = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "ArgumentNumbers");
+//		InputStream input = new FileInputStream("src/resources/languages/Chinese.properties");
+//		Properties lang = new Properties();
+//		try {
+//			lang.load(input);
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//		changeLanguage(lang);
 		createSyntaxReader();
+
 	}
 	
 	public TextParse(Map<String, List<Object>> map, String filename) throws ClassNotFoundException, FileNotFoundException {
@@ -49,6 +62,17 @@ public class TextParse {
 		makeCommandNumbers();
 		SyntaxReader sReader = new SyntaxReader();
 		myProperties = sReader.getProperties();
+	}
+	
+	public void changeLanguage(Properties languageFile) {
+		languageMap = new HashMap<>();
+		for(Object key : languageFile.keySet()) {
+			String s = key.toString();
+			String[] commands = languageFile.getProperty(s).split("\\|");
+			for(String command : commands) {
+				languageMap.put(command, s);
+			}
+		}
 	}
 	
 	public void setCommands(String s, TurtleCollection turtles) {
@@ -68,11 +92,12 @@ public class TextParse {
 
 	private void makeTree(String commands, TurtleCollection turtles) {
 		String[] lineList = commands.split(myProperties.getProperty(NEWLINE));	
-		for (String s: lineList) {
-			s=s.trim();
-			if (s.equals(myProperties.getProperty(COMMENT))){
-				addToComments(s);
-				s= "";
+		for (String command: lineList) {
+			command=command.trim();
+//			command = languageMap.get(command); // important
+			if (command.equals(myProperties.getProperty(COMMENT))){
+				addToComments(command);
+				command= "";
 				continue;
 			}
 		}
@@ -97,7 +122,7 @@ public class TextParse {
 				t=sb.toString();
 				i=j;
 			}
-			Word w = new Word(t, rb, CommandNumbers, turtles);
+			Word w = new Word(t, rb, CommandNumbers, turtles, languageMap);
 			
 			queue.add(w);
 		}
@@ -143,7 +168,7 @@ public class TextParse {
 		
 		for (int k = 0; k< commandList.length; k++) {
 //			System.out.println(commandList[k]);
-			Word word = new Word(commandList[k], rb, CommandNumbers, turtles);
+			Word word = new Word(commandList[k], rb, CommandNumbers, turtles, languageMap);
 			sentence[k] = word;
 		}
 		return sentence;

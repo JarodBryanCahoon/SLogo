@@ -91,6 +91,6 @@ public class Manager extends Observable {
 	}
 	
 	public void changeLanguage(Properties langProperties) {
-		
+		myParser.changeLanguage(langProperties);
 	}
 }
