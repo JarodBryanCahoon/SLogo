@@ -79,3 +79,6 @@ had a central controller that processed the command logic. However, now we have 
 classes to perform the commands. We believe that design is by far superior as, through reflection, we
 are able to easily implement commands without having to modify any of the code we have - thus upholding
 the design ideals of closed modification, open expansion.
+-   We are still maintaining the observer/observable pattern for the representation of Turtles. 
+We are now also using this pattern to represent the History and Variables. This, we believe was the next
+logical step. 
