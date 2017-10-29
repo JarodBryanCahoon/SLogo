@@ -43,12 +43,15 @@ public class Word {
 	private int operatorNumber;
 	private Properties myProperties;
 	private TurtleCollection myTurtles;
+	private Map<String, String> myLanguageMap;
 
-	public Word(String s, ResourceBundle resources, TurtleCollection turtles) throws SyntaxException {
+
+	public Word(String s, ResourceBundle resources, TurtleCollection turtles, Map<String, String> languageMap) throws SyntaxException {
 		myName = s;
 		SyntaxReader syntaxReader = new SyntaxReader();
 		myProperties = syntaxReader.getProperties();
 		myTurtles = turtles;
+		myLanguageMap = languageMap;
 		determineType(resources);
 	}
 
@@ -63,11 +66,11 @@ public class Word {
 //			 myNode = new VariableNode(myName);
 		} else if (myName.matches(myProperties.getProperty(COMMAND))) {
 			myType = COMMAND;
-
 			try {
-				operatorNumber = Integer.parseInt(rb.getString(myName).split(",")[0]);
-				String method = rb.getString(myName).split(",")[1];
-				String methodType = rb.getString(myName).split(",")[2];
+				String[] readString = rb.getString(myLanguageMap.get(myName)).split(",");
+				operatorNumber = Integer.parseInt(readString[0]);
+				String method = readString[1];
+				String methodType = readString[2];
 				Class<?> c = Class.forName(method);
 				Constructor<?> ctr;
 				// Node myNode;
@@ -80,7 +83,7 @@ public class Word {
 					myNode = (ASTNode) ctr.newInstance();
 				}
 			} catch (MissingResourceException | ClassNotFoundException | NoSuchMethodException | SecurityException
-					| InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+					| InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NullPointerException e) {
 				myType = "Invalid";
 			}
 		} else {

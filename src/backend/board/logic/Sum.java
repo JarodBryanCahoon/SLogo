@@ -6,9 +6,9 @@ import backend.abstractSyntaxTree.ASTNode;
  * @author Jarod Cahoon, Venkat Subramaniam
  *
  */
-public class Add extends MathNode{
+public class Sum extends MathNode{
 	
-	public Add() {
+	public Sum() {
 		super();
 	}
 
