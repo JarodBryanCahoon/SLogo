@@ -26,7 +26,6 @@ import javafx.scene.text.TextFlow;
  */ 
 
 public class Manager extends Observable {
-	private Map<String, List<Object>> myMemory;
 	private TextParse myParser;
 	private double output;
 	private ViewModule myViewModule;
@@ -35,7 +34,6 @@ public class Manager extends Observable {
 	private History myHistory;
 	
 	public Manager(String filename, ViewModule view) throws ClassNotFoundException, FileNotFoundException {
-		myMemory = new HashMap<>();
 		myParser = new TextParse();
 		myViewModule = view;
 		myInfoInterface = new InfoInterface();
@@ -43,8 +41,8 @@ public class Manager extends Observable {
 	}
 	
 	public void addToHistory(String text) {
-		myHistory.add(text);
-		setAndExecuteCommand(text);
+		myHistory.add(myParser.getWordsWithSpaces(text, myTurtles));
+		double output = setAndExecuteCommand(text);
 		setChanged();
 		notifyObservers();
 	}
@@ -68,10 +66,10 @@ public class Manager extends Observable {
 		myTurtles = new TurtleCollection(initTurtles);
 	}
 	
-	public void setAndExecuteCommand(String s) {
+	public double setAndExecuteCommand(String s) {
 		myParser.setCommands(s, myTurtles);
 		ASTNode tree = myParser.getTree();
-		output = tree.execute();
+		return tree.execute();
 	}
 	
 	public double getOutput() {

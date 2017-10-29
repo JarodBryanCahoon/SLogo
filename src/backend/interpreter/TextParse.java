@@ -28,6 +28,10 @@ import backend.board.logic.Tan;
  * @version 10.21.17
  */
 public class TextParse {
+	private static final String COMMENT = "Comment";
+	private static final String LIST_END = "ListEnd";
+	private static final String LIST_START = "ListStart";
+	private static final String WHITESPACE = "Whitespace";
 	private static final String NEWLINE = "Newline";
 	private static final String DEFAULT_RESOURCE_PACKAGE = "resources/";
 	public static final String CLASS_LIST = "ClassList.txt";
@@ -74,7 +78,7 @@ public class TextParse {
 		String[] lineList = commands.split(myProperties.getProperty(NEWLINE));	
 		for (String s: lineList) {
 			s=s.trim();
-			if (s.startsWith("#")){
+			if (s.equals(myProperties.getProperty(COMMENT))){
 				addToComments(s);
 				s= "";
 				continue;
@@ -86,18 +90,18 @@ public class TextParse {
 	}
 
 	private void fillCommandQueue(String s, TurtleCollection turtles) {
-		String[] commandList = s.split(" ");
+		String[] commandList = s.split(myProperties.getProperty(WHITESPACE));
 		for(int i = 0; i<commandList.length; i++) {
 			String t = commandList[i];
-			if (t.equals("[")) {
+			if (t.equals(myProperties.getProperty(LIST_START))) {
 				StringBuilder sb = new StringBuilder();
 				int j=i;
-				while(!commandList[j].equals("]")) {
+				while(!commandList[j].equals(myProperties.getProperty(LIST_START))) {
 					sb.append(commandList[j]);
 					sb.append(" ");
 					j++;
 				}
-				sb.append("]");
+				sb.append(myProperties.getProperty(LIST_END));
 				t=sb.toString();
 				i=j;
 			}
@@ -146,7 +150,7 @@ public class TextParse {
 		Word[] sentence = new Word[commandList.length];
 		
 		for (int k = 0; k< commandList.length; k++) {
-			System.out.println(commandList[k]);
+//			System.out.println(commandList[k]);
 			Word word = new Word(commandList[k], rb, CommandNumbers, turtles);
 			sentence[k] = word;
 		}

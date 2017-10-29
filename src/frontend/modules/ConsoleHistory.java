@@ -43,6 +43,8 @@ public class ConsoleHistory extends Module {
 		fadeIn(toAdd);
 		stylize();
 		historyPane.setVvalue(1.0);
+		System.out.println("here");
+
 	}
 
 	private void fadeIn(FlowPane toAdd) {
@@ -56,8 +58,7 @@ public class ConsoleHistory extends Module {
 		if (on)
 			history.getChildren().get(index).setStyle("-fx-background-color: green;");
 		if (!on)
-			history.getChildren().get(index).setStyle("-fx-background-color: black;");
-			
+			history.getChildren().get(index).setStyle("-fx-background-color: black;");			
 	}
 
 
