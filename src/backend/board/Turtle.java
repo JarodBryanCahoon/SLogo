@@ -39,6 +39,7 @@ public class Turtle extends Observable implements ITurtle, Observer{
 		
 		public double act(TurtleNode m){
 			double returnValue = m.act(this);
+			System.out.println("turtle acted");
 			setChanged();
 			this.notifyObservers(this);
 			return returnValue;
@@ -104,7 +105,9 @@ public class Turtle extends Observable implements ITurtle, Observer{
 
 		@Override
 		public void setY(double Y) {
+			System.out.println("Old Y " + myYPos + " New Y " + Y);
 			myYPos = myRenderMath.yTranslate(Y);
+			System.out.println("acted on Y value " + myYPos);
 		}
 
 		@Override

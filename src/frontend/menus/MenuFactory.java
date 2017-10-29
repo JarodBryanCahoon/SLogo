@@ -16,7 +16,6 @@ public class MenuFactory {
 
 		for(String menuText : subMenus.keySet()) {
 			Menu subMenu = subMenus.get(menuText);
-			System.out.println(menuText + " " + subMenu.getItems().size());
 			nBar.getMenus().add(subMenu);
 		}
 		

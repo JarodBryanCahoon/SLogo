@@ -53,7 +53,6 @@ public class Word {
 	}
 
 	private void determineType(ResourceBundle rb, Map<String, Integer> map) throws SyntaxException {
-		System.out.println("determine type");
 		if (myName.matches(myProperties.getProperty(CONSTANT))) {
 			myType = CONSTANT;
 			// myExpression = new DoubleExp(Double.parseDouble(myName));
@@ -69,35 +68,25 @@ public class Word {
 				String method = rb.getString(myName).split(",")[1];
 				String methodType = rb.getString(myName).split(",")[2];
 				operatorNumber = map.get(method);
-				try {		
-					Class<?> c = Class.forName(method);
-					Constructor<?> ctr;
-					// Node myNode;
-					if (methodType.equals("Turtle")) {
-						nodeType = "Turtle";
-						ctr = c.getConstructor(TurtleCollection.class);
-						myNode = (ASTNode) ctr.newInstance(myTurtles);
-					} else {
-						ctr = c.getConstructor();
-						myNode = (ASTNode) ctr.newInstance();
-					}
-				} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
-						| IllegalArgumentException | InvocationTargetException | NoSuchMethodException
-						| SecurityException e) {
-					e.printStackTrace();
-					throw new SyntaxException();
+				Class<?> c = Class.forName(method);
+				Constructor<?> ctr;
+				// Node myNode;
+				if (methodType.equals("Turtle")) {
+					nodeType = "Turtle";
+					ctr = c.getConstructor(TurtleCollection.class);
+					myNode = (ASTNode) ctr.newInstance(myTurtles);
+				} else {
+					ctr = c.getConstructor();
+					myNode = (ASTNode) ctr.newInstance();
 				}
-
-			} catch (MissingResourceException e) {
+			} catch (MissingResourceException | ClassNotFoundException | NoSuchMethodException | SecurityException
+					| InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
 				myType = "Invalid";
 			}
 		} else {
 			myType = "Invalid";
 		} 
 	}
-	// public Expression getExpression() {
-	// return myExpression;
-	// }
 
 	public ASTNode getNode() {
 		return myNode;
