@@ -3,6 +3,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import backend.interpreter.Manager;
+import exceptions.SyntaxException;
 import javafx.beans.Observable;
 import javafx.scene.Group;
 import javafx.scene.Parent;
@@ -56,10 +57,14 @@ public class ConsoleInput extends Module{
 	private void send(KeyEvent event) {
 		String text = inputField.textProperty().getValue();
 		if (keyComb.match(event)) {
-	
+			try {
 			backend.addToHistory(text);
 			inputField.setText("");
 			createText("");
+			} catch (SyntaxException e) {
+				inputField.setStyle("-fx-border-color: red");
+			}
+			
 		}
 	}
 
