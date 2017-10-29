@@ -22,15 +22,10 @@ public class MenuModule extends Module {
 
 	@Override
 	protected Parent createParent() throws Exception {
-		MenuBar myMenu = new MenuBar();
-		return myMenu;
-	}
-	
-	private void readMenuBar() throws XMLException, IOException {
-		MenuBar root = (MenuBar) getParent();
 		MenuFactory factory = new MenuFactory();
 		MenuReader myReader = new MenuReader(MENUREADER_PATH, getViewModule());
 		MenuBar myMenu = factory.create(myReader.getSubMenus());
+		return myMenu;
 	}
 
 	@Override

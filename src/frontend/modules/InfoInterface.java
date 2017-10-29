@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Observable;
 
+import backend.board.TurtleCollection;
 import backend.interpreter.TextParse;
 import backend.interpreter.Word;
 import javafx.scene.layout.FlowPane;
@@ -27,13 +28,6 @@ public class InfoInterface extends Observable {
 		parser = new TextParse();
 		
 	}
-//	
-//	public void addToHistory(String inputText) {
-//		Word[] sentence = parser.getWordsWithSpaces(inputText);
-//		history.add(sentence);
-//		setChanged();
-//		notifyObservers();
-//	}
 	
 	public FlowPane getHistory() {
 		int index = history.size();
@@ -59,11 +53,11 @@ public class InfoInterface extends Observable {
 		return toReturn;
 	}
 
-	public TextFlow[] getConsole(String test) {
+	public TextFlow[] getConsole(String test, TurtleCollection turtles) {
 		String lines[] = test.split("\\r?\\n");
 		TextFlow[] toReturn = new TextFlow[lines.length];
 		for (int k = 0; k<lines.length;k++) {
-			Word[] sentence = parser.getWordsWithSpaces(lines[k]);
+			Word[] sentence = parser.getWordsWithSpaces(lines[k], turtles);
 			TextFlow textFlow = createSentence(sentence);
 			formatConsole(k,textFlow);
 			toReturn[k] = textFlow;

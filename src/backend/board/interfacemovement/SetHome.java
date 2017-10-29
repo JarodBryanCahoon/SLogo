@@ -17,9 +17,9 @@ public class SetHome extends NoParamTurtle{
 
 	@Override
 	public double act(Turtle co) {
-		double distance = BoardMath.pointDistance(0, 0, co.getMyX().get(), co.getMyY().get());
-		co.getMyX().set(0);
-		co.getMyY().set(0);
+		double distance = BoardMath.pointDistance(0, 0, co.getMyX(), co.getMyY());
+		co.setX(0);
+		co.setY(0);
 		return distance;
 	}
 }

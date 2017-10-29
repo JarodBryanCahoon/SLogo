@@ -16,7 +16,7 @@ public class PenUp extends NoParamTurtle{
 	
 	@Override
 	public double act(Turtle co) {
-		co.getPen().set(false);
+		co.setPen(false);
 		return 0;
 	}
 }

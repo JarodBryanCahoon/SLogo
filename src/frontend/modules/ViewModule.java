@@ -80,7 +80,7 @@ public class ViewModule extends Module{
 
 	@Override
 	public Element getXMLPreferences(Document doc) {
-		// TODO Auto-generated method stub
+		// do nothing
 		return null;
 	}
 	
@@ -88,12 +88,7 @@ public class ViewModule extends Module{
 		return myRenderModule;
 	}
 	
-	protected void stylize() {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	public void changeLanguage(Properties languageProperties) {
-		// backend.changeLanguage(languageProperties);
+	public void changeLanguage(Properties langProperties) {
+		myManager.changeLanguage(langProperties);
 	}
 }

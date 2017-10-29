@@ -16,7 +16,7 @@ public class Hide extends NoParamTurtle{
 	
 	@Override
 	public double act(Turtle co) {
-		co.getOpacity().set(false);
+		co.setOpacity(false);
 		return 0;
 	}
 }

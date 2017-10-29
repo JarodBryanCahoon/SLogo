@@ -17,6 +17,7 @@ import java.util.ResourceBundle;
 import java.util.Scanner;
 
 import backend.abstractSyntaxTree.ASTNode;
+import backend.board.TurtleCollection;
 import backend.board.logic.Tan;
 
 
@@ -54,8 +55,8 @@ public class TextParse {
 		myProperties = sReader.getProperties();
 	}
 	
-	public void setCommands(String s) {
-		makeTree(s);
+	public void setCommands(String s, TurtleCollection turtles) {
+		makeTree(s, turtles);
 	}
 	
 	private void makeCommandNumbers() throws ClassNotFoundException, FileNotFoundException {
@@ -66,11 +67,10 @@ public class TextParse {
 			String key = rb.getString(enuKeys.nextElement());
 			String[] list = key.split(",");
 			CommandNumbers.put(list[1], Integer.parseInt(list[0]));
-		}
-		
+		}	
 	}
 
-	private void makeTree(String commands) {
+	private void makeTree(String commands, TurtleCollection turtles) {
 		String[] lineList = commands.split(myProperties.getProperty(NEWLINE));	
 		for (String s: lineList) {
 			s=s.trim();
@@ -81,11 +81,11 @@ public class TextParse {
 			}
 		}
 		String s = String.join(" ", lineList);
-		fillCommandQueue(s);
+		fillCommandQueue(s, turtles);
 		root = recursiveTree();
 	}
 
-	private void fillCommandQueue(String s) {
+	private void fillCommandQueue(String s, TurtleCollection turtles) {
 		String[] commandList = s.split(" ");
 		for(int i = 0; i<commandList.length; i++) {
 			String t = commandList[i];
@@ -101,7 +101,7 @@ public class TextParse {
 				t=sb.toString();
 				i=j;
 			}
-			Word w = new Word(t, rb, CommandNumbers);
+			Word w = new Word(t, rb, CommandNumbers, turtles);
 			
 			queue.add(w);
 		}
@@ -141,13 +141,13 @@ public class TextParse {
 		return root;
 	}
 	
-	public Word[] getWordsWithSpaces(String s) {
+	public Word[] getWordsWithSpaces(String s, TurtleCollection turtles) {
 		String[] commandList = s.split("\\b");
 		Word[] sentence = new Word[commandList.length];
 		
 		for (int k = 0; k< commandList.length; k++) {
 			System.out.println(commandList[k]);
-			Word word = new Word(commandList[k], rb, CommandNumbers);
+			Word word = new Word(commandList[k], rb, CommandNumbers, turtles);
 			sentence[k] = word;
 		}
 		return sentence;

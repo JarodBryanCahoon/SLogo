@@ -19,9 +19,9 @@ public interface iRenderSprite {
 	
 	void setY(double Y);
 	
-	void setPenDown(boolean isPenDown);
+	void setPen(boolean isPenDown);
 	
-	void setVisible(boolean isVisible);
+	void setVisibility(boolean isVisible);
 	
 	void setAngle(double angle);
 }

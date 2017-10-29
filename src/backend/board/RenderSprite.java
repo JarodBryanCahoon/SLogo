@@ -52,6 +52,7 @@ public class RenderSprite extends Observable implements iRenderSprite, Observer 
 		myImageView.setY(myRenderMath.imageY(myY));
 		myImageView.setRotate(myImageAngle);
 		myImageView.setOnMouseClicked(e -> handleMouseInput(e));
+		myImageView.setOnMouseDragged(e -> handleDrag(e));
 	}
 	
 	private void handleMouseInput(MouseEvent event) {
@@ -60,6 +61,11 @@ public class RenderSprite extends Observable implements iRenderSprite, Observer 
 		} else if(event.getButton().equals(MouseButton.SECONDARY)) {
 			TurtleView view = new TurtleView(this);
 		}
+	}
+	
+	private void handleDrag(MouseEvent event) {
+		setX(myRenderMath.logoX(event.getSceneX()));
+		setY(myRenderMath.logoY(event.getSceneY()));
 	}
 	
 	public void stylize() {
@@ -80,38 +86,19 @@ public class RenderSprite extends Observable implements iRenderSprite, Observer 
 	public double getAngle() {
 		return myAngle;
 	}
-	
-	/**
-	 * @param turtle
-	 * @return	the old x pos value of the turtle
-	 */
-	private double changeX(Turtle turtle) {
-		double myOldX = myX;
-		myX = turtle.getMyX().get();		
-		myImageView.setX(myRenderMath.imageX(myX));
-		return myOldX;
-	}
-	
-	/**
-	 * @param turtle
-	 * @return	the old value y pos of the turtle
-	 */
-	private double changeY(Turtle turtle) {
-		double myOldY = myY;
-		double newY = turtle.getMyY().get();
-		setY(newY);
-		return myOldY;
-	}
 
+	@Override
+	public void setX(double X) {
+		myX = X;
+		myImageView.setX(myRenderMath.imageX(myX));
+		setChangedNotify();
+	}
+	
 	@Override
 	public void setY(double newY) {
 		myY = newY;
 		myImageView.setY(myRenderMath.imageY(myY));
 		setChangedNotify();
-	}
-
-	private void changeAngle(Turtle turtle) {		
-		setAngle(turtle.getAngle().get());
 	}
 
 	@Override
@@ -122,29 +109,14 @@ public class RenderSprite extends Observable implements iRenderSprite, Observer 
 		setChangedNotify();
 	}
 
-	private void changePen(Turtle turtle) {
-		setPenDown(turtle.getPen().get());
-	}
-
-	private void changeOpacity(Turtle turtle) {
-		setVisible(turtle.getOpacity().get());
-	}
-	
 	@Override
-	public void setX(double X) {
-		myX = X;
-		myImageView.setX(myRenderMath.imageX(myX));
-		setChangedNotify();
-	}
-
-	@Override
-	public void setPenDown(boolean isPenDown) {
+	public void setPen(boolean isPenDown) {
 		penDown = isPenDown;
 		setChangedNotify();
 	}
 
 	@Override
-	public void setVisible(boolean isVisible) {
+	public void setVisibility(boolean isVisible) {
 		this.isVisible = isVisible;
 		myImageView.setVisible(isVisible);
 		setChangedNotify();
@@ -153,15 +125,17 @@ public class RenderSprite extends Observable implements iRenderSprite, Observer 
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		Turtle turtle = (Turtle) arg0;
-		double oldX = changeX(turtle);
-		double oldY = changeY(turtle);
-		changePen(turtle);
+		double oldX = turtle.getMyX();
+		double oldY = turtle.getMyY();
+
+		setX(turtle.getMyX());
+		setPen(turtle.getPen());
 
 		if(penDown && hasMoved(oldX, oldY)) {
 			myRender.drawLine(myTurtleId, oldX, oldY);
 		}
-		changeAngle(turtle);
-		changeOpacity(turtle);	
+		setAngle(turtle.getAngle());
+		setVisibility(turtle.getOpacity());	
 	}	
 	
 	public void changeImage(ImageView image) {

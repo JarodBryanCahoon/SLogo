@@ -38,4 +38,39 @@ public class TurtleCollection implements ITurtle {
 	public void removeTurtle(Turtle removeTurtle) {
 		myTurtles.remove(removeTurtle);
 	}
+
+	@Override
+	public void setX(double X) {
+		for(Turtle turtle : getSelectedTurtles()) {
+			turtle.setX(X);
+		}
+	}
+
+	@Override
+	public void setY(double Y) {
+		for(Turtle turtle : getSelectedTurtles()) {
+			turtle.setY(Y);
+		}
+	}
+
+	@Override
+	public void setAngle(double angle) {
+		for(Turtle turtle : getSelectedTurtles()) {
+			turtle.setAngle(angle);
+		}
+	}
+
+	@Override
+	public void setPen(boolean penDown) {
+		for(Turtle turtle : getSelectedTurtles()) {
+			turtle.setPen(penDown);
+		}
+	}
+
+	@Override
+	public void setOpacity(boolean isVisible) {
+		for(Turtle turtle : getSelectedTurtles()) {
+			turtle.setOpacity(isVisible);
+		}
+	}
 }
