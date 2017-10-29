@@ -29,5 +29,6 @@ public abstract class TurtleNode implements ASTNode {
 
 	@Override
 	public void setChildren(ASTNode n) {
+		
 	}
 }

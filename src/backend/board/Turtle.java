@@ -25,14 +25,14 @@ public class Turtle extends Observable implements ITurtle, Observer{
 		private DoubleProperty myAngle;
 		private BooleanProperty myPenDown;
 		private BooleanProperty myOpacity;
-		private IntegerProperty myTurtleId;
+		private int myTurtleId;
 		private RenderMath myRenderMath;
 		private BooleanProperty isSelected;
+		
 
-		public Turtle(String imagePath, int id, RenderSprite ob, RenderMath math) {
+		public Turtle(RenderSprite ob) {
 			addObserver(ob);
 			readRenderSprite(ob);
-			myRenderMath = math;
 		}
 		
 		public double act(TurtleNode m){
@@ -47,7 +47,7 @@ public class Turtle extends Observable implements ITurtle, Observer{
 		}
 		
 		public int getId() {
-			return myTurtleId.get();
+			return myTurtleId;
 		}
 		
 		public DoubleProperty getMyX() {
@@ -70,7 +70,7 @@ public class Turtle extends Observable implements ITurtle, Observer{
 			return myOpacity;
 		}
 		
-		public IntegerProperty getID() {
+		public int getID() {
 			return myTurtleId;
 		}
 		
@@ -82,10 +82,11 @@ public class Turtle extends Observable implements ITurtle, Observer{
 			myXPos.set(ob.getX());
 			myYPos.set(ob.getY());
 			myAngle.set(ob.getAngle());
-			myTurtleId.set(ob.getId());
 			myPenDown.set(ob.isPenDown());
 			myOpacity.set(ob.isVisible());
 			isSelected.set(ob.isSelected());
+			myTurtleId = ob.getId();
+			myRenderMath = ob.getMath();
 		}
 
 		@Override

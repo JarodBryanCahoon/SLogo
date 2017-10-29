@@ -10,6 +10,7 @@ import java.util.Set;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+import backend.interpreter.Manager;
 import exceptions.ErrorMessage;
 import exceptions.XMLException;
 import frontend.xml.ModuleStyleReader;
@@ -23,6 +24,8 @@ public class ViewModule extends Module{
 	private final static String moduleFileName = "resources/style/modules.xml";
 	private RenderModule myRenderModule = null;
 	private Set<Module> myModules;
+	private final String replace_this_path = "replace";
+	private Manager myManager;
 	
 	public ViewModule(int width, int height) throws Exception {
 		super(width, height);
@@ -31,6 +34,8 @@ public class ViewModule extends Module{
 		for(Module m : myModules) {
 			m.setViewModule(this);
 		}
+		
+		myManager = new Manager(replace_this_path, this);
 	}
 	
 	public Set<Module> getModules() {

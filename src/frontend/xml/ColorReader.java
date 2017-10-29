@@ -83,6 +83,7 @@ public class ColorReader extends XMLReader {
 		color = "#" +color.substring(2);
 		node.setTextContent(color);
 		GenericWriter writer = new GenericWriter(xmlPath,getElement());
+		writer.write();
 		readFromFile();
 		
 	}

@@ -12,6 +12,10 @@ import javafx.scene.Scene;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
+/**Tests an individual module
+ * @author lasia
+ *
+ */
 public class ModulesTester extends Application{
 	private int WIDTH= 500;
 	private int HEIGHT = 500;
@@ -25,7 +29,7 @@ public class ModulesTester extends Application{
 				);
 		// Change test to whatever module you want
 		ViewModule view = new ViewModule(WIDTH,HEIGHT);
-		Module test = new ConsoleModule (WIDTH,HEIGHT,view);
+		Module test = new StylizeModule (WIDTH,HEIGHT,view);
 		Parent parent = test.getParent();
 		scene = new Scene(parent);
 		scene.setOnMouseClicked(e->style());

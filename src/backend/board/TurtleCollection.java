@@ -30,5 +30,12 @@ public class TurtleCollection implements ITurtle {
 		
 		return selectedTurtles;
 	}
-
+	
+	public void addTurtle(Turtle newTurtle) {
+		myTurtles.add(newTurtle);
+	}
+	
+	public void removeTurtle(Turtle removeTurtle) {
+		myTurtles.remove(removeTurtle);
+	}
 }
