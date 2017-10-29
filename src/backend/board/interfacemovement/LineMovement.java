@@ -23,7 +23,7 @@ public abstract class LineMovement extends SomeParamTurtle{
 		double xHold = turt.getMyX();
 		double yHold = turt.getMyY();
 		xHold += b? delta[0]: -delta[0];
-		yHold += b? delta[1]: -delta[1];
+		yHold += - (b? delta[1]: -delta[1]);
 		turt.setX(xHold);
 		turt.setY(yHold);
 

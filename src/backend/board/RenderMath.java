@@ -37,7 +37,7 @@ public class RenderMath {
 	}
 	
 	protected double imageX(double X) {	
-		return X + myWidth / 2 - myImageView.getBoundsInLocal().getWidth() / 2;
+		return (X + myWidth / 2 - myImageView.getBoundsInLocal().getWidth() / 2) % myWidth;
 	}
 	
 	protected double logoX(double X) {
@@ -45,7 +45,7 @@ public class RenderMath {
 	}
 	
 	protected double imageY(double Y) {
-		return Y + myHeight / 2 - myImageView.getBoundsInLocal().getHeight() / 2;
+		return (Y + myHeight / 2 - myImageView.getBoundsInLocal().getHeight() / 2) % myHeight;
 	}
 	
 	protected double logoY(double Y) {
