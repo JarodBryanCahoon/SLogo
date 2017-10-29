@@ -89,48 +89,78 @@ public class RenderSprite extends Observable implements iRenderSprite, Observer 
 
 	@Override
 	public void setX(double X) {
-		myX = X;
-		myImageView.setX(myRenderMath.imageX(myX));
+		readX(X);
 		setChangedNotify();
 	}
-	
+
 	@Override
 	public void setY(double newY) {
-		myY = newY;
-		myImageView.setY(myRenderMath.imageY(myY));
+		readY(newY);
 		setChangedNotify();
 	}
 
 	@Override
 	public void setAngle(double newAngle) {
+		readAngle(newAngle);
+		setChangedNotify();
+	}
+	
+	private void readX(double X) {
+		myX = X;
+		myImageView.setX(myRenderMath.imageX(myX));
+	}
+	
+	private void readY(double newY) {
+		myY = newY;
+//		System.out.println("Render Y " + newY);
+		myImageView.setY(myRenderMath.imageY(myY));
+//		System.out.println("translated render Y " + myRenderMath.imageY(myY));
+//		System.out.println(myImageView.getY());
+	}
+
+
+	private void readAngle(double newAngle) {
 		myAngle = newAngle;
 		myImageAngle = -myAngle;
 		myImageView.setRotate(myImageAngle);
-		setChangedNotify();
 	}
 
 	@Override
 	public void setPen(boolean isPenDown) {
-		penDown = isPenDown;
+		readPen(isPenDown);
 		setChangedNotify();
+	}
+
+	private void readPen(boolean isPenDown) {
+		penDown = isPenDown;
 	}
 
 	@Override
 	public void setVisibility(boolean isVisible) {
+		readVisibility(isVisible);
+		setChangedNotify();
+	}
+
+	private void readVisibility(boolean isVisible) {
 		this.isVisible = isVisible;
 		myImageView.setVisible(isVisible);
-		setChangedNotify();
 	}
 
 	@Override
 	public void update(Observable arg0, Object arg1) {
+		System.out.println("render updating");
 		Turtle turtle = (Turtle) arg0;
 		double oldX = turtle.getMyX();
 		double oldY = turtle.getMyY();
 
-		setX(turtle.getMyX());
-		setPen(turtle.getPen());
+		System.out.println("Old Y" + oldY);
+		System.out.println("Old Y" + turtle.getMyY());
+		System.out.println("Old Y" + turtle.getMyY());
 
+
+		setX(turtle.getMyX());
+		setY(turtle.getMyY());
+		setPen(turtle.getPen());
 		if(penDown && hasMoved(oldX, oldY)) {
 			myRender.drawLine(myTurtleId, oldX, oldY);
 		}

@@ -79,19 +79,14 @@ public class Word {
 					ctr = c.getConstructor();
 					myNode = (ASTNode) ctr.newInstance();
 				}
-				} 
-			catch (ClassNotFoundException | InstantiationException | IllegalAccessException
-					| IllegalArgumentException | InvocationTargetException | NoSuchMethodException
-					| SecurityException | MissingResourceException e) {
+			} catch (MissingResourceException | ClassNotFoundException | NoSuchMethodException | SecurityException
+					| InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
 				myType = "Invalid";
 			}
 		} else {
 			myType = "Invalid";
 		} 
 	}
-	// public Expression getExpression() {
-	// return myExpression;
-	// }
 
 	public ASTNode getNode() {
 		return myNode;

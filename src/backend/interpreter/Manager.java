@@ -90,10 +90,6 @@ public class Manager extends Observable {
 		myTurtles.addTurtle(newTurtle);
 	}
 	
-	private void executeCommands() {
-		
-	}
-	
 	public void changeLanguage(Properties langProperties) {
 		
 	}
