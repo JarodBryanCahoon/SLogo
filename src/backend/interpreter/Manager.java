@@ -41,12 +41,14 @@ public class Manager extends Observable {
 	}
 	
 	public void addToHistory(String text) {
-		myHistory.add(myParser.getWordsWithSpaces(text, myTurtles));
-		
+		try {
 		double output = setAndExecuteCommand(text);
-		System.out.println("executed");
+		myHistory.add(myParser.getWordsWithSpaces(text, myTurtles));
 		setChanged();
 		notifyObservers();
+		} catch(NullPointerException e) {
+			throw new NullPointerException();
+		}
 	}
 	
 	public FlowPane getHistory() {

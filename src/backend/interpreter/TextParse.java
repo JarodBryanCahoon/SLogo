@@ -83,6 +83,7 @@ public class TextParse {
 
 	private void fillCommandQueue(String s, TurtleCollection turtles) {
 		String[] commandList = s.split(myProperties.getProperty(WHITESPACE));
+		System.out.println(Arrays.toString(commandList));
 		for(int i = 0; i<commandList.length; i++) {
 			String t = commandList[i];
 			if (t.equals(myProperties.getProperty(LIST_START))) {
