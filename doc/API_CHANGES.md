@@ -67,4 +67,15 @@ Design Overview
 -	TextParse
 	-	setCommand
 
-        
+## Discussion
+
+--------------
+
+Overall, our design still follows the Model View Controller architecture. However, we made a few 
+changes in the plans of our code.
+
+-   One of the major changes we have made in our API is our incorporation of command classes. Before, we
+had a central controller that processed the command logic. However, now we have separate command
+classes to perform the commands. We believe that design is by far superior as, through reflection, we
+are able to easily implement commands without having to modify any of the code we have - thus upholding
+the design ideals of closed modification, open expansion.
