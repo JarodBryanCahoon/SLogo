@@ -5,8 +5,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Observable;
+import java.util.Stack;
 
 import backend.board.TurtleCollection;
+import backend.interpreter.History;
 import backend.interpreter.TextParse;
 import backend.interpreter.Word;
 import javafx.scene.layout.FlowPane;
@@ -21,18 +23,18 @@ import javafx.scene.text.TextFlow;
  */
 
 public class InfoInterface extends Observable {
-	private List<Word[]> history;
 	private TextParse parser;
+	private History myHistory;
 	public InfoInterface() throws ClassNotFoundException, FileNotFoundException {
-		history = new ArrayList<Word[]>();
 		parser = new TextParse();
-		
+		myHistory = new History();
 	}
 	
 	public FlowPane getHistory() {
-		int index = history.size();
+		Stack<Word[]> stackHistory = myHistory.getStackHistory();
+		int index = stackHistory.size();
 		Text indexText = new Text(Integer.toString(index) + "  ");
-		TextFlow historyText = createSentence(history.get(index-1));
+		TextFlow historyText = createSentence(stackHistory.peek());
 		FlowPane toReturn = new FlowPane();
 		
 		indexText.getStyleClass().add("Text");
@@ -65,7 +67,6 @@ public class InfoInterface extends Observable {
 		return toReturn;
 		
 	}
-
 	
 	private void formatConsole(int k, TextFlow textFlow) {
 		double fontHeight = textFlow.getChildren().get(0).getLayoutBounds().getHeight();
