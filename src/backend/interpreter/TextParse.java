@@ -2,6 +2,7 @@ package backend.interpreter;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -71,12 +72,15 @@ public class TextParse {
 		for (String s: lineList) {
 			s=s.trim();
 			if (s.equals(myProperties.getProperty(COMMENT))){
+				System.out.println("This is a comment");
 				addToComments(s);
 				s= "";
 				continue;
 			}
 		}
+		System.out.println(Arrays.toString(lineList));
 		String s = String.join(" ", lineList);
+		System.out.println(s);
 		fillCommandQueue(s, turtles);
 		root = recursiveTree();
 	}
@@ -84,6 +88,7 @@ public class TextParse {
 	private void fillCommandQueue(String s, TurtleCollection turtles) {
 		String[] commandList = s.split(myProperties.getProperty(WHITESPACE));
 		System.out.println(Arrays.toString(commandList));
+		System.out.println("-----------");
 		for(int i = 0; i<commandList.length; i++) {
 			String t = commandList[i];
 			if (t.equals(myProperties.getProperty(LIST_START))) {
