@@ -64,17 +64,6 @@ public class TextParse {
 		myProperties = sReader.getProperties();
 	}
 	
-	public void changeLanguage(Properties languageFile) {
-		languageMap = new HashMap<>();
-		for(Object key : languageFile.keySet()) {
-			String s = key.toString();
-			String[] commands = languageFile.getProperty(s).split("\\|");
-			for(String command : commands) {
-				languageMap.put(command, s);
-			}
-		}
-	}
-	
 	public void setCommands(String s, TurtleCollection turtles) {
 		makeTree(s, turtles);
 	}
