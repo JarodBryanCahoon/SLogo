@@ -14,13 +14,25 @@ import org.w3c.dom.NodeList;
 
 import exceptions.ErrorMessage;
 import exceptions.XMLException;
+import frontend.modules.ViewModule;
 
 public abstract class XMLReader {
 	public static final String XML_ERROR = "Your XML File was formatted incorrectly!";
 	private String myPath;
 	private File myXmlFile;
 	private Document myDocument;
+	private ViewModule myViewModule;
 	public XMLReader(String path) throws XMLException, IOException {
+		instDocument(path);
+	}
+	
+	public XMLReader(String path, ViewModule view) throws XMLException, IOException {
+		System.out.println("here");
+		myViewModule = view;
+		instDocument(path);
+	}
+
+	private void instDocument(String path) throws IOException {
 		myPath = path;
 		try {
 			myXmlFile = new File(myPath);
@@ -28,7 +40,6 @@ public abstract class XMLReader {
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			myDocument = dBuilder.parse(myXmlFile);
 		} catch (Exception e) {
-			e.printStackTrace();
 			ErrorMessage eMessage = new ErrorMessage("Could Not Read Config XML File");
 			eMessage.show();
 			return;
@@ -37,6 +48,13 @@ public abstract class XMLReader {
 		readFromFile();
 	}
 	
+	protected ViewModule getViewModule() throws XMLException {
+		if(myViewModule == null) {
+			throw new XMLException();
+		}
+		return myViewModule;
+	}
+		
 	protected abstract void readFromFile() throws XMLException, IOException;
 	
 	protected Element getElement() {

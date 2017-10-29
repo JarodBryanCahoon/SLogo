@@ -10,6 +10,8 @@ import backend.board.interfacemovement.TurtleNode;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.geometry.Point2D;
 
 /**
@@ -20,17 +22,22 @@ import javafx.geometry.Point2D;
 public class Turtle extends Observable implements ITurtle, Observer{
 		public static final double STARTING_ANGLE = 90;
 		public static final double[] STARTING_POSITION = {0,0};
+		private int myTurtleId;
 		private DoubleProperty myXPos;
 		private DoubleProperty myYPos;
 		private DoubleProperty myAngle;
 		private BooleanProperty myPenDown;
 		private BooleanProperty myOpacity;
-		private int myTurtleId;
 		private RenderMath myRenderMath;
 		private BooleanProperty isSelected;
-		
 
 		public Turtle(RenderSprite ob) {
+			myXPos = new SimpleDoubleProperty();
+			myYPos = new SimpleDoubleProperty();
+			myAngle = new SimpleDoubleProperty();
+			myPenDown = new SimpleBooleanProperty();
+			myOpacity = new SimpleBooleanProperty();
+			isSelected = new SimpleBooleanProperty();
 			addObserver(ob);
 			readRenderSprite(ob);
 		}

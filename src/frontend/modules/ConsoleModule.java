@@ -33,7 +33,7 @@ public class ConsoleModule extends Module {
 	}
 	
 	private void addConsoleHistory() throws Exception {
-		Module ConsoleHistory = new ConsoleHistory(myWidth,myHeight, getViewModule());
+		Module ConsoleHistory = new ConsoleHistory(myWidth, myHeight, getViewModule());
 		console.getChildren().add(ConsoleHistory.getParent());
 	}
 

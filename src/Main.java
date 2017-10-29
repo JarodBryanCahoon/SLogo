@@ -16,6 +16,7 @@ public class Main extends Application{
 			w = new NewWindow(s);
 			w.execute();
 		} catch (Exception e) {
+			e.printStackTrace();
 			ErrorMessage eMessage = new ErrorMessage("Could not instantiate window!");
 			eMessage.show();
 		}		

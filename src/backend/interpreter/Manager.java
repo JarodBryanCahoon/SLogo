@@ -35,7 +35,7 @@ public class Manager extends Observable {
 	public Manager(String filename, ViewModule view) throws ClassNotFoundException, FileNotFoundException {
 		myParser = new TextParse(myMemory, filename);
 		myViewModule = view;
-		initializeTurtles();
+		System.out.println("manager " + (view == null));
 		myInfoInterface = new InfoInterface();
 	}
 	
@@ -54,7 +54,7 @@ public class Manager extends Observable {
 		return myInfoInterface.getConsole(test);
 	}
 
-	private void initializeTurtles() {
+	public void initializeTurtles() {
 		List<Turtle> initTurtles = new ArrayList<>();
 		List<RenderSprite> myRenders = myViewModule.getRenderModule().getSprites();
 		for(RenderSprite rs : myRenders) {
