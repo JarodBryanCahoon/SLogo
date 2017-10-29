@@ -14,13 +14,25 @@ import org.w3c.dom.NodeList;
 
 import exceptions.ErrorMessage;
 import exceptions.XMLException;
+import frontend.modules.ViewModule;
 
 public abstract class XMLReader {
 	public static final String XML_ERROR = "Your XML File was formatted incorrectly!";
 	private String myPath;
 	private File myXmlFile;
 	private Document myDocument;
+	private ViewModule myViewModule;
 	public XMLReader(String path) throws XMLException, IOException {
+		instDocument(path);
+	}
+	
+	public XMLReader(String path, ViewModule view) throws XMLException, IOException {
+		System.out.println("here");
+		myViewModule = view;
+		instDocument(path);
+	}
+
+	private void instDocument(String path) throws IOException {
 		myPath = path;
 		try {
 			myXmlFile = new File(myPath);
@@ -28,7 +40,6 @@ public abstract class XMLReader {
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			myDocument = dBuilder.parse(myXmlFile);
 		} catch (Exception e) {
-			e.printStackTrace();
 			ErrorMessage eMessage = new ErrorMessage("Could Not Read Config XML File");
 			eMessage.show();
 			return;
@@ -37,6 +48,13 @@ public abstract class XMLReader {
 		readFromFile();
 	}
 	
+	protected ViewModule getViewModule() throws XMLException {
+		if(myViewModule == null) {
+			throw new XMLException();
+		}
+		return myViewModule;
+	}
+		
 	protected abstract void readFromFile() throws XMLException, IOException;
 	
 	protected Element getElement() {
@@ -48,6 +66,7 @@ public abstract class XMLReader {
 		Element root = myDocument.getDocumentElement();
 		return this.getNodeList(root, tag);
 	}
+	
 	protected NodeList getNodeList(Element e, String tag) {
 		NodeList nList = e.getElementsByTagName(tag);
 		return nList;
@@ -77,12 +96,13 @@ public abstract class XMLReader {
 		
 		return toReturn;
 	}
+	
 	public String getNodeContentString(String tag){
 		return getChildNode(tag,1);
 	}
-	public String getChildNode(String tag,int index) {
+	
+	public String getChildNode(String tag, int index) {
 		NodeList nList = getNodeList(tag).item(0).getChildNodes();
 		return nList.item(index).getTextContent();
-	}
-	
+	}	
 }

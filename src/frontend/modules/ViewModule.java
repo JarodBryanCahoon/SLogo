@@ -24,18 +24,22 @@ public class ViewModule extends Module{
 	private final static String moduleFileName = "resources/style/modules.xml";
 	private RenderModule myRenderModule = null;
 	private Set<Module> myModules;
-	private final String replace_this_path = "replace";
+	private final static String ARGUMENTS = "ArgumentNumbers";
 	private Manager myManager;
 	
 	public ViewModule(int width, int height) throws Exception {
 		super(width, height);
 		setViewModule(this);
+		myManager = new Manager(ARGUMENTS, this);
 		initSubModules();
 		for(Module m : myModules) {
-			m.setViewModule(this);
+			myManager.addObserver(m);
 		}
-		
-		myManager = new Manager(replace_this_path, this);
+		myManager.initializeTurtles();
+	}
+	
+	public Manager getManager() {
+		return myManager;
 	}
 	
 	public Set<Module> getModules() {
