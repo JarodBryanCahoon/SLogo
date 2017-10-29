@@ -47,25 +47,26 @@ public class TextParse {
 	}
 
 	private void createSyntaxReader() throws ClassNotFoundException, FileNotFoundException {
-		makeCommandNumbers();
 		SyntaxReader sReader = new SyntaxReader();
 		myProperties = sReader.getProperties();
 	}
+	
+//	private void makeCommandNumbers() throws ClassNotFoundException, FileNotFoundException {
+//		CommandNumbers = new HashMap<String, Integer>();
+//		
+//		Enumeration<String> enuKeys = rb.getKeys();
+//		while (enuKeys.hasMoreElements()) {
+//			String key = rb.getString(enuKeys.nextElement());
+//			String[] list = key.split(",");
+//			CommandNumbers.put(list[1], Integer.parseInt(list[0]));
+//		}	
+//	}
 	
 	public void setCommands(String s, TurtleCollection turtles) {
 		makeTree(s, turtles);
 	}
 	
-	private void makeCommandNumbers() throws ClassNotFoundException, FileNotFoundException {
-		CommandNumbers = new HashMap<String, Integer>();
-		
-		Enumeration<String> enuKeys = rb.getKeys();
-		while (enuKeys.hasMoreElements()) {
-			String key = rb.getString(enuKeys.nextElement());
-			String[] list = key.split(",");
-			CommandNumbers.put(list[1], Integer.parseInt(list[0]));
-		}	
-	}
+	
 
 	private void makeTree(String commands, TurtleCollection turtles) {
 		String[] lineList = commands.split(myProperties.getProperty(NEWLINE));	
@@ -101,10 +102,10 @@ public class TextParse {
 				t=sb.toString();
 				i=j;
 			}
-			Word w = new Word(t, rb, CommandNumbers, turtles);
+			Word w = new Word(t, rb,turtles);
 			
 			queue.add(w);
-		}
+		};
 	}
 
 
@@ -141,13 +142,13 @@ public class TextParse {
 		return root;
 	}
 	
-	public Word[] getWordsWithSpaces(String s, TurtleCollection turtles) {
+	public Word[] getFormattedSentence(String s, TurtleCollection turtles) {
 		String[] commandList = s.split("\\b");
 		Word[] sentence = new Word[commandList.length];
 		
 		for (int k = 0; k< commandList.length; k++) {
 //			System.out.println(commandList[k]);
-			Word word = new Word(commandList[k], rb, CommandNumbers, turtles);
+			Word word = new Word(commandList[k], rb, turtles);
 			sentence[k] = word;
 		}
 		return sentence;

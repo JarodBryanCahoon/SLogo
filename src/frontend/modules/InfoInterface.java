@@ -58,7 +58,7 @@ public class InfoInterface extends Observable {
 		String lines[] = test.split("\\r?\\n");
 		TextFlow[] toReturn = new TextFlow[lines.length];
 		for (int k = 0; k<lines.length;k++) {
-			Word[] sentence = parser.getWordsWithSpaces(lines[k], turtles);
+			Word[] sentence = parser.getFormattedSentence(lines[k], turtles);
 			TextFlow textFlow = createSentence(sentence);
 			formatConsole(k,textFlow);
 			toReturn[k] = textFlow;

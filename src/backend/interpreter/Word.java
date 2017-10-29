@@ -44,15 +44,15 @@ public class Word {
 	private Properties myProperties;
 	private TurtleCollection myTurtles;
 
-	public Word(String s, ResourceBundle resources, Map<String, Integer> commandNumbers, TurtleCollection turtles) throws SyntaxException {
+	public Word(String s, ResourceBundle resources, TurtleCollection turtles) throws SyntaxException {
 		myName = s;
 		SyntaxReader syntaxReader = new SyntaxReader();
 		myProperties = syntaxReader.getProperties();
 		myTurtles = turtles;
-		determineType(resources, commandNumbers);
+		determineType(resources);
 	}
 
-	private void determineType(ResourceBundle rb, Map<String, Integer> map) throws SyntaxException {
+	private void determineType(ResourceBundle rb) throws SyntaxException {
 		if (myName.matches(myProperties.getProperty(CONSTANT))) {
 			myType = CONSTANT;
 			// myExpression = new DoubleExp(Double.parseDouble(myName));
@@ -65,9 +65,9 @@ public class Word {
 			myType = COMMAND;
 
 			try {
+				operatorNumber = Integer.parseInt(rb.getString(myName).split(",")[0]);
 				String method = rb.getString(myName).split(",")[1];
 				String methodType = rb.getString(myName).split(",")[2];
-				operatorNumber = map.get(method);
 				Class<?> c = Class.forName(method);
 				Constructor<?> ctr;
 				// Node myNode;
@@ -98,7 +98,6 @@ public class Word {
 
 	public String getName() {
 		return myName;
-
 	}
 
 	public int getNumber() {
