@@ -6,6 +6,11 @@ import org.w3c.dom.Element;
 import javafx.scene.Parent;
 import javafx.scene.layout.GridPane;
 
+
+/**Displays variables and allows user to directly change them
+ * @author lasia
+ *
+ */
 public class VariableModule extends Module{
 	private GridPane myParent;
 	

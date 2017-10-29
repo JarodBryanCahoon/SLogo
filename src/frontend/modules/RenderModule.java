@@ -43,6 +43,8 @@ public class RenderModule extends Module{
 		
 		myCanvas = new Canvas();
 		myPane.getChildren().add(myCanvas);
+
+		myPane.getStyleClass().add("Render");
 		stylize();
 		return myPane;
 	}
@@ -108,7 +110,7 @@ public class RenderModule extends Module{
 	}
 	
 	private void stylize() {
-		myCanvas.getStyleClass().add("Render");
+			myCanvas.getStyleClass().add("Render");
 	}
 	
 	public List<RenderSprite> getSprites() {

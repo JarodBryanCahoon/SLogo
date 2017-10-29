@@ -11,28 +11,29 @@
 	
 	<Word>
 		<Variable>
-			<fx-fill>white</fx-fill>
+			<fx-fill>#ccffffff</fx-fill>
 		</Variable>
 		<Constant>
 			<fx-fill>pink</fx-fill>
 		</Constant>
 		<Command>
-			<fx-fill>white</fx-fill>
+			<fx-fill>#99ccccff</fx-fill>
 		</Command>
 		<Text>
-			<fx-fill>white</fx-fill>	
+			<fx-fill>#e6e6e6ff</fx-fill>	
 		</Text>
 		<Invalid>
-			<fx-fill>white</fx-fill>	
+			<fx-fill>#e6e6e6ff</fx-fill>	
 		</Invalid>
 	</Word>
 	
 	<Windows>
 		<Window>
-			<fx-background-color>#000000ff</fx-background-color>
+			<fx-background-color>#4d4d4dff</fx-background-color>
 		</Window>
 		<Window.content>
-			<fx-background-color>#000000ff</fx-background-color>
+			<fx-background-color>#4d4d4dff</fx-background-color>
+			<fx-font>14px 'Letter Gothic Std'</fx-font>	
 			<fx-text-fill>white</fx-text-fill>
 		</Window.content>
 	</Windows>
@@ -40,9 +41,9 @@
 	<Rendering>
 		
 		<Render>
-			<fx-background-color>white</fx-background-color>
+			<fx-background-color>#1a1a1aff</fx-background-color>
 		
-			<fx-fill>#e6e6e6ff</fx-fill>
+			<fx-fill>#1a3399ff</fx-fill>
 			<fx-width>red</fx-width>
 			<turtle>red</turtle>
 		</Render>

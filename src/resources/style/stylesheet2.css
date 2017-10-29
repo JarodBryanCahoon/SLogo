@@ -8,37 +8,43 @@
 }
 
 .Variable{ 
--fx-fill:white;
+-fx-fill:#ccffffff;
+-fx-font:14px 'Letter Gothic Std';
 }
 
 .Constant{ 
 -fx-fill:pink;
+-fx-font:14px 'Letter Gothic Std';
 }
 
 .Command{ 
--fx-fill:white;
+-fx-fill:#99ccccff;
+-fx-font:14px 'Letter Gothic Std';
 }
 
 .Text{ 
--fx-fill:white;
+-fx-fill:#e6e6e6ff;
+-fx-font:14px 'Letter Gothic Std';
 }
 
 .Invalid{ 
--fx-fill:white;
+-fx-fill:#e6e6e6ff;
+-fx-font:14px 'Letter Gothic Std';
 }
 
 .Window{ 
--fx-background-color:#000000ff;
+-fx-background-color:#4d4d4dff;
 }
 
 .Window .content{ 
--fx-background-color:#000000ff;
+-fx-background-color:#4d4d4dff;
+-fx-font:14px 'Letter Gothic Std';
 -fx-text-fill:white;
 }
 
 .Render{ 
--fx-background-color:white;
--fx-fill:#e6e6e6ff;
+-fx-background-color:#1a1a1aff;
+-fx-fill:#1a3399ff;
 -fx-width:red;
 -turtle:red;
 }

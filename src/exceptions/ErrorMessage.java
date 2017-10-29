@@ -21,12 +21,17 @@ public class ErrorMessage {
 		// lasia help css
 		
 		Scene scene = new Scene(textArea);
+		scene.setOnMouseClicked(e->close());
 		myStage.initStyle(StageStyle.UNDECORATED);
+		myStage.setAlwaysOnTop(true);
 		myStage.setScene(scene);
 	}
 
 	public void show() {
 		myStage.show();
 		myStage.setMinWidth(myStage.getScene().getRoot().getBoundsInLocal().getWidth());
+	}
+	private void close() {
+		myStage.close();
 	}
 }
