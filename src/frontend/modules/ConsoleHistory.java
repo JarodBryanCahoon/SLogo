@@ -67,8 +67,5 @@ public class ConsoleHistory extends Module implements Observer {
 	private void stylize() {
 		history.getStyleClass().add("Window");
 		historyPane.getStyleClass().add("Window");
-		
 	}
-
-
 }
