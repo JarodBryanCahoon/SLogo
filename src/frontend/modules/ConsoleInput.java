@@ -2,6 +2,7 @@ package frontend.modules;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+import backend.interpreter.Manager;
 import javafx.beans.Observable;
 import javafx.scene.Group;
 import javafx.scene.Parent;
@@ -20,15 +21,14 @@ import javafx.scene.input.KeyEvent;
 public class ConsoleInput extends Module{
 	private Group myParent;
 	private TextArea inputField;
-	private InfoInterface backend;
+	private Manager backend;
 	private KeyCombination keyComb;
-	
 
-	public ConsoleInput(double myWidth,double myHeight, ViewModule view, InfoInterface backend) throws Exception{
+	public ConsoleInput(double myWidth,double myHeight, ViewModule view) throws Exception{
 		super(myWidth, myHeight, view);
 		System.out.println("Console created");
 		keyComb = new KeyCodeCombination(KeyCode.ENTER,KeyCombination.SHIFT_DOWN);
-		this.backend = backend;
+		this.backend = view.getManager();
 				
 		addInputField(myWidth);
 		myParent.getChildren().add(inputField);

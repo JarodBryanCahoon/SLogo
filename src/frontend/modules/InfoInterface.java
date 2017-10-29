@@ -27,13 +27,13 @@ public class InfoInterface extends Observable {
 		parser = new TextParse();
 		
 	}
-	
-	public void addToHistory(String inputText) {
-		Word[] sentence = parser.getWordsWithSpaces(inputText);
-		history.add(sentence);
-		setChanged();
-		notifyObservers();
-	}
+//	
+//	public void addToHistory(String inputText) {
+//		Word[] sentence = parser.getWordsWithSpaces(inputText);
+//		history.add(sentence);
+//		setChanged();
+//		notifyObservers();
+//	}
 	
 	public FlowPane getHistory() {
 		int index = history.size();
@@ -45,10 +45,9 @@ public class InfoInterface extends Observable {
 		toReturn.getChildren().add(indexText);
 		toReturn.getChildren().add(historyText);
 	
-			
-		
 		return toReturn;
 	}
+	
 	private TextFlow createSentence(Word[] words) {
 		TextFlow toReturn = new TextFlow();
 		for (Word w : words) {

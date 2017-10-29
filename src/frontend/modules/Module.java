@@ -1,11 +1,14 @@
 package frontend.modules;
 
+import java.util.Observable;
+import java.util.Observer;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import javafx.scene.Parent;
 
-public abstract class Module {
+public abstract class Module implements Observer{
 	private double myWidth;
 	private double myHeight;
 	private Parent myParent;
@@ -45,4 +48,8 @@ public abstract class Module {
 	}
 	
 	public abstract Element getXMLPreferences(Document doc);
+	
+	public void update(Observable obs, Object arg) {
+		// do nothing as default
+	}
 }

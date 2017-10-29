@@ -32,7 +32,6 @@ public class RenderModule extends Module{
 	public RenderModule(double width, double height, ViewModule view) throws Exception {
 		super(width, height, view);
 		addTurtle();
-		
 	}
 	
 	@Override
