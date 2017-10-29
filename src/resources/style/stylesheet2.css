@@ -9,27 +9,22 @@
 
 .Variable{ 
 -fx-fill:#ccffffff;
--fx-font:14px 'Letter Gothic Std';
 }
 
 .Constant{ 
 -fx-fill:pink;
--fx-font:14px 'Letter Gothic Std';
 }
 
 .Command{ 
 -fx-fill:#99ccccff;
--fx-font:14px 'Letter Gothic Std';
 }
 
 .Text{ 
 -fx-fill:#e6e6e6ff;
--fx-font:14px 'Letter Gothic Std';
 }
 
 .Invalid{ 
 -fx-fill:#e6e6e6ff;
--fx-font:14px 'Letter Gothic Std';
 }
 
 .Window{ 

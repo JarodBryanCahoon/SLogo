@@ -33,7 +33,6 @@ public class ModuleStyleReader extends XMLReader {
 	protected void readFromFile() throws XMLException {
 		myModules = new HashMap<>();
 		NodeList nList = this.getNodeList(MODULE_TAG);
-
 		for (int i = 0; i < nList.getLength(); i++) {
 			Node nNode = nList.item(i);
 
