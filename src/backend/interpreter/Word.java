@@ -45,16 +45,17 @@ public class Word {
 	private TurtleCollection myTurtles;
 	private Map<String, String> myLanguageMap;
 
-	public Word(String s, ResourceBundle resources, Map<String, Integer> commandNumbers, TurtleCollection turtles, Map<String, String> languageMap) throws SyntaxException {
+
+	public Word(String s, ResourceBundle resources, TurtleCollection turtles, Map<String, String> languageMap) throws SyntaxException {
 		myName = s;
 		SyntaxReader syntaxReader = new SyntaxReader();
 		myProperties = syntaxReader.getProperties();
 		myTurtles = turtles;
 		myLanguageMap = languageMap;
-		determineType(resources, commandNumbers);
+		determineType(resources);
 	}
 
-	private void determineType(ResourceBundle rb, Map<String, Integer> map) throws SyntaxException {
+	private void determineType(ResourceBundle rb) throws SyntaxException {
 		if (myName.matches(myProperties.getProperty(CONSTANT))) {
 			myType = CONSTANT;
 			// myExpression = new DoubleExp(Double.parseDouble(myName));
@@ -83,7 +84,6 @@ public class Word {
 				}
 			} catch (MissingResourceException | ClassNotFoundException | NoSuchMethodException | SecurityException
 					| InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NullPointerException e) {
-				e.printStackTrace();
 				myType = "Invalid";
 			}
 		} else {
@@ -101,7 +101,6 @@ public class Word {
 
 	public String getName() {
 		return myName;
-
 	}
 
 	public int getNumber() {

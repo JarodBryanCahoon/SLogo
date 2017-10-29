@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -40,14 +41,14 @@ public class TextParse {
 	
 	public TextParse() throws ClassNotFoundException, FileNotFoundException {
 		rb = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "ArgumentNumbers");
-//		InputStream input = new FileInputStream("src/resources/languages/Chinese.properties");
-//		Properties lang = new Properties();
-//		try {
-//			lang.load(input);
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//		changeLanguage(lang);
+		InputStream input = new FileInputStream("src/resources/languages/Chinese.properties");
+		Properties lang = new Properties();
+		try {
+			lang.load(input);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		changeLanguage(lang);
 		createSyntaxReader();
 
 	}
@@ -59,7 +60,6 @@ public class TextParse {
 	}
 
 	private void createSyntaxReader() throws ClassNotFoundException, FileNotFoundException {
-		makeCommandNumbers();
 		SyntaxReader sReader = new SyntaxReader();
 		myProperties = sReader.getProperties();
 	}
@@ -79,29 +79,21 @@ public class TextParse {
 		makeTree(s, turtles);
 	}
 	
-	private void makeCommandNumbers() throws ClassNotFoundException, FileNotFoundException {
-		CommandNumbers = new HashMap<String, Integer>();
-		
-		Enumeration<String> enuKeys = rb.getKeys();
-		while (enuKeys.hasMoreElements()) {
-			String key = rb.getString(enuKeys.nextElement());
-			String[] list = key.split(",");
-			CommandNumbers.put(list[1], Integer.parseInt(list[0]));
-		}	
-	}
+	
 
 	private void makeTree(String commands, TurtleCollection turtles) {
 		String[] lineList = commands.split(myProperties.getProperty(NEWLINE));	
 		for (String command: lineList) {
 			command=command.trim();
-//			command = languageMap.get(command); // important
 			if (command.equals(myProperties.getProperty(COMMENT))){
 				addToComments(command);
 				command= "";
 				continue;
 			}
 		}
+		System.out.println(Arrays.toString(lineList));
 		String s = String.join(" ", lineList);
+		System.out.println(s);
 		fillCommandQueue(s, turtles);
 		root = recursiveTree();
 	}
@@ -122,10 +114,10 @@ public class TextParse {
 				t=sb.toString();
 				i=j;
 			}
-			Word w = new Word(t, rb, CommandNumbers, turtles, languageMap);
+			Word w = new Word(t, rb,turtles, languageMap);
 			
 			queue.add(w);
-		}
+		};
 	}
 
 
@@ -162,13 +154,14 @@ public class TextParse {
 		return root;
 	}
 	
-	public Word[] getWordsWithSpaces(String s, TurtleCollection turtles) {
+	public Word[] getFormattedSentence(String s, TurtleCollection turtles) {
 		String[] commandList = s.split("\\b");
 		Word[] sentence = new Word[commandList.length];
 		
 		for (int k = 0; k< commandList.length; k++) {
 //			System.out.println(commandList[k]);
-			Word word = new Word(commandList[k], rb, CommandNumbers, turtles, languageMap);
+
+			Word word = new Word(commandList[k], rb, turtles, languageMap);
 			sentence[k] = word;
 		}
 		return sentence;

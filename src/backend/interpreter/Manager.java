@@ -43,7 +43,7 @@ public class Manager extends Observable {
 	public void addToHistory(String text) {
 		try {
 			double output = setAndExecuteCommand(text);
-			myHistory.add(myParser.getWordsWithSpaces(text, myTurtles));
+			myHistory.add(myParser.getFormattedSentence(text, myTurtles));
 			setChanged();
 			notifyObservers();
 		} catch(NullPointerException e) {
