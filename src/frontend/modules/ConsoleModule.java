@@ -15,14 +15,11 @@ import javafx.scene.layout.VBox;
 
 public class ConsoleModule extends Module {
 	private VBox console;
-	private InfoInterface backend;
-
 	private double myWidth;
 	private double myHeight;
 	
 	public ConsoleModule(double width, double height, ViewModule view) throws Exception{
 		super(width, height, view);
-		backend = new InfoInterface();
 		myWidth = width;
 		myHeight = height;
 		addConsoleHistory();
@@ -31,18 +28,17 @@ public class ConsoleModule extends Module {
 	
 	@Override
 	protected Parent createParent() {
-		console = new VBox();
-		
+		console = new VBox();		
 		return console;
 	}
 	
 	private void addConsoleHistory() throws Exception {
-		Module ConsoleHistory = new ConsoleHistory(myWidth,myHeight, getViewModule(), backend);
+		Module ConsoleHistory = new ConsoleHistory(myWidth,myHeight, getViewModule());
 		console.getChildren().add(ConsoleHistory.getParent());
 	}
 
 	private void addConsoleInput() throws Exception{
-		Module test = new ConsoleInput(myWidth,myHeight, getViewModule(), backend);
+		Module test = new ConsoleInput(myWidth,myHeight, getViewModule());
 		console.getChildren().add(test.getParent());
 	}
 

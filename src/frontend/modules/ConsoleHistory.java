@@ -6,6 +6,7 @@ import java.util.Observer;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+import backend.interpreter.Manager;
 import javafx.animation.FadeTransition;
 import javafx.scene.Parent;
 import javafx.scene.control.ScrollPane;
@@ -13,18 +14,19 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 
-public class ConsoleHistory extends Module implements Observer {
+public class ConsoleHistory extends Module {
 	private VBox history;
 	private ScrollPane historyPane;
+	private Manager backend;
 	
-	public ConsoleHistory(double myWidth, double myHeight, ViewModule view, InfoInterface backend) throws Exception {
+	public ConsoleHistory(double myWidth, double myHeight, ViewModule view) throws Exception {
 		super(myWidth, myHeight, view);
 		historyPane.setMinSize(myWidth,myHeight);
 		history.setMinSize(myWidth-10,myHeight-10);
 		stylize();
+		backend = view.getManager();
 		backend.addObserver(this);
-//		history.setOnMouseClicked(e->stylize());
-		
+//		history.setOnMouseClicked(e->stylize());		
 	}
 
 	@Override
@@ -66,9 +68,6 @@ public class ConsoleHistory extends Module implements Observer {
 
 	private void stylize() {
 		history.getStyleClass().add("Window");
-		historyPane.getStyleClass().add("Window");
-		
+		historyPane.getStyleClass().add("Window");	
 	}
-
-
 }

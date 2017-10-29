@@ -48,6 +48,7 @@ public abstract class XMLReader {
 		Element root = myDocument.getDocumentElement();
 		return this.getNodeList(root, tag);
 	}
+	
 	protected NodeList getNodeList(Element e, String tag) {
 		NodeList nList = e.getElementsByTagName(tag);
 		return nList;
@@ -77,12 +78,13 @@ public abstract class XMLReader {
 		
 		return toReturn;
 	}
+	
 	public String getNodeContentString(String tag){
 		return getChildNode(tag,1);
 	}
-	public String getChildNode(String tag,int index) {
+	
+	public String getChildNode(String tag, int index) {
 		NodeList nList = getNodeList(tag).item(0).getChildNodes();
 		return nList.item(index).getTextContent();
-	}
-	
+	}	
 }

@@ -31,11 +31,16 @@ public class ViewModule extends Module{
 		super(width, height);
 		setViewModule(this);
 		initSubModules();
+		myManager = new Manager(replace_this_path, this);
+
 		for(Module m : myModules) {
 			m.setViewModule(this);
-		}
-		
-		myManager = new Manager(replace_this_path, this);
+			myManager.addObserver(m);
+		}		
+	}
+	
+	public Manager getManager() {
+		return myManager;
 	}
 	
 	public Set<Module> getModules() {
