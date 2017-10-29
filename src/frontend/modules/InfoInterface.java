@@ -25,9 +25,9 @@ import javafx.scene.text.TextFlow;
 public class InfoInterface extends Observable {
 	private TextParse parser;
 	private History myHistory;
-	public InfoInterface() throws ClassNotFoundException, FileNotFoundException {
+	public InfoInterface(History history) throws ClassNotFoundException, FileNotFoundException {
 		parser = new TextParse();
-		myHistory = new History();
+		myHistory = history;
 	}
 	
 	public FlowPane getHistory() {
