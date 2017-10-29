@@ -1,8 +1,8 @@
 Design Overview
 ========================
-##External API
+## External API
 
-###Front End -> Backend
+### Front End -> Backend
 
 ----------
 -	Console
@@ -16,7 +16,9 @@ Design Overview
 	-	getModules
 -	Colorpick
 	-	setColor
-###BackEnd -> FrontEnd
+	-	
+### BackEnd -> FrontEnd
+
 
 ------------------
 -	Turtle
@@ -30,8 +32,8 @@ Design Overview
 	-	setCommand
 	-	getHistory
 	-	getVariables
-##Internal API
-###Frontend
+## Internal API
+### Frontend
 ------------------
 -	Render
 	-	get
@@ -51,7 +53,7 @@ Design Overview
 -	MenuReader
 	-	getSubMenus
             
-###Backend
+### Backend
 -	Word
 	-	getType
 	-	getName
