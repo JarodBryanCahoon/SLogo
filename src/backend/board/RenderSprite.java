@@ -144,7 +144,7 @@ public class RenderSprite extends Observable implements iRenderSprite, Observer 
 
 	@Override
 	public void update(Observable arg0, Object arg1) {
-		System.out.println("render updating");
+//		System.out.println("render updating");
 		Turtle turtle = (Turtle) arg0;
 		double oldX = turtle.getMyX();
 		double oldY = turtle.getMyY();

@@ -50,6 +50,7 @@ public class ConsoleInput extends Module{
 	}
 	
 	private void updateSyntax(Observable in) {
+		inputField.setStyle("-fx-border-color: transparent");
 		String text = inputField.textProperty().getValue();
 		createText(text);
 	}
