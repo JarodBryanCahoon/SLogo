@@ -38,7 +38,7 @@ public class ConsoleHistory extends Module {
 	
 	@Override
 	public void update(Observable backend, Object arg1) {
-		FlowPane toAdd = ((InfoInterface) backend).getHistory();
+		FlowPane toAdd = ((Manager) backend).getHistory();
 		history.getChildren().add(toAdd);
 		fadeIn(toAdd);
 		stylize();

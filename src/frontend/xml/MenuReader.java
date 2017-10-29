@@ -2,7 +2,6 @@ package frontend.xml;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -14,7 +13,6 @@ import exceptions.ErrorMessage;
 import exceptions.XMLException;
 import frontend.menus.CustomMenuButton;
 import frontend.menus.strategies.iMenuItemStrategy;
-import frontend.modules.Module;
 import frontend.modules.ViewModule;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
@@ -28,11 +26,9 @@ public class MenuReader extends XMLReader {
 	private static final String PREFIX = "frontend.menus.strategies.";
 
 	private Map<String, Menu> mySubMenus;
-	private ViewModule myViewModule;
 
 	public MenuReader(String path, ViewModule viewModule) throws XMLException, IOException {
-		super(path);
-		myViewModule = viewModule;
+		super(path, viewModule);
 	}
 
 	@Override
@@ -53,13 +49,17 @@ public class MenuReader extends XMLReader {
 		Node itemHead = menu.getFirstChild();
 		NodeList subItems = menu.getChildNodes();
 		String menuName = StringLevelParse(itemHead, subItems.getLength(), NAME_TAG);
-		Menu newMenu = parseSubMenu(menu, itemHead, subItems.getLength());
-		mySubMenus.put(menuName, newMenu);
+		try {
+			Menu newMenu = parseSubMenu(menu, itemHead, subItems.getLength());
+			mySubMenus.put(menuName, newMenu);
+		} catch(XMLException e) {
+			ErrorMessage eMessage = new ErrorMessage("Could not read menus!");
+			eMessage.show();
+		}
 	}
 
 	private String StringLevelParse(Node head, int length, String tag) throws XMLException {
 		Node current = head;
-		String name = null;
 		for (int i = 0; i < length; i++) {
 			if (current.getNodeType() == Node.ELEMENT_NODE) {
 				if (current.getNodeName().equals(tag)) {
@@ -72,7 +72,7 @@ public class MenuReader extends XMLReader {
 		throw new XMLException();
 	}
 
-	private Menu parseSubMenu(Element menu, Node head, int length) {
+	private Menu parseSubMenu(Element menu, Node head, int length) throws XMLException{
 		Menu newMenu = new Menu(StringLevelParse(head, length, NAME_TAG));
 		Node current = head;
 		for (int j = 0; j < length; j++) {
@@ -92,7 +92,7 @@ public class MenuReader extends XMLReader {
 		return newMenu;
 	}
 
-	private MenuItem createMenuItem(Element menu, Element menuItem) {
+	private MenuItem createMenuItem(Element menu, Element menuItem) throws XMLException {
 		if (getContent(menuItem, TYPE_TAG).equals(MENU_TAG)) {
 			int length = menuItem.getChildNodes().getLength();
 			Node head = menuItem.getFirstChild();
@@ -109,15 +109,14 @@ public class MenuReader extends XMLReader {
 			try {
 				Class<?> cls = Class.forName(PREFIX + getContent(menuItem, STRATEGY_TAG));
 				iMenuItemStrategy strategy = (iMenuItemStrategy) cls.getDeclaredConstructor(ViewModule.class)
-						.newInstance(myViewModule); 
+						.newInstance(getViewModule()); 
 				newCustomMenu = new CustomMenuButton(newItem, strategy);
+				return newCustomMenu.getItem();
 			} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | IllegalArgumentException
 					| InvocationTargetException | NoSuchMethodException | SecurityException e) {
-				ErrorMessage eMessage = new ErrorMessage("Could not read in menu buttons");
-				eMessage.show();
+				throw new XMLException();
 			}
 			
-			return newCustomMenu.getItem();
 		}
 	}
 	

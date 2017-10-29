@@ -21,7 +21,7 @@ public class RightTurn extends SomeParamTurtle {
 		int modulo = (int) Math.abs(angle / 360 + 1);			
 		double holder = 360 - angle;
 		holder += ( 360 * modulo ) % 360;
-		co.getAngle().set(holder);
+		co.setAngle(holder);
 		return angle;
 	}
 }

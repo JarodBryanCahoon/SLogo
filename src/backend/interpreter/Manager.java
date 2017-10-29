@@ -2,9 +2,11 @@ package backend.interpreter;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Observable;
+import java.util.Properties;
 
 import backend.abstractSyntaxTree.ASTNode;
 import backend.board.RenderSprite;
@@ -14,7 +16,6 @@ import frontend.modules.InfoInterface;
 import frontend.modules.ViewModule;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.text.TextFlow;
-import backend.abstractSyntaxTree.ASTNode;
 
 /*Manager.java
  * 
@@ -31,17 +32,19 @@ public class Manager extends Observable {
 	private ViewModule myViewModule;
 	private TurtleCollection myTurtles;
 	private InfoInterface myInfoInterface;
+	private History myHistory;
 	
 	public Manager(String filename, ViewModule view) throws ClassNotFoundException, FileNotFoundException {
-		myParser = new TextParse(myMemory, filename);
+		myMemory = new HashMap<>();
+		myParser = new TextParse();
 		myViewModule = view;
-		System.out.println("manager " + (view == null));
 		myInfoInterface = new InfoInterface();
+		myHistory = new History();
 	}
 	
 	public void addToHistory(String text) {
-//		myInfoInterface.addToHistory(text);
-//		 my code here
+		myHistory.add(text);
+		setAndExecuteCommand(text);
 		setChanged();
 		notifyObservers();
 	}
@@ -51,7 +54,7 @@ public class Manager extends Observable {
 	}
 	
 	public TextFlow[] getConsole(String test) {
-		return myInfoInterface.getConsole(test);
+		return myInfoInterface.getConsole(test, myTurtles);
 	}
 
 	public void initializeTurtles() {
@@ -66,7 +69,7 @@ public class Manager extends Observable {
 	}
 	
 	public void setAndExecuteCommand(String s) {
-		myParser.setCommands(s);
+		myParser.setCommands(s, myTurtles);
 		ASTNode tree = myParser.getTree();
 		output = tree.execute();
 	}
@@ -86,6 +89,10 @@ public class Manager extends Observable {
 	}
 	
 	private void executeCommands() {
+		
+	}
+	
+	public void changeLanguage(Properties langProperties) {
 		
 	}
 }

@@ -40,7 +40,6 @@ public class NewWindow extends MenuItemStrategy {
 			System.out.println(scene.getHeight());
 
 		} catch (Exception e) {
-			e.printStackTrace();
 			ErrorMessage eMessage = new ErrorMessage("Could Not Create New Window!");
 			eMessage.show();
 		}

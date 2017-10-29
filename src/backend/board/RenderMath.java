@@ -12,45 +12,43 @@ public class RenderMath {
 		myImageView = imageView; 
 	}
 	
-	public boolean outsideBounds(double coord, double bound) {
-		
+	private boolean outsideBounds(double coord, double bound) {		
 		return coord < 0 || coord > bound; 
 	}
 	
-	public double xTranslate(double coord) {
+	protected double xTranslate(double coord) {
 		double translated = imageX(coord);
 		if(!outsideBounds(translated, myWidth)) {
-			return coord;
+			return logoX(translated);
 		}
 		
-		int boundaryBroken = (translated < 0) ? 1 : 0;
-		return logoX(coord + boundaryBroken * myWidth);
+		double boundaryBroken = (translated < 0) ? 1 : 0;
+		return logoX(translated + boundaryBroken * myWidth);
 	}
 	
-	public double yTranslate(double coord) {
+	protected double yTranslate(double coord) {
 		double translated = imageY(coord);
 		if(!outsideBounds(translated, myHeight)) {
-			return coord;
+			return logoY(translated);
 		}
 		
-		int boundaryBroken = (translated < 0) ? 1 : 0;
-		return logoY(coord + boundaryBroken * myHeight);
+		double boundaryBroken = (translated < 0) ? 1 : 0;
+		return logoY(translated + boundaryBroken * myHeight);
 	}
 	
-	public double imageX(double X) {
-		
+	protected double imageX(double X) {	
 		return X + myWidth / 2 - myImageView.getBoundsInLocal().getWidth() / 2;
 	}
 	
-	private double logoX(double X) {
+	protected double logoX(double X) {
 		return X - myWidth / 2 + myImageView.getBoundsInLocal().getWidth() / 2;
 	}
 	
-	public double imageY(double Y) {
+	protected double imageY(double Y) {
 		return Y + myHeight / 2 - myImageView.getBoundsInLocal().getHeight() / 2;
 	}
 	
-	private double logoY(double Y) {
+	protected double logoY(double Y) {
 		return Y - myHeight / 2 + myImageView.getBoundsInLocal().getHeight() / 2;
 	}
 }

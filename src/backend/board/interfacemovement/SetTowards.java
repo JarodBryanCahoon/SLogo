@@ -20,8 +20,8 @@ public class SetTowards extends SomeParamTurtle {
 
 	public double act(Turtle co) {
 		double newAngle = VectorMath.angleBetweenXAxis(new Vector(super.getChildren().get(0).execute(), super.getChildren().get(1).execute()));
-		double angleDiff = this.angleDifference(newAngle, co.getAngle().get());
-		co.getAngle().set(newAngle);
+		double angleDiff = this.angleDifference(newAngle, co.getAngle());
+		co.setAngle(newAngle);
 		return angleDiff;
 	}
 

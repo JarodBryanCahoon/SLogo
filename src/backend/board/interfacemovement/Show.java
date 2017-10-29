@@ -17,7 +17,7 @@ public class Show extends NoParamTurtle{
 	
 	@Override
 	public double act(Turtle co) {
-		co.getOpacity().set(true);
+		co.setOpacity(true);
 		return 1;
 	}
 }

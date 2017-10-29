@@ -24,9 +24,11 @@ public class ImageChange extends MenuItemStrategy {
 	private void changeImage(String path) {
 		 try {
 			 ImageView newImage = loadImage(this.getClass().getClassLoader().getResource(path).getPath());
-			 List<RenderSprite> selectedSprites = getView().getRenderModule().getSelectedSprites();
-			 for(RenderSprite s : selectedSprites) {  // ???
-				 s.changeImage(newImage);
+			 List<RenderSprite> selectedSprites = getView().getRenderModule().getSprites();
+			 for(RenderSprite s : selectedSprites) { 
+				 if(s.isSelected()) {
+					 s.changeImage(newImage);
+				 }
 			 }			 
 		 } catch (XMLException | NullPointerException e) {
 			 ErrorMessage eMessage = new ErrorMessage(ErrorMessage.INVALID_PATH);

@@ -22,22 +22,17 @@ import javafx.geometry.Point2D;
 public class Turtle extends Observable implements ITurtle, Observer{
 		public static final double STARTING_ANGLE = 90;
 		public static final double[] STARTING_POSITION = {0,0};
-		private int myTurtleId;
-		private DoubleProperty myXPos;
-		private DoubleProperty myYPos;
-		private DoubleProperty myAngle;
-		private BooleanProperty myPenDown;
-		private BooleanProperty myOpacity;
+		private int myTurtleId;		
 		private RenderMath myRenderMath;
-		private BooleanProperty isSelected;
+
+		private double myXPos;
+		private double myYPos;
+		private double myAngle;
+		private boolean myPenDown;
+		private boolean myOpacity;
+		private boolean isSelected;
 
 		public Turtle(RenderSprite ob) {
-			myXPos = new SimpleDoubleProperty();
-			myYPos = new SimpleDoubleProperty();
-			myAngle = new SimpleDoubleProperty();
-			myPenDown = new SimpleBooleanProperty();
-			myOpacity = new SimpleBooleanProperty();
-			isSelected = new SimpleBooleanProperty();
 			addObserver(ob);
 			readRenderSprite(ob);
 		}
@@ -57,23 +52,23 @@ public class Turtle extends Observable implements ITurtle, Observer{
 			return myTurtleId;
 		}
 		
-		public DoubleProperty getMyX() {
+		public double getMyX() {
 			return this.myXPos;
 		}
 		
-		public DoubleProperty getMyY() {
+		public double getMyY() {
 			return this.myYPos;
 		}
 		
-		public DoubleProperty getAngle() {
+		public double getAngle() {
 			return this.myAngle;
 		}
 		
-		public BooleanProperty getPen() {
+		public boolean getPen() {
 			return myPenDown;
 		}
 		
-		public BooleanProperty getOpacity() {
+		public boolean getOpacity() {
 			return myOpacity;
 		}
 		
@@ -82,16 +77,16 @@ public class Turtle extends Observable implements ITurtle, Observer{
 		}
 		
 		public boolean isSelected() {
-			return isSelected.get();
+			return isSelected;
 		}
 		
 		private void readRenderSprite(RenderSprite ob) {
-			myXPos.set(ob.getX());
-			myYPos.set(ob.getY());
-			myAngle.set(ob.getAngle());
-			myPenDown.set(ob.isPenDown());
-			myOpacity.set(ob.isVisible());
-			isSelected.set(ob.isSelected());
+			myXPos = ob.getX();
+			myYPos = ob.getY();
+			myAngle = ob.getAngle();
+			myPenDown = ob.isPenDown();
+			myOpacity = ob.isVisible();
+			isSelected = ob.isSelected();
 			myTurtleId = ob.getId();
 			myRenderMath = ob.getMath();
 		}
@@ -100,5 +95,30 @@ public class Turtle extends Observable implements ITurtle, Observer{
 		public void update(Observable arg0, Object arg1) {
 			RenderSprite rs = (RenderSprite) arg0;
 			readRenderSprite(rs);
+		}
+
+		@Override
+		public void setX(double X) {
+			myXPos = myRenderMath.xTranslate(X);
+		}
+
+		@Override
+		public void setY(double Y) {
+			myYPos = myRenderMath.yTranslate(Y);
+		}
+
+		@Override
+		public void setAngle(double angle) {
+			myAngle = angle;
+		}
+
+		@Override
+		public void setPen(boolean penDown) {
+			myPenDown = penDown;
+		}
+
+		@Override
+		public void setOpacity(boolean isVisible) {
+			myOpacity = isVisible;
 		}
 }
