@@ -60,14 +60,15 @@ public class ConsoleHistory extends Module {
 			
 	}
 
-	@Override
-	public Element getXMLPreferences(Document doc) {
-
-		return null;
-	}
 
 	private void stylize() {
 		history.getStyleClass().add("Window");
 		historyPane.getStyleClass().add("Window");	
+	}
+
+	@Override
+	public Element getXMLPreferences(Document doc) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
