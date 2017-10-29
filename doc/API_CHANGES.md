@@ -1,9 +1,10 @@
 Design Overview
 ========================
+![enter image description here](https://coursework.cs.duke.edu/CompSci308_2017Fall/slogo_team02/raw/master/doc/629d22b48a4346e2964b6893d8c4d0c5%20%281%29.jpeg)
 ## External API
 
 ### Front End -> Backend
-![enter image description here](https://coursework.cs.duke.edu/CompSci308_2017Fall/slogo_team02/raw/master/doc/629d22b48a4346e2964b6893d8c4d0c5%20%281%29.jpeg)
+
 ----------
 -	Console
 	-	update
