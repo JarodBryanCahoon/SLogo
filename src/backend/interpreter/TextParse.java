@@ -53,6 +53,18 @@ public class TextParse {
 
 	}
 	
+  public void changeLanguage(Properties languageFile) { 
+	    languageMap = new HashMap<>(); 
+	    for(Object key : languageFile.keySet()) { 
+	      String s = key.toString(); 
+	      String[] commands = languageFile.getProperty(s).split("\\|"); 
+	      for(String command : commands) { 
+	        languageMap.put(command, s); 
+	      } 
+	    } 
+	  } 
+		
+
 	public TextParse(Map<String, List<Object>> map, String filename) throws ClassNotFoundException, FileNotFoundException {
 		myMap = map;
 		rb = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + filename);
@@ -62,17 +74,6 @@ public class TextParse {
 	private void createSyntaxReader() throws ClassNotFoundException, FileNotFoundException {
 		SyntaxReader sReader = new SyntaxReader();
 		myProperties = sReader.getProperties();
-	}
-	
-	public void changeLanguage(Properties languageFile) {
-		languageMap = new HashMap<>();
-		for(Object key : languageFile.keySet()) {
-			String s = key.toString();
-			String[] commands = languageFile.getProperty(s).split("\\|");
-			for(String command : commands) {
-				languageMap.put(command, s);
-			}
-		}
 	}
 	
 	public void setCommands(String s, TurtleCollection turtles) {
