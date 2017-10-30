@@ -1,24 +1,29 @@
-package backend.board.interfacemovement;
+package backend.control;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import backend.abstractsyntaxtree.ASTNode;
-import backend.board.TurtleCollection;
 
-public abstract class SomeParamTurtle extends TurtleNode{
+public class ControlNode implements ASTNode{
 	private List<ASTNode> myChildren;
-	public SomeParamTurtle(TurtleCollection turtles) {
-		super(turtles);
+	public ControlNode() {
 		myChildren = new ArrayList<>();
 	}
-	
+
+	@Override
+	public double execute() {
+		return 0;
+	}
+
 	@Override
 	public void setChildren(ASTNode n) {
 		myChildren.add(n);
 	}
 	
-	protected List<ASTNode> getChildren() {
+	
+	protected List<ASTNode> getChildren(){
 		return myChildren;
 	}
+
 }
