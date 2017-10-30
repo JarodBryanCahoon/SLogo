@@ -53,7 +53,7 @@ public class TextParse {
 
 	}
 	
-  public void changeLanguage(Properties languageFile) { 
+	public void changeLanguage(Properties languageFile) { 
 	    languageMap = new HashMap<>(); 
 	    for(Object key : languageFile.keySet()) { 
 	      String s = key.toString(); 
@@ -92,9 +92,7 @@ public class TextParse {
 				continue;
 			}
 		}
-		System.out.println(Arrays.toString(lineList));
 		String s = String.join(" ", lineList);
-		System.out.println(s);
 		fillCommandQueue(s, turtles);
 		root = recursiveTree();
 	}
