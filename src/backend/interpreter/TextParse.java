@@ -76,9 +76,11 @@ public class TextParse {
 		String s = String.join(" ", lineList);
 		fillCommandQueue(s, turtles);
 		root = recursiveTree();
-//		if (!queue.isEmpty()) {
+		if (!queue.isEmpty()) {
 //			throw new SyntaxException(); 
-//		}
+			root.execute();
+			root = recursiveTree();
+		}
 	}
 
 	private void fillCommandQueue(String s, TurtleCollection turtles) {
