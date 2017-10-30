@@ -79,8 +79,6 @@ public class TextParse {
 	public void setCommands(String s, TurtleCollection turtles) {
 		makeTree(s, turtles);
 	}
-	
-	
 
 	private void makeTree(String commands, TurtleCollection turtles) {
 		String[] lineList = commands.split(myProperties.getProperty(NEWLINE));	

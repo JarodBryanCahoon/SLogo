@@ -2,6 +2,7 @@ package backend.board;
 
 import java.util.Observable;
 import java.util.Observer;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -9,16 +10,25 @@ import frontend.modules.RenderModule;
 import frontend.popups.TurtleView;
 import frontend.xml.PreferenceXMLReader;
 import frontend.xml.XMLReader;
+import javafx.animation.ParallelTransition;
+import javafx.animation.PathTransition;
+import javafx.animation.Timeline;
+import javafx.animation.Transition;
+import javafx.animation.TranslateTransition;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.shape.CubicCurveTo;
+import javafx.scene.shape.MoveTo;
+import javafx.scene.shape.Path;
+import javafx.util.Duration;
 
 /**
  * @author Albert
  *
  */
 public class RenderSprite extends Observable implements iRenderSprite, Observer {
+	private static final int DURATION = 2000;
 	private static final double SELECTED_DIFFERENCE = 0.5;
 	private static final double SELECTED = 1.0;
 	private static final String TURTLE = "turtle";
@@ -65,7 +75,7 @@ public class RenderSprite extends Observable implements iRenderSprite, Observer 
 	
 	private void handleDrag(MouseEvent event) {
 		setX(myRenderMath.logoX(event.getSceneX() - myImageView.getBoundsInLocal().getWidth() / 2));
-		setY(myRenderMath.logoY(event.getSceneY()));
+		setY(myRenderMath.logoY(event.getSceneY() - myImageView.getBoundsInLocal().getHeight() / 2));
 	}
 	
 	public void stylize() {
@@ -118,18 +128,18 @@ public class RenderSprite extends Observable implements iRenderSprite, Observer 
 	}
 	
 	private void readX(double X) {
-		myX = X;
+		myX = myRenderMath.xTranslate(X);
 		myImageView.setX(myRenderMath.imageX(myX));
 	}
 	
 	private void readY(double newY) {
-		myY = newY;
+		myY = myRenderMath.yTranslate(newY);
 		myImageView.setY(myRenderMath.imageY(myY));
 	}
 
 	private void readAngle(double newAngle) {
 		myAngle = newAngle;
-		myImageAngle = -myAngle;
+		myImageAngle = 360 - myAngle;
 		myImageView.setRotate(myImageAngle);
 	}
 
@@ -144,22 +154,45 @@ public class RenderSprite extends Observable implements iRenderSprite, Observer 
 
 	@Override
 	public void update(Observable arg0, Object arg1) {
-//		System.out.println("render updating");
 		Turtle turtle = (Turtle) arg0;
-		double oldX = turtle.getMyX();
-		double oldY = turtle.getMyY();
-
+		double oldX = myX;
+		double oldY = myY;
+		double oldAngle = myAngle;
+		
 		readX(turtle.getMyX());
 		readY(turtle.getMyY());
-		
-		if(penDown) {
-			myRender.drawLine(myTurtleId, oldX, oldY);
-		}
-		
-		readPen(turtle.getPen());
 		readAngle(turtle.getAngle());
+
+		if(hasMoved(turtle, oldX, oldY)) {
+//	        ParallelTransition pTransition = getTranslationAnimation(oldX, oldY);
+//			myRender.appendTransition(pTransition);
+			if(penDown) {
+				myRender.drawLine(myTurtleId, oldX, oldY);
+			}
+		}
+		System.out.println();
+
+		readPen(turtle.getPen());
 		readVisibility(turtle.getOpacity());	
-	}	
+	}
+
+	private ParallelTransition getTranslationAnimation(double oldX, double oldY) {
+		TranslateTransition xTranslateTransition =
+		        new TranslateTransition(Duration.millis(DURATION), myImageView);
+		xTranslateTransition.setToX(myRenderMath.imageX(myX) - myRenderMath.imageX(oldX));
+		
+		TranslateTransition yTranslateTransition =
+		        new TranslateTransition(Duration.millis(2000), myImageView);
+		yTranslateTransition.setToY(myRenderMath.imageY(myY) - myRenderMath.imageY(oldY));
+		
+		ParallelTransition pTransition = new ParallelTransition();
+		pTransition.getChildren().addAll(xTranslateTransition, yTranslateTransition);
+		return pTransition;
+	}
+	
+	private boolean hasMoved(Turtle turtle, double oldX, double oldY) {
+		return ! ( (turtle.getMyX() == oldX) && (turtle.getMyY() == oldY) );
+	}
 	
 	public void changeImage(ImageView image) {
 		myImageView = image;
