@@ -143,6 +143,8 @@ public class RenderModule extends Module{
 		if(!myTransitions.isEmpty()) {
 			currentTransition = myTransitions.poll();
 			currentTransition.play();
+		} else {
+			animationPlaying = false;
 		}
 	}
 }
