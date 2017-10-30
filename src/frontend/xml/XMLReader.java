@@ -27,7 +27,6 @@ public abstract class XMLReader {
 	}
 	
 	public XMLReader(String path, ViewModule view) throws XMLException, IOException {
-		System.out.println("here");
 		myViewModule = view;
 		instDocument(path);
 	}

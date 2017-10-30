@@ -23,6 +23,7 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
 
 public class ChangeLanguage extends MenuItemStrategy {
 	private static final String UNFLAG_PATH = "/resources/style/unflag.gif";
@@ -32,9 +33,17 @@ public class ChangeLanguage extends MenuItemStrategy {
 	private List<String> languageLabels;
 	private ChoiceBox<String> myChoiceBox;
 	private PopUp myPopUp;
+	private boolean newWindow;
+	private Stage myStage;
 	public ChangeLanguage(ViewModule view) {
 		super(view);
-		myPopUp = new PopUp(createParent(), "Change Language");
+		newWindow = false;
+	}
+	
+	public ChangeLanguage(Stage s) throws Exception {
+		super(new ViewModule(0, 0));
+		newWindow = true;
+		myStage = s;
 	}
 	
 	private Parent createParent() {		
@@ -61,7 +70,17 @@ public class ChangeLanguage extends MenuItemStrategy {
 		try {
 			input = new FileInputStream(PREFIX_PATH + newLanguage + PROPERTIES_SUFFIX);
 			languageProperties.load(input);
-			getView().changeLanguage(languageProperties);
+			if(newWindow) {
+				try {
+					NewWindow init = new NewWindow(myStage, languageProperties);
+					init.execute();
+				} catch (Exception e) {
+					ErrorMessage eMessage = new ErrorMessage("Could not initiate new windodw");
+					eMessage.show();
+				}
+			} else {
+				getView().changeLanguage(languageProperties);
+			}
 		} catch (IOException ex) {
 			ErrorMessage eMessage = new ErrorMessage("Could Not Load Properties File");
 			eMessage.show();
@@ -88,7 +107,7 @@ public class ChangeLanguage extends MenuItemStrategy {
 	
 	@Override
 	public void execute() {
-		
+		myPopUp = new PopUp(createParent(), "Change Language");
 		
 	}
 

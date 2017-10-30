@@ -27,7 +27,6 @@ public class ConsoleInput extends Module{
 
 	public ConsoleInput(double myWidth,double myHeight, ViewModule view) throws Exception{
 		super(myWidth, myHeight, view);
-		System.out.println("Console created");
 		keyComb = new KeyCodeCombination(KeyCode.ENTER,KeyCombination.SHIFT_DOWN);
 		this.backend = view.getManager();
 				
