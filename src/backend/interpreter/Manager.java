@@ -2,10 +2,12 @@ package backend.interpreter;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import backend.abstractSyntaxTree.ASTNode;
+import backend.control.VariableNode;
 import backend.abstractSyntaxTree.ASTNode;
 
 /*Manager.java
@@ -16,15 +18,16 @@ import backend.abstractSyntaxTree.ASTNode;
 
 public class Manager {
 
-	private Map<String, List<Object>> myMemory;
+	private Map<String, List<Object>> myMemory = new HashMap<>();
+	private Map<String, VariableNode> variables = new HashMap<>();
 	private TextParse myParser;
 	private int currentId;
 	private double output;
 
 	
 	
-	public Manager(String filename) throws ClassNotFoundException, FileNotFoundException {
-		myParser = new TextParse(myMemory, filename);
+	public Manager() throws ClassNotFoundException, FileNotFoundException {
+		myParser = new TextParse(myMemory, variables);
 	}
 
 	
@@ -39,9 +42,6 @@ public class Manager {
 	}
 	
 	public void addTurtle() {
-		
-	}
-	private void executeCommands() {
 		
 	}
 }

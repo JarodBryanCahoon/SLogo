@@ -18,6 +18,7 @@ import java.util.Scanner;
 
 import backend.abstractSyntaxTree.ASTNode;
 import backend.board.logic.Tan;
+import backend.control.VariableNode;
 
 
 
@@ -29,10 +30,12 @@ import backend.board.logic.Tan;
 public class TextParse {
 	private static final String NEWLINE = "Newline";
 	private static final String DEFAULT_RESOURCE_PACKAGE = "resources/";
+	private static final String DEFAULT_COMMAND_MAP = "ArgumentNumbers";
 	public static final String CLASS_LIST = "ClassList.txt";
 	private ASTNode root;
 	private Map<String, List<Object>> myMap;
 	private Map<String, Integer> CommandNumbers;
+	private Map<String, VariableNode> variables;
 	private ResourceBundle rb;
 	private Queue<Word> queue = new LinkedList<>();
 	private Properties myProperties;
@@ -42,9 +45,10 @@ public class TextParse {
 		createSyntaxReader();
 	}
 	
-	public TextParse(Map<String, List<Object>> map, String filename) throws ClassNotFoundException, FileNotFoundException {
+	public TextParse(Map<String, List<Object>> map, Map<String, VariableNode> vars) throws ClassNotFoundException, FileNotFoundException {
 		myMap = map;
-		rb = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + filename);
+		variables = vars;
+		rb = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE +DEFAULT_COMMAND_MAP);
 		createSyntaxReader();
 	}
 
@@ -101,7 +105,7 @@ public class TextParse {
 				t=sb.toString();
 				i=j;
 			}
-			Word w = new Word(t, rb, CommandNumbers);
+			Word w = new Word(t, rb, CommandNumbers, variables, myMap);
 			
 			queue.add(w);
 		}
@@ -112,16 +116,6 @@ public class TextParse {
 		Word w = queue.poll();
 		ASTNode tree = w.getNode();
 		if(w.getType().equals("Command")) {
-//			if(w.getNumber()==0) {
-//				return tree;
-//			}
-//			if(w.getNumber()==1) {
-//				tree.setChildren((recursiveTree()));
-//			}
-//			if(w.getNumber()==2) {
-//				tree.setChildren(recursiveTree());
-//				tree.setChildren(recursiveTree());
-//			}
 			for(int i = 0; i<w.getNumber(); i++) {
 				tree.setChildren(recursiveTree());
 			}
@@ -147,7 +141,7 @@ public class TextParse {
 		
 		for (int k = 0; k< commandList.length; k++) {
 			System.out.println(commandList[k]);
-			Word word = new Word(commandList[k], rb, CommandNumbers);
+			Word word = new Word(commandList[k], rb, CommandNumbers, variables, myMap);
 			sentence[k] = word;
 		}
 		return sentence;
