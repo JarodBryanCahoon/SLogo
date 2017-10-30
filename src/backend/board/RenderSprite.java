@@ -167,7 +167,9 @@ public class RenderSprite extends Observable implements iRenderSprite, Observer 
 		if(hasMoved(turtle, oldX, oldY)) {
 	        sTransition.getChildren().add(getTranslationAnimation());
 			if(penDown) {
-				myRender.drawLine(myTurtleId, oldX, oldY);
+				myRender.drawLine(myTurtleId, 
+						myRenderMath.imageX(oldX), 
+						myRenderMath.imageY(oldY));
 			}
 		}
 		
