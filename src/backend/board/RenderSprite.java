@@ -163,9 +163,9 @@ public class RenderSprite extends Observable implements iRenderSprite, Observer 
 		myY = myRenderMath.xTranslate(turtle.getMyY());
 		readAngle(turtle.getAngle());
 
-		SequentialTransition pTransition = new SequentialTransition();
+		SequentialTransition sTransition = new SequentialTransition();
 		if(hasMoved(turtle, oldX, oldY)) {
-	        pTransition.getChildren().add(getTranslationAnimation());
+	        sTransition.getChildren().add(getTranslationAnimation());
 			if(penDown) {
 				myRender.drawLine(myTurtleId, 
 						myRenderMath.imageX(oldX), 
@@ -174,10 +174,10 @@ public class RenderSprite extends Observable implements iRenderSprite, Observer 
 		}
 		
 		if(oldAngle != myAngle) {
-			pTransition.getChildren().add(getRotationAnimation(oldAngle));
+			sTransition.getChildren().add(getRotationAnimation(oldAngle));
 		}
 
-		myRender.appendTransition(pTransition);
+		myRender.appendTransition(sTransition);
 
 		readPen(turtle.getPen());
 		readVisibility(turtle.getOpacity());	

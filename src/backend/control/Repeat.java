@@ -13,7 +13,7 @@ public class Repeat extends ControlNode {
 	public double execute() {
 		double d=0;
 		VariableNode repcount;
-		if (super.getVariables().get(REPCOUNT)==null) {
+		if (!super.getVariables().containsKey(REPCOUNT)) {
 			repcount = new VariableNode(REPCOUNT);
 			super.getVariables().put(REPCOUNT, repcount);
 		}
