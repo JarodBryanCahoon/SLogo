@@ -122,20 +122,20 @@ public class RenderModule extends Module{
 	}
 	
 	public void appendTransition(Animation newTransition) {
+		newTransition.setOnFinished(e -> checkQueue());
 		myTransitions.add(newTransition);
-		while(!myTransitions.isEmpty()) {
-			while(animationPlaying) {
-				
-			}
+		
+		if(!animationPlaying) {
 			animationPlaying = true;
-			System.out.println("past wait conidtion");
 			currentTransition = myTransitions.poll();
-			currentTransition.setOnFinished(e -> notPlaying());
 			currentTransition.play();
 		}
 	}
 	
-	private void notPlaying() {
-		animationPlaying = false;
+	private void checkQueue() {
+		if(!myTransitions.isEmpty()) {
+			currentTransition = myTransitions.poll();
+			currentTransition.play();
+		}
 	}
 }
