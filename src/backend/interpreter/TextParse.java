@@ -11,7 +11,7 @@ import java.util.Properties;
 import java.util.Queue;
 import java.util.ResourceBundle;
 
-import backend.abstractsyntaxtree.ASTNode;
+import backend.abstractSyntaxTree.ASTNode;
 import backend.board.TurtleCollection;
 import backend.board.logic.Tan;
 import backend.control.VariableNode;

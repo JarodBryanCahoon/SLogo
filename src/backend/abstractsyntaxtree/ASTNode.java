@@ -1,4 +1,4 @@
-package backend.abstractsyntaxtree;
+package backend.abstractSyntaxTree;
 
 import java.util.List;
 

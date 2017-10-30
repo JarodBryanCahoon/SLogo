@@ -3,7 +3,7 @@ package backend.control;
 import java.util.ArrayList;
 import java.util.List;
 
-import backend.abstractsyntaxtree.ASTNode;
+import backend.abstractSyntaxTree.ASTNode;
 
 public class ControlNode implements ASTNode{
 	private List<ASTNode> myChildren;
