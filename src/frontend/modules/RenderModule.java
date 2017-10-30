@@ -124,8 +124,11 @@ public class RenderModule extends Module{
 		myTransitions.add(newTransition);
 		System.out.println("animation added");
 		while(!myTransitions.isEmpty()) {
-			while(current)
+			while(currentTransition != null) {
+				
+			}
 			myTransitions.poll().play();
+			currentTransition = null;
 			System.out.println("animation played");
 		}
 	}
