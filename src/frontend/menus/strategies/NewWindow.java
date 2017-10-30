@@ -1,5 +1,7 @@
 package frontend.menus.strategies;
 
+import java.util.Properties;
+
 import exceptions.ErrorMessage;
 import frontend.modules.ConsoleInput;
 import frontend.modules.ViewModule;
@@ -11,14 +13,16 @@ import javafx.stage.Stage;
 public class NewWindow extends MenuItemStrategy {
 	private static final String configFileName = "src/resources/style/config.xml";
 	private Stage myStage;
+	private Properties myLangFile;
 	public NewWindow(ViewModule module) {
 		super(module);
 		myStage = new Stage();
 	}
 	
-	public NewWindow(Stage s) throws Exception {
+	public NewWindow(Stage s, Properties langFile) throws Exception {
 		super(new ViewModule(0, 0));
 		myStage = s;
+		myLangFile = langFile;
 	}
 	
 	@Override
@@ -31,15 +35,19 @@ public class NewWindow extends MenuItemStrategy {
 
 			ConfigReader configReader = new ConfigReader(configFileName);
 			ViewModule view = new ViewModule(configReader.getWidth(), configReader.getHeight());
-			
+			if(myLangFile == null) {
+				view.changeLanguage(getView().getManager().getLangProperties());
+			} else {
+				view.changeLanguage(myLangFile);
+			}
 			Scene scene = new Scene(view.getParent(), configReader.getWidth(), configReader.getHeight());
 			myStage.setScene(scene);
 			myStage.setTitle(configReader.getTitle());
 			myStage.show();
 			style(myStage.getScene());
-			System.out.println(scene.getHeight());
 
 		} catch (Exception e) {
+			e.printStackTrace();
 			ErrorMessage eMessage = new ErrorMessage("Could Not Create New Window!");
 			eMessage.show();
 		}

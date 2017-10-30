@@ -41,14 +41,14 @@ public class TextParse {
 	
 	public TextParse() throws ClassNotFoundException, FileNotFoundException {
 		rb = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "ArgumentNumbers");
-		InputStream input = new FileInputStream("src/resources/languages/Chinese.properties");
-		Properties lang = new Properties();
-		try {
-			lang.load(input);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		changeLanguage(lang);
+//		InputStream input = new FileInputStream("src/resources/languages/Chinese.properties");
+//		Properties lang = new Properties();
+//		try {
+//			lang.load(input);
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//		changeLanguage(lang);
 		createSyntaxReader();
 
 	}

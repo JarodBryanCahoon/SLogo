@@ -32,6 +32,7 @@ public class Manager extends Observable {
 	private TurtleCollection myTurtles;
 	private InfoInterface myInfoInterface;
 	private History myHistory;
+	private Properties myLangProperties;
 	
 	public Manager(String filename, ViewModule view) throws ClassNotFoundException, FileNotFoundException {
 		myParser = new TextParse();
@@ -91,6 +92,11 @@ public class Manager extends Observable {
 	}
 	
 	public void changeLanguage(Properties langProperties) {
+		myLangProperties = langProperties;
 		myParser.changeLanguage(langProperties);
+	}
+	
+	public Properties getLangProperties() {
+		return myLangProperties;
 	}
 }
