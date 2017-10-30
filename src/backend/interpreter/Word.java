@@ -112,7 +112,7 @@ public class Word {
 			makeListNode(rb, variables);
 		}
 		else if(myName.matches(myProperties.getProperty(COMMAND))) {
-			makeCommandNode(rb);
+			makeCommandNode(rb, variables);
 		}
 		else {
 			myType = "Invalid";
@@ -122,7 +122,7 @@ public class Word {
 	private void makeListNode(ResourceBundle rb, Map<String, VariableNode> variables) {
 		myType = LIST;
 		try {
-			myNode = new ListNode(myName, variables, myTurtles);
+			myNode = new ListNode(myName.substring(1,myName.length()), variables, myTurtles);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -137,7 +137,7 @@ public class Word {
 		myNode = new ConstantNode(Double.parseDouble(myName));
 	}
 
-	private void makeCommandNode(ResourceBundle rb) {
+	private void makeCommandNode(ResourceBundle rb, Map<String, VariableNode> variables) {
 		myType = COMMAND;
 		try {
 			String[] readString = rb.getString(myLanguageMap.get(myName)).split(",");
@@ -147,10 +147,16 @@ public class Word {
 			Class<?> c = Class.forName(method);
 			Constructor<?> ctr;
 			if (methodType.equals("Turtle")) {
-				nodeType = "Turtle";
+				nodeType =methodType;
 				ctr = c.getConstructor(TurtleCollection.class);
 				myNode = (ASTNode) ctr.newInstance(myTurtles);
-			} else {
+			} 
+			else if(methodType.equals("Control")) {
+				nodeType = methodType;
+				ctr = c.getConstructor(Map.class);
+				myNode = (ASTNode) ctr.newInstance(variables);
+			}
+			else {
 				ctr = c.getConstructor();
 				myNode = (ASTNode) ctr.newInstance();
 			}
