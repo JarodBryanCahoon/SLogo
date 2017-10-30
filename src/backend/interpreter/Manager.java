@@ -72,7 +72,7 @@ public class Manager extends Observable {
 			initTurtles.add(newTurtle);
 			rs.addObserver(newTurtle);
 		}
-		myTurtles = new TurtleCollection(initTurtles);
+		myTurtles = new TurtleCollection(initTurtles, myViewModule.getParent().getScene());
 	}
 	
 	public double setAndExecuteCommand(String s) {

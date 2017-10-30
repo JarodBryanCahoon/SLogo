@@ -29,12 +29,12 @@
 	
 	<Windows>
 		<Window>
-			<fx-background-color>#330033ff</fx-background-color>
+			<fx-background-color>#333333ff</fx-background-color>
 			<fx-background>#333333ff</fx-background>
 			<fx-text-fill>white</fx-text-fill>
 		</Window>
 		<Window.content>
-			<fx-background-color>#331a80ff</fx-background-color>
+			<fx-background-color>#333333ff</fx-background-color>
 		</Window.content>
 	</Windows>
 	
@@ -42,7 +42,7 @@
 		
 		<Render>
 			<fx-background-color>#808080ff</fx-background-color>
-			<fx-fill>white</fx-fill>
+			<fx-fill>#ffffffff</fx-fill>
 			<fx-width>red</fx-width>
 			<turtle>red</turtle>
 		</Render>

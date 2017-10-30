@@ -31,6 +31,7 @@ public class RenderModule extends Module{
 	private static final String turtlePath = "/resources/turtle.png";
 	private Queue<Animation> myTransitions;
 	private Animation currentTransition;
+	private boolean animationPlaying = false;;
 			
 	public RenderModule(double width, double height, ViewModule view) throws Exception {
 		super(width, height, view);
@@ -122,14 +123,19 @@ public class RenderModule extends Module{
 	
 	public void appendTransition(Animation newTransition) {
 		myTransitions.add(newTransition);
-		System.out.println("animation added");
 		while(!myTransitions.isEmpty()) {
-			while(currentTransition != null) {
+			while(animationPlaying) {
 				
 			}
-			myTransitions.poll().play();
-			currentTransition = null;
-			System.out.println("animation played");
+			animationPlaying = true;
+			System.out.println("past wait conidtion");
+			currentTransition = myTransitions.poll();
+			currentTransition.setOnFinished(e -> notPlaying());
+			currentTransition.play();
 		}
+	}
+	
+	private void notPlaying() {
+		animationPlaying = false;
 	}
 }
