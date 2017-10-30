@@ -1,6 +1,7 @@
 import java.util.ResourceBundle;
 
 import backend.board.Turtle;
+import backend.board.TurtleCollection;
 import backend.board.interfacemovement.SomeParamTurtle;
 import frontend.xml.ColorReader;
 /**
@@ -11,8 +12,8 @@ import frontend.xml.ColorReader;
 public class PenColor extends SomeParamTurtle {
 	private ResourceBundle myColors = ResourceBundle.getBundle("TBD");
 	private String myColor;
-	public PenColor(String s) {
-		myColor = s;
+	public PenColor(TurtleCollection turtles) {
+		super(turtles);
 	}
 
 	@Override
