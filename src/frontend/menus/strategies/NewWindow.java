@@ -3,7 +3,6 @@ package frontend.menus.strategies;
 import java.util.Properties;
 
 import exceptions.ErrorMessage;
-import frontend.modules.ConsoleInput;
 import frontend.modules.ViewModule;
 import frontend.xml.ConfigReader;
 import javafx.scene.Scene;
