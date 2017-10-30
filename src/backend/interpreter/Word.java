@@ -156,6 +156,7 @@ public class Word {
 			}
 		} catch (MissingResourceException | ClassNotFoundException | NoSuchMethodException | SecurityException
 				| InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NullPointerException e) {
+
 			myType = "Invalid";
 		}
 	
