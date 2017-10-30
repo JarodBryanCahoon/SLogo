@@ -42,7 +42,6 @@
 		
 		<Render>
 			<fx-background-color>#1a1a1aff</fx-background-color>
-		
 			<fx-fill>white</fx-fill>
 			<fx-width>red</fx-width>
 			<turtle>red</turtle>
