@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.Observable;
 import java.util.Properties;
 
-import backend.abstractSyntaxTree.ASTNode;
+import backend.abstractsyntaxtree.ASTNode;
 import backend.board.RenderSprite;
 import backend.board.Turtle;
 import backend.board.TurtleCollection;
@@ -16,6 +16,7 @@ import frontend.modules.InfoInterface;
 import frontend.modules.ViewModule;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.text.TextFlow;
+import backend.control.VariableNode;
 
 /*Manager.java
  * 
@@ -26,6 +27,9 @@ import javafx.scene.text.TextFlow;
  */ 
 
 public class Manager extends Observable {
+
+	private Map<String, List<Object>> myMemory = new HashMap<>();
+	private Map<String, VariableNode> variables = new HashMap<>();
 	private TextParse myParser;
 	private double output;
 	private ViewModule myViewModule;
@@ -35,7 +39,7 @@ public class Manager extends Observable {
 	private Properties myLangProperties;
 	
 	public Manager(String filename, ViewModule view) throws ClassNotFoundException, FileNotFoundException {
-		myParser = new TextParse();
+		myParser = new TextParse(variables);
 		myViewModule = view;
 		myHistory = new History();
 		myInfoInterface = new InfoInterface(myHistory);

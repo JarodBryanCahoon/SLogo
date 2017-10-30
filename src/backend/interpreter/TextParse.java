@@ -15,8 +15,13 @@ import java.util.Properties;
 import java.util.Queue;
 import java.util.ResourceBundle;
 
-import backend.abstractSyntaxTree.ASTNode;
+import backend.abstractsyntaxtree.ASTNode;
 import backend.board.TurtleCollection;
+import backend.board.logic.Tan;
+import backend.control.VariableNode;
+import exceptions.SyntaxException;
+
+
 
 /*TextParse.java
  * @author Venkat Subramaniam
@@ -30,27 +35,19 @@ public class TextParse {
 	private static final String WHITESPACE = "Whitespace";
 	private static final String NEWLINE = "Newline";
 	private static final String DEFAULT_RESOURCE_PACKAGE = "resources/";
+	private static final String DEFAULT_COMMAND_MAP = "ArgumentNumbers";
 	public static final String CLASS_LIST = "ClassList.txt";
 	private ASTNode root;
-	private Map<String, List<Object>> myMap;
-	private Map<String, Integer> CommandNumbers;
+	private Map<String, VariableNode> variables;
 	private ResourceBundle rb;
 	private Queue<Word> queue = new LinkedList<>();
 	private Properties myProperties;
 	private Map<String, String> languageMap;
 	
-	public TextParse() throws ClassNotFoundException, FileNotFoundException {
-		rb = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "ArgumentNumbers");
-//		InputStream input = new FileInputStream("src/resources/languages/Chinese.properties");
-//		Properties lang = new Properties();
-//		try {
-//			lang.load(input);
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//		changeLanguage(lang);
+	public TextParse(Map<String, VariableNode> vars) throws ClassNotFoundException, FileNotFoundException {
+		variables = vars;
+		rb = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE +DEFAULT_COMMAND_MAP);
 		createSyntaxReader();
-
 	}
 	
 	public void changeLanguage(Properties languageFile) { 
@@ -63,13 +60,6 @@ public class TextParse {
 	      } 
 	    } 
 	  } 
-		
-
-	public TextParse(Map<String, List<Object>> map, String filename) throws ClassNotFoundException, FileNotFoundException {
-		myMap = map;
-		rb = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + filename);
-		createSyntaxReader();
-	}
 
 	private void createSyntaxReader() throws ClassNotFoundException, FileNotFoundException {
 		SyntaxReader sReader = new SyntaxReader();
@@ -87,7 +77,6 @@ public class TextParse {
 		for (String command: lineList) {
 			command=command.trim();
 			if (command.equals(myProperties.getProperty(COMMENT))){
-				addToComments(command);
 				command= "";
 				continue;
 			}
@@ -95,6 +84,9 @@ public class TextParse {
 		String s = String.join(" ", lineList);
 		fillCommandQueue(s, turtles);
 		root = recursiveTree();
+		if (!queue.isEmpty()) {
+			throw new SyntaxException(); 
+		}
 	}
 
 	private void fillCommandQueue(String s, TurtleCollection turtles) {
@@ -104,7 +96,10 @@ public class TextParse {
 			if (t.equals(myProperties.getProperty(LIST_START))) {
 				StringBuilder sb = new StringBuilder();
 				int j=i;
-				while(!commandList[j].equals(myProperties.getProperty(LIST_START))) {
+				while(!commandList[j].equals(myProperties.getProperty(LIST_END))) {
+					if (j>=commandList.length) {
+						throw new SyntaxException();			
+					}
 					sb.append(commandList[j]);
 					sb.append(" ");
 					j++;
@@ -113,7 +108,7 @@ public class TextParse {
 				t=sb.toString();
 				i=j;
 			}
-			Word w = new Word(t, rb,turtles, languageMap);
+			Word w = new Word(t, rb, turtles, variables, languageMap);
 			
 			queue.add(w);
 		};
@@ -121,19 +116,12 @@ public class TextParse {
 
 
 	private ASTNode recursiveTree() {
+		if (queue.isEmpty()) {
+			throw new SyntaxException();
+		}
 		Word w = queue.poll();
 		ASTNode tree = w.getNode();
 		if(w.getType().equals("Command")) {
-//			if(w.getNumber()==0) {
-//				return tree;
-//			}
-//			if(w.getNumber()==1) {
-//				tree.setChildren((recursiveTree()));
-//			}
-//			if(w.getNumber()==2) {
-//				tree.setChildren(recursiveTree());
-//				tree.setChildren(recursiveTree());
-//			}
 			for(int i = 0; i<w.getNumber(); i++) {
 				tree.setChildren(recursiveTree());
 			}
@@ -141,13 +129,6 @@ public class TextParse {
 		return tree;
 	}
 	
-	private void addToComments(String s) {
-		if (!myMap.containsKey("Comments")){
-			myMap.put("Comments", new ArrayList<Object>());
-		}
-		myMap.get("Comments").add(s);
-		
-	}
 
 	public ASTNode getTree() {
 		return root;
@@ -158,9 +139,8 @@ public class TextParse {
 		Word[] sentence = new Word[commandList.length];
 		
 		for (int k = 0; k< commandList.length; k++) {
-//			System.out.println(commandList[k]);
 
-			Word word = new Word(commandList[k], rb, turtles, languageMap);
+			Word word = new Word(commandList[k], rb, turtles, variables, languageMap);
 			sentence[k] = word;
 		}
 		return sentence;

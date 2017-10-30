@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
-import backend.abstractSyntaxTree.ASTNode;
+import backend.abstractsyntaxtree.ASTNode;
 import backend.board.interfacemovement.TurtleNode;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;

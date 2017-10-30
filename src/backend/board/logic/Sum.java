@@ -1,6 +1,6 @@
 package backend.board.logic;
 
-import backend.abstractSyntaxTree.ASTNode;
+import backend.abstractsyntaxtree.ASTNode;
 /**
  * 
  * @author Jarod Cahoon, Venkat Subramaniam
