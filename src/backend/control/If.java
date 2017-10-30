@@ -1,9 +1,11 @@
 package backend.control;
 
+import java.util.Map;
+
 public class If extends ControlNode{
 
-	public If() {
-		super();
+	public If(Map<String, VariableNode> variables) {
+		super(variables);
 	}
 	
 	@Override
