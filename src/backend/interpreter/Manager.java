@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.Observable;
 import java.util.Properties;
 
-import backend.abstractSyntaxTree.ASTNode;
+import backend.abstractsyntaxtree.ASTNode;
 import backend.board.RenderSprite;
 import backend.board.Turtle;
 import backend.board.TurtleCollection;
@@ -17,7 +17,6 @@ import frontend.modules.ViewModule;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.text.TextFlow;
 import backend.control.VariableNode;
-import backend.abstractSyntaxTree.ASTNode;
 
 /*Manager.java
  * 

@@ -15,10 +15,11 @@ import java.util.Properties;
 import java.util.Queue;
 import java.util.ResourceBundle;
 
-import backend.abstractSyntaxTree.ASTNode;
+import backend.abstractsyntaxtree.ASTNode;
 import backend.board.TurtleCollection;
 import backend.board.logic.Tan;
 import backend.control.VariableNode;
+import exceptions.SyntaxException;
 
 
 
@@ -83,6 +84,9 @@ public class TextParse {
 		String s = String.join(" ", lineList);
 		fillCommandQueue(s, turtles);
 		root = recursiveTree();
+		if (!queue.isEmpty()) {
+			throw new SyntaxException(); 
+		}
 	}
 
 	private void fillCommandQueue(String s, TurtleCollection turtles) {
@@ -93,6 +97,9 @@ public class TextParse {
 				StringBuilder sb = new StringBuilder();
 				int j=i;
 				while(!commandList[j].equals(myProperties.getProperty(LIST_END))) {
+					if (j>=commandList.length) {
+						throw new SyntaxException();			
+					}
 					sb.append(commandList[j]);
 					sb.append(" ");
 					j++;
@@ -109,6 +116,9 @@ public class TextParse {
 
 
 	private ASTNode recursiveTree() {
+		if (queue.isEmpty()) {
+			throw new SyntaxException();
+		}
 		Word w = queue.poll();
 		ASTNode tree = w.getNode();
 		if(w.getType().equals("Command")) {

@@ -12,7 +12,7 @@ import java.util.MissingResourceException;
 import java.util.Properties;
 import java.util.ResourceBundle;
 
-import backend.abstractSyntaxTree.ASTNode;
+import backend.abstractsyntaxtree.ASTNode;
 //import backend.abstractSyntaxTree.DoubleExp;
 //import backend.abstractSyntaxTree.DuoOperatorExp;
 //import backend.abstractSyntaxTree.Expression;
