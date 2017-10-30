@@ -29,12 +29,12 @@
 	
 	<Windows>
 		<Window>
-			<fx-background-color>#333333ff</fx-background-color>
+			<fx-background-color>#330033ff</fx-background-color>
 			<fx-background>#333333ff</fx-background>
 			<fx-text-fill>white</fx-text-fill>
 		</Window>
 		<Window.content>
-			<fx-background-color>#333333ff</fx-background-color>
+			<fx-background-color>#331a80ff</fx-background-color>
 		</Window.content>
 	</Windows>
 	

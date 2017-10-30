@@ -184,6 +184,8 @@ public class RenderSprite extends Observable implements iRenderSprite, Observer 
 	private ParallelTransition getTranslationAnimation() {
 		TranslateTransition xTranslateTransition =
 		        new TranslateTransition(Duration.millis(DURATION), myImageView);
+		xTranslateTransition.setToX(myRenderMath.imageX(myX) - myImageView.getX());
+
 		TranslateTransition yTranslateTransition =
 		        new TranslateTransition(Duration.millis(DURATION), myImageView);
 		yTranslateTransition.setToY(myRenderMath.imageY(myY) - myImageView.getY());

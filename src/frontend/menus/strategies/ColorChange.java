@@ -20,9 +20,10 @@ public class ColorChange extends MenuItemStrategy {
 		
 		StylizeModule style = null;
 		try {
-			style = new StylizeModule();
+			style = new StylizeModule(this.getView());
 		} catch (Exception e) {
 			ErrorMessage eMessage = new ErrorMessage("Could not find color properties file");
+			eMessage.show();
 		}
 		Scene scene = new Scene(style.getParent());
 		scene.getStylesheets().add("/resources/style/" + "stylesheet2.css");
