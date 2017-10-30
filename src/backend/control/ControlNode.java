@@ -1,14 +1,19 @@
 package backend.control;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-import backend.abstractsyntaxtree.ASTNode;
+import backend.abstractSyntaxTree.ASTNode;
 
 public class ControlNode implements ASTNode{
 	private List<ASTNode> myChildren;
-	public ControlNode() {
+	private Map<String, VariableNode> variables;
+	
+	public ControlNode(Map<String, VariableNode> variable) {
 		myChildren = new ArrayList<>();
+		variables = variable;
 	}
 
 	@Override
@@ -24,6 +29,10 @@ public class ControlNode implements ASTNode{
 	
 	protected List<ASTNode> getChildren(){
 		return myChildren;
+	}
+	
+	protected Map<String, VariableNode> getVariables(){
+		return variables;
 	}
 
 }

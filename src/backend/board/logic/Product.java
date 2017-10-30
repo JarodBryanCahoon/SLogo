@@ -1,6 +1,6 @@
 package backend.board.logic;
 
-import backend.abstractsyntaxtree.ASTNode;
+import backend.abstractSyntaxTree.ASTNode;
 import backend.board.Turtle;
 /**
  * 

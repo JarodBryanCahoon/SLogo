@@ -1,9 +1,10 @@
 package frontend.modules;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
+import java.util.Queue;
+import java.util.List;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -12,12 +13,12 @@ import backend.board.RenderSprite;
 import exceptions.ErrorMessage;
 import frontend.xml.PreferenceXMLReader;
 import frontend.xml.XMLReader;
-import javafx.scene.Group;
+import javafx.animation.Animation;
+import javafx.animation.Transition;
 import javafx.scene.Parent;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.Pane;
-import javafx.scene.shape.Line;
 
 /**
  * @author Albert
@@ -28,10 +29,13 @@ public class RenderModule extends Module{
 	private int turtleId = 1;
 	private Canvas myCanvas;
 	private static final String turtlePath = "/resources/turtle.png";
+	private Queue<Animation> myTransitions;
+	private Animation currentTransition;
 			
 	public RenderModule(double width, double height, ViewModule view) throws Exception {
 		super(width, height, view);
 		addTurtle();
+		myTransitions = new LinkedList<>();
 	}
 	
 	@Override
@@ -63,7 +67,6 @@ public class RenderModule extends Module{
 		if(sprite == null) {
 			return;
 		}
-		System.out.println("drawing line");
 
 		GraphicsContext gc = myCanvas.getGraphicsContext2D();
 		gc.strokeLine(oldX, oldY, sprite.getImage().getX(), sprite.getImage().getY());
@@ -115,5 +118,15 @@ public class RenderModule extends Module{
 	
 	public List<RenderSprite> getSprites() {
 		return mySprites;
+	}
+	
+	public void appendTransition(Animation newTransition) {
+		myTransitions.add(newTransition);
+		System.out.println("animation added");
+		while(!myTransitions.isEmpty()) {
+			while(current)
+			myTransitions.poll().play();
+			System.out.println("animation played");
+		}
 	}
 }

@@ -2,7 +2,7 @@ package backend.board.interfacemovement;
 
 import java.util.List;
 
-import backend.abstractsyntaxtree.ASTNode;
+import backend.abstractSyntaxTree.ASTNode;
 import backend.board.Turtle;
 import backend.board.TurtleCollection;
 /**
@@ -17,6 +17,6 @@ public class BackwardsLineMovement extends LineMovement {
 	
 	@Override
 	public double act(Turtle co) {
-		return this.move(true, super.getChildren().get(0).execute(), co);
+		return this.move(false, super.getChildren().get(0).execute(), co);
 	}
 }

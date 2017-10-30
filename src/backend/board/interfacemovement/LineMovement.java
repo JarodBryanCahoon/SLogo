@@ -2,7 +2,7 @@ package backend.board.interfacemovement;
 
 import java.util.List;
 
-import backend.abstractsyntaxtree.ASTNode;
+import backend.abstractSyntaxTree.ASTNode;
 import backend.board.BoardMath;
 import backend.board.Turtle;
 import backend.board.TurtleCollection;
@@ -22,8 +22,10 @@ public abstract class LineMovement extends SomeParamTurtle{
 		double[] delta = BoardMath.xyDeltaCalc(pixels, turt.getAngle());
 		double xHold = turt.getMyX();
 		double yHold = turt.getMyY();
+//		System.out.println(xHold + " " + yHold);
 		xHold += b? delta[0]: -delta[0];
 		yHold += b? delta[1]: -delta[1];
+//		System.out.println(xHold + " " + yHold);
 		turt.setX(xHold);
 		turt.setY(yHold);
 

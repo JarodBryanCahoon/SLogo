@@ -6,13 +6,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import java.util.List;
 import java.util.Map;
 import java.util.MissingResourceException;
 import java.util.Properties;
 import java.util.ResourceBundle;
 
-import backend.abstractsyntaxtree.ASTNode;
+import backend.abstractSyntaxTree.ASTNode;
 //import backend.abstractSyntaxTree.DoubleExp;
 //import backend.abstractSyntaxTree.DuoOperatorExp;
 //import backend.abstractSyntaxTree.Expression;
@@ -23,8 +22,6 @@ import backend.abstractsyntaxtree.ASTNode;
 import backend.board.Turtle;
 import backend.board.TurtleCollection;
 import backend.board.logic.ConstantNode;
-//import exceptions.ErrorMessage;
-import exceptions.ErrorMessage;
 import exceptions.SyntaxException;
 import backend.control.ListNode;
 //import exceptions.ErrorMessage;
@@ -115,7 +112,7 @@ public class Word {
 			makeListNode(rb, variables);
 		}
 		else if(myName.matches(myProperties.getProperty(COMMAND))) {
-			makeCommandNode(rb);
+			makeCommandNode(rb, variables);
 		}
 		else {
 			myType = "Invalid";
@@ -125,7 +122,7 @@ public class Word {
 	private void makeListNode(ResourceBundle rb, Map<String, VariableNode> variables) {
 		myType = LIST;
 		try {
-			myNode = new ListNode(myName, variables, myTurtles);
+			myNode = new ListNode(myName.substring(1,myName.length()), variables, myTurtles);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -140,7 +137,7 @@ public class Word {
 		myNode = new ConstantNode(Double.parseDouble(myName));
 	}
 
-	private void makeCommandNode(ResourceBundle rb) {
+	private void makeCommandNode(ResourceBundle rb, Map<String, VariableNode> variables) {
 		myType = COMMAND;
 		try {
 			String[] readString = rb.getString(myLanguageMap.get(myName)).split(",");
@@ -150,15 +147,22 @@ public class Word {
 			Class<?> c = Class.forName(method);
 			Constructor<?> ctr;
 			if (methodType.equals("Turtle")) {
-				nodeType = "Turtle";
+				nodeType =methodType;
 				ctr = c.getConstructor(TurtleCollection.class);
 				myNode = (ASTNode) ctr.newInstance(myTurtles);
-			} else {
+			} 
+			else if(methodType.equals("Control")) {
+				nodeType = methodType;
+				ctr = c.getConstructor(Map.class);
+				myNode = (ASTNode) ctr.newInstance(variables);
+			}
+			else {
 				ctr = c.getConstructor();
 				myNode = (ASTNode) ctr.newInstance();
 			}
 		} catch (MissingResourceException | ClassNotFoundException | NoSuchMethodException | SecurityException
 				| InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NullPointerException e) {
+
 			myType = "Invalid";
 		}
 	
