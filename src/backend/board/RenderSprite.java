@@ -11,16 +11,12 @@ import frontend.popups.TurtleView;
 import frontend.xml.PreferenceXMLReader;
 import frontend.xml.XMLReader;
 import javafx.animation.ParallelTransition;
-import javafx.animation.PathTransition;
-import javafx.animation.Timeline;
-import javafx.animation.Transition;
+import javafx.animation.RotateTransition;
+import javafx.animation.SequentialTransition;
 import javafx.animation.TranslateTransition;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.shape.CubicCurveTo;
-import javafx.scene.shape.MoveTo;
-import javafx.scene.shape.Path;
 import javafx.util.Duration;
 
 /**
@@ -58,6 +54,9 @@ public class RenderSprite extends Observable implements iRenderSprite, Observer 
 	}
 
 	private void initImage() {
+		System.out.println("init x" + myRenderMath.imageX(myX));
+		System.out.println("init Y" + myRenderMath.imageY(myY));
+
 		myImageView.setX(myRenderMath.imageX(myX));
 		myImageView.setY(myRenderMath.imageY(myY));
 		myImageView.setRotate(myImageAngle);
@@ -74,8 +73,9 @@ public class RenderSprite extends Observable implements iRenderSprite, Observer 
 	}
 	
 	private void handleDrag(MouseEvent event) {
-		setX(myRenderMath.logoX(event.getSceneX() - myImageView.getBoundsInLocal().getWidth() / 2));
-		setY(myRenderMath.logoY(event.getSceneY() - myImageView.getBoundsInLocal().getHeight() / 2));
+//		myRender.getParent().boundsInParentProperty().
+		setX(myRenderMath.logoX(event.getSceneX()));
+		setY(myRenderMath.logoY(event.getSceneY()));
 	}
 	
 	public void stylize() {
@@ -159,35 +159,46 @@ public class RenderSprite extends Observable implements iRenderSprite, Observer 
 		double oldY = myY;
 		double oldAngle = myAngle;
 		
-		readX(turtle.getMyX());
-		readY(turtle.getMyY());
+		myX = myRenderMath.xTranslate(turtle.getMyX());
+		myY = myRenderMath.xTranslate(turtle.getMyY());
 		readAngle(turtle.getAngle());
 
+		SequentialTransition pTransition = new SequentialTransition();
 		if(hasMoved(turtle, oldX, oldY)) {
-//	        ParallelTransition pTransition = getTranslationAnimation(oldX, oldY);
-//			myRender.appendTransition(pTransition);
+	        pTransition.getChildren().add(getTranslationAnimation());
 			if(penDown) {
 				myRender.drawLine(myTurtleId, oldX, oldY);
 			}
 		}
-		System.out.println();
+		
+		if(oldAngle != myAngle) {
+			pTransition.getChildren().add(getRotationAnimation(oldAngle));
+		}
+
+		myRender.appendTransition(pTransition);
 
 		readPen(turtle.getPen());
 		readVisibility(turtle.getOpacity());	
 	}
 
-	private ParallelTransition getTranslationAnimation(double oldX, double oldY) {
+	private ParallelTransition getTranslationAnimation() {
 		TranslateTransition xTranslateTransition =
 		        new TranslateTransition(Duration.millis(DURATION), myImageView);
-		xTranslateTransition.setToX(myRenderMath.imageX(myX) - myRenderMath.imageX(oldX));
-		
 		TranslateTransition yTranslateTransition =
-		        new TranslateTransition(Duration.millis(2000), myImageView);
-		yTranslateTransition.setToY(myRenderMath.imageY(myY) - myRenderMath.imageY(oldY));
-		
+		        new TranslateTransition(Duration.millis(DURATION), myImageView);
+		yTranslateTransition.setToY(myRenderMath.imageY(myY) - myImageView.getY());
+
 		ParallelTransition pTransition = new ParallelTransition();
 		pTransition.getChildren().addAll(xTranslateTransition, yTranslateTransition);
 		return pTransition;
+	}
+	
+	private RotateTransition getRotationAnimation(double oldAngle) {
+		RotateTransition rt = new RotateTransition(Duration.millis(DURATION), myImageView);
+		double oldImageAngle = 360 - oldAngle;
+		rt.setFromAngle(oldImageAngle);
+		rt.setToAngle(myImageAngle);
+		return rt;
 	}
 	
 	private boolean hasMoved(Turtle turtle, double oldX, double oldY) {

@@ -30,6 +30,7 @@ public class RenderModule extends Module{
 	private Canvas myCanvas;
 	private static final String turtlePath = "/resources/turtle.png";
 	private Queue<Animation> myTransitions;
+	private Animation currentTransition;
 			
 	public RenderModule(double width, double height, ViewModule view) throws Exception {
 		super(width, height, view);
@@ -123,6 +124,7 @@ public class RenderModule extends Module{
 		myTransitions.add(newTransition);
 		System.out.println("animation added");
 		while(!myTransitions.isEmpty()) {
+			while(current)
 			myTransitions.poll().play();
 			System.out.println("animation played");
 		}
