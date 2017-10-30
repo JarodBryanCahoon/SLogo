@@ -1,29 +1,15 @@
 package backend.interpreter;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import java.util.List;
 import java.util.Map;
 import java.util.MissingResourceException;
 import java.util.Properties;
 import java.util.ResourceBundle;
 
 import backend.abstractSyntaxTree.ASTNode;
-//import backend.abstractSyntaxTree.DoubleExp;
-//import backend.abstractSyntaxTree.DuoOperatorExp;
-//import backend.abstractSyntaxTree.Expression;
-//import backend.abstractSyntaxTree.ListExp;
-//import backend.abstractSyntaxTree.MonoOperatorExp;
-//import backend.abstractSyntaxTree.NoneOperatorExp;
-//import backend.abstractSyntaxTree.VariableExp;
-import backend.board.Turtle;
 import backend.board.TurtleCollection;
 import backend.board.logic.ConstantNode;
-//import exceptions.ErrorMessage;
-import exceptions.ErrorMessage;
 import exceptions.SyntaxException;
 
 /**
