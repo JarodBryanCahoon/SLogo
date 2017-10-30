@@ -17,15 +17,9 @@ public class PenColor extends SomeParamTurtle {
 	}
 
 	@Override
-	public double act(Object obj) {
-		ColorReader cr = (ColorReader)obj;
-		cr.setColor("Render", 1, myColor);
-		return 0;
-	}
-
-	@Override
 	public double act(Turtle turt) {
 		// TODO Auto-generated method stub
+		ColorReader cr = new ColorReader(ColorReader.CSSPATH);
 		return 0;
 	}
 	
