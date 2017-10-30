@@ -1,15 +1,8 @@
 package backend.interpreter;
 
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Queue;
@@ -17,7 +10,6 @@ import java.util.ResourceBundle;
 
 import backend.abstractsyntaxtree.ASTNode;
 import backend.board.TurtleCollection;
-import backend.board.logic.Tan;
 import backend.control.VariableNode;
 import exceptions.SyntaxException;
 
@@ -84,9 +76,9 @@ public class TextParse {
 		String s = String.join(" ", lineList);
 		fillCommandQueue(s, turtles);
 		root = recursiveTree();
-		if (!queue.isEmpty()) {
-			throw new SyntaxException(); 
-		}
+//		if (!queue.isEmpty()) {
+//			throw new SyntaxException(); 
+//		}
 	}
 
 	private void fillCommandQueue(String s, TurtleCollection turtles) {

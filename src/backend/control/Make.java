@@ -1,9 +1,11 @@
 package backend.control;
 
+import java.util.Map;
+
 public class Make extends ControlNode {
 
-	public Make() {
-		super();
+	public Make(Map<String, VariableNode> variables) {
+		super(variables);
 	}
 	
 	
