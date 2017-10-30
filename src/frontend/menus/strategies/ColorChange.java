@@ -7,6 +7,10 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+/**
+ * @author lasia
+ *
+ */
 public class ColorChange extends MenuItemStrategy {
 	private static final String PROMPT_TEXT = "Change Color...";
 

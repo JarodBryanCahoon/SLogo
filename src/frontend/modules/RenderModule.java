@@ -15,10 +15,12 @@ import frontend.xml.PreferenceXMLReader;
 import frontend.xml.XMLReader;
 import javafx.animation.Animation;
 import javafx.animation.Transition;
+import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Line;
 
 /**
  * @author Albert
@@ -27,10 +29,11 @@ import javafx.scene.layout.Pane;
 public class RenderModule extends Module{
 	private List<RenderSprite> mySprites;
 	private int turtleId = 1;
-	private Canvas myCanvas;
+	private Group myGroup;
 	private static final String turtlePath = "/resources/turtle.png";
 	private Queue<Animation> myTransitions;
 	private Animation currentTransition;
+	private List<Line> myLines;
 			
 	public RenderModule(double width, double height, ViewModule view) throws Exception {
 		super(width, height, view);
@@ -44,8 +47,8 @@ public class RenderModule extends Module{
 		Pane myPane = new Pane();
 		myPane.setMinSize(getWidth(), getHeight());
 		
-		myCanvas = new Canvas();
-		myPane.getChildren().add(myCanvas);
+		myGroup = new Group();
+		myPane.getChildren().add(myGroup);
 
 		myPane.getStyleClass().add("Render");
 		stylize();
@@ -67,9 +70,14 @@ public class RenderModule extends Module{
 		if(sprite == null) {
 			return;
 		}
-
-		GraphicsContext gc = myCanvas.getGraphicsContext2D();
-		gc.strokeLine(oldX, oldY, sprite.getImage().getX(), sprite.getImage().getY());
+		double newX = sprite.getImage().getX();
+		double newY = sprite.getImage().getY();
+		System.out.println(newX);
+		Line line = new Line(oldX,oldY,newX,newY);
+		System.out.println(line.getEndX());
+		System.out.println(line.getStartX());
+		myGroup.getChildren().add(line);
+		
 	}
 	
 	private RenderSprite findSpriteById(int turtleId) {
@@ -87,10 +95,10 @@ public class RenderModule extends Module{
 			myPane.getChildren().remove(s.getImage());
 		}
 		mySprites.clear();
-		myPane.getChildren().remove(myCanvas);
-		myCanvas = new Canvas();
+		myPane.getChildren().remove(myGroup);
+		myGroup = new Group();
 		addTurtle();
-		myPane.getChildren().add(myCanvas);
+		myPane.getChildren().add(myGroup);
 	}
 	
 	public Element getXMLPreferences(Document doc) {
@@ -113,7 +121,7 @@ public class RenderModule extends Module{
 	}
 	
 	private void stylize() {
-			myCanvas.getStyleClass().add("Render");
+			myGroup.getStyleClass().add("Render");
 	}
 	
 	public List<RenderSprite> getSprites() {
@@ -122,14 +130,12 @@ public class RenderModule extends Module{
 	
 	public void appendTransition(Animation newTransition) {
 		myTransitions.add(newTransition);
-		System.out.println("animation added");
 		while(!myTransitions.isEmpty()) {
 			while(currentTransition != null) {
 				
 			}
 			myTransitions.poll().play();
 			currentTransition = null;
-			System.out.println("animation played");
 		}
 	}
 }
