@@ -30,7 +30,14 @@ public class ColorChange extends MenuItemStrategy {
 		
 		myStage.setAlwaysOnTop(true);
 		myStage.setScene(scene);
+		myStage.setOnCloseRequest(e->refreshStyle());
 		myStage.show();
+	}
+	private void refreshStyle() {
+		Scene scene = this.getView().getParent().getScene();
+		scene.getStylesheets().clear();
+		scene.getStylesheets().add("/resources/style/" + "stylesheet2.css");
+		System.out.println("this works");
 	}
 
 }
