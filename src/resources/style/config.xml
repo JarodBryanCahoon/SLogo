@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
 	<view>
-	<width>800</width>
-	<height>600</height>
+	<width>1500</width>
+	<height>750</height>
 	<title>SLOGO REPL - TEAM GETMONEY</title>
 	</view>
 </resources>

@@ -2,7 +2,7 @@ package backend.board.logic;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-import backend.abstractSyntaxTree.ASTNode;
+import backend.abstractsyntaxtree.ASTNode;
 import backend.board.Turtle;
 /**
  * 
