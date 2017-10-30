@@ -21,19 +21,19 @@ import javafx.scene.text.Text;
  * @author lasia
  *
  */
-public class StylizeModule extends Module {
+public class StylizeModule {
 	private static final String XMLPATH = "resources/style/Colors.xml";
+	private static final int WIDTH = 300;
 	private VBox myParent;
 	private ColorReader myReader;
 	private GridPane settings;
 	
-	public StylizeModule(double width, double height, ViewModule view) throws Exception {
-		super(width, height, view);
-		myParent.setMinWidth(width);	
+	public StylizeModule() throws Exception {
+		createParent();
+		myParent.setMinWidth(WIDTH);	
 	}
 
-	@Override
-	protected Parent createParent() throws Exception {
+	private Parent createParent() throws Exception {
 		myParent = new VBox();
 		String path = getClass().getClassLoader().getResource(XMLPATH).getFile().replace("bin","src");
 		path = path.substring(1);
@@ -85,17 +85,14 @@ public class StylizeModule extends Module {
 		
 		
 	}
-	@Override
-	public Element getXMLPreferences(Document doc) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	private void stylize() {
 		myParent.getStyleClass().add("Window");
 		settings.getStyleClass().add("Window");
 	}
 
-
+	public Parent getParent() {
+		return myParent;
+	}
 
 }

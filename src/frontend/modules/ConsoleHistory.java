@@ -22,11 +22,10 @@ public class ConsoleHistory extends Module {
 	public ConsoleHistory(double myWidth, double myHeight, ViewModule view) throws Exception {
 		super(myWidth, myHeight, view);
 		historyPane.setMinSize(myWidth,myHeight);
-		history.setMinSize(myWidth-10,myHeight-10);
-		stylize();
+		history.setMinSize(myWidth-5,myHeight-5);
 		backend = view.getManager();
 		backend.addObserver(this);
-//		history.setOnMouseClicked(e->stylize());		
+		stylize();
 	}
 
 	@Override
@@ -62,7 +61,10 @@ public class ConsoleHistory extends Module {
 
 	private void stylize() {
 		history.getStyleClass().add("Window");
-		historyPane.getStyleClass().add("Window");	
+		historyPane.getStyleClass().add("Window");
+		
+//		System.out.println(history.getStyleClass());
+		System.out.println(historyPane.getStyleClass());
 	}
 
 	@Override

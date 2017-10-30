@@ -1,6 +1,6 @@
 package backend.board.logic;
 
-import backend.abstractSyntaxTree.ASTNode;
+import backend.abstractsyntaxtree.ASTNode;
 
 
 public class NoParamMath implements ASTNode{

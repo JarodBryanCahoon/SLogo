@@ -14,9 +14,10 @@ import javafx.scene.layout.VBox;
  */
 
 public class ConsoleModule extends Module {
-	private VBox console;
+	private final double PROPORTION = .75;
 	private double myWidth;
 	private double myHeight;
+	private VBox console;
 	
 	public ConsoleModule(double width, double height, ViewModule view) throws Exception{
 		super(width, height, view);
@@ -33,12 +34,15 @@ public class ConsoleModule extends Module {
 	}
 	
 	private void addConsoleHistory() throws Exception {
-		Module ConsoleHistory = new ConsoleHistory(myWidth, myHeight, getViewModule());
+		double height = myHeight *PROPORTION;
+		Module ConsoleHistory = new ConsoleHistory(myWidth, height, getViewModule());
 		console.getChildren().add(ConsoleHistory.getParent());
 	}
 
+	
 	private void addConsoleInput() throws Exception{
-		Module test = new ConsoleInput(myWidth,myHeight, getViewModule());
+		double height = myHeight *(1-PROPORTION);
+		Module test = new ConsoleInput(myWidth,height, getViewModule());
 		console.getChildren().add(test.getParent());
 	}
 
