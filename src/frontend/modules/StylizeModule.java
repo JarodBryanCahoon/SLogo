@@ -21,23 +21,24 @@ import javafx.scene.text.Text;
  * @author lasia
  *
  */
-public class StylizeModule {
+public class StylizeModule extends Module {
 	private static final String XMLPATH = "resources/style/Colors.xml";
 	private static final int WIDTH = 300;
 	private VBox myParent;
 	private ColorReader myReader;
 	private GridPane settings;
 	
-	public StylizeModule() throws Exception {
-		createParent();
+	public StylizeModule(ViewModule view) throws Exception {
+		super(WIDTH, 0, view);
 		myParent.setMinWidth(WIDTH);	
 	}
 
-	private Parent createParent() throws Exception {
+	@Override
+	protected Parent createParent() throws Exception {
 		myParent = new VBox();
 		String path = getClass().getClassLoader().getResource(XMLPATH).getFile().replace("bin","src");
 		path = path.substring(1);
-		myReader = new ColorReader("C:\\Users\\lasia\\Documents\\workspace\\slogo_team02\\src\\resources\\style\\Colors.xml");
+		myReader = new ColorReader(System.getProperty("user.dir") + "/src/resources/style/Colors.xml");
 		addSettings();
 		stylize();
 		return myParent;
@@ -93,6 +94,12 @@ public class StylizeModule {
 
 	public Parent getParent() {
 		return myParent;
+	}
+
+	@Override
+	public Element getXMLPreferences(Document doc) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -20,15 +20,16 @@
 }
 
 .Text{ 
--fx-fill:gold;
+-fx-fill:#e6e6e6ff;
 }
 
 .Invalid{ 
--fx-fill:gold;
+-fx-fill:#661a33ff;
 }
 
 .Window{ 
 -fx-background-color:#333333ff;
+-fx-background:#333333ff;
 -fx-text-fill:white;
 }
 
@@ -38,17 +39,16 @@
 
 .Render{ 
 -fx-background-color:#808080ff;
--fx-fill:white;
+-fx-fill:#ffffffff;
 -fx-width:red;
 -turtle:red;
 }
 
 .ScrollPane{ 
-	
 }
 
-.ScrollPane .scroll-pane{ 
--fx-background-color: black;
+.ScrollPane .scroll-bar .decrement-button{ 
+-visibility:hidden;
 }
 
 .ColorPicker{ 

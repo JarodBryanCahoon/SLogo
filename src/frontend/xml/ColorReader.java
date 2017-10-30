@@ -16,10 +16,12 @@ import com.sun.xml.internal.txw2.Document;
 
 import exceptions.ErrorMessage;
 import exceptions.XMLException;
+import frontend.modules.ViewModule;
+import javafx.scene.Scene;
 
 public class ColorReader extends XMLReader {
-	private final String CSSPATH = System.getProperty("user.dir")+"/src/resources/style/";
-	private final String CSSFILENAME = "stylesheet2.css";
+	public static final String CSSPATH = System.getProperty("user.dir")+"/src/resources/style/";
+	public static final String CSSFILENAME = "stylesheet2.css";
 	private String xmlPath;
 	
 	private File file;
@@ -27,10 +29,10 @@ public class ColorReader extends XMLReader {
 	private BufferedWriter bf;
 	private NodeList document;
 	
+	
 	public ColorReader(String path) throws IOException {
 		super(path);
 		this.xmlPath = path;
-
 	}
 
 	@Override
@@ -85,9 +87,5 @@ public class ColorReader extends XMLReader {
 		GenericWriter writer = new GenericWriter(xmlPath,getElement());
 		writer.write();
 		readFromFile();
-		
 	}
-	
-
-	
 }
