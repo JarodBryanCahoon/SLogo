@@ -80,9 +80,7 @@ public class TextParse {
 				continue;
 			}
 		}
-		System.out.println(Arrays.toString(lineList));
 		String s = String.join(" ", lineList);
-		System.out.println(s);
 		fillCommandQueue(s, turtles);
 		root = recursiveTree();
 	}
