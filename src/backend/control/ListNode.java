@@ -25,5 +25,9 @@ public class ListNode extends NoParamMath{
 		ASTNode tree = parser.getTree();
 		return tree.execute();
 	}
+	
+	public String[] getContents() {
+		return contents.split(" ");
+	}
 
 }

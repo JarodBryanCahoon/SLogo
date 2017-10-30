@@ -4,11 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import backend.board.interfacemovement.TurtleNode;
+import javafx.scene.Scene;
 
 public class TurtleCollection implements ITurtle {
 	private List<Turtle> myTurtles;
-	public TurtleCollection(List<Turtle> turtles) {
+	private Scene myScene;
+	public TurtleCollection(List<Turtle> turtles, Scene s) {
 		myTurtles = turtles;
+		myScene = s;
 	}
 
 	@Override
@@ -18,6 +21,10 @@ public class TurtleCollection implements ITurtle {
 			returnValue = turtle.act(m);			
 		}
 		return returnValue;
+	}
+	
+	public Scene getScene() {
+		return myScene;
 	}
 	
 	private List<Turtle> getSelectedTurtles() {

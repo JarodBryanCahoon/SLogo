@@ -170,7 +170,7 @@ public class Word {
 
 	private void makeVariableNode(Map<String, VariableNode> variables) {
 		myType = VARIABLE;
-		if(variables.get(myName)==null) {
+		if(!variables.containsKey(myName)) {
 			myNode = new VariableNode(myName);
 			variables.put(myName, (VariableNode) myNode);
 		}

@@ -58,8 +58,6 @@ public class VariableModule extends Module{
 			
 			myParent.add(keyText,0,k);
 			myParent.add(valueTextField,2,k);
-			System.out.print(keys[k]);
-			System.out.println(variables.get(keys[k]));
 		}
 	}
 	

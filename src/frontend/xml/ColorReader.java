@@ -20,8 +20,8 @@ import frontend.modules.ViewModule;
 import javafx.scene.Scene;
 
 public class ColorReader extends XMLReader {
-	private final String CSSPATH = System.getProperty("user.dir")+"/src/resources/style/";
-	private final String CSSFILENAME = "stylesheet2.css";
+	public static final String CSSPATH = System.getProperty("user.dir")+"/src/resources/style/";
+	public static final String CSSFILENAME = "stylesheet2.css";
 	private String xmlPath;
 	
 	private File file;
