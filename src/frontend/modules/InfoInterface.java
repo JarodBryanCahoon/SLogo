@@ -3,6 +3,7 @@ package frontend.modules;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Observable;
 import java.util.Stack;
@@ -26,7 +27,7 @@ public class InfoInterface extends Observable {
 	private TextParse parser;
 	private History myHistory;
 	public InfoInterface(History history) throws ClassNotFoundException, FileNotFoundException {
-		parser = new TextParse();
+		parser = new TextParse(new HashMap<>());
 		myHistory = history;
 	}
 	
@@ -48,6 +49,7 @@ public class InfoInterface extends Observable {
 		TextFlow toReturn = new TextFlow();
 		for (Word w : words) {
 			Text text = new Text(w.getName());
+			text.getStyleClass().add("root");
 			text.getStyleClass().add(w.getType());
 			toReturn.getChildren().add(text);
 		}
@@ -69,8 +71,8 @@ public class InfoInterface extends Observable {
 	
 	private void formatConsole(int k, TextFlow textFlow) {
 		double fontHeight = textFlow.getChildren().get(0).getLayoutBounds().getHeight();
-		textFlow.setLayoutX(10);
-		textFlow.setLayoutY(k*(fontHeight + 5)+5);
+		textFlow.setLayoutX(9.8);
+		textFlow.setLayoutY(k*(fontHeight + 5)+9);
 		textFlow.getStyleClass().add("Window");
 	}
 }

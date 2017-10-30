@@ -87,6 +87,7 @@ public class VariableModule extends Module{
 		if (event.getCode() == KeyCode.ENTER) {
 			try {
 				String input = key + "=" + text;
+				System.out.println(input);
 			}
 			catch (SyntaxException | NullPointerException e) {
 				textField.setStyle("-fx-border-color: red");

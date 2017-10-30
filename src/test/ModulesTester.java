@@ -30,7 +30,7 @@ public class ModulesTester extends Application{
 				);
 		// Change test to whatever module you want
 		ViewModule view = new ViewModule(WIDTH,HEIGHT);
-		Module test = new VariableModule (WIDTH,HEIGHT,view);
+		Module test = new ConsoleModule (WIDTH,HEIGHT,view);
 		Parent parent = test.getParent();
 		scene = new Scene(parent);
 		scene.setOnMouseClicked(e->style());

@@ -16,32 +16,39 @@
 }
 
 .Command{ 
--fx-fill:#99ccccff;
+-fx-fill:#ff6666ff;
 }
 
 .Text{ 
--fx-fill:#e6e6e6ff;
+-fx-fill:gold;
 }
 
 .Invalid{ 
--fx-fill:#e6e6e6ff;
+-fx-fill:gold;
 }
 
 .Window{ 
--fx-background-color:#4d4d4dff;
-}
-
-.Window .content{ 
--fx-background-color:#4d4d4dff;
--fx-font:14px 'Letter Gothic Std';
+-fx-background-color:#333333ff;
 -fx-text-fill:white;
 }
 
+.Window .content{ 
+-fx-background-color:#333333ff;
+}
+
 .Render{ 
--fx-background-color:#1a1a1aff;
+-fx-background-color:#808080ff;
 -fx-fill:white;
 -fx-width:red;
 -turtle:red;
+}
+
+.ScrollPane{ 
+	
+}
+
+.ScrollPane .scroll-pane{ 
+-fx-background-color: black;
 }
 
 .ColorPicker{ 

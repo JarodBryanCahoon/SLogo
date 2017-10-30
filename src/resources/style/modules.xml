@@ -3,28 +3,28 @@
 	<module>
 		<class>frontend.modules.RenderModule</class>
 		<position>Center</position>
-		<width>500</width>
-		<height>500</height>
+		<width>800</width>
+		<height>800</height>
 	</module>
 
 	<module>
 		<class>frontend.modules.MenuModule</class>
 		<position>Top</position>
 		<width>800</width>
-		<height>100</height>
+		<height>50</height>
 	</module>
 
 	<module>
 		<class>frontend.modules.ConsoleModule</class>
 		<position>Right</position>
-		<width>300</width>
-		<height>500</height>
+		<width>500</width>
+		<height>800</height>
 	</module>
 	
 	<module>
 		<class>frontend.modules.VariableModule</class>
 		<position>Left</position>
 		<width>100</width>
-		<height>500</height>
+		<height>800</height>
 	</module>
 </resources>
