@@ -38,7 +38,7 @@ public class StylizeModule extends Module {
 		myParent = new VBox();
 		String path = getClass().getClassLoader().getResource(XMLPATH).getFile().replace("bin","src");
 		path = path.substring(1);
-		myReader = new ColorReader(System.getProperty("user.dir") + "/src/resources/style/Colors.xml", getViewModule());
+		myReader = new ColorReader(System.getProperty("user.dir") + "/src/resources/style/Colors.xml");
 		addSettings();
 		stylize();
 		return myParent;

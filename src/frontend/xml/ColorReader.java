@@ -20,8 +20,8 @@ import frontend.modules.ViewModule;
 import javafx.scene.Scene;
 
 public class ColorReader extends XMLReader {
-	private final String CSSPATH = System.getProperty("user.dir")+"/src/resources/style/";
-	private final String CSSFILENAME = "stylesheet2.css";
+	public static final String CSSPATH = System.getProperty("user.dir")+"/src/resources/style/";
+	public static final String CSSFILENAME = "stylesheet2.css";
 	private String xmlPath;
 	
 	private File file;
@@ -29,12 +29,10 @@ public class ColorReader extends XMLReader {
 	private BufferedWriter bf;
 	private NodeList document;
 	
-	private ViewModule myViewModule;
 	
-	public ColorReader(String path, ViewModule view) throws IOException {
+	public ColorReader(String path) throws IOException {
 		super(path);
 		this.xmlPath = path;
-		myViewModule = view;
 	}
 
 	@Override
@@ -89,13 +87,5 @@ public class ColorReader extends XMLReader {
 		GenericWriter writer = new GenericWriter(xmlPath,getElement());
 		writer.write();
 		readFromFile();
-		refreshScene();
-}
-
-	private void refreshScene() {
-		Scene scene =myViewModule.getParent().getScene();
-		scene.getStylesheets().clear();
-		scene.getStylesheets().add("/resources/style/" + "stylesheet2.css");
-		System.out.println("This works");
 	}
 }
