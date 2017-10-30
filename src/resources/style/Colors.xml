@@ -17,38 +17,48 @@
 			<fx-fill>pink</fx-fill>
 		</Constant>
 		<Command>
-			<fx-fill>#99ccccff</fx-fill>
+			<fx-fill>#ff6666ff</fx-fill>
 		</Command>
 		<Text>
 			<fx-fill>#e6e6e6ff</fx-fill>	
 		</Text>
 		<Invalid>
-			<fx-fill>#e6e6e6ff</fx-fill>	
+			<fx-fill>#661a33ff</fx-fill>	
 		</Invalid>
 	</Word>
 	
 	<Windows>
 		<Window>
-			<fx-background-color>#4d4d4dff</fx-background-color>
+			<fx-background-color>#333333ff</fx-background-color>
+			<fx-background>#333333ff</fx-background>
+			<fx-text-fill>white</fx-text-fill>
 		</Window>
 		<Window.content>
-			<fx-background-color>#4d4d4dff</fx-background-color>
-			<fx-font>14px 'Letter Gothic Std'</fx-font>	
-			<fx-text-fill>white</fx-text-fill>
+			<fx-background-color>#333333ff</fx-background-color>
 		</Window.content>
 	</Windows>
 	
 	<Rendering>
 		
 		<Render>
-			<fx-background-color>#1a1a1aff</fx-background-color>
-		
+			<fx-background-color>#808080ff</fx-background-color>
 			<fx-fill>white</fx-fill>
 			<fx-width>red</fx-width>
 			<turtle>red</turtle>
 		</Render>
 	</Rendering>
-		
+	
+	<Scroll>
+		<ScrollPane>
+			
+		</ScrollPane>
+		<ScrollPane.scroll-pane>
+			
+		</ScrollPane->
+		<ScrollPane.scroll-bar.decrement-button>
+			<visibility>hidden</visibility>
+		</ScrollPane.scroll-bar.decrement-button>
+	</Scroll>
 	<Colorpickering>
 		<ColorPicker>
 			<fx-font>8px 'Letter Gothic Std'</fx-font>

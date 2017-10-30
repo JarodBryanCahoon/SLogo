@@ -1,6 +1,10 @@
 package frontend.modules;
 
+import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 
@@ -10,6 +14,8 @@ import java.util.Set;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+
+import exceptions.SyntaxException;
 
 
 /**Displays variables and allows user to directly change them
@@ -43,24 +49,50 @@ public class VariableModule extends Module{
 
 	private void addVariables() {
 		Map<String,String> variables= testing();
+		Set<String> temp = variables.keySet();
+		String[] keys =  temp.toArray(new String[0]);
 		for (int k = 0 ; k<variables.size();k++) {
-			Set<String> temp = variables.keySet();
-			String[] keys =  temp.toArray(new String[0]);
-			Text keyText = createText(keys[k]);
-			Text valueText = createText(variables.get(keys[k]));
+			String key = keys[k];
+			Node keyText = createText(key);
+			Node valueTextField = createTextField(key,variables.get(key));
 			
 			myParent.add(keyText,0,k);
-			myParent.add(valueText,2,k);
+			myParent.add(valueTextField,2,k);
 			System.out.print(keys[k]);
 			System.out.println(variables.get(keys[k]));
 		}
 	}
 	
-	private Text createText(String text) {
+	private Node createText(String text) {
 		Text toReturn = new Text(text);
 		toReturn.getStyleClass().add("Text");
 		toReturn.getStyleClass().add("Variables");
+	
 		return toReturn;
+	}
+	
+	private Node createTextField(String key, String input) {
+		TextField inputField = new TextField(input);
+		inputField.getStyleClass().add("Window");
+		inputField.setStyle("-fx-border-color:gray");
+		inputField.setOnKeyPressed(e->send(e,key,inputField));
+		
+		return inputField;
+	}
+
+
+	private void send(KeyEvent event, String key,TextField textField) {
+		textField.setStyle("-fx-border-color:gray");
+		String text = textField.textProperty().getValue();
+		if (event.getCode() == KeyCode.ENTER) {
+			try {
+				String input = key + "=" + text;
+				System.out.println(input);
+			}
+			catch (SyntaxException | NullPointerException e) {
+				textField.setStyle("-fx-border-color: red");
+			}
+		}
 	}
 
 
@@ -76,7 +108,6 @@ public class VariableModule extends Module{
 
 	private void stylize() {
 		myParent.getStyleClass().add("Window");
-		
 	}
 	
 	

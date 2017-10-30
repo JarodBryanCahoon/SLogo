@@ -18,9 +18,10 @@ public class ErrorMessage {
 		textArea.setText(ERROR_MESSAGE);
 		textArea.appendText(error);
 		textArea.setDisable(true);
-		// lasia help css
 		
 		Scene scene = new Scene(textArea);
+//		scene.getStylesheets().add("/resources/style/" + "stylesheet2.css");
+		textArea.getStyleClass().add("root");
 		scene.setOnMouseClicked(e->close());
 		myStage.initStyle(StageStyle.UNDECORATED);
 		myStage.setAlwaysOnTop(true);

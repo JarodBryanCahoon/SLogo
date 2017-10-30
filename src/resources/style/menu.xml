@@ -29,14 +29,9 @@
 		<item>
 			<name>Change Background Color</name>
 			<type>button</type>
-			<strategy>BackColorChange</strategy>
+			<strategy>ColorChange</strategy>
 		</item>
 
-		<item>
-			<name>Change Pen Color</name>
-			<type>button</type>
-			<strategy>BackColorChange</strategy>
-		</item>
 
 		<item>
 			<name>Set Image</name>
