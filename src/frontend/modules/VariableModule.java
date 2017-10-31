@@ -86,6 +86,8 @@ public class VariableModule extends Module{
 		return inputField;
 	}
 
+	
+	//TODO: Take out the hardcoded make
 	private void send(KeyEvent event, String key,TextField textField) {
 		textField.setStyle("-fx-border-color:gray");
 		String text = textField.textProperty().getValue();
@@ -104,7 +106,7 @@ public class VariableModule extends Module{
 	private Map<String, String> starting() {
 		Map<String,String> toReturn = new HashMap<String,String>();
 		String[] key = {":x"};
-		String[] values = {""};
+		String[] values = {" "};
 		for (int k = 0;k<key.length;k++) {
 			toReturn.put(key[k], values[k]);
 		}
@@ -125,9 +127,7 @@ public class VariableModule extends Module{
 	public void update(Observable fromManager,Object arg1) {
 		Manager manage = (Manager) fromManager;
 		variables = manage.getVariables();
-		addVariables();
-		
+		if (variables.size() != 0)
+			addVariables();
 	}
-	
-
 }

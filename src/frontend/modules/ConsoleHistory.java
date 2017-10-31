@@ -8,6 +8,7 @@ import org.w3c.dom.Element;
 
 import backend.interpreter.Manager;
 import javafx.animation.FadeTransition;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.FlowPane;
@@ -23,7 +24,7 @@ public class ConsoleHistory extends Module {
 	public ConsoleHistory(double myWidth, double myHeight, ViewModule view) throws Exception {
 		super(myWidth, myHeight, view);
 		historyPane.setMinSize(myWidth,myHeight);
-		history.setMinSize(myWidth-5,myHeight-5);
+		history.setMinSize(myWidth-10,myHeight-10);
 		backend = view.getManager();
 		backend.addObserver(this);
 		stylize();

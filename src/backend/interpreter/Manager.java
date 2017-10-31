@@ -55,6 +55,8 @@ public class Manager extends Observable {
 		} catch(NullPointerException e) {
 			throw new NullPointerException();
 		}
+		System.out.print("OUTPUT EQUALS : ");
+		System.out.println(output);
 		return output;
 	}
 	
