@@ -98,8 +98,11 @@ public class CustomAnimationQueue {
 	}
 	
 	protected void appendRotationAnimation(double oldAngle, double newAngle) {
+		System.out.println("entered rotation");
 		double oldImageAngle = 360 - oldAngle;
-		RotateTransition rTransition = new RotateTransition(Duration.millis(DURATION / Math.abs((oldImageAngle - newAngle))), myRenderSprite.getImage());
+		System.out.println(oldImageAngle);
+		System.out.println(newAngle);
+		RotateTransition rTransition = new RotateTransition(Duration.millis(FADE_DURATION), myRenderSprite.getImage());
 		rTransition.setFromAngle(oldImageAngle);
 		rTransition.setToAngle(newAngle);
 		rTransition.setOnFinished(e -> checkQueue());

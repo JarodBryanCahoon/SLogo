@@ -41,7 +41,6 @@ public class ImageChange extends MenuItemStrategy {
 			ImageView image = new ImageView(path);
 			return image;
 		} catch (NullPointerException | IllegalArgumentException e) {
-			e.printStackTrace();
 			throw new XMLException();
 		}
 	}
