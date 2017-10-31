@@ -1,5 +1,7 @@
 package backend.board.interfacemovement;
 
+import java.io.IOException;
+
 import backend.abstractSyntaxTree.ASTNode;
 import backend.board.Turtle;
 import backend.board.TurtleCollection;
@@ -20,7 +22,7 @@ public abstract class TurtleNode implements ASTNode {
 		return myTurtles;		
 	}
 	
-	public abstract double act(Turtle turt);
+	public abstract double act(Turtle turt) throws IOException;
 	
 	@Override
 	public double execute() {
