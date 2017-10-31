@@ -50,6 +50,7 @@
 	
 	<Scroll>
 		<ScrollPane>
+			<fx-background-color>#333333ff</fx-background-color>
 			<fx-background>BLACK</fx-background>
 		</ScrollPane>
 			
