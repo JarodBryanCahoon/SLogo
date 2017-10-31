@@ -28,10 +28,11 @@ public abstract class TurtleNode implements ASTNode {
 	@Override
 	public double execute() {
 		try {
-			return myTurtles.act(this);
-		} catch (IOException e) {
-			ErrorMessage eMessage = new ErrorMessage("Could not execute command!");
+			return myTurtles.act(this);		
+		} catch(IOException e) {
+			ErrorMessage eMessage = new ErrorMessage("Could not recognize command!");
 			eMessage.show();
+			return 0;
 		}
 	}
 
