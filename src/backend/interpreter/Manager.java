@@ -8,6 +8,8 @@ import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.Properties;
+import java.util.Queue;
+import java.util.Stack;
 
 import backend.abstractSyntaxTree.ASTNode;
 import backend.board.RenderSprite;
@@ -15,7 +17,10 @@ import backend.board.Turtle;
 import backend.board.TurtleCollection;
 import frontend.modules.InfoInterface;
 import frontend.modules.ViewModule;
+import javafx.scene.Group;
+import javafx.scene.Parent;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.TextFlow;
 import backend.control.VariableNode;
 
@@ -28,9 +33,8 @@ import backend.control.VariableNode;
  */ 
 
 public class Manager extends Observable implements Observer {
-
-	
 	private Map<String, VariableNode> variables = new HashMap<>();
+	private StepThrough myStepThrough;
 	private TextParse myParser;
 	private double output;
 	private ViewModule myViewModule;
@@ -44,6 +48,11 @@ public class Manager extends Observable implements Observer {
 		myViewModule = view;
 		myHistory = new History();
 		myInfoInterface = new InfoInterface(myHistory);
+		myStepThrough = new StepThrough();
+	}
+	
+	public Queue<Word[]> getQueueHistory() {
+		return myHistory.getQueueHistory();
 	}
 	
 	public double addToHistory(String text) {
@@ -51,13 +60,15 @@ public class Manager extends Observable implements Observer {
 		try {
 			output = setAndExecuteCommand(text);
 			myHistory.add(myParser.getFormattedSentence(text, myTurtles));
+			myStepThrough.add(new TurtleCollection(myTurtles.getTurtles(), myTurtles.getScene()));
+			myStepThrough.add(new ArrayList<>(myViewModule.getRenderModule().getSprites()));
+//			myStepThrough.add(new Pane( ( (Pane) myViewModule.getRenderModule().getParent() ).getChildren()));
+			myStepThrough.increment();
 			setChanged();
 			notifyObservers();
 		} catch(NullPointerException e) {
 			throw new NullPointerException();
 		}
-		System.out.print("OUTPUT EQUALS : ");
-		System.out.println(output);
 		return output;
 	}
 	
@@ -88,13 +99,11 @@ public class Manager extends Observable implements Observer {
 	}
 	
 	public double getOutput() {
-		System.out.println(output);
 		return output;
 	}
 	
 	public void addTurtle() {
 		RenderSprite rs = myViewModule.getRenderModule().addTurtle();
-		System.out.println("yes");
 		addTurtle(rs);
 	}
 	
@@ -127,5 +136,25 @@ public class Manager extends Observable implements Observer {
 	@Override
 	public void update(Observable o, Object arg) {
 		addTurtle();
+	}
+	
+	public void undo() {
+		myStepThrough.undo(this);
+	}
+	
+	public void redo() {
+		myStepThrough.redo(this);
+	}
+
+	protected void setTurtleCollection(TurtleCollection turtleCollection) {
+		myTurtles = turtleCollection;
+	}
+
+	protected void setSpriteState(List<RenderSprite> spriteState) {
+		myViewModule.getRenderModule().setSpriteState(spriteState);
+	}
+
+	protected void setRenderState(Parent renderState) {
+		myViewModule.getRenderModule().setRenderState(renderState);
 	}
 }

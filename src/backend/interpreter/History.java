@@ -6,8 +6,11 @@ import java.util.List;
 import java.util.Queue;
 import java.util.Stack;
 
+import backend.board.TurtleCollection;
+
 public class History {
 	private List<Word[]> myHistoryList;
+
 	public History() {
 		myHistoryList = new ArrayList<>();
 	}
@@ -30,5 +33,9 @@ public class History {
 			myQueueHistory.add(s);
 		}
 		return myQueueHistory;
+	}
+	
+	public List<Word[]> getListHistory() {
+		return myHistoryList;
 	}
 }

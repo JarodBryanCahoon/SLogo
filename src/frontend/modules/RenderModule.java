@@ -81,7 +81,6 @@ public class RenderModule extends Module {
 	}
 
 	public void clearScreen() {
-		Pane myPane = (Pane) getParent();
 		Iterator<RenderSprite> renderIter = mySprites.iterator();
 		while(renderIter.hasNext()) {
 			RenderSprite s = renderIter.next();
@@ -111,6 +110,14 @@ public class RenderModule extends Module {
 		}
 		return cls;
 	}
+	
+	public void reset() {
+		turtleId = 1;
+		mySprites.clear();
+		myGroup.getChildren().clear();
+		mySpriteLines.clear();
+		addTurtle();
+	}
 
 	private void stylize() {
 		// myGroup.getStyleClass().add("Render");
@@ -118,5 +125,19 @@ public class RenderModule extends Module {
 
 	public List<RenderSprite> getSprites() {
 		return mySprites;
+	}
+	
+	public void setSpriteState(List<RenderSprite> spriteState) {
+		System.out.println("undoing");
+		Pane myPane = (Pane) getParent();
+		myPane.getChildren().clear();
+		for(RenderSprite rs : spriteState) {
+			myPane.getChildren().add(rs.getImage());
+		}
+		mySprites = spriteState;
+	}
+	
+	public void setRenderState(Parent renderState) {
+		setParent(renderState);
 	}
 }

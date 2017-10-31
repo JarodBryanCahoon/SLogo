@@ -55,5 +55,23 @@
 		</item>
 	</menu>
 
+	<menu>
+		<name>Debug</name>
+		<item>
+			<name>Step Through Debugger</name>
+			<type>menu</type>
+			<item>
+				<name>Undo</name>
+				<type>button</type>
+				<strategy>StepThroughUndo</strategy>
+			</item>
+			<item>
+				<name>Redo</name>
+				<type>button</type>
+				<strategy>StepThroughRedo</strategy>
+			</item>
+		</item>
+	</menu>
+
 	
 </resources>
