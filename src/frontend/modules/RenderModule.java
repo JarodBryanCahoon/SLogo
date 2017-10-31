@@ -2,6 +2,7 @@ package frontend.modules;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -81,17 +82,16 @@ public class RenderModule extends Module {
 
 	public void clearScreen() {
 		Pane myPane = (Pane) getParent();
-		for (RenderSprite s : mySprites) {
-			if (s.isSelected()) {
+		Iterator<RenderSprite> renderIter = mySprites.iterator();
+		while(renderIter.hasNext()) {
+			RenderSprite s = renderIter.next();
+			List<Line> lineList = mySpriteLines.get(s);
+			myGroup.getChildren().removeAll(lineList);
+			if (!s.isSelected()) {
 				myPane.getChildren().remove(s.getImage());
-				List<Line> lineList = mySpriteLines.get(s);
-				myGroup.getChildren().removeAll(lineList);
+				renderIter.remove();
 			}
 		}
-		mySprites.clear();
-		myPane.getChildren().remove(myGroup);
-		myGroup = new Group();
-		myPane.getChildren().add(myGroup);
 	}
 
 	public Element getXMLPreferences(Document doc) {

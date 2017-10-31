@@ -26,6 +26,7 @@ public class ViewModule extends Module {
 	private Set<Module> myModules;
 	private final static String ARGUMENTS = "ArgumentNumbers";
 	private Manager myManager;
+	private Properties myLanguageProperties;
 
 	public ViewModule(int width, int height) throws Exception {
 		super(width, height);
@@ -99,6 +100,11 @@ public class ViewModule extends Module {
 	}
 
 	public void changeLanguage(Properties langProperties) {
+		myLanguageProperties = langProperties;
 		myManager.changeLanguage(langProperties);
+	}
+	
+	public Properties getLangProperties() {
+		return myLanguageProperties;
 	}
 }

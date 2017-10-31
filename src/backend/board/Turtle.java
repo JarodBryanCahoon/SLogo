@@ -24,6 +24,7 @@ public class Turtle extends Observable implements ITurtle, Observer {
 	private boolean myPenDown;
 	private boolean myOpacity;
 	private boolean isSelected;
+	private boolean clearScreen = false;
 
 	public Turtle(RenderSprite ob) {
 		addObserver(ob);
@@ -71,6 +72,14 @@ public class Turtle extends Observable implements ITurtle, Observer {
 
 	public boolean isSelected() {
 		return isSelected;
+	}
+	
+	public void setClearScreen(boolean clear) {
+		clearScreen = clear;
+	}
+	
+	public boolean getClearScreen() {
+		return clearScreen;
 	}
 
 	private void readRenderSprite(RenderSprite ob) {
