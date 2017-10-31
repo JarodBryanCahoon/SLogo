@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Observable;
+import java.util.Observer;
 import java.util.Properties;
 
 import backend.abstractSyntaxTree.ASTNode;
@@ -26,7 +27,7 @@ import backend.control.VariableNode;
  * @version 10.21.17
  */ 
 
-public class Manager extends Observable {
+public class Manager extends Observable implements Observer {
 
 	
 	private Map<String, VariableNode> variables = new HashMap<>();
@@ -118,5 +119,10 @@ public class Manager extends Observable {
 			}
 		}
 		return vars;
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		addTurtle();
 	}
 }

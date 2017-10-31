@@ -3,16 +3,19 @@ package backend.board;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
 
 import backend.board.interfacemovement.TurtleNode;
 import javafx.scene.Scene;
 
-public class TurtleCollection implements ITurtle {
+public class TurtleCollection extends Observable implements ITurtle {
 	private List<Turtle> myTurtles;
 	private Scene myScene;
+	private int totalTurtlesAdded;
 	public TurtleCollection(List<Turtle> turtles, Scene s) {
 		myTurtles = turtles;
 		myScene = s;
+		totalTurtlesAdded = turtles.size();
 	}
 
 	@Override
@@ -22,6 +25,15 @@ public class TurtleCollection implements ITurtle {
 			returnValue = turtle.act(m);			
 		}
 		return returnValue;
+	}
+	
+	public boolean turtleExistsById(int id) {
+		for(Turtle t : myTurtles) {
+			if(t.getId() == id) {
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	public Scene getScene() {
@@ -41,6 +53,12 @@ public class TurtleCollection implements ITurtle {
 	
 	public void addTurtle(Turtle newTurtle) {
 		myTurtles.add(newTurtle);
+		totalTurtlesAdded++;
+	}
+	
+	public void createTurtle() {
+		setChanged();
+		notifyObservers();
 	}
 	
 	public void removeTurtle(Turtle removeTurtle) {
@@ -80,5 +98,9 @@ public class TurtleCollection implements ITurtle {
 		for(Turtle turtle : getSelectedTurtles()) {
 			turtle.setOpacity(isVisible);
 		}
+	}
+	
+	public int totalTurtlesAdded() {
+		return totalTurtlesAdded;
 	}
 }

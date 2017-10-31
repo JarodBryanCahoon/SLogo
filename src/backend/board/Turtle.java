@@ -45,6 +45,10 @@ public class Turtle extends Observable implements ITurtle, Observer {
 	public int getId() {
 		return myTurtleId;
 	}
+	
+	public void selectTurtle(boolean selected) {
+		isSelected = selected;
+	}
 
 	public double getMyX() {
 		return this.myXPos;
@@ -64,10 +68,6 @@ public class Turtle extends Observable implements ITurtle, Observer {
 
 	public boolean getOpacity() {
 		return myOpacity;
-	}
-
-	public int getID() {
-		return myTurtleId;
 	}
 
 	public boolean isSelected() {
