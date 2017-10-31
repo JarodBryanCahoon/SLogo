@@ -18,7 +18,6 @@ public class MenuFactory {
 			Menu subMenu = subMenus.get(menuText);
 			nBar.getMenus().add(subMenu);
 		}
-		
 		return nBar;
 	}
 }

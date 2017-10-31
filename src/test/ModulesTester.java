@@ -31,7 +31,7 @@ public class ModulesTester extends Application{
 				);
 		// Change test to whatever module you want
 		ViewModule view = new ViewModule(WIDTH,HEIGHT);
-		Module test = new ConsoleModule (WIDTH,HEIGHT,view);
+		Module test = new MenuModule (WIDTH,HEIGHT,view);
 //		Module test = new StylizeModule (view);
 //		StylizeModule test = new StylizeModule
 		Parent parent = test.getParent();
