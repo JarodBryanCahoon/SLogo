@@ -18,7 +18,7 @@ public class CustomAnimationQueue {
 	private Queue<Animation> myTransitions;
 	private Animation currentTransition;
 	private boolean animationPlaying = false;
-	public static final int DURATION = 40000;
+	public static final int DURATION = 1500;
 	private RenderSprite myRenderSprite;
 	private RenderModule myRenderModule;
 	private double xDraw;
@@ -69,10 +69,10 @@ public class CustomAnimationQueue {
 		double avg = Math.abs((newX + newY - oldX - oldY)) / 2;
 		
 		TranslateTransition xTranslateTransition =
-		        new TranslateTransition(Duration.millis(DURATION / avg), image);
+		        new TranslateTransition(Duration.millis(DURATION), image);
 		xTranslateTransition.setToX(newX - oldX);
 		TranslateTransition yTranslateTransition =
-		        new TranslateTransition(Duration.millis(DURATION / avg), myRenderSprite.getImage());
+		        new TranslateTransition(Duration.millis(DURATION), myRenderSprite.getImage());
 		yTranslateTransition.setToY(newY - oldY);
 		
 		ParallelTransition pTransition = createParallelTranslationTransition(
@@ -93,6 +93,7 @@ public class CustomAnimationQueue {
 			TranslateTransition xTranslateTransition, TranslateTransition yTranslateTransition) {
 		ParallelTransition pTransition = new ParallelTransition();
 		pTransition.getChildren().addAll(xTranslateTransition, yTranslateTransition);
+		System.out.println("should also be home " + newY);
 		pTransition.setOnFinished(e -> onFinish(myRenderSprite.isPenDown(), newX, newY));
 		return pTransition;
 	}
