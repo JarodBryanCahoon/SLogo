@@ -21,4 +21,8 @@ public class VariableNode extends NoParamMath{
 	public String getName() {
 		return myName;
 	}
+
+	public boolean isNumberVar() {
+		return true;
+	}
 }

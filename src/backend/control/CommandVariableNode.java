@@ -17,5 +17,9 @@ public class CommandVariableNode extends VariableNode{
 	public void setList(ListNode myList) {
 		commands = myList;
 	}
-
+	
+	@Override
+	public boolean isNumberVar() {
+		return false;
+	}
 }
