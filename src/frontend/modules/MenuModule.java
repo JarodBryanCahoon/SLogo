@@ -25,7 +25,7 @@ public class MenuModule extends Module {
 		MenuFactory factory = new MenuFactory();
 		MenuReader myReader = new MenuReader(MENUREADER_PATH, getViewModule());
 		MenuBar myMenu = factory.create(myReader.getSubMenus());
-		myMenu.getStyleClass().add("Window");
+		myMenu.getStyleClass().add("MenuButtons");
 		return myMenu;
 	}
 

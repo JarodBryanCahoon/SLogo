@@ -28,7 +28,7 @@ public class NewWindow extends MenuItemStrategy {
 	public void execute() {
 		try {		
 			Font.loadFont(
-					  this.getClass().getResource("src/resources/style/Letter Gothic.otf").toExternalForm(), 
+					  "src/resources/style/Letter Gothic.otf", 
 					  10
 					);
 

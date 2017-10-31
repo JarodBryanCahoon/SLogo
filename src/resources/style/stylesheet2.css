@@ -52,6 +52,10 @@
 -visibility:hidden;
 }
 
+.MenuButtons{ 
+-fx-background-color:white;
+}
+
 .ColorPicker{ 
 -fx-font:8px 'Letter Gothic Std';
 -fx-background-color:white;
