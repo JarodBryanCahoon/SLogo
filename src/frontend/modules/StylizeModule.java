@@ -1,5 +1,6 @@
 package frontend.modules;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -86,10 +87,18 @@ public class StylizeModule extends Module {
 	
 	private void createField(int column, int row) {
 		TextField textField = new TextField();
-		textField.setMaxWidth(50);
+		textField.setOnAction(e->send(textField));
 		settings.add(textField, column, row);
 	}
 	
+	private void send(TextField textField) {
+		String text = textField.textProperty().getValue();
+		try {
+			myReader.setColor("Render",2,text);
+		} catch (IOException e) {
+		}
+	}
+
 	private void createPicker(String title,int index,int column, int row) {
 		ColorPick colorPick = new ColorPick(myReader, title, index);
 		settings.add(colorPick.getColorPicker(), column, row);
