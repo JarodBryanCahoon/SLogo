@@ -8,9 +8,11 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Observable;
+import java.util.Properties;
 import java.util.Set;
 
 import org.w3c.dom.Document;
@@ -25,11 +27,13 @@ import exceptions.SyntaxException;
  *
  */
 public class VariableModule extends Module{
+	private static final String COMMAND = "MakeVariable";
 	private static final int HGAP = 5;
 	private static final int VGAP = 10;
 	private GridPane myParent;
 	private Map<String,String> variables;
 	private Manager manager;
+	private Properties myLanguage;
 	
 	public VariableModule(double width, double height, ViewModule view) throws Exception {
 		super(width, height, view);
@@ -53,7 +57,6 @@ public class VariableModule extends Module{
 		myParent.setHgap(HGAP);
 		
 	}
-
 
 	private void addVariables() {
 		myParent.getChildren().clear();
@@ -87,13 +90,16 @@ public class VariableModule extends Module{
 	}
 
 	
-	//TODO: Take out the hardcoded make
 	private void send(KeyEvent event, String key,TextField textField) {
 		textField.setStyle("-fx-border-color:gray");
+		myLanguage = getViewModule().getLangProperties();
+		String command = myLanguage.getProperty(COMMAND);
+		command = command.split("\\|")[0];
 		String text = textField.textProperty().getValue();
+		
 		if (event.getCode() == KeyCode.ENTER) {
 			try {
-				String input = "make " + key +" "+ text;
+				String input = command + " " + key +" "+ text;
 				manager.addToHistory(input);
 				
 			}

@@ -42,7 +42,6 @@ public class ConsoleHistory extends Module {
 	public void update(Observable backend, Object arg1) {
 		Manager manager = (Manager) backend;
 		FlowPane toAdd = manager.getHistory();
-//		
 		history.getChildren().add(toAdd);
 		history.getChildren().add(new Text(Double.toString(manager.getOutput())));
 		fadeIn(toAdd);
@@ -63,7 +62,6 @@ public class ConsoleHistory extends Module {
 		if (!on)
 			history.getChildren().get(index).setStyle("-fx-background-color: black;");			
 	}
-
 
 	private void stylize() {
 		history.getStyleClass().add("Window");

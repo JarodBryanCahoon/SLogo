@@ -18,6 +18,8 @@ public class ConsoleModule extends Module {
 	private double myWidth;
 	private double myHeight;
 	private VBox console;
+	private ConsoleInput myConsoleInput;
+	private ConsoleHistory myConsoleHistory;
 	
 	public ConsoleModule(double width, double height, ViewModule view) throws Exception{
 		super(width, height, view);
@@ -35,17 +37,17 @@ public class ConsoleModule extends Module {
 	
 	private void addConsoleHistory() throws Exception {
 		double height = myHeight *PROPORTION;
-		Module ConsoleHistory = new ConsoleHistory(myWidth, height, getViewModule());
-		console.getChildren().add(ConsoleHistory.getParent());
+		myConsoleHistory = new ConsoleHistory(myWidth, height, getViewModule());
+		console.getChildren().add(myConsoleHistory.getParent());
 	}
 
 	
 	private void addConsoleInput() throws Exception{
 		double height = myHeight *(1-PROPORTION);
-		Module test = new ConsoleInput(myWidth,height, getViewModule());
-		console.getChildren().add(test.getParent());
+		myConsoleInput = new ConsoleInput(myWidth,height, getViewModule());
+		console.getChildren().add(myConsoleInput.getParent());
 	}
-
+	
 	@Override
 	public Element getXMLPreferences(Document doc) {
 		// TODO Auto-generated method stub
