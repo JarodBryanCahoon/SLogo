@@ -37,17 +37,18 @@
 }
 
 .Render{ 
--fx-background-color:#808080ff;
--fx-fill:#993300ff;
+-fx-background-color:#000000ff;
+-fx-stroke:#ffffffff;
 -fx-width:10;
 -turtle:red;
 }
 
 .ScrollPane{ 
+-fx-background-color:#333333ff;
 -fx-background:BLACK;
 }
 
-.ScrollPane .scroll-bar .decrement-button{ 
+.ScrollPane .decrement-button{ 
 -visibility:hidden;
 }
 
