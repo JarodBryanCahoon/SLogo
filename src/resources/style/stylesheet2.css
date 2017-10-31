@@ -24,12 +24,11 @@
 }
 
 .Invalid{ 
--fx-fill:#661a33ff;
+-fx-fill:#e6e6e6ff;
 }
 
 .Window{ 
 -fx-background-color:#333333ff;
--fx-background:#333333ff;
 -fx-text-fill:white;
 }
 
@@ -45,6 +44,7 @@
 }
 
 .ScrollPane{ 
+-fx-background:BLACK;
 }
 
 .ScrollPane .scroll-bar .decrement-button{ 
