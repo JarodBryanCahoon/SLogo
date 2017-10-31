@@ -106,9 +106,12 @@ public class Manager extends Observable {
 	
 	public Map<String, String> getVariables(){
 		Map<String, String> vars = new HashMap<>();
-		
-		
+		for (String s: variables.keySet()) {
+			if(variables.get(s).isNumberVar()) {
+				String current = Double.toString(variables.get(s).execute());
+				vars.put(s, current);
+			}
+		}
 		return vars;
-		
 	}
 }
