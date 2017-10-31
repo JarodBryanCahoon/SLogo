@@ -15,6 +15,7 @@ import frontend.xml.PreferenceXMLReader;
 import frontend.xml.XMLReader;
 import javafx.scene.Group;
 import javafx.scene.Parent;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Line;
 
@@ -138,5 +139,11 @@ public class RenderModule extends Module {
 	
 	public void setRenderState(Parent renderState) {
 		setParent(renderState);
+	}
+
+	public void replaceImage(ImageView oldImage, ImageView newImage) {
+		Pane parent = (Pane) getParent();
+		parent.getChildren().remove(oldImage);
+		parent.getChildren().add(newImage);
 	}
 }

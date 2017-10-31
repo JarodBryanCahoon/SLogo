@@ -1,8 +1,9 @@
-package backend.board;
+package backend.board.interfacemovement;
 
 import java.io.IOException;
 
-import backend.board.interfacemovement.SomeParamTurtle;
+import backend.board.Turtle;
+import backend.board.TurtleCollection;
 
 public class AskWith extends SomeParamTurtle {
 

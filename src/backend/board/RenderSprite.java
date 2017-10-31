@@ -10,18 +10,15 @@ import frontend.modules.RenderModule;
 import frontend.popups.TurtleView;
 import frontend.xml.PreferenceXMLReader;
 import frontend.xml.XMLReader;
-import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.BorderPane;
 
 /**
  * @author Albert
- *
+ *	A Class that handles the rendering of a turtle
  */
 public class RenderSprite extends Observable implements iRenderSprite, Observer {
-	private static final int DURATION = 2000;
 	private static final double SELECTED_DIFFERENCE = 0.5;
 	private static final double SELECTED = 1.0;
 	private static final String TURTLE = "turtle";
@@ -181,9 +178,11 @@ public class RenderSprite extends Observable implements iRenderSprite, Observer 
 		return !((turtle.getMyX() == oldX) && (turtle.getMyY() == oldY));
 	}
 
-	public void changeImage(ImageView image) {
+	public ImageView changeImage(ImageView image) {
+		ImageView oldImageView = myImageView;
 		myImageView = image;
 		initImage();
+		return oldImageView;
 	}
 
 	private void setChangedNotify() {
