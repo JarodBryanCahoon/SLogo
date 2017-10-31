@@ -87,10 +87,6 @@ public class RenderModule extends Module {
 			RenderSprite s = renderIter.next();
 			List<Line> lineList = mySpriteLines.get(s);
 			myGroup.getChildren().removeAll(lineList);
-			if (!s.isSelected()) {
-				myPane.getChildren().remove(s.getImage());
-				renderIter.remove();
-			}
 		}
 	}
 

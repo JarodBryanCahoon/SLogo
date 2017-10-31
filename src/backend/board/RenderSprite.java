@@ -97,6 +97,7 @@ public class RenderSprite extends Observable implements iRenderSprite, Observer 
 
 	@Override
 	public void setX(double X) {
+		System.out.println("setting x");
 		readX(X);
 		setChangedNotify();
 	}

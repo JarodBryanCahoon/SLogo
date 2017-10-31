@@ -40,6 +40,10 @@ public class TurtleCollection extends Observable implements ITurtle {
 		return myScene;
 	}
 	
+	public List<Turtle> getTurtles() {
+		return myTurtles;
+	}
+	
 	private List<Turtle> getSelectedTurtles() {
 		List<Turtle> selectedTurtles = new ArrayList<>();
 		for(Turtle t : myTurtles) {

@@ -1,7 +1,6 @@
 package backend.board.interfacemovement;
 
 import java.io.IOException;
-import java.util.List;
 
 import backend.board.Turtle;
 import backend.board.TurtleCollection;
@@ -11,27 +10,21 @@ import backend.control.ListNode;
  * @author Albert
  *
  */
-public class Tell extends SomeParamTurtle {
-	private boolean init = false;
-	public Tell(TurtleCollection turtles) {
+public class Ask extends SomeParamTurtle {
+
+	public Ask(TurtleCollection turtles) {
 		super(turtles);
+		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public double act(Turtle turt) throws IOException {
 		ListNode turtleListNode = (ListNode) super.getChildren().get(0);
-		String[] myTurtleIds = turtleListNode.getContents();
+		String[] turtleIds = turtleListNode.getContents();
+		boolean turtleSelected = turt.isSelected();
 		
-		if(init) {
-			init = false;
-			List<Turtle> myTurtles = getTurtles().getTurtles();
-			for(Turtle t : myTurtles) {
-				t.selectTurtle(false);
-			}
-		}
-
-		for(int i = 0; i < myTurtleIds.length; i++) {
-			int id = Integer.parseInt(myTurtleIds[i]);
+		for(int i = 0; i < turtleIds.length; i++) {
+			int id = Integer.parseInt(turtleIds[i]);
 			while(!getTurtles().turtleExistsById(id)) {
 				getTurtles().createTurtle();
 			}
@@ -39,8 +32,11 @@ public class Tell extends SomeParamTurtle {
 			if(turt.getId() == id) {
 				turt.selectTurtle(true);
 			}
-		}		
+		}
 		
-		return Double.parseDouble(myTurtleIds[myTurtleIds.length - 1]);
+		double returnValue = super.getChildren().get(1).execute();
+		turt.selectTurtle(turtleSelected);
+		return returnValue;
 	}
+
 }

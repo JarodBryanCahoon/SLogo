@@ -100,6 +100,7 @@ public class Manager extends Observable implements Observer {
 	
 	public void addTurtle(RenderSprite rs) {
 		Turtle newTurtle = new Turtle(rs);
+		rs.addObserver(newTurtle);
 		myTurtles.addTurtle(newTurtle);
 	}
 	
