@@ -28,7 +28,7 @@ import backend.control.VariableNode;
 
 public class Manager extends Observable {
 
-	private Map<String, List<Object>> myMemory = new HashMap<>();
+	
 	private Map<String, VariableNode> variables = new HashMap<>();
 	private TextParse myParser;
 	private double output;
