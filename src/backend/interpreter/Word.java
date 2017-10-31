@@ -93,7 +93,7 @@ public class Word {
 	
 	
 	public Word(String s, ResourceBundle resources, TurtleCollection turtles, Map<String, VariableNode> variables, Map<String, String> languageMap) {	
-		myName = s;
+		myName = s.toLowerCase();
 		myTurtles = turtles;
 		SyntaxReader syntaxReader = new SyntaxReader();
 		myProperties = syntaxReader.getProperties();
