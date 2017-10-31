@@ -2,25 +2,16 @@ package frontend.modules;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Queue;
-import java.util.List;
-
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-
 import backend.board.RenderSprite;
 import exceptions.ErrorMessage;
 import frontend.xml.PreferenceXMLReader;
 import frontend.xml.XMLReader;
-import javafx.animation.Animation;
-import javafx.animation.Transition;
 import javafx.scene.Group;
 import javafx.scene.Parent;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Line;
 
