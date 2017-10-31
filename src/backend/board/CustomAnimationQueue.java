@@ -19,6 +19,9 @@ public class CustomAnimationQueue {
 	public static final int DURATION = 2000;
 	private RenderSprite myRenderSprite;
 	private RenderModule myRenderModule;
+	private double xSet;
+	private double ySet;
+	private boolean initTranslation = false;
 	
 	public CustomAnimationQueue(RenderSprite rs, RenderModule render) {
 		myRenderModule = render;
@@ -40,6 +43,12 @@ public class CustomAnimationQueue {
 		ImageView image = myRenderSprite.getImage();
 		double oldX = image.getX();
 		double oldY = image.getY();
+		if(!initTranslation) {
+			xSet = oldX;
+			ySet = oldY;
+			initTranslation = true;
+		}
+		
 		double newX = rMath.imageX(myRenderSprite.getX());
 		double newY = rMath.imageY(myRenderSprite.getY());
 		
@@ -52,7 +61,7 @@ public class CustomAnimationQueue {
 		
 		ParallelTransition pTransition = new ParallelTransition();
 		pTransition.getChildren().addAll(xTranslateTransition, yTranslateTransition);
-		pTransition.setOnFinished(e -> onFinish(myRenderSprite.isPenDown(), oldX + image.getLayoutX(), oldY + image.getLayoutY(), newX, newY));
+		pTransition.setOnFinished(e -> onFinish(myRenderSprite.isPenDown(), newX, newY));
 		runQueue(pTransition);
 	}
 	
@@ -61,24 +70,16 @@ public class CustomAnimationQueue {
 		double oldImageAngle = 360 - oldAngle;
 		rTransition.setFromAngle(oldImageAngle);
 		rTransition.setToAngle(newAngle);
-		rTransition.setOnFinished(e -> onFinish());
+		rTransition.setOnFinished(e -> checkQueue());
 		runQueue(rTransition);
 	}
 	
-	private void onFinish(boolean penDown, double oldX, double oldY, double newX, double newY) {
-		System.out.println("finished");
-		System.out.println(newY);
-		
-//		double oldX = myRenderSprite.getMath().imageX(myRenderSprite.getX());
-//		double oldY = myRenderSprite.getMath().imageY(myRenderSprite.getY());
+	private void onFinish(boolean penDown, double newX, double newY) {
 		if(penDown) {
-			myRenderModule.drawLine(myRenderSprite.getId(), oldX, oldY, newX, newY);
+			myRenderModule.drawLine(myRenderSprite.getId(), xSet, ySet, newX, newY);
 		}
-		checkQueue();
-
-	}
-	
-	private void onFinish() {
+		xSet = newX;
+		ySet = newY;
 		checkQueue();
 	}
 
