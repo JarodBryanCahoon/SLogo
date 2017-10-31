@@ -67,7 +67,6 @@ public class Word {
 			makeListNode(rb, variables);
 		}
 		else if(myName.matches(myProperties.getProperty(COMMAND))) {
-			System.out.println(myName);
 			makeCommandNode(rb, variables);
 		}
 		else {
@@ -104,7 +103,6 @@ public class Word {
 			Constructor<?> ctr;
 			if (methodType.equals("Turtle")) {
 				nodeType =methodType;
-				System.out.println("Actually invalid here");
 				ctr = c.getConstructor(TurtleCollection.class);
 				myNode = (ASTNode) ctr.newInstance(myTurtles);
 			} 
