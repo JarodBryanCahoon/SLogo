@@ -10,11 +10,13 @@ import javafx.scene.text.Text;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Observable;
 import java.util.Set;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+import backend.interpreter.Manager;
 import exceptions.SyntaxException;
 
 
@@ -23,7 +25,10 @@ import exceptions.SyntaxException;
  *
  */
 public class VariableModule extends Module{
+	private static final int HGAP = 5;
+	private static final int VGAP = 10;
 	private GridPane myParent;
+	private Map<String,String> variables;
 	
 	public VariableModule(double width, double height, ViewModule view) throws Exception {
 		super(width, height, view);
@@ -34,6 +39,7 @@ public class VariableModule extends Module{
 	@Override
 	protected Parent createParent() {
 		myParent = new GridPane();
+		variables = starting();
 		formatPane();
 		addVariables();
 		stylize();
@@ -41,14 +47,14 @@ public class VariableModule extends Module{
 	}
 //	TODO:Move to CSS
 	private void formatPane() {
-		myParent.setVgap(10);
-		myParent.setHgap(5);
+		myParent.setVgap(VGAP);
+		myParent.setHgap(HGAP);
 		
 	}
 
 
 	private void addVariables() {
-		Map<String,String> variables= testing();
+		myParent.getChildren().clear();
 		Set<String> temp = variables.keySet();
 		String[] keys =  temp.toArray(new String[0]);
 		for (int k = 0 ; k<variables.size();k++) {
@@ -94,7 +100,7 @@ public class VariableModule extends Module{
 	}
 
 
-	private Map<String, String> testing() {
+	private Map<String, String> starting() {
 		Map<String,String> toReturn = new HashMap<String,String>();
 		String[] key = {"a","b","c","d","e"};
 		String[] values = {"1","2","3","4","5"};
@@ -116,6 +122,13 @@ public class VariableModule extends Module{
 		return null;
 	}
 
+	@Override
+	public void update(Observable manager,Object arg1) {
+		Manager manage = (Manager) manager;
+		variables = manage.getVariables();
+		addVariables();
+		
+	}
 	
 
 }

@@ -15,6 +15,7 @@ import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 
 public class ConsoleHistory extends Module {
+	private static final int FADE = 200;
 	private VBox history;
 	private ScrollPane historyPane;
 	private Manager backend;
@@ -45,7 +46,7 @@ public class ConsoleHistory extends Module {
 	}
 
 	private void fadeIn(FlowPane toAdd) {
-		FadeTransition ft = new FadeTransition(Duration.millis(200),toAdd);
+		FadeTransition ft = new FadeTransition(Duration.millis(FADE),toAdd);
 		ft.setFromValue(0);
 		ft.setToValue(1);
 		ft.play();
