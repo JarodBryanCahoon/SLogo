@@ -3,10 +3,10 @@ package backend.control;
 import backend.board.logic.NoParamMath;
 
 public class VariableNode extends NoParamMath{
-	private String myName;
+    private String myName;
 	private double myValue=0;
 	public VariableNode(String s) {
-		myName = s;
+     myName = s;
 	}
 
 	@Override 
@@ -20,5 +20,9 @@ public class VariableNode extends NoParamMath{
 	
 	public String getName() {
 		return myName;
+	}
+
+	public boolean isNumberVar() {
+		return true;
 	}
 }

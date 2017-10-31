@@ -49,7 +49,7 @@ public class InfoInterface extends Observable {
 		TextFlow toReturn = new TextFlow();
 		for (Word w : words) {
 			Text text = new Text(w.getName());
-			text.getStyleClass().add("root");
+//			text.getStyleClass().add("root");
 			text.getStyleClass().add(w.getType());
 			toReturn.getChildren().add(text);
 		}

@@ -1,14 +1,17 @@
 package frontend.modules;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+import exceptions.ErrorMessage;
 import frontend.xml.ColorReader;
 import javafx.scene.Parent;
 import javafx.scene.control.ColorPicker;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -47,7 +50,7 @@ public class StylizeModule extends Module {
 	private void addSettings() {
 		settings = new GridPane();
 		settings.setHgap(25);
-		System.out.println("\nTESTING\n");
+		settings.setVgap(5);
 		addWords("Word",0);
 		addWords("Windows",2);
 		addWords("Rendering",4);
@@ -69,10 +72,9 @@ public class StylizeModule extends Module {
 	private void addRendering(int column) {
 		createText("Pen",column,2);
 		createPicker("Render",3,column+1,2);
+		createText("PenSize",column,3);
+		createField(column+1,3);
 	}
-	
-	
-	
 
 	private void createText(String tag, int column,int row) {
 		Text title = new Text(tag);
@@ -80,11 +82,25 @@ public class StylizeModule extends Module {
 		settings.add(title,column,row);
 	}
 	
+	private void createField(int column, int row) {
+		TextField textField = new TextField();
+		textField.setOnAction(e->send(textField));
+		settings.add(textField, column, row);
+	}
+	
+	private void send(TextField textField) {
+		String text = textField.textProperty().getValue();
+		try {
+			myReader.setColor("Render",5,text);
+		} catch (IOException e) {
+			ErrorMessage eMessage = new ErrorMessage("Could not render");
+			eMessage.show();
+		}
+	}
+
 	private void createPicker(String title,int index,int column, int row) {
 		ColorPick colorPick = new ColorPick(myReader, title, index);
 		settings.add(colorPick.getColorPicker(), column, row);
-		
-		
 	}
 
 	private void stylize() {
@@ -98,7 +114,6 @@ public class StylizeModule extends Module {
 
 	@Override
 	public Element getXMLPreferences(Document doc) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

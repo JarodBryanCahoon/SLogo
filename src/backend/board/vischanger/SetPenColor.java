@@ -21,7 +21,7 @@ public class SetPenColor extends SomeParamTurtle {
 	public double act(Turtle turt) throws IOException {
 		// TODO Auto-generated method stub
 		ColorReader cr = new ColorReader(ColorReader.CSSPATH);
-		cr.setColor(RENDER, 1, Double.toString(super.getChildren().get(0).execute()));
+		cr.setColor(RENDER, 3, Double.toHexString(super.getChildren().get(0).execute()));
 		Scene thisScene = this.getTurtles().getScene();
 		thisScene.getStylesheets().clear();
 		thisScene.getStylesheets().add(ColorReader.CSSPATH + ColorReader.CSSFILENAME);

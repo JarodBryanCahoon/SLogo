@@ -2,6 +2,7 @@ package test;
 
 import frontend.modules.ConsoleInput;
 import frontend.modules.ConsoleModule;
+import frontend.modules.MenuModule;
 import frontend.modules.Module;
 import frontend.modules.StylizeModule;
 import frontend.modules.VariableModule;
@@ -30,8 +31,9 @@ public class ModulesTester extends Application{
 				);
 		// Change test to whatever module you want
 		ViewModule view = new ViewModule(WIDTH,HEIGHT);
-		Module test = new StylizeModule (view);
-//		StylizeModule test = new StylizeModule();
+		Module test = new ConsoleModule (WIDTH,HEIGHT,view);
+//		Module test = new StylizeModule (view);
+//		StylizeModule test = new StylizeModule
 		Parent parent = test.getParent();
 		scene = new Scene(parent);
 		scene.setOnMouseClicked(e->style());

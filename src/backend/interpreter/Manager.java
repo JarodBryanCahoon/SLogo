@@ -45,15 +45,19 @@ public class Manager extends Observable {
 		myInfoInterface = new InfoInterface(myHistory);
 	}
 	
-	public void addToHistory(String text) {
+	public double addToHistory(String text) {
+		output = -1;
 		try {
-			double output = setAndExecuteCommand(text);
+			output = setAndExecuteCommand(text);
 			myHistory.add(myParser.getFormattedSentence(text, myTurtles));
 			setChanged();
 			notifyObservers();
 		} catch(NullPointerException e) {
 			throw new NullPointerException();
 		}
+		System.out.print("OUTPUT EQUALS : ");
+		System.out.println(output);
+		return output;
 	}
 	
 	public FlowPane getHistory() {
@@ -82,6 +86,7 @@ public class Manager extends Observable {
 	}
 	
 	public double getOutput() {
+		System.out.println(output);
 		return output;
 	}
 	
@@ -102,5 +107,16 @@ public class Manager extends Observable {
 	
 	public Properties getLangProperties() {
 		return myLangProperties;
+	}
+	
+	public Map<String, String> getVariables(){
+		Map<String, String> vars = new HashMap<>();
+		for (String s: variables.keySet()) {
+			if(variables.get(s).isNumberVar()) {
+				String current = Double.toString(variables.get(s).execute());
+				vars.put(s, current);
+			}
+		}
+		return vars;
 	}
 }

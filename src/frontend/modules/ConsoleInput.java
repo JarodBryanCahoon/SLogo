@@ -50,12 +50,12 @@ public class ConsoleInput extends Module{
 	
 	private void updateSyntax(Observable in) {
 		inputField.setStyle("-fx-border-color: transparent");
-		String text = inputField.textProperty().getValue();
+		String text = getInputText();
 		createText(text);
 	}
 
 	private void send(KeyEvent event) {
-		String text = inputField.textProperty().getValue();
+		String text = getInputText();
 		if (keyComb.match(event)) {
 			try {
 			backend.addToHistory(text);
@@ -66,6 +66,10 @@ public class ConsoleInput extends Module{
 			}
 			
 		}
+	}
+
+	private String getInputText() {
+		return inputField.textProperty().getValue();
 	}
 
 	private void createText(String incomingText) {

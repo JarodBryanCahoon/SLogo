@@ -17,20 +17,16 @@ public class RenderMath {
 	}
 	
 	protected double xTranslate(double coord) {
-//		System.out.println("X " + coord);
 		double translated = imageX(coord);
 		if(!outsideBounds(translated, myWidth, myImageView.getBoundsInLocal().getWidth())) {
 			return coord;
 		}
 		
-//		double boundaryBroken = (translated < 0) ? 1 : 0;
-//		return logoX(translated + boundaryBroken * myWidth);
 		double boundaryBroken = (translated < 0) ? 0 : 1;
 		return logoX( (myWidth - myImageView.getBoundsInLocal().getWidth()) * boundaryBroken);
 	}
 	
 	protected double yTranslate(double coord) {
-//		System.out.println("Y " + coord);
 		double translated = imageY(coord);
 		if(!outsideBounds(translated, myHeight, myImageView.getBoundsInLocal().getHeight())) {
 			return coord;
@@ -41,7 +37,6 @@ public class RenderMath {
 //		return logoY(translated + boundaryBroken * myHeight);
 		
 		double boundaryBroken = (translated < 0) ? 0 : 1;
-		System.out.println((myHeight - myImageView.getBoundsInLocal().getHeight()) * boundaryBroken);
 		return logoY( (myHeight - myImageView.getBoundsInLocal().getHeight()) * boundaryBroken);
 	}
 	
@@ -60,8 +55,4 @@ public class RenderMath {
 	protected double logoY(double Y) {
 		return -Y + myHeight / 2 - myImageView.getBoundsInLocal().getHeight() / 2;
 	}
-	
-//	private double xCenter(double X) {
-//		return 
-//	}
 }

@@ -16,7 +16,7 @@
 }
 
 .Command{ 
--fx-fill:#ff6666ff;
+-fx-fill:#99cc99ff;
 }
 
 .Text{ 
@@ -24,12 +24,11 @@
 }
 
 .Invalid{ 
--fx-fill:#661a33ff;
+-fx-fill:#e6e6e6ff;
 }
 
 .Window{ 
 -fx-background-color:#333333ff;
--fx-background:#333333ff;
 -fx-text-fill:white;
 }
 
@@ -38,17 +37,27 @@
 }
 
 .Render{ 
--fx-background-color:#808080ff;
--fx-fill:#ffffffff;
--fx-width:red;
+-fx-background-color:#000000ff;
+-fx-stroke:#ffffffff;
+-fx-width:10;
 -turtle:red;
 }
 
 .ScrollPane{ 
+-fx-background-color:#333333ff;
+-fx-background:BLACK;
 }
 
-.ScrollPane .scroll-bar .decrement-button{ 
+.ScrollPane .decrement-button{ 
 -visibility:hidden;
+}
+
+.MenuButtons{ 
+-fx-background-color:darkslategray;
+}
+
+.MenuButtons:focused.label{ 
+-fx-background-color:red;
 }
 
 .ColorPicker{ 

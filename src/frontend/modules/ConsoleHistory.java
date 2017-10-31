@@ -8,13 +8,16 @@ import org.w3c.dom.Element;
 
 import backend.interpreter.Manager;
 import javafx.animation.FadeTransition;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 public class ConsoleHistory extends Module {
+	private static final int FADE = 200;
 	private VBox history;
 	private ScrollPane historyPane;
 	private Manager backend;
@@ -22,7 +25,7 @@ public class ConsoleHistory extends Module {
 	public ConsoleHistory(double myWidth, double myHeight, ViewModule view) throws Exception {
 		super(myWidth, myHeight, view);
 		historyPane.setMinSize(myWidth,myHeight);
-		history.setMinSize(myWidth-5,myHeight-5);
+		history.setMinSize(myWidth-10,myHeight-10);
 		backend = view.getManager();
 		backend.addObserver(this);
 		stylize();
@@ -37,15 +40,18 @@ public class ConsoleHistory extends Module {
 	
 	@Override
 	public void update(Observable backend, Object arg1) {
-		FlowPane toAdd = ((Manager) backend).getHistory();
+		Manager manager = (Manager) backend;
+		FlowPane toAdd = manager.getHistory();
+//		
 		history.getChildren().add(toAdd);
+		history.getChildren().add(new Text(Double.toString(manager.getOutput())));
 		fadeIn(toAdd);
 		stylize();
 		historyPane.setVvalue(1.0);
 	}
 
 	private void fadeIn(FlowPane toAdd) {
-		FadeTransition ft = new FadeTransition(Duration.millis(200),toAdd);
+		FadeTransition ft = new FadeTransition(Duration.millis(FADE),toAdd);
 		ft.setFromValue(0);
 		ft.setToValue(1);
 		ft.play();
@@ -61,10 +67,8 @@ public class ConsoleHistory extends Module {
 
 	private void stylize() {
 		history.getStyleClass().add("Window");
-		historyPane.getStyleClass().add("Window");
+		historyPane.getStyleClass().add("ScrollPane");
 		
-//		System.out.println(history.getStyleClass());
-		System.out.println(historyPane.getStyleClass());
 	}
 
 	@Override

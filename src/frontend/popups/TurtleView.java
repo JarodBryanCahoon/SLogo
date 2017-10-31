@@ -98,7 +98,6 @@ public class TurtleView {
 					setMethod.invoke(rs, value);
 				}
 			} catch (Exception e) {
-				e.printStackTrace();
 				ErrorMessage eMessage = new ErrorMessage("That value is invalid");
 				eMessage.show();
 			}

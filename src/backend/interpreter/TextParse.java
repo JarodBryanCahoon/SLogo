@@ -31,6 +31,7 @@ public class TextParse {
 	private static final String DEFAULT_RESOURCE_PACKAGE = "resources/";
 	private static final String DEFAULT_COMMAND_MAP = "ArgumentNumbers";
 	public static final String CLASS_LIST = "ClassList.txt";
+	private static final String COMMAND = "Command";
 	private ASTNode root;
 	private Map<String, VariableNode> variables;
 	private ResourceBundle rb;
@@ -45,15 +46,19 @@ public class TextParse {
 	}
 	
 	public void changeLanguage(Properties languageFile) { 
-	    languageMap = new HashMap<>(); 
-	    for(Object key : languageFile.keySet()) { 
-	      String s = key.toString(); 
-	      String[] commands = languageFile.getProperty(s).split("\\|"); 
-	      for(String command : commands) { 
-	        languageMap.put(command, s); 
-	      } 
-	    } 
-	  } 
+		languageMap = new HashMap<>(); 
+		for(Object key : languageFile.keySet()) { 
+		  String s = key.toString(); 
+		  String[] commands = languageFile.getProperty(s).split("\\|"); 
+		  for(String command : commands) {
+			  if(command.matches("\\*")) {
+				  	command = "\\" + command;
+			  }
+		    languageMap.put(command, s); 
+		  }
+		}
+	} 
+
 
 	private void createSyntaxReader() throws ClassNotFoundException, FileNotFoundException {
 		SyntaxReader sReader = new SyntaxReader();
@@ -74,6 +79,7 @@ public class TextParse {
 			}
 		}
 		String s = String.join(" ", lineList);
+		s = s.trim();
 		fillCommandQueue(s, turtles);
 		root = recursiveTree();
 		if (!queue.isEmpty()) {
@@ -97,12 +103,15 @@ public class TextParse {
 					sb.append(commandList[j]);
 					sb.append(" ");
 					j++;
+					
 				}
 				sb.append(myProperties.getProperty(LIST_END));
 				t=sb.toString();
 				i=j;
 			}
 			Word w = new Word(t, rb, turtles, variables, languageMap);
+			System.out.print(w.getName() +" : " );
+			System.out.println(w.getType());
 			
 			queue.add(w);
 		};
@@ -115,7 +124,7 @@ public class TextParse {
 		}
 		Word w = queue.poll();
 		ASTNode tree = w.getNode();
-		if(w.getType().equals("Command")) {
+		if(w.getType().equals(COMMAND)) {
 			for(int i = 0; i<w.getNumber(); i++) {
 				tree.setChildren(recursiveTree());
 			}
@@ -133,11 +142,14 @@ public class TextParse {
 		Word[] sentence = new Word[commandList.length];
 		
 		for (int k = 0; k< commandList.length; k++) {
-
 			Word word = new Word(commandList[k], rb, turtles, variables, languageMap);
 			sentence[k] = word;
 		}
 		return sentence;
+	}
+	
+	public void setLanguageMap(Map<String, String> map) {
+		languageMap = map;
 	}
 	
 }

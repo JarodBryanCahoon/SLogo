@@ -17,20 +17,20 @@
 			<fx-fill>pink</fx-fill>
 		</Constant>
 		<Command>
-			<fx-fill>#ff6666ff</fx-fill>
+			<fx-fill>#99cc99ff</fx-fill>
 		</Command>
 		<Text>
 			<fx-fill>#e6e6e6ff</fx-fill>	
 		</Text>
 		<Invalid>
-			<fx-fill>#661a33ff</fx-fill>	
+			<fx-fill>#e6e6e6ff</fx-fill>	
 		</Invalid>
 	</Word>
 	
 	<Windows>
 		<Window>
 			<fx-background-color>#333333ff</fx-background-color>
-			<fx-background>#333333ff</fx-background>
+			
 			<fx-text-fill>white</fx-text-fill>
 		</Window>
 		<Window.content>
@@ -41,22 +41,32 @@
 	<Rendering>
 		
 		<Render>
-			<fx-background-color>#808080ff</fx-background-color>
-			<fx-fill>#ffffffff</fx-fill>
-			<fx-width>red</fx-width>
+			<fx-background-color>#000000ff</fx-background-color>
+			<fx-stroke>#ffffffff</fx-stroke>
+			<fx-width>10</fx-width>
 			<turtle>red</turtle>
 		</Render>
 	</Rendering>
 	
 	<Scroll>
 		<ScrollPane>
-			
+			<fx-background-color>#333333ff</fx-background-color>
+			<fx-background>BLACK</fx-background>
 		</ScrollPane>
 			
-		<ScrollPane.scroll-bar.decrement-button>
+		<ScrollPane.decrement-button>
 			<visibility>hidden</visibility>
-		</ScrollPane.scroll-bar.decrement-button>
+		</ScrollPane.decrement-button>
 	</Scroll>
+	
+	<Menu>
+		<MenuButtons>
+			<fx-background-color>black</fx-background-color>
+		</MenuButtons>
+		<MenuButtons:focused.>
+			<fx-background-color>red</fx-background-color>
+		</MenuButtons:focused>
+	</Menu>
 	<Colorpickering>
 		<ColorPicker>
 			<fx-font>8px 'Letter Gothic Std'</fx-font>
