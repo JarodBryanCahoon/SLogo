@@ -1,19 +1,30 @@
 package backend.board.vischanger;
 
-import javafx.scene.paint.Color;
+import java.io.IOException;
+import java.util.ResourceBundle;
 
-public class SetPenColor implements VisModifier{
+import backend.board.Turtle;
+import backend.board.TurtleCollection;
+import backend.board.interfacemovement.SomeParamTurtle;
+import frontend.xml.ColorReader;
+import javafx.scene.Scene;
 
-	private Color myColor;
-	public SetPenColor(Object index) {
-		myColor =  /*ResourceBundle.get()*/(Integer)index;
-		//TODO: change color to set to resource bundle
-		
+public class SetPenColor extends SomeParamTurtle {
+	public static final String RENDER = "Render";
+	private ResourceBundle myColors = ResourceBundle.getBundle("TBD");
+	private String myColor;
+	public SetPenColor(TurtleCollection turtles) {
+		super(turtles);
 	}
 
 	@Override
-	public Object act(Object obj) {
-		obj = (FrontEndManager)obj;
-		obj.setPenColor(myColor);
+	public double act(Turtle turt) throws IOException {
+		// TODO Auto-generated method stub
+		ColorReader cr = new ColorReader(ColorReader.CSSPATH);
+		cr.setColor(RENDER, 1, Double.toString(super.getChildren().get(0).execute()));
+		Scene thisScene = this.getTurtles().getScene();
+		thisScene.getStylesheets().clear();
+		thisScene.getStylesheets().add(ColorReader.CSSPATH + ColorReader.CSSFILENAME);
+		return 0;
 	}
 }
