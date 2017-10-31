@@ -18,6 +18,7 @@ public class MathNode implements ASTNode{
 
 	@Override
 	public void setChildren(ASTNode n) {
+		System.out.println("Children");
 		myChildren.add(n);
 	}
 
