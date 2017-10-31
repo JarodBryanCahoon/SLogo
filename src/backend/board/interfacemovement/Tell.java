@@ -7,7 +7,6 @@ import backend.board.TurtleCollection;
 import backend.control.ListNode;
 
 public class Tell extends SomeParamTurtle {
-
 	public Tell(TurtleCollection turtles) {
 		super(turtles);
 	}
@@ -16,19 +15,19 @@ public class Tell extends SomeParamTurtle {
 	public double act(Turtle turt) throws IOException {
 		ListNode turtleListNode = (ListNode) super.getChildren().get(0);
 		String[] myTurtleIds = turtleListNode.getContents();
-		
+//		System.out.println("here");
 		turt.selectTurtle(false);
 		for(int i = 0; i < myTurtleIds.length; i++) {
 			int id = Integer.parseInt(myTurtleIds[i]);
-			if(getTurtles().turtleExistsById(id)) {
+			while(!getTurtles().turtleExistsById(id)) {
+//				System.out.println("Does not exist");
 				getTurtles().createTurtle();
-				break;
 			}
 			
 			if(turt.getId() == id) {
 				turt.selectTurtle(true);
-				break;
 			}
+			
 		}		
 		
 		return super.getChildren().get(1).execute();

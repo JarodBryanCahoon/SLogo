@@ -78,6 +78,7 @@ public class Manager extends Observable implements Observer {
 			rs.addObserver(newTurtle);
 		}
 		myTurtles = new TurtleCollection(initTurtles, myViewModule.getParent().getScene());
+		myTurtles.addObserver(this);
 	}
 	
 	public double setAndExecuteCommand(String s) {
@@ -93,6 +94,7 @@ public class Manager extends Observable implements Observer {
 	
 	public void addTurtle() {
 		RenderSprite rs = myViewModule.getRenderModule().addTurtle();
+		System.out.println("yes");
 		addTurtle(rs);
 	}
 	
