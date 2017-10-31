@@ -105,6 +105,7 @@ public class TextParse {
 			System.out.println("SENT");
 			System.out.println(t);
 			Word w = new Word(t, rb, turtles, variables, languageMap);
+			System.out.println(w.getType());
 			
 			queue.add(w);
 		};

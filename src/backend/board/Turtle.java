@@ -1,5 +1,6 @@
 package backend.board;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
@@ -37,7 +38,7 @@ public class Turtle extends Observable implements ITurtle, Observer{
 			readRenderSprite(ob);
 		}
 		
-		public double act(TurtleNode m){
+		public double act(TurtleNode m) throws IOException{
 			double returnValue = m.act(this);
 			setChanged();
 			this.notifyObservers(this);
