@@ -14,10 +14,12 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.util.Duration;
 
 public class ConsoleHistory extends Module {
 	private static final int FADE = 200;
+	private static final String GAP = "                                        ";
 	private VBox history;
 	private ScrollPane historyPane;
 	private Manager backend;
@@ -25,7 +27,7 @@ public class ConsoleHistory extends Module {
 	public ConsoleHistory(double myWidth, double myHeight, ViewModule view) throws Exception {
 		super(myWidth, myHeight, view);
 		historyPane.setMinSize(myWidth,myHeight);
-		history.setMinSize(myWidth-10,myHeight-10);
+		history.setMinSize(myWidth,myHeight);
 		backend = view.getManager();
 		backend.addObserver(this);
 		stylize();
@@ -43,7 +45,10 @@ public class ConsoleHistory extends Module {
 		Manager manager = (Manager) backend;
 		FlowPane toAdd = manager.getHistory();
 		history.getChildren().add(toAdd);
-		history.getChildren().add(new Text(Double.toString(manager.getOutput())));
+		Text text = new Text(GAP+Double.toString(manager.getOutput()));
+		text.getStyleClass().add("Text");
+		
+		history.getChildren().add(text);
 		fadeIn(toAdd);
 		stylize();
 		historyPane.setVvalue(1.0);
