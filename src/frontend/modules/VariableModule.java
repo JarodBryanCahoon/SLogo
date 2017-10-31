@@ -29,9 +29,11 @@ public class VariableModule extends Module{
 	private static final int VGAP = 10;
 	private GridPane myParent;
 	private Map<String,String> variables;
+	private Manager manager;
 	
 	public VariableModule(double width, double height, ViewModule view) throws Exception {
 		super(width, height, view);
+		manager = view.getViewModule().getManager();
 	}
 
 	
@@ -84,21 +86,20 @@ public class VariableModule extends Module{
 		return inputField;
 	}
 
-
 	private void send(KeyEvent event, String key,TextField textField) {
 		textField.setStyle("-fx-border-color:gray");
 		String text = textField.textProperty().getValue();
 		if (event.getCode() == KeyCode.ENTER) {
 			try {
-				String input = key + "=" + text;
-				System.out.println(input);
+				String input = "make " + key +" "+ text;
+				manager.addToHistory(input);
+				
 			}
 			catch (SyntaxException | NullPointerException e) {
 				textField.setStyle("-fx-border-color: red");
 			}
 		}
 	}
-
 
 	private Map<String, String> starting() {
 		Map<String,String> toReturn = new HashMap<String,String>();
@@ -114,8 +115,6 @@ public class VariableModule extends Module{
 		myParent.getStyleClass().add("Window");
 	}
 	
-	
-
 	@Override
 	public Element getXMLPreferences(Document doc) {
 		// TODO Auto-generated method stub
@@ -123,8 +122,8 @@ public class VariableModule extends Module{
 	}
 
 	@Override
-	public void update(Observable manager,Object arg1) {
-		Manager manage = (Manager) manager;
+	public void update(Observable fromManager,Object arg1) {
+		Manager manage = (Manager) fromManager;
 		variables = manage.getVariables();
 		addVariables();
 		

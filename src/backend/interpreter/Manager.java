@@ -45,15 +45,17 @@ public class Manager extends Observable {
 		myInfoInterface = new InfoInterface(myHistory);
 	}
 	
-	public void addToHistory(String text) {
+	public double addToHistory(String text) {
+		double output = -1;
 		try {
-			double output = setAndExecuteCommand(text);
+			output = setAndExecuteCommand(text);
 			myHistory.add(myParser.getFormattedSentence(text, myTurtles));
 			setChanged();
 			notifyObservers();
 		} catch(NullPointerException e) {
 			throw new NullPointerException();
 		}
+		return output;
 	}
 	
 	public FlowPane getHistory() {
