@@ -53,7 +53,11 @@
 }
 
 .MenuButtons{ 
--fx-background-color:white;
+-fx-background-color:darkslategray;
+}
+
+.MenuButtons:focused.label{ 
+-fx-background-color:red;
 }
 
 .ColorPicker{ 
