@@ -17,7 +17,7 @@
 			<fx-fill>pink</fx-fill>
 		</Constant>
 		<Command>
-			<fx-fill>#ff6666ff</fx-fill>
+			<fx-fill>#99cc99ff</fx-fill>
 		</Command>
 		<Text>
 			<fx-fill>#e6e6e6ff</fx-fill>	
@@ -42,8 +42,8 @@
 		
 		<Render>
 			<fx-background-color>#808080ff</fx-background-color>
-			<fx-fill>#ffffffff</fx-fill>
-			<fx-width>red</fx-width>
+			<fx-fill>#993300ff</fx-fill>
+			<fx-width>10</fx-width>
 			<turtle>red</turtle>
 		</Render>
 	</Rendering>

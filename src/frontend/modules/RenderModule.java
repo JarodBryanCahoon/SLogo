@@ -68,8 +68,8 @@ public class RenderModule extends Module{
 		}
 //		System.out.println(newX);
 		Line line = new Line(oldX,oldY,newX,newY);
-		System.out.println(line.getEndY());
-		System.out.println(line.getStartY());
+		System.out.print(line.getStartX() +" , " +line.getStartY() + "\n");
+		System.out.print(line.getEndX() +" , " +line.getEndY() + "\n");
 		myGroup.getChildren().add(line);
 		
 	}

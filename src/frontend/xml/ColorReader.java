@@ -82,7 +82,6 @@ public class ColorReader extends XMLReader {
 	public void setColor(String name, int index, String color) throws IOException {
 		NodeList nList =getNodeList(name).item(0).getChildNodes();
 		Node node = nList.item(index);
-		color = "#" +color.substring(2);
 		node.setTextContent(color);
 		GenericWriter writer = new GenericWriter(xmlPath,getElement());
 		writer.write();

@@ -102,6 +102,8 @@ public class TextParse {
 				t=sb.toString();
 				i=j;
 			}
+			System.out.println("SENT");
+			System.out.println(t);
 			Word w = new Word(t, rb, turtles, variables, languageMap);
 			
 			queue.add(w);
@@ -133,8 +135,8 @@ public class TextParse {
 		Word[] sentence = new Word[commandList.length];
 		
 		for (int k = 0; k< commandList.length; k++) {
-
 			Word word = new Word(commandList[k], rb, turtles, variables, languageMap);
+			System.out.println(word.getType());
 			sentence[k] = word;
 		}
 		return sentence;
