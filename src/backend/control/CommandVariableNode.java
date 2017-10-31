@@ -17,7 +17,6 @@ public class CommandVariableNode extends VariableNode{
 	
 	@Override
 	public double execute() {
-		System.out.println("here I am");
 		return commands.execute();
 	}
 
@@ -34,7 +33,6 @@ public class CommandVariableNode extends VariableNode{
 	
 	@Override
 	public void setChildren(ASTNode n) {
-		System.out.println("gah");
 		myChildren.add(n);
 	}
 }

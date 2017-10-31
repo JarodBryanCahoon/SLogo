@@ -24,7 +24,6 @@ public class ListNode extends NoParamMath{
 	public double execute() {
 		parser.setCommands(contents, turtles);
 		ASTNode tree = parser.getTree();
-		System.out.println("hey");
 		return tree.execute();
 	}
 	

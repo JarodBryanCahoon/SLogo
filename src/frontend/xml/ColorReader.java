@@ -43,9 +43,7 @@ public class ColorReader extends XMLReader {
 		bf = new BufferedWriter(fileWriter);
 		writeHeader();
 		writeBody(document);
-		bf.close();
-		System.out.println("dones");
-		
+		bf.close();		
 		
 	}
 	private void writeHeader() throws IOException {

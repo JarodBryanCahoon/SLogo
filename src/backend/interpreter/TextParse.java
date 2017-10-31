@@ -110,8 +110,6 @@ public class TextParse {
 				i=j;
 			}
 			Word w = new Word(t, rb, turtles, variables, languageMap);
-			System.out.print(w.getName() +" : " );
-			System.out.println(w.getType());
 			
 			queue.add(w);
 		};
@@ -120,20 +118,15 @@ public class TextParse {
 
 	private ASTNode recursiveTree() {
 		if (queue.isEmpty()) {
-			System.out.println("queue is empty");
 			throw new SyntaxException();
 		}
 		Word w = queue.poll();
 		ASTNode tree = w.getNode();
-		System.out.println(w.getNumber());
 		if(w.getType().equals(COMMAND)) {
 			for(int i = 0; i<w.getNumber(); i++) {
-				System.out.println("hi");
 				tree.setChildren(recursiveTree());
-				System.out.println("fuck");
 			}
 		}
-		System.out.println("made it");
 		return tree;
 	}
 	

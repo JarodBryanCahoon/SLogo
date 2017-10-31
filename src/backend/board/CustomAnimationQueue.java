@@ -65,9 +65,7 @@ public class CustomAnimationQueue {
 		
 		double newX = rMath.imageX(myRenderSprite.getX());
 		double newY = rMath.imageY(myRenderSprite.getY());
-		
-		double avg = Math.abs((newX + newY - oldX - oldY)) / 2;
-		
+				
 		TranslateTransition xTranslateTransition =
 		        new TranslateTransition(Duration.millis(DURATION), image);
 		xTranslateTransition.setToX(newX - oldX);
@@ -93,7 +91,6 @@ public class CustomAnimationQueue {
 			TranslateTransition xTranslateTransition, TranslateTransition yTranslateTransition, boolean clrScrn) {
 		ParallelTransition pTransition = new ParallelTransition();
 		pTransition.getChildren().addAll(xTranslateTransition, yTranslateTransition);
-		System.out.println("should also be home " + newY);
 		pTransition.setOnFinished(e -> onFinish(myRenderSprite.isPenDown(), newX, newY, clrScrn));
 		return pTransition;
 	}

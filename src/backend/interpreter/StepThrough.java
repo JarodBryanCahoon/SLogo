@@ -57,14 +57,10 @@ public class StepThrough {
 	}
 	
 	protected void undo(Manager myManager) {
-		System.out.println(currentStep);
 		currentStep--;
 		if(currentStep < 0) {
 			return;
 		}
-		System.out.println(currentStep);
-
-		System.out.println("undo");
 
 		resetState(myManager);
 	}
@@ -74,7 +70,6 @@ public class StepThrough {
 		if(currentStep > totalSteps) {
 			return;
 		}
-		System.out.println("redo");
 		resetState(myManager);
 	}
 

@@ -128,7 +128,6 @@ public class RenderModule extends Module {
 	}
 	
 	public void setSpriteState(List<RenderSprite> spriteState) {
-		System.out.println("undoing");
 		Pane myPane = (Pane) getParent();
 		myPane.getChildren().clear();
 		for(RenderSprite rs : spriteState) {
