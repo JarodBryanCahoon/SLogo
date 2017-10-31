@@ -23,7 +23,7 @@
 			<fx-fill>#e6e6e6ff</fx-fill>	
 		</Text>
 		<Invalid>
-			<fx-fill>#ffccccff</fx-fill>	
+			<fx-fill>#e6e6e6ff</fx-fill>	
 		</Invalid>
 	</Word>
 	
@@ -79,6 +79,35 @@
 			<fx-text-fill>#b4e3f6</fx-text-fill>
 		</menu-item:focused.label>
 	</Menu>
+	
+	<Console>
+		<scroll-bar>
+			<fx-background-color>black</fx-background-color>
+			<fx-font-size>10px</fx-font-size>
+		</scroll-bar>
+		<increment-button>
+			<fx-background-color>transparent</fx-background-color>
+			<fx-border-color>transparent</fx-border-color>
+		</increment-button>
+		<decrement-button>
+			<fx-background-color>transparent</fx-background-color>
+			<fx-border-color>transparent</fx-border-color>
+		</decrement-button>
+		<scroll-bar.track>
+			<fx-background-color>transparent</fx-background-color>
+			<fx-border-color>transparent</fx-border-color>
+			<fx-background-radius>0em</fx-background-radius>
+		</scroll-bar.track>
+		
+		<scroll-bar.thumb>
+			<fx-background-color>slategray</fx-background-color>
+			<fx-background-radius>2em</fx-background-radius>
+		</scroll-bar.thumb>
+		
+		<scroll-pane.corner>
+			<fx-background-color>transparent</fx-background-color>
+		</scroll-pane.corner>
+	</Console>
 	<Colorpickering>
 		<ColorPicker>
 			<fx-font>8px 'Letter Gothic Std'</fx-font>

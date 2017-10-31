@@ -71,6 +71,7 @@ public class ConsoleHistory extends Module {
 	private void stylize() {
 		history.getStyleClass().add("Window");
 		historyPane.getStyleClass().add("ScrollPane");
+		historyPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
 		
 	}
 

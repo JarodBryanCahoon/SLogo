@@ -24,7 +24,7 @@
 }
 
 .Invalid{ 
--fx-fill:#ffccccff;
+-fx-fill:#e6e6e6ff;
 }
 
 .Window{ 
@@ -48,30 +48,8 @@
 -fx-background:BLACK;
 }
 
-.scroll-pane {
-    -fx-background-color: black;
-}
-
-.scroll-bar:horizontal, .scroll-bar:vertical{
-    -fx-background-color:transparent;
-}
-
-.increment-button, .decrement-button {
-    -fx-background-color: transparent;
-    -fx-border-color: transparent;
-}
-
-.scroll-bar:horizontal .track,
-.scroll-bar:vertical .track{
-    -fx-background-color: transparent;
-    -fx-border-color: transparent;
-    -fx-background-radius: 0em;
-}
-
-.scroll-bar:horizontal .thumb,
-.scroll-bar:vertical .thumb {
-    -fx-background-color: white;
-    -fx-background-radius: 2em;
+.ScrollPane .decrement-button{ 
+-visibility:hidden;
 }
 
 .menu{ 
@@ -96,6 +74,36 @@
 
 .menu-item:focused .label{ 
 -fx-text-fill:#b4e3f6;
+}
+
+.scroll-bar{ 
+-fx-background-color:black;
+-fx-font-size:10px;
+}
+
+.increment-button{ 
+-fx-background-color:transparent;
+-fx-border-color:transparent;
+}
+
+.decrement-button{ 
+-fx-background-color:transparent;
+-fx-border-color:transparent;
+}
+
+.scroll-bar .track{ 
+-fx-background-color:transparent;
+-fx-border-color:transparent;
+-fx-background-radius:0em;
+}
+
+.scroll-bar .thumb{ 
+-fx-background-color:slategray;
+-fx-background-radius:2em;
+}
+
+.scroll-pane .corner{ 
+-fx-background-color:transparent;
 }
 
 .ColorPicker{ 
