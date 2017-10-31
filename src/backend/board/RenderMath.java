@@ -33,8 +33,6 @@ public class RenderMath {
 		}
 		
 		translated %= myHeight;
-//		double boundaryBroken = (translated < 0) ? 1 : 0;
-//		return logoY(translated + boundaryBroken * myHeight);
 		
 		double boundaryBroken = (translated < 0) ? 0 : 1;
 		return logoY( (myHeight - myImageView.getBoundsInLocal().getHeight()) * boundaryBroken);
