@@ -45,15 +45,19 @@ public class TextParse {
 	}
 	
 	public void changeLanguage(Properties languageFile) { 
-	    languageMap = new HashMap<>(); 
-	    for(Object key : languageFile.keySet()) { 
-	      String s = key.toString(); 
-	      String[] commands = languageFile.getProperty(s).split("\\|"); 
-	      for(String command : commands) { 
-	        languageMap.put(command, s); 
-	      } 
-	    } 
-	  } 
+		languageMap = new HashMap<>(); 
+		for(Object key : languageFile.keySet()) { 
+		  String s = key.toString(); 
+		  String[] commands = languageFile.getProperty(s).split("\\|"); 
+		  for(String command : commands) {
+			  if(command.matches("\\*")) {
+				  	command = "\\" + command;
+			  }
+		    languageMap.put(command, s); 
+		  }
+		}
+	} 
+
 
 	private void createSyntaxReader() throws ClassNotFoundException, FileNotFoundException {
 		SyntaxReader sReader = new SyntaxReader();

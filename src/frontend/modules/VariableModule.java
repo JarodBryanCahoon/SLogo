@@ -126,8 +126,7 @@ public class VariableModule extends Module{
 	public void update(Observable manager,Object arg1) {
 		Manager manage = (Manager) manager;
 		variables = manage.getVariables();
-		addVariables();
-		
+		addVariables();		
 	}
 	
 

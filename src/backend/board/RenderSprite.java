@@ -51,9 +51,6 @@ public class RenderSprite extends Observable implements iRenderSprite, Observer 
 	}
 
 	private void initImage() {
-		System.out.println("init x" + myRenderMath.imageX(myX));
-		System.out.println("init Y" + myRenderMath.imageY(myY));
-
 		myImageView.setX(myRenderMath.imageX(myX));
 		myImageView.setY(myRenderMath.imageY(myY));
 		myImageView.setRotate(myImageAngle);
