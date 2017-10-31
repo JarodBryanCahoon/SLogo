@@ -103,4 +103,12 @@ public class Manager extends Observable {
 	public Properties getLangProperties() {
 		return myLangProperties;
 	}
+	
+	public Map<String, String> getVariables(){
+		Map<String, String> vars = new HashMap<>();
+		
+		
+		return vars;
+		
+	}
 }
