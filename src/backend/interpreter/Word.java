@@ -112,9 +112,11 @@ public class Word {
 			makeListNode(rb, variables);
 		}
 		else if(myName.matches(myProperties.getProperty(COMMAND))) {
+			System.out.println(myName);
 			makeCommandNode(rb, variables);
 		}
 		else {
+			System.out.println("invalid here");
 			myType = "Invalid";
 		} 
 	}
@@ -122,7 +124,7 @@ public class Word {
 	private void makeListNode(ResourceBundle rb, Map<String, VariableNode> variables) {
 		myType = LIST;
 		try {
-			myNode = new ListNode(myName.substring(1,myName.length()), variables, myTurtles);
+			myNode = new ListNode(myName.substring(2,myName.length()-1), variables, myTurtles, myLanguageMap);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -140,7 +142,10 @@ public class Word {
 	private void makeCommandNode(ResourceBundle rb, Map<String, VariableNode> variables) {
 		myType = COMMAND;
 		try {
+//			System.out.println("Actually invalid here");
+			System.out.println("Hello" + myLanguageMap.get(myName.toLowerCase()));
 			String[] readString = rb.getString(myLanguageMap.get(myName.toLowerCase())).split(",");
+			System.out.println("hi");
 			operatorNumber = Integer.parseInt(readString[0]);
 			String method = readString[1];
 			String methodType = readString[2];
@@ -148,6 +153,7 @@ public class Word {
 			Constructor<?> ctr;
 			if (methodType.equals("Turtle")) {
 				nodeType =methodType;
+				System.out.println("Actually invalid here");
 				ctr = c.getConstructor(TurtleCollection.class);
 				myNode = (ASTNode) ctr.newInstance(myTurtles);
 			} 
@@ -162,7 +168,7 @@ public class Word {
 			}
 		} catch (MissingResourceException | ClassNotFoundException | NoSuchMethodException | SecurityException
 				| InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NullPointerException e) {
-
+			
 			myType = "Invalid";
 		}
 	

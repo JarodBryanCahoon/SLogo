@@ -13,9 +13,10 @@ public class ListNode extends NoParamMath{
 	private TextParse parser;
 	private TurtleCollection turtles;
 	
-	public ListNode(String input, Map<String, VariableNode> vars, TurtleCollection turtle) throws ClassNotFoundException, FileNotFoundException {
+	public ListNode(String input, Map<String, VariableNode> vars, TurtleCollection turtle, Map<String, String> languages) throws ClassNotFoundException, FileNotFoundException {
 		contents= input;
 		parser = new TextParse(vars);
+		parser.setLanguageMap(languages);
 		turtles = turtle;
 	}
 	
@@ -23,6 +24,7 @@ public class ListNode extends NoParamMath{
 	public double execute() {
 		parser.setCommands(contents, turtles);
 		ASTNode tree = parser.getTree();
+		System.out.println("reached here");
 		return tree.execute();
 	}
 	
