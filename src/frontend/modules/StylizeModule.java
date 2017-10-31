@@ -7,6 +7,7 @@ import java.util.List;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+import exceptions.ErrorMessage;
 import frontend.xml.ColorReader;
 import javafx.scene.Parent;
 import javafx.scene.control.ColorPicker;
@@ -50,7 +51,6 @@ public class StylizeModule extends Module {
 		settings = new GridPane();
 		settings.setHgap(25);
 		settings.setVgap(5);
-		System.out.println("\nTESTING\n");
 		addWords("Word",0);
 		addWords("Windows",2);
 		addWords("Rendering",4);
@@ -75,9 +75,6 @@ public class StylizeModule extends Module {
 		createText("PenSize",column,3);
 		createField(column+1,3);
 	}
-	
-	
-	
 
 	private void createText(String tag, int column,int row) {
 		Text title = new Text(tag);
@@ -96,6 +93,8 @@ public class StylizeModule extends Module {
 		try {
 			myReader.setColor("Render",5,text);
 		} catch (IOException e) {
+			ErrorMessage eMessage = new ErrorMessage("Could not render");
+			eMessage.show();
 		}
 	}
 

@@ -64,7 +64,6 @@ public class ModuleStyleReader extends XMLReader {
 			myModules.put(module, pos);
 		} catch (ClassNotFoundException | NoSuchMethodException | SecurityException | InstantiationException
 				| IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
-			e.printStackTrace();
 			ErrorMessage eMessage = new ErrorMessage("Could Not Read Modules From File");
 			eMessage.show();
 		}

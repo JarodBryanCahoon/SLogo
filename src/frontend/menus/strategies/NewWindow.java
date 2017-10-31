@@ -46,7 +46,6 @@ public class NewWindow extends MenuItemStrategy {
 			style(myStage.getScene());
 
 		} catch (Exception e) {
-			e.printStackTrace();
 			ErrorMessage eMessage = new ErrorMessage("Could Not Create New Window!");
 			eMessage.show();
 		}

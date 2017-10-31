@@ -22,6 +22,7 @@ import backend.abstractSyntaxTree.ASTNode;
 import backend.board.Turtle;
 import backend.board.TurtleCollection;
 import backend.board.logic.ConstantNode;
+import exceptions.ErrorMessage;
 import exceptions.SyntaxException;
 import backend.control.ListNode;
 //import exceptions.ErrorMessage;
@@ -126,11 +127,11 @@ public class Word {
 		try {
 			myNode = new ListNode(myName.substring(2,myName.length()-1), variables, myTurtles, myLanguageMap);
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			ErrorMessage eMessage = new ErrorMessage("Could Not Find Class");
+			eMessage.show();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			ErrorMessage eMessage = new ErrorMessage("Could Not Find File");
+			eMessage.show();
 		}
 	}
 

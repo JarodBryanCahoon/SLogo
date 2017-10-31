@@ -41,7 +41,6 @@ public class ColorChange extends MenuItemStrategy {
 		Scene scene = this.getView().getParent().getScene();
 		scene.getStylesheets().clear();
 		scene.getStylesheets().add("/resources/style/" + "stylesheet2.css");
-		System.out.println("this works");
 	}
 
 }
