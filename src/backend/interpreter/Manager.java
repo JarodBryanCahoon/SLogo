@@ -46,7 +46,7 @@ public class Manager extends Observable {
 	}
 	
 	public double addToHistory(String text) {
-		double output = -1;
+		output = -1;
 		try {
 			output = setAndExecuteCommand(text);
 			myHistory.add(myParser.getFormattedSentence(text, myTurtles));
@@ -86,6 +86,7 @@ public class Manager extends Observable {
 	}
 	
 	public double getOutput() {
+		System.out.println(output);
 		return output;
 	}
 	
