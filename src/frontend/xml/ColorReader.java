@@ -87,3 +87,4 @@ public class ColorReader extends XMLReader {
 		writer.write();
 		readFromFile();
 	}
+}

@@ -40,7 +40,7 @@
 .Render{ 
 -fx-background-color:#808080ff;
 -fx-fill:#993300ff;
--fx-width:red;
+-fx-width:10;
 -turtle:red;
 }
 

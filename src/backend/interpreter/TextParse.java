@@ -136,6 +136,7 @@ public class TextParse {
 		
 		for (int k = 0; k< commandList.length; k++) {
 			Word word = new Word(commandList[k], rb, turtles, variables, languageMap);
+			System.out.println(word.getType());
 			sentence[k] = word;
 		}
 		return sentence;

@@ -41,8 +41,9 @@
 	<Rendering>
 		
 		<Render>
-			<fx-background-color>#808080ff</fx-background-color>#<fx-fill>#993300ff</fx-fill>
-			<fx-width>red</fx-width>
+			<fx-background-color>#808080ff</fx-background-color>
+			<fx-fill>#993300ff</fx-fill>
+			<fx-width>10</fx-width>
 			<turtle>red</turtle>
 		</Render>
 	</Rendering>

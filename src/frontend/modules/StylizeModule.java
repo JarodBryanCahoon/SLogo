@@ -94,7 +94,7 @@ public class StylizeModule extends Module {
 	private void send(TextField textField) {
 		String text = textField.textProperty().getValue();
 		try {
-			myReader.setColor("Render",2,text);
+			myReader.setColor("Render",5,text);
 		} catch (IOException e) {
 		}
 	}
@@ -115,7 +115,6 @@ public class StylizeModule extends Module {
 
 	@Override
 	public Element getXMLPreferences(Document doc) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
