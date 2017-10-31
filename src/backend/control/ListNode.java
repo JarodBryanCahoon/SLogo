@@ -24,11 +24,16 @@ public class ListNode extends NoParamMath{
 	public double execute() {
 		parser.setCommands(contents, turtles);
 		ASTNode tree = parser.getTree();
+		System.out.println("hey");
 		return tree.execute();
 	}
 	
 	public String[] getContents() {
 		return contents.split(" ");
+	}
+	
+	@Override
+	public void setChildren(ASTNode n) {
 	}
 
 }

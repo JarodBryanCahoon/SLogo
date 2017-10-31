@@ -12,20 +12,13 @@ import java.util.Properties;
 import java.util.ResourceBundle;
 
 import backend.abstractSyntaxTree.ASTNode;
-//import backend.abstractSyntaxTree.DoubleExp;
-//import backend.abstractSyntaxTree.DuoOperatorExp;
-//import backend.abstractSyntaxTree.Expression;
-//import backend.abstractSyntaxTree.ListExp;
-//import backend.abstractSyntaxTree.MonoOperatorExp;
-//import backend.abstractSyntaxTree.NoneOperatorExp;
-//import backend.abstractSyntaxTree.VariableExp;
 import backend.board.Turtle;
 import backend.board.TurtleCollection;
 import backend.board.logic.ConstantNode;
 import exceptions.ErrorMessage;
 import exceptions.SyntaxException;
+import backend.control.CommandVariableNode;
 import backend.control.ListNode;
-//import exceptions.ErrorMessage;
 import backend.control.VariableNode;
 
 /**
@@ -62,7 +55,13 @@ public class Word {
 			makeConstantNode();
 		}
 		else if(myName.matches(myProperties.getProperty(VARIABLE))) {
+			
+			if(variables.containsKey(myName)&&!variables.get(myName).isNumberVar()) {
+				makeCommandNode(rb, variables);
+			}
+			else {
 			makeVariableNode(variables);
+			}
 		}
 		else if(myName.matches(myProperties.getProperty(LIST))){
 			makeListNode(rb, variables);
@@ -95,6 +94,10 @@ public class Word {
 
 	private void makeCommandNode(ResourceBundle rb, Map<String, VariableNode> variables) {
 		myType = COMMAND;
+		if (myName.startsWith(":")) {
+			CommandVariableNode comm = (CommandVariableNode) variables.get(myName);
+			operatorNumber = comm.getArgNum();
+		}else {
 		try {
 			String[] readString = rb.getString(myLanguageMap.get(myName.toLowerCase())).split(",");
 			operatorNumber = Integer.parseInt(readString[0]);
@@ -120,6 +123,7 @@ public class Word {
 				| InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NullPointerException e) {
 			
 			myType = "Invalid";
+		}
 		}
 	
 	}
