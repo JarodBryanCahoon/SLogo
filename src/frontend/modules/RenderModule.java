@@ -63,6 +63,7 @@ public class RenderModule extends Module{
 			return;
 		}
 		Line line = new Line(oldX,oldY,newX,newY);
+		line.getStyleClass().add("Render");
 		myGroup.getChildren().add(line);
 		mySpriteLines.get(sprite).add(line);
 	}
@@ -111,7 +112,7 @@ public class RenderModule extends Module{
 	}
 	
 	private void stylize() {
-			myGroup.getStyleClass().add("Render");
+//		myGroup.getStyleClass().add("Render");
 	}
 	
 	public List<RenderSprite> getSprites() {
