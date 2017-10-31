@@ -24,7 +24,7 @@ public class ConsoleHistory extends Module {
 	public ConsoleHistory(double myWidth, double myHeight, ViewModule view) throws Exception {
 		super(myWidth, myHeight, view);
 		historyPane.setMinSize(myWidth,myHeight);
-		history.setMinSize(myWidth-10,myHeight-10);
+		history.setMinSize(myWidth,myHeight);
 		backend = view.getManager();
 		backend.addObserver(this);
 		stylize();

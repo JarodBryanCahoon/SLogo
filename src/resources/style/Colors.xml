@@ -41,8 +41,8 @@
 	<Rendering>
 		
 		<Render>
-			<fx-background-color>#808080ff</fx-background-color>
-			<fx-fill>#993300ff</fx-fill>
+			<fx-background-color>#000000ff</fx-background-color>
+			<fx-stroke>#ffffffff</fx-stroke>
 			<fx-width>10</fx-width>
 			<turtle>red</turtle>
 		</Render>
@@ -54,10 +54,16 @@
 			<fx-background>BLACK</fx-background>
 		</ScrollPane>
 			
-		<ScrollPane.scroll-bar.decrement-button>
+		<ScrollPane.decrement-button>
 			<visibility>hidden</visibility>
-		</ScrollPane.scroll-bar.decrement-button>
+		</ScrollPane.decrement-button>
 	</Scroll>
+	
+	<Menu>
+		<MenuButtons>
+			<fx-background-color>white</fx-background-color>
+		</MenuButtons>
+	</Menu>
 	<Colorpickering>
 		<ColorPicker>
 			<fx-font>8px 'Letter Gothic Std'</fx-font>
