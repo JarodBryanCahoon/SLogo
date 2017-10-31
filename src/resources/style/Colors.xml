@@ -23,14 +23,14 @@
 			<fx-fill>#e6e6e6ff</fx-fill>	
 		</Text>
 		<Invalid>
-			<fx-fill>#661a33ff</fx-fill>	
+			<fx-fill>#e6e6e6ff</fx-fill>	
 		</Invalid>
 	</Word>
 	
 	<Windows>
 		<Window>
 			<fx-background-color>#333333ff</fx-background-color>
-			<fx-background>#333333ff</fx-background>
+			
 			<fx-text-fill>white</fx-text-fill>
 		</Window>
 		<Window.content>
@@ -50,7 +50,7 @@
 	
 	<Scroll>
 		<ScrollPane>
-			
+			<fx-background>BLACK</fx-background>
 		</ScrollPane>
 			
 		<ScrollPane.scroll-bar.decrement-button>
