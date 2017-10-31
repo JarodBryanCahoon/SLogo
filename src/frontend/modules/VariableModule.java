@@ -102,8 +102,8 @@ public class VariableModule extends Module{
 
 	private Map<String, String> starting() {
 		Map<String,String> toReturn = new HashMap<String,String>();
-		String[] key = {"a","b","c","d","e"};
-		String[] values = {"1","2","3","4","5"};
+		String[] key = {":x"};
+		String[] values = {""};
 		for (int k = 0;k<key.length;k++) {
 			toReturn.put(key[k], values[k]);
 		}
