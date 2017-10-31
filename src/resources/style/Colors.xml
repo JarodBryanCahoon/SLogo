@@ -41,7 +41,7 @@
 	<Rendering>
 		
 		<Render>
-			<fx-background-color>#000000ff</fx-background-color>
+			<fx-background-color>#ffffffff</fx-background-color>
 			<fx-stroke>#b34d1aff</fx-stroke>
 			<fx-width>10</fx-width>
 			<turtle>red</turtle>
@@ -50,7 +50,7 @@
 	
 	<Scroll>
 		<ScrollPane>
-			<fx-background-color>#333333ff</fx-background-color>
+			<fx-background-color>slategray</fx-background-color>
 			<fx-background>BLACK</fx-background>
 		</ScrollPane>
 			
