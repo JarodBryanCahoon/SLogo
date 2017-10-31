@@ -175,8 +175,8 @@ public class RenderSprite extends Observable implements iRenderSprite, Observer 
 		myRender.appendTransition(sTransition);
 		if(penDown) {
 			myRender.drawLine(myTurtleId, 
-					myRenderMath.imageX(oldX), 
-					myRenderMath.imageY(oldY));
+					myRenderMath.imageX(oldX+myImageView.getBoundsInLocal().getWidth()/2), 
+					myRenderMath.imageY(oldY+myImageView.getBoundsInLocal().getHeight()/2));
 		}
 		readPen(turtle.getPen());
 		readVisibility(turtle.getOpacity());	
