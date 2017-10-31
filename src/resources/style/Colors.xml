@@ -11,13 +11,13 @@
 	
 	<Word>
 		<Variable>
-			<fx-fill>#ccffffff</fx-fill>
+			<fx-fill>#b3ccffff</fx-fill>
 		</Variable>
 		<Constant>
 			<fx-fill>pink</fx-fill>
 		</Constant>
 		<Command>
-			<fx-fill>#99cc99ff</fx-fill>
+			<fx-fill>#ccffffff</fx-fill>
 		</Command>
 		<Text>
 			<fx-fill>#e6e6e6ff</fx-fill>	
@@ -29,20 +29,20 @@
 	
 	<Windows>
 		<Window>
-			<fx-background-color>#333333ff</fx-background-color>
+			<fx-background-color>#1a1a1aff</fx-background-color>
 			
 			<fx-text-fill>white</fx-text-fill>
 		</Window>
 		<Window.content>
-			<fx-background-color>#333333ff</fx-background-color>
+			<fx-background-color>#1a1a1aff</fx-background-color>
 		</Window.content>
 	</Windows>
 	
 	<Rendering>
 		
 		<Render>
-			<fx-background-color>#000000ff</fx-background-color>
-			<fx-stroke>#ffffffff</fx-stroke>
+			<fx-background-color>#ffffffff</fx-background-color>
+			<fx-stroke>#b34d1aff</fx-stroke>
 			<fx-width>10</fx-width>
 			<turtle>red</turtle>
 		</Render>
@@ -50,7 +50,7 @@
 	
 	<Scroll>
 		<ScrollPane>
-			<fx-background-color>#333333ff</fx-background-color>
+			<fx-background-color>slategray</fx-background-color>
 			<fx-background>BLACK</fx-background>
 		</ScrollPane>
 			
@@ -60,13 +60,54 @@
 	</Scroll>
 	
 	<Menu>
-		<MenuButtons>
-			<fx-background-color>black</fx-background-color>
-		</MenuButtons>
-		<MenuButtons:focused.>
-			<fx-background-color>red</fx-background-color>
-		</MenuButtons:focused>
+		<menu>
+			<fx-background>#2f5464</fx-background>
+		</menu>
+		<menu.label>
+			<fx-text-fill>white</fx-text-fill>
+		</menu.label>
+		<menu-item.label>
+			<fx-text-fill>white</fx-text-fill>
+		</menu-item.label>
+		<menu-item>
+			<fx-background-color>#2f5464</fx-background-color>
+		</menu-item>
+		<context-menu>
+			<fx-background-color>#2f5464</fx-background-color>
+		</context-menu>
+		<menu-item:focused.label>
+			<fx-text-fill>#b4e3f6</fx-text-fill>
+		</menu-item:focused.label>
 	</Menu>
+	
+	<Console>
+		<scroll-bar>
+			<fx-background-color>black</fx-background-color>
+			<fx-font-size>10px</fx-font-size>
+		</scroll-bar>
+		<increment-button>
+			<fx-background-color>transparent</fx-background-color>
+			<fx-border-color>transparent</fx-border-color>
+		</increment-button>
+		<decrement-button>
+			<fx-background-color>transparent</fx-background-color>
+			<fx-border-color>transparent</fx-border-color>
+		</decrement-button>
+		<scroll-bar.track>
+			<fx-background-color>transparent</fx-background-color>
+			<fx-border-color>transparent</fx-border-color>
+			<fx-background-radius>0em</fx-background-radius>
+		</scroll-bar.track>
+		
+		<scroll-bar.thumb>
+			<fx-background-color>slategray</fx-background-color>
+			<fx-background-radius>2em</fx-background-radius>
+		</scroll-bar.thumb>
+		
+		<scroll-pane.corner>
+			<fx-background-color>transparent</fx-background-color>
+		</scroll-pane.corner>
+	</Console>
 	<Colorpickering>
 		<ColorPicker>
 			<fx-font>8px 'Letter Gothic Std'</fx-font>

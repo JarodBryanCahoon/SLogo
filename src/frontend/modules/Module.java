@@ -52,8 +52,9 @@ public abstract class Module implements Observer{
 	public void update(Observable obs, Object arg) {
 		// do nothing as default
 	}
-	
+
 	protected void setParent(Parent parent) {
 		myParent = parent;
 	}
+
 }

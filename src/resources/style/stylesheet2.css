@@ -8,7 +8,7 @@
 }
 
 .Variable{ 
--fx-fill:#ccffffff;
+-fx-fill:#b3ccffff;
 }
 
 .Constant{ 
@@ -16,7 +16,7 @@
 }
 
 .Command{ 
--fx-fill:#99cc99ff;
+-fx-fill:#ccffffff;
 }
 
 .Text{ 
@@ -28,23 +28,23 @@
 }
 
 .Window{ 
--fx-background-color:#333333ff;
+-fx-background-color:#1a1a1aff;
 -fx-text-fill:white;
 }
 
 .Window .content{ 
--fx-background-color:#333333ff;
+-fx-background-color:#1a1a1aff;
 }
 
 .Render{ 
--fx-background-color:#000000ff;
--fx-stroke:#ffffffff;
+-fx-background-color:#ffffffff;
+-fx-stroke:#b34d1aff;
 -fx-width:10;
 -turtle:red;
 }
 
 .ScrollPane{ 
--fx-background-color:#333333ff;
+-fx-background-color:slategray;
 -fx-background:BLACK;
 }
 
@@ -52,12 +52,58 @@
 -visibility:hidden;
 }
 
-.MenuButtons{ 
--fx-background-color:darkslategray;
+.menu{ 
+-fx-background:#2f5464;
 }
 
-.MenuButtons:focused.label{ 
--fx-background-color:red;
+.menu .label{ 
+-fx-text-fill:white;
+}
+
+.menu-item .label{ 
+-fx-text-fill:white;
+}
+
+.menu-item{ 
+-fx-background-color:#2f5464;
+}
+
+.context-menu{ 
+-fx-background-color:#2f5464;
+}
+
+.menu-item:focused .label{ 
+-fx-text-fill:#b4e3f6;
+}
+
+.scroll-bar{ 
+-fx-background-color:black;
+-fx-font-size:10px;
+}
+
+.increment-button{ 
+-fx-background-color:transparent;
+-fx-border-color:transparent;
+}
+
+.decrement-button{ 
+-fx-background-color:transparent;
+-fx-border-color:transparent;
+}
+
+.scroll-bar .track{ 
+-fx-background-color:transparent;
+-fx-border-color:transparent;
+-fx-background-radius:0em;
+}
+
+.scroll-bar .thumb{ 
+-fx-background-color:slategray;
+-fx-background-radius:2em;
+}
+
+.scroll-pane .corner{ 
+-fx-background-color:transparent;
 }
 
 .ColorPicker{ 
