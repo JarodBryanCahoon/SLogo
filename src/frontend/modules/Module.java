@@ -52,4 +52,5 @@ public abstract class Module implements Observer{
 	public void update(Observable obs, Object arg) {
 		// do nothing as default
 	}
+
 }
