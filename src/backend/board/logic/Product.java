@@ -15,9 +15,10 @@ public class Product extends MathNode{
 	
 	@Override
 	public double execute() {
-		double product = 0;
+		double product = 1;
 		for (ASTNode n: super.getChildren()) {
 			product*=n.execute();
+			
 		}
 		return product;
 	}
