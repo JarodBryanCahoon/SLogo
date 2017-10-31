@@ -183,28 +183,6 @@ public class RenderSprite extends Observable implements iRenderSprite, Observer 
 		readPen(turtle.getPen());
 		readVisibility(turtle.getOpacity());	
 	}
-
-	private ParallelTransition getTranslationAnimation() {
-		TranslateTransition xTranslateTransition =
-		        new TranslateTransition(Duration.millis(DURATION), myImageView);
-		xTranslateTransition.setToX(myRenderMath.imageX(myX) - myImageView.getX());
-
-		TranslateTransition yTranslateTransition =
-		        new TranslateTransition(Duration.millis(DURATION), myImageView);
-		yTranslateTransition.setToY(myRenderMath.imageY(myY) - myImageView.getY());
-
-		ParallelTransition pTransition = new ParallelTransition();
-		pTransition.getChildren().addAll(xTranslateTransition, yTranslateTransition);
-		return pTransition;
-	}
-	
-	private RotateTransition getRotationAnimation(double oldAngle) {
-		RotateTransition rt = new RotateTransition(Duration.millis(DURATION), myImageView);
-		double oldImageAngle = 360 - oldAngle;
-		rt.setFromAngle(oldImageAngle);
-		rt.setToAngle(myImageAngle);
-		return rt;
-	}
 	
 	private boolean hasMoved(Turtle turtle, double oldX, double oldY) {
 		return ! ( (turtle.getMyX() == oldX) && (turtle.getMyY() == oldY) );

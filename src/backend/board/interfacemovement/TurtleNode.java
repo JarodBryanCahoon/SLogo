@@ -5,6 +5,7 @@ import java.io.IOException;
 import backend.abstractSyntaxTree.ASTNode;
 import backend.board.Turtle;
 import backend.board.TurtleCollection;
+import exceptions.ErrorMessage;
 
 /**
  * @author Albert, Venkat
@@ -26,7 +27,13 @@ public abstract class TurtleNode implements ASTNode {
 	
 	@Override
 	public double execute() {
-		return myTurtles.act(this);
+		try {
+			return myTurtles.act(this);		
+		} catch(IOException e) {
+			ErrorMessage eMessage = new ErrorMessage("Could not recognize command!");
+			eMessage.show();
+			return 0;
+		}
 	}
 
 	@Override
