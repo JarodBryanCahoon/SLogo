@@ -69,6 +69,7 @@ public class RenderSprite extends Observable implements iRenderSprite, Observer 
 	private void handleDrag(MouseEvent event) {
 		setX(myRenderMath.logoX(event.getSceneX()));
 		setY(myRenderMath.logoY(event.getSceneY()));
+		setChangedNotify();
 	}
 	
 	public void stylize() {
@@ -83,6 +84,7 @@ public class RenderSprite extends Observable implements iRenderSprite, Observer 
 		isSelected = !isSelected;
 		double isSelectedDouble = isSelected ? 0 : -1;
 		myImageView.setOpacity(SELECTED + isSelectedDouble * SELECTED_DIFFERENCE);
+		setChangedNotify();
 	}
 	
 	@Override
@@ -156,6 +158,7 @@ public class RenderSprite extends Observable implements iRenderSprite, Observer 
 		readVisibility(turtle.getOpacity());	
 
 		if(hasMoved(turtle, oldX, oldY)) {
+			System.out.println(myY);
 	        myAnimationQueue.appendTranslationTransition();
 		}
 		
