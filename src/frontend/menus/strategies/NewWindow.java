@@ -28,7 +28,7 @@ public class NewWindow extends MenuItemStrategy {
 	public void execute() {
 		try {		
 			Font.loadFont(
-					  this.getClass().getResource("src/resources/style/Letter Gothic.otf").toExternalForm(), 
+					  "src/resources/style/Letter Gothic.otf", 
 					  10
 					);
 
@@ -46,7 +46,6 @@ public class NewWindow extends MenuItemStrategy {
 			style(myStage.getScene());
 
 		} catch (Exception e) {
-			e.printStackTrace();
 			ErrorMessage eMessage = new ErrorMessage("Could Not Create New Window!");
 			eMessage.show();
 		}

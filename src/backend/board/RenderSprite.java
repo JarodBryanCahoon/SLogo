@@ -10,9 +10,11 @@ import frontend.modules.RenderModule;
 import frontend.popups.TurtleView;
 import frontend.xml.PreferenceXMLReader;
 import frontend.xml.XMLReader;
+import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 
 /**
  * @author Albert
@@ -38,22 +40,25 @@ public class RenderSprite extends Observable implements iRenderSprite, Observer 
 	private RenderMath myRenderMath;
 	private RenderModule myRender;
 	private CustomAnimationQueue myAnimationQueue;
+	private Node leftNode;
+	private Node topNode;
 	
 	public RenderSprite(int id, String imagePath, double width, double height, RenderModule render) {
 		myRender = render;
+		BorderPane bPane = (BorderPane) myRender.getViewModule().getParent();
+		System.out.println(bPane.getChildren().size());
+		topNode = bPane.getTop();
 		myImageAngle = -myAngle;
 		myTurtleId = id;
 		myImagePath = imagePath;
 		myImageView = new ImageView(imagePath);		
-		myRenderMath = new RenderMath(width, height, myImageView);		
+		myRenderMath = new RenderMath(width, height, myImageView);
+
 		initImage();
 		myAnimationQueue = new CustomAnimationQueue(this, myRender);
 	}
 
 	private void initImage() {
-		System.out.println("init x" + myRenderMath.imageX(myX));
-		System.out.println("init Y" + myRenderMath.imageY(myY));
-
 		myImageView.setX(myRenderMath.imageX(myX));
 		myImageView.setY(myRenderMath.imageY(myY));
 		myImageView.setRotate(myImageAngle);
@@ -70,8 +75,9 @@ public class RenderSprite extends Observable implements iRenderSprite, Observer 
 	}
 	
 	private void handleDrag(MouseEvent event) {
-		setX(myRenderMath.logoX(event.getSceneX()));
-		setY(myRenderMath.logoY(event.getSceneY()));
+		setX(myRenderMath.logoX(event.getSceneX() - leftNode.getBoundsInLocal().getWidth()));
+		setY(myRenderMath.logoY(event.getSceneY() - topNode.getBoundsInLocal().getHeight()));
+		setChangedNotify();
 	}
 	
 	public void stylize() {
@@ -86,6 +92,7 @@ public class RenderSprite extends Observable implements iRenderSprite, Observer 
 		isSelected = !isSelected;
 		double isSelectedDouble = isSelected ? 0 : -1;
 		myImageView.setOpacity(SELECTED + isSelectedDouble * SELECTED_DIFFERENCE);
+		setChangedNotify();
 	}
 	
 	@Override
@@ -159,12 +166,11 @@ public class RenderSprite extends Observable implements iRenderSprite, Observer 
 		readVisibility(turtle.getOpacity());	
 
 		if(hasMoved(turtle, oldX, oldY)) {
+			System.out.println(myY);
 	        myAnimationQueue.appendTranslationTransition();
 		}
 		
-		if(oldAngle != myAngle) {
-			myAnimationQueue.appendRotationAnimation(oldAngle, myImageAngle);
-		}
+		myAnimationQueue.appendRotationAnimation(oldAngle, myImageAngle);
 		
 		if(oldVisibility != isVisible) {
 			myAnimationQueue.appendFadeTransition(oldVisibility, isVisible);

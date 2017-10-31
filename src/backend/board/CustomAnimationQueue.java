@@ -53,8 +53,6 @@ public class CustomAnimationQueue {
 	protected void appendFadeTransition(boolean oldOp, boolean newOp) {
 		double oldDoubleVisibility = oldOp ? 1 : 0;
 		double newDoubleVisibility = newOp ? 1 : 0;
-		System.out.println(oldDoubleVisibility);
-		System.out.println(newDoubleVisibility);
 		appendFadeTransition(oldDoubleVisibility, newDoubleVisibility);
 	}
 	
@@ -100,8 +98,11 @@ public class CustomAnimationQueue {
 	}
 	
 	protected void appendRotationAnimation(double oldAngle, double newAngle) {
+		System.out.println("entered rotation");
 		double oldImageAngle = 360 - oldAngle;
-		RotateTransition rTransition = new RotateTransition(Duration.millis(DURATION / (oldImageAngle - newAngle)), myRenderSprite.getImage());
+		System.out.println(oldImageAngle);
+		System.out.println(newAngle);
+		RotateTransition rTransition = new RotateTransition(Duration.millis(FADE_DURATION), myRenderSprite.getImage());
 		rTransition.setFromAngle(oldImageAngle);
 		rTransition.setToAngle(newAngle);
 		rTransition.setOnFinished(e -> checkQueue());

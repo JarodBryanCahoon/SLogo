@@ -22,6 +22,12 @@
 			<type>button</type>
 			<strategy>Export</strategy>
 		</item>
+
+		<item>
+			<name>Change Language</name>
+			<type>button</type>
+			<strategy>ChangeLanguage</strategy>
+		</item>
 	</menu>
 
 	<menu>
@@ -49,5 +55,5 @@
 		</item>
 	</menu>
 
-
+	
 </resources>

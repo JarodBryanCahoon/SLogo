@@ -58,6 +58,12 @@
 			<visibility>hidden</visibility>
 		</ScrollPane.decrement-button>
 	</Scroll>
+	
+	<Menu>
+		<MenuButtons>
+			<fx-background-color>white</fx-background-color>
+		</MenuButtons>
+	</Menu>
 	<Colorpickering>
 		<ColorPicker>
 			<fx-font>8px 'Letter Gothic Std'</fx-font>
