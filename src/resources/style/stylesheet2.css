@@ -37,14 +37,14 @@
 }
 
 .Render{ 
--fx-background-color:#000000ff;
+-fx-background-color:#ffffffff;
 -fx-stroke:#b34d1aff;
 -fx-width:10;
 -turtle:red;
 }
 
 .ScrollPane{ 
--fx-background-color:#333333ff;
+-fx-background-color:slategray;
 -fx-background:BLACK;
 }
 

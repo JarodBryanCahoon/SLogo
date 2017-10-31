@@ -20,6 +20,7 @@ import javafx.scene.input.KeyEvent;
  */
 
 public class ConsoleInput extends Module{
+	private static final String CSS_CLASS = "Window";
 	private Group myParent;
 	private TextArea inputField;
 	private Manager backend;
@@ -85,7 +86,8 @@ public class ConsoleInput extends Module{
 	}
 
 	private void stylize() {
-		inputField.getStyleClass().add("Window");
+		myParent.getStyleClass().add(CSS_CLASS);
+		inputField.getStyleClass().add(CSS_CLASS);
 		
 	}
 }
