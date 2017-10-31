@@ -2,7 +2,6 @@ package backend.board.interfacemovement;
 
 import java.util.List;
 
-import backend.abstractSyntaxTree.ASTNode;
 import backend.board.Turtle;
 import backend.board.TurtleCollection;
 /**
@@ -11,13 +10,16 @@ import backend.board.TurtleCollection;
  *
  */
 public class Show extends NoParamTurtle{
-	public Show(TurtleCollection turtles) {
-		super(turtles);
-	}
+	private List<Turtle> myTurtleList;
 	
+	public Show(TurtleCollection l) {
+		super(l);
+	}
 	@Override
 	public double act(Turtle co) {
 		co.setOpacity(true);
 		return 1;
 	}
+
+	
 }
