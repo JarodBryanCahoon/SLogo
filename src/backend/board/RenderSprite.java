@@ -42,6 +42,7 @@ public class RenderSprite extends Observable implements iRenderSprite, Observer 
 	private String myImagePath;
 	private RenderMath myRenderMath;
 	private RenderModule myRender;
+	private CustomAnimationQueue myAnimationQueue;
 	
 	public RenderSprite(int id, String imagePath, double width, double height, RenderModule render) {
 		myRender = render;
@@ -51,6 +52,7 @@ public class RenderSprite extends Observable implements iRenderSprite, Observer 
 		myImageView = new ImageView(imagePath);		
 		myRenderMath = new RenderMath(width, height, myImageView);		
 		initImage();
+		myAnimationQueue = new CustomAnimationQueue(this, myRender);
 	}
 
 	private void initImage() {
@@ -140,7 +142,6 @@ public class RenderSprite extends Observable implements iRenderSprite, Observer 
 	private void readAngle(double newAngle) {
 		myAngle = newAngle;
 		myImageAngle = 360 - myAngle;
-		myImageView.setRotate(myImageAngle);
 	}
 
 	private void readPen(boolean isPenDown) {
@@ -158,26 +159,27 @@ public class RenderSprite extends Observable implements iRenderSprite, Observer 
 		double oldX = myX;
 		double oldY = myY;
 		double oldAngle = myAngle;
-		
 		myX = myRenderMath.xTranslate(turtle.getMyX());
 		myY = myRenderMath.xTranslate(turtle.getMyY());
+//		myImageView.setX(myRenderMath.imageX(myX));
+//		myImageView.setY(myRenderMath.imageY(myY));
 		readAngle(turtle.getAngle());
 
 		SequentialTransition sTransition = new SequentialTransition();
 		if(hasMoved(turtle, oldX, oldY)) {
-	        sTransition.getChildren().add(getTranslationAnimation());
+	        myAnimationQueue.appendTranslationTransition();
 		}
 		
 		if(oldAngle != myAngle) {
-			sTransition.getChildren().add(getRotationAnimation(oldAngle));
+			myAnimationQueue.appendRotationAnimation(oldAngle, myImageAngle);
 		}
 
-		myRender.appendTransition(sTransition);
-		if(penDown) {
-			myRender.drawLine(myTurtleId, 
-					myRenderMath.imageX(oldX), 
-					myRenderMath.imageY(oldY));
-		}
+		System.out.println("drawing line");
+//		if(penDown) {
+//			myRender.drawLine(myTurtleId, 
+//					myRenderMath.imageX(oldX), 
+//					myRenderMath.imageY(oldY));
+//		}
 		readPen(turtle.getPen());
 		readVisibility(turtle.getOpacity());	
 	}

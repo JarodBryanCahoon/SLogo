@@ -31,14 +31,10 @@ public class RenderModule extends Module{
 	private int turtleId = 1;
 	private Group myGroup;
 	private static final String turtlePath = "/resources/turtle.png";
-	private Queue<Animation> myTransitions;
-	private Animation currentTransition;
-	private boolean animationPlaying = false;;
 			
 	public RenderModule(double width, double height, ViewModule view) throws Exception {
 		super(width, height, view);
 		addTurtle();
-		myTransitions = new LinkedList<>();
 	}
 	
 	@Override
@@ -65,17 +61,15 @@ public class RenderModule extends Module{
 	}
 	
 	//https://docs.oracle.com/javafx/2/canvas/jfxpub-canvas.htm
-	public void drawLine(int turtleId, double oldX, double oldY) {
+	public void drawLine(int turtleId, double oldX, double oldY, double newX, double newY) {
 		RenderSprite sprite = findSpriteById(turtleId);
 		if(sprite == null) {
 			return;
 		}
-		double newX = sprite.getImage().getX();
-		double newY = sprite.getImage().getY();
-		System.out.println(newX);
+//		System.out.println(newX);
 		Line line = new Line(oldX,oldY,newX,newY);
-		System.out.println(line.getEndX());
-		System.out.println(line.getStartX());
+		System.out.println(line.getEndY());
+		System.out.println(line.getStartY());
 		myGroup.getChildren().add(line);
 		
 	}
@@ -126,25 +120,5 @@ public class RenderModule extends Module{
 	
 	public List<RenderSprite> getSprites() {
 		return mySprites;
-	}
-	
-	public void appendTransition(Animation newTransition) {
-		newTransition.setOnFinished(e -> checkQueue());
-		myTransitions.add(newTransition);
-		
-		if(!animationPlaying) {
-			animationPlaying = true;
-			currentTransition = myTransitions.poll();
-			currentTransition.play();
-		}
-	}
-	
-	private void checkQueue() {
-		if(!myTransitions.isEmpty()) {
-			currentTransition = myTransitions.poll();
-			currentTransition.play();
-		} else {
-			animationPlaying = false;
-		}
 	}
 }

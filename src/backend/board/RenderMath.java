@@ -60,8 +60,4 @@ public class RenderMath {
 	protected double logoY(double Y) {
 		return -Y + myHeight / 2 - myImageView.getBoundsInLocal().getHeight() / 2;
 	}
-	
-//	private double xCenter(double X) {
-//		return 
-//	}
 }
