@@ -46,51 +46,6 @@ public class Word {
 	private TurtleCollection myTurtles;
 	private Map<String, String> myLanguageMap;
 
-
-//	public Word(String s, ResourceBundle resources, TurtleCollection turtles, Map<String, VariableNode> variables, Map<String, String> languageMap) throws SyntaxException {
-//		myName = s;
-//		SyntaxReader syntaxReader = new SyntaxReader();
-//		myProperties = syntaxReader.getProperties();
-//		myTurtles = turtles;
-//		myLanguageMap = languageMap;
-//		determineType(resources);
-//	}
-//
-//	private void determineType(ResourceBundle rb) throws SyntaxException {
-//		if (myName.matches(myProperties.getProperty(CONSTANT))) {
-//			myType = CONSTANT;
-//			// myExpression = new DoubleExp(Double.parseDouble(myName));
-//			 myNode = new ConstantNode(Double.parseDouble(myName));
-//		} else if (myName.matches(myProperties.getProperty(VARIABLE))) {
-//			myType = VARIABLE;
-//			// myExpression = new VariableExp(myName);
-////			 myNode = new VariableNode(myName);
-//		} else if (myName.matches(myProperties.getProperty(COMMAND))) {
-//			myType = COMMAND;
-//			try {
-//				String[] readString = rb.getString(myLanguageMap.get(myName)).split(",");
-//				operatorNumber = Integer.parseInt(readString[0]);
-//				String method = readString[1];
-//				String methodType = readString[2];
-//				Class<?> c = Class.forName(method);
-//				Constructor<?> ctr;
-//				// Node myNode;
-//				if (methodType.equals("Turtle")) {
-//					nodeType = "Turtle";
-//					ctr = c.getConstructor(TurtleCollection.class);
-//					myNode = (ASTNode) ctr.newInstance(myTurtles);
-//				} else {
-//					ctr = c.getConstructor();
-//					myNode = (ASTNode) ctr.newInstance();
-//				}
-//			} catch (MissingResourceException | ClassNotFoundException | NoSuchMethodException | SecurityException
-//					| InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NullPointerException e) {
-//				myType = "Invalid";
-//			}
-//		} else {
-//=======
-
-//	private Map<String, Integer> commandNumbers = new HashMap<String, Integer>();
 	
 	
 	public Word(String s, ResourceBundle resources, TurtleCollection turtles, Map<String, VariableNode> variables, Map<String, String> languageMap) {	
@@ -113,11 +68,9 @@ public class Word {
 			makeListNode(rb, variables);
 		}
 		else if(myName.matches(myProperties.getProperty(COMMAND))) {
-			System.out.println(myName);
 			makeCommandNode(rb, variables);
 		}
 		else {
-			System.out.println("invalid here");
 			myType = "Invalid";
 		} 
 	}
@@ -143,10 +96,7 @@ public class Word {
 	private void makeCommandNode(ResourceBundle rb, Map<String, VariableNode> variables) {
 		myType = COMMAND;
 		try {
-//			System.out.println("Actually invalid here");
-			System.out.println("Hello" + myLanguageMap.get(myName.toLowerCase()));
 			String[] readString = rb.getString(myLanguageMap.get(myName.toLowerCase())).split(",");
-			System.out.println("hi");
 			operatorNumber = Integer.parseInt(readString[0]);
 			String method = readString[1];
 			String methodType = readString[2];
@@ -154,7 +104,6 @@ public class Word {
 			Constructor<?> ctr;
 			if (methodType.equals("Turtle")) {
 				nodeType =methodType;
-				System.out.println("Actually invalid here");
 				ctr = c.getConstructor(TurtleCollection.class);
 				myNode = (ASTNode) ctr.newInstance(myTurtles);
 			} 

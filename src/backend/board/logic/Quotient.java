@@ -17,8 +17,11 @@ public class Quotient extends MathNode{
 	@Override
 	public double execute() {
 		double quotient = 0;
-		for (ASTNode n: super.getChildren()) {
-			quotient/=n.execute();
+		for (int i=0 ; i< super.getChildren().size()-1; i++) {
+			if (i==0) {
+				quotient = super.getChildren().get(i).execute();
+			}
+			quotient/=super.getChildren().get(i+1).execute();
 		}
 		return quotient;
 	}

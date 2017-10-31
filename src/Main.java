@@ -1,12 +1,6 @@
 import exceptions.ErrorMessage;
 import frontend.menus.strategies.ChangeLanguage;
-import frontend.menus.strategies.NewWindow;
-import frontend.modules.ConsoleInput;
-import frontend.modules.ViewModule;
-import frontend.xml.ConfigReader;
 import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class Main extends Application{	
