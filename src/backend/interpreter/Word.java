@@ -140,7 +140,7 @@ public class Word {
 	private void makeCommandNode(ResourceBundle rb, Map<String, VariableNode> variables) {
 		myType = COMMAND;
 		try {
-			String[] readString = rb.getString(myLanguageMap.get(myName)).split(",");
+			String[] readString = rb.getString(myLanguageMap.get(myName.toLowerCase())).split(",");
 			operatorNumber = Integer.parseInt(readString[0]);
 			String method = readString[1];
 			String methodType = readString[2];
