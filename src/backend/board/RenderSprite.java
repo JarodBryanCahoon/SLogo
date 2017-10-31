@@ -10,14 +10,9 @@ import frontend.modules.RenderModule;
 import frontend.popups.TurtleView;
 import frontend.xml.PreferenceXMLReader;
 import frontend.xml.XMLReader;
-import javafx.animation.ParallelTransition;
-import javafx.animation.RotateTransition;
-import javafx.animation.SequentialTransition;
-import javafx.animation.TranslateTransition;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import javafx.util.Duration;
 
 /**
  * @author Albert
@@ -75,7 +70,6 @@ public class RenderSprite extends Observable implements iRenderSprite, Observer 
 	}
 	
 	private void handleDrag(MouseEvent event) {
-//		myRender.getParent().boundsInParentProperty().
 		setX(myRenderMath.logoX(event.getSceneX()));
 		setY(myRenderMath.logoY(event.getSceneY()));
 	}
@@ -150,7 +144,6 @@ public class RenderSprite extends Observable implements iRenderSprite, Observer 
 	
 	private void readVisibility(boolean isVisible) {
 		this.isVisible = isVisible;
-		myImageView.setVisible(isVisible);
 	}
 
 	@Override
@@ -159,11 +152,11 @@ public class RenderSprite extends Observable implements iRenderSprite, Observer 
 		double oldX = myX;
 		double oldY = myY;
 		double oldAngle = myAngle;
+		boolean oldVisibility = isVisible;
 		myX = myRenderMath.xTranslate(turtle.getMyX());
 		myY = myRenderMath.xTranslate(turtle.getMyY());
-//		myImageView.setX(myRenderMath.imageX(myX));
-//		myImageView.setY(myRenderMath.imageY(myY));
 		readAngle(turtle.getAngle());
+		readVisibility(turtle.getOpacity());	
 
 		if(hasMoved(turtle, oldX, oldY)) {
 	        myAnimationQueue.appendTranslationTransition();
@@ -172,15 +165,11 @@ public class RenderSprite extends Observable implements iRenderSprite, Observer 
 		if(oldAngle != myAngle) {
 			myAnimationQueue.appendRotationAnimation(oldAngle, myImageAngle);
 		}
-
-		System.out.println("drawing line");
-//		if(penDown) {
-//			myRender.drawLine(myTurtleId, 
-//					myRenderMath.imageX(oldX), 
-//					myRenderMath.imageY(oldY));
-//		}
+		
+		if(oldVisibility != isVisible) {
+			myAnimationQueue.appendFadeTransition(oldVisibility, isVisible);
+		}
 		readPen(turtle.getPen());
-		readVisibility(turtle.getOpacity());	
 	}
 	
 	private boolean hasMoved(Turtle turtle, double oldX, double oldY) {
