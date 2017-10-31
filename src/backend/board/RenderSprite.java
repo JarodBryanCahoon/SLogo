@@ -40,8 +40,6 @@ public class RenderSprite extends Observable implements iRenderSprite, Observer 
 	private RenderMath myRenderMath;
 	private RenderModule myRender;
 	private CustomAnimationQueue myAnimationQueue;
-	private Node leftNode;
-	private Node topNode;
 
 	public RenderSprite(int id, String imagePath, double width, double height, RenderModule render) {
 		myRender = render;
@@ -163,8 +161,7 @@ public class RenderSprite extends Observable implements iRenderSprite, Observer 
 		readVisibility(turtle.getOpacity());
 
 		if (hasMoved(turtle, oldX, oldY)) {
-			System.out.println(myY);
-			myAnimationQueue.appendTranslationTransition();
+			myAnimationQueue.appendTranslationTransition(turtle.getClearScreen());
 		}
 
 		myAnimationQueue.appendRotationAnimation(oldAngle, myImageAngle);
@@ -173,6 +170,11 @@ public class RenderSprite extends Observable implements iRenderSprite, Observer 
 			myAnimationQueue.appendFadeTransition(oldVisibility, isVisible);
 		}
 		readPen(turtle.getPen());
+		
+		if(turtle.getClearScreen()) {
+			myRender.clearScreen();
+			turtle.setClearScreen(false);
+		}
 	}
 
 	private boolean hasMoved(Turtle turtle, double oldX, double oldY) {

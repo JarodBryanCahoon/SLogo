@@ -18,7 +18,7 @@ public class CustomAnimationQueue {
 	private Queue<Animation> myTransitions;
 	private Animation currentTransition;
 	private boolean animationPlaying = false;
-	public static final int DURATION = 40000;
+	public static final int DURATION = 1500;
 	private RenderSprite myRenderSprite;
 	private RenderModule myRenderModule;
 	private double xDraw;
@@ -56,7 +56,7 @@ public class CustomAnimationQueue {
 		appendFadeTransition(oldDoubleVisibility, newDoubleVisibility);
 	}
 	
-	protected void appendTranslationTransition() {
+	protected void appendTranslationTransition(boolean clrScrn) {
 		RenderMath rMath = myRenderSprite.getMath();
 		ImageView image = myRenderSprite.getImage();
 		double oldX = image.getX();
@@ -69,15 +69,15 @@ public class CustomAnimationQueue {
 		double avg = Math.abs((newX + newY - oldX - oldY)) / 2;
 		
 		TranslateTransition xTranslateTransition =
-		        new TranslateTransition(Duration.millis(DURATION / avg), image);
+		        new TranslateTransition(Duration.millis(DURATION), image);
 		xTranslateTransition.setToX(newX - oldX);
 		TranslateTransition yTranslateTransition =
-		        new TranslateTransition(Duration.millis(DURATION / avg), myRenderSprite.getImage());
+		        new TranslateTransition(Duration.millis(DURATION), myRenderSprite.getImage());
 		yTranslateTransition.setToY(newY - oldY);
 		
 		ParallelTransition pTransition = createParallelTranslationTransition(
 				newX + image.getBoundsInLocal().getWidth() / 2, newY + image.getBoundsInLocal().getHeight() / 2, xTranslateTransition,
-				yTranslateTransition);
+				yTranslateTransition, clrScrn);
 		runQueue(pTransition);
 	}
 
@@ -90,18 +90,16 @@ public class CustomAnimationQueue {
 	}
 
 	private ParallelTransition createParallelTranslationTransition(double newX, double newY,
-			TranslateTransition xTranslateTransition, TranslateTransition yTranslateTransition) {
+			TranslateTransition xTranslateTransition, TranslateTransition yTranslateTransition, boolean clrScrn) {
 		ParallelTransition pTransition = new ParallelTransition();
 		pTransition.getChildren().addAll(xTranslateTransition, yTranslateTransition);
-		pTransition.setOnFinished(e -> onFinish(myRenderSprite.isPenDown(), newX, newY));
+		System.out.println("should also be home " + newY);
+		pTransition.setOnFinished(e -> onFinish(myRenderSprite.isPenDown(), newX, newY, clrScrn));
 		return pTransition;
 	}
 	
 	protected void appendRotationAnimation(double oldAngle, double newAngle) {
-		System.out.println("entered rotation");
 		double oldImageAngle = 360 - oldAngle;
-		System.out.println(oldImageAngle);
-		System.out.println(newAngle);
 		RotateTransition rTransition = new RotateTransition(Duration.millis(FADE_DURATION), myRenderSprite.getImage());
 		rTransition.setFromAngle(oldImageAngle);
 		rTransition.setToAngle(newAngle);
@@ -109,8 +107,8 @@ public class CustomAnimationQueue {
 		runQueue(rTransition);
 	}
 	
-	private void onFinish(boolean penDown, double newX, double newY) {
-		if(penDown) {
+	private void onFinish(boolean penDown, double newX, double newY, boolean clrScrn) {
+		if(penDown && !clrScrn) {
 			myRenderModule.drawLine(myRenderSprite.getId(), xDraw, yDraw, newX, newY);
 		}
 		xDraw = newX;
