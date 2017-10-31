@@ -74,8 +74,8 @@ public class RenderModule extends Module{
 		double newY = sprite.getImage().getY();
 		System.out.println(newX);
 		Line line = new Line(oldX,oldY,newX,newY);
-		System.out.println(line.getEndX());
-		System.out.println(line.getStartX());
+		System.out.print(line.getStartX() +" , " +line.getStartY() + "\n");
+		System.out.print(line.getEndX() +" , " +line.getEndY() + "\n");
 		myGroup.getChildren().add(line);
 		
 	}

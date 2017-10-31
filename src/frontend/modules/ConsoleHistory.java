@@ -63,8 +63,6 @@ public class ConsoleHistory extends Module {
 		history.getStyleClass().add("Window");
 		historyPane.getStyleClass().add("Window");
 		
-//		System.out.println(history.getStyleClass());
-		System.out.println(historyPane.getStyleClass());
 	}
 
 	@Override

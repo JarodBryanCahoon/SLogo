@@ -29,6 +29,7 @@ public class ColorPick {
 
 	public void changecolor() throws IOException {
 		String color = colorpick.getValue().toString();
+		color = "#" +color.substring(2);
 		myReader.setColor(name,index,color);
 	}
 	
