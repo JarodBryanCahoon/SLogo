@@ -165,7 +165,6 @@ public class RenderSprite extends Observable implements iRenderSprite, Observer 
 //		myImageView.setY(myRenderMath.imageY(myY));
 		readAngle(turtle.getAngle());
 
-		SequentialTransition sTransition = new SequentialTransition();
 		if(hasMoved(turtle, oldX, oldY)) {
 	        myAnimationQueue.appendTranslationTransition();
 		}

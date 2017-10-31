@@ -1,8 +1,10 @@
 package frontend.modules;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Queue;
 import java.util.List;
 
@@ -28,12 +30,14 @@ import javafx.scene.shape.Line;
  */
 public class RenderModule extends Module{
 	private List<RenderSprite> mySprites;
+	private Map<RenderSprite, List<Line>> mySpriteLines;
 	private int turtleId = 1;
 	private Group myGroup;
 	private static final String turtlePath = "/resources/turtle.png";
 			
 	public RenderModule(double width, double height, ViewModule view) throws Exception {
 		super(width, height, view);
+		mySpriteLines = new HashMap<>();
 		addTurtle();
 	}
 	
@@ -56,6 +60,7 @@ public class RenderModule extends Module{
 		RenderSprite sprite = new RenderSprite(turtleId, turtlePath, getWidth(), getHeight(), this);
 		myPane.getChildren().add(sprite.getImage());
 		mySprites.add(sprite);
+		mySpriteLines.put(sprite, new ArrayList<>());
 		turtleId++;
 		return sprite;
 	}
@@ -66,12 +71,9 @@ public class RenderModule extends Module{
 		if(sprite == null) {
 			return;
 		}
-//		System.out.println(newX);
 		Line line = new Line(oldX,oldY,newX,newY);
-		System.out.print(line.getStartX() +" , " +line.getStartY() + "\n");
-		System.out.print(line.getEndX() +" , " +line.getEndY() + "\n");
 		myGroup.getChildren().add(line);
-		
+		mySpriteLines.get(sprite).add(line);
 	}
 	
 	private RenderSprite findSpriteById(int turtleId) {
@@ -86,12 +88,15 @@ public class RenderModule extends Module{
 	public void clearScreen() {
 		Pane myPane = (Pane) getParent();
 		for(RenderSprite s : mySprites) {
-			myPane.getChildren().remove(s.getImage());
+			if(s.isSelected()) {
+				myPane.getChildren().remove(s.getImage());
+				List<Line> lineList = mySpriteLines.get(s);
+				myGroup.getChildren().removeAll(lineList);
+			}
 		}
 		mySprites.clear();
 		myPane.getChildren().remove(myGroup);
 		myGroup = new Group();
-		addTurtle();
 		myPane.getChildren().add(myGroup);
 	}
 	
