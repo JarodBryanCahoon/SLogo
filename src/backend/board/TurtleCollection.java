@@ -1,5 +1,6 @@
 package backend.board;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +16,7 @@ public class TurtleCollection implements ITurtle {
 	}
 
 	@Override
-	public double act(TurtleNode m) {
+	public double act(TurtleNode m) throws IOException {
 		double returnValue = 0;
 		for(Turtle turtle : getSelectedTurtles()) {
 			returnValue = turtle.act(m);			
