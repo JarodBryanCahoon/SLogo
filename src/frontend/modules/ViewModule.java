@@ -24,14 +24,13 @@ public class ViewModule extends Module {
 	private final static String moduleFileName = "resources/style/modules.xml";
 	private RenderModule myRenderModule = null;
 	private Set<Module> myModules;
-	private final static String ARGUMENTS = "ArgumentNumbers";
 	private Manager myManager;
 	private Properties myLanguageProperties;
 
 	public ViewModule(int width, int height) throws Exception {
 		super(width, height);
 		setViewModule(this);
-		myManager = new Manager(ARGUMENTS, this);
+		myManager = new Manager(this);
 		initSubModules();
 		for (Module m : myModules) {
 			myManager.addObserver(m);

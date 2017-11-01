@@ -10,7 +10,7 @@ import backend.board.interfacemovement.TurtleNode;
  */
 public interface ITurtle {
 	/**
-	 * Takes in a TurtleNode strategy and calls its execute method 
+	 * Takes in a TurtleNode strategy and calls its execute method. Notifies observers afterwards
 	 * @param m	the TurtleNode to be executed			
 	 * @return	the double value returned by the execution of the TurtleNode
 	 * @throws IOException

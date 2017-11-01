@@ -7,11 +7,15 @@ import backend.board.TurtleCollection;
 import backend.control.ListNode;
 
 /**
+ * Implements the Ask command 
  * @author Albert
- *
  */
 public class Ask extends SomeParamTurtle {
 
+	/**
+	 * Creates a new Ask Node 
+	 * @param turtles	TurtleCollection to execute over
+	 */
 	public Ask(TurtleCollection turtles) {
 		super(turtles);
 		// TODO Auto-generated constructor stub

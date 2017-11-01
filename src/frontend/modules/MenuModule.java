@@ -1,21 +1,28 @@
 package frontend.modules;
 
-import java.io.IOException;
-
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import exceptions.XMLException;
 import frontend.menus.MenuFactory;
 import frontend.xml.MenuReader;
-import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.control.MenuBar;
-import javafx.scene.layout.VBox;
 
+/**
+ * A module that holds a menu
+ * @author Albert
+ *
+ */
 public class MenuModule extends Module {
 	private static final String MENUREADER_PATH = "src/resources/style/menu.xml";
 
+	/**
+	 * Creates a new MenuModule
+	 * @param width		width of module
+	 * @param height	height of module
+	 * @param view		associated ViewModule
+	 * @throws Exception
+	 */
 	public MenuModule(double width, double height, ViewModule view) throws Exception {
 		super(width, height, view);
 	}
@@ -31,7 +38,7 @@ public class MenuModule extends Module {
 
 	@Override
 	public Element getXMLPreferences(Document doc) {
-		// TODO Auto-generated method stub
+		// do nothing
 		return null;
 	}
 }

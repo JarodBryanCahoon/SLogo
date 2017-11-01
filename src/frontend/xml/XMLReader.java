@@ -16,21 +16,44 @@ import exceptions.ErrorMessage;
 import exceptions.XMLException;
 import frontend.modules.ViewModule;
 
+/**
+ * An abstract XMLReader that automatically reads from a specified file
+ * @author Albert
+ *
+ */
 public abstract class XMLReader {
 	public static final String XML_ERROR = "Your XML File was formatted incorrectly!";
 	private String myPath;
 	private File myXmlFile;
 	private Document myDocument;
 	private ViewModule myViewModule;
+	/**
+	 * Creates a new XMLReader
+	 * @param path			path of file to be read from
+	 * @throws XMLException
+	 * @throws IOException
+	 */
 	public XMLReader(String path) throws XMLException, IOException {
 		instDocument(path);
 	}
 	
+	/**
+	 * Creates a new XMLReader
+	 * @param path			path of file to be read from
+	 * @param view			associated ViewModule
+	 * @throws XMLException
+	 * @throws IOException
+	 */
 	public XMLReader(String path, ViewModule view) throws XMLException, IOException {
 		myViewModule = view;
 		instDocument(path);
 	}
 
+	/**
+	 * instantiates the document from a path
+	 * @param path			path of file to be read from
+	 * @throws IOException
+	 */
 	private void instDocument(String path) throws IOException {
 		myPath = path;
 		try {
@@ -47,6 +70,10 @@ public abstract class XMLReader {
 		readFromFile();
 	}
 	
+	/**
+	 * @return	associated ViewModule
+	 * @throws XMLException
+	 */
 	protected ViewModule getViewModule() throws XMLException {
 		if(myViewModule == null) {
 			throw new XMLException();
@@ -54,8 +81,16 @@ public abstract class XMLReader {
 		return myViewModule;
 	}
 		
+	/**
+	 * A method to be overriden that specifies how a reader will read from the file
+	 * @throws XMLException
+	 * @throws IOException
+	 */
 	protected abstract void readFromFile() throws XMLException, IOException;
 	
+	/**
+	 * @return	get root element of document
+	 */
 	protected Element getElement() {
 		Element root = myDocument.getDocumentElement();
 		return root;
@@ -66,6 +101,11 @@ public abstract class XMLReader {
 		return this.getNodeList(root, tag);
 	}
 	
+	/**
+	 * @param e		xml element to read over
+	 * @param tag	tag to search for
+	 * @return		List of nodes identifying with that tag
+	 */
 	protected NodeList getNodeList(Element e, String tag) {
 		NodeList nList = e.getElementsByTagName(tag);
 		return nList;
@@ -75,10 +115,23 @@ public abstract class XMLReader {
 		return myDocument;
 	}
 	
+	/**
+	 * return the first element's text content which is identified by tag
+	 * @param element
+	 * @param tag
+	 * @return
+	 */
 	protected String getContent(Element element, String tag) {
 		return element.getElementsByTagName(tag).item(0).getTextContent();
 	}
 	
+	/**
+	 * Adds an element to a document with specified tag, text
+	 * @param doc	Document to be added to
+	 * @param tag	tag to be associated with new element
+	 * @param text	text to be associated with new element
+	 * @return
+	 */
 	public static Element createTextElement(Document doc, String tag, String text) {
 		Element e = doc.createElement(tag);
 		e.appendChild(doc.createTextNode(text));

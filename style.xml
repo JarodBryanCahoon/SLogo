@@ -2,8 +2,8 @@
 <resources>
 <module>
 <name>frontend.modules.RenderModule</name>
-<stage_height>500.0</stage_height>
-<stage_width>500.0</stage_width>
+<stage_height>800.0</stage_height>
+<stage_width>800.0</stage_width>
 <sprite>
 <myX>0.0</myX>
 </sprite>

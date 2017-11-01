@@ -9,12 +9,21 @@ import javafx.scene.Group;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
+/**
+ * Ideally, a class that holds a history of render and command states and can undo/redo
+ * Does not currently work
+ * @author Albert
+ *
+ */
 public class StepThrough {
 	private List<TurtleCollection> previousTurtleStates;
 	private List<List<RenderSprite>> previousSpriteStates;
 	private List<Pane> previousRenderStates;
 	private int totalSteps = 0;
 	private int currentStep = 0;
+	/**
+	 * Creates a new StepThrough
+	 */
 	public StepThrough() {
 		previousTurtleStates = new ArrayList<>();
 		previousSpriteStates = new ArrayList<>();

@@ -3,16 +3,22 @@ package frontend.menus.strategies;
 import java.awt.Desktop;
 import java.net.URI;
 
-import com.sun.deploy.uitoolkit.impl.fx.HostServicesFactory;
-import com.sun.javafx.application.HostServicesDelegate;
-
 import exceptions.ErrorMessage;
 import frontend.modules.ViewModule;
 
+/**
+ * A MenuItem button that, on click, allows the user to access a command help page
+ * @author Albert
+ *
+ */
 public class Help extends MenuItemStrategy {
 
 	private static final String HELP_WEBSITE = "http://www.cs.duke.edu/courses/compsci308/current/assign/03_slogo/commands.php";
 
+	/**
+	 * Creates a new Help 
+	 * @param module	ViewModule with which this is associated
+	 */
 	public Help(ViewModule module) {
 		super(module);
 	}

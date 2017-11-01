@@ -19,6 +19,7 @@ import exceptions.SyntaxException;
 
 /*TextParse.java
  * @author Venkat Subramaniam
+ * @author Albert
  * Class that creates an AbstractSyntaxTree after parsing lines of text.
  * @version 10.21.17
  */
@@ -45,6 +46,10 @@ public class TextParse {
 		createSyntaxReader();
 	}
 	
+	/**
+	 * Maps the language strings to their according commands
+	 * @param languageFile	language properties file
+	 */
 	public void changeLanguage(Properties languageFile) { 
 		languageMap = new HashMap<>(); 
 		for(Object key : languageFile.keySet()) { 

@@ -22,7 +22,7 @@ import backend.control.ListNode;
 import backend.control.VariableNode;
 
 /**
- * @author Venkat Subramaniam, Albert
+ * @author Venkat Subramaniam
  *
  */
 public class Word {

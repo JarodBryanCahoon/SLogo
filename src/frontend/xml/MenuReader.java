@@ -17,6 +17,13 @@ import frontend.modules.ViewModule;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 
+/**
+ * A class that recursively reads in an xml file that defines the menus
+ * This class is important because it allows the user to create any number of
+ * submenus
+ * @author Albert
+ *
+ */
 public class MenuReader extends XMLReader {
 	private static final String TYPE_TAG = "type";
 	private static final String NAME_TAG = "name";
@@ -27,6 +34,13 @@ public class MenuReader extends XMLReader {
 
 	private Map<String, Menu> mySubMenus;
 
+	/**
+	 * Creates a new MenuReader and reads from file
+	 * @param path			path of file to read
+	 * @param viewModule	associated ViewModule
+	 * @throws XMLException
+	 * @throws IOException
+	 */
 	public MenuReader(String path, ViewModule viewModule) throws XMLException, IOException {
 		super(path, viewModule);
 	}
@@ -45,6 +59,10 @@ public class MenuReader extends XMLReader {
 		}
 	}
 
+	/**
+	 * parses the top level menus, which can only be javafx Menus because of the way a MenuBar is set up
+	 * @param menu
+	 */
 	protected void parseMenu(Element menu) {
 		Node itemHead = menu.getFirstChild();
 		NodeList subItems = menu.getChildNodes();
@@ -58,6 +76,14 @@ public class MenuReader extends XMLReader {
 		}
 	}
 
+	/**
+	 * Parses through the siblings of a node to find an xml element that matches the given tag
+	 * @param head		Node that represents head of linkedlist of siblings
+	 * @param length	length of linkedlist
+	 * @param tag		tag to search for
+	 * @return			read in string value whose xml identifier matches tag
+	 * @throws XMLException
+	 */
 	private String StringLevelParse(Node head, int length, String tag) throws XMLException {
 		Node current = head;
 		for (int i = 0; i < length; i++) {
@@ -72,6 +98,14 @@ public class MenuReader extends XMLReader {
 		throw new XMLException();
 	}
 
+	/**
+	 * Creates a SubMenu by recursively reading in all items from the siblings of an initial node
+	 * @param menu		Element that represents the root menu element in the menubar
+	 * @param head		head of linkedlist of sibling nodes to read over
+	 * @param length	length of above linkedlist
+	 * @return			a recursively defined submenu
+	 * @throws XMLException
+	 */
 	private Menu parseSubMenu(Element menu, Node head, int length) throws XMLException{
 		Menu newMenu = new Menu(StringLevelParse(head, length, NAME_TAG));
 		Node current = head;
@@ -92,6 +126,13 @@ public class MenuReader extends XMLReader {
 		return newMenu;
 	}
 
+	/**
+	 * Determines whether a given item shoudld be a menu or a button. If menu, recurse; if button, create button and return
+	 * @param menu		Element that represents the root menu in the menubar
+	 * @param menuItem	Element to be created that is either a button or a submenu
+	 * @return			the correct MenuItem, whether it is button or menu
+	 * @throws XMLException
+	 */
 	private MenuItem createMenuItem(Element menu, Element menuItem) throws XMLException {
 		if (getContent(menuItem, TYPE_TAG).equals(MENU_TAG)) {
 			int length = menuItem.getChildNodes().getLength();
@@ -120,6 +161,9 @@ public class MenuReader extends XMLReader {
 		}
 	}
 	
+	/**
+	 * @return	a map of menutext to Menus
+	 */
 	public Map<String, Menu> getSubMenus() {
 		return mySubMenus;
 	}

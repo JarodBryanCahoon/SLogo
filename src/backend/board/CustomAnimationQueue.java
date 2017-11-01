@@ -125,7 +125,7 @@ public class CustomAnimationQueue {
 	}
 	
 	/**
-	 * handle logic for drawing of line
+	 * handle logic for drawing of line and image updating
 	 * @param penDown	whether or not the pen is down
 	 * @param newX		x coordinate to draw line to
 	 * @param newY		y coordinate to draw line to

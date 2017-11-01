@@ -22,7 +22,7 @@ public class SetAngle extends SomeParamTurtle {
 		double angle = super.getChildren().get(0).execute();
 		double returnAngle = angleDifference(angle, co.getAngle());
 		co.setAngle(angle);
-		return returnAngle % 360;
+		return returnAngle;
 	}
 
 	private double angleDifference(double angle1, double angle2) {
