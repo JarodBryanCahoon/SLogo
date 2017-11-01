@@ -124,12 +124,17 @@ public class RenderSprite extends Observable implements iRenderSprite, Observer 
 
 	private void readX(double X) {
 		myX = myRenderMath.xTranslate(X);
-		myImageView.setX(myRenderMath.imageX(myX));
+//		this.myAnimationQueue.setDrawX(myRenderMath.imageX(myX));
+		myImageView.setX(myRenderMath.imageX(X));
+//		myAnimationQueue.setDrawX(myImageView.getX());
 	}
 
 	private void readY(double newY) {
 		myY = myRenderMath.yTranslate(newY);
-		myImageView.setY(myRenderMath.imageY(myY));
+//		this.myAnimationQueue.setDrawY(myRenderMath.imageY(myY));
+//		myImageView.setY(myAnimationQueue.getDrawY());
+		myImageView.setY(myRenderMath.imageY(newY));
+//		myAnimationQueue.setDrawY(myImageView.getY());
 	}
 
 	private void readAngle(double newAngle) {
@@ -152,8 +157,8 @@ public class RenderSprite extends Observable implements iRenderSprite, Observer 
 		double oldY = myY;
 		double oldAngle = myAngle;
 		boolean oldVisibility = isVisible;
-		myX = myRenderMath.xTranslate(turtle.getMyX());
-		myY = myRenderMath.xTranslate(turtle.getMyY());
+		myX = turtle.getMyX();
+		myY = turtle.getMyY();
 		readAngle(turtle.getAngle());
 		readVisibility(turtle.getOpacity());
 

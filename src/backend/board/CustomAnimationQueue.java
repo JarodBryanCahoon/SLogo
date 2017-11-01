@@ -25,8 +25,6 @@ public class CustomAnimationQueue {
 	public static final int DURATION = 1500;
 	private RenderSprite myRenderSprite;
 	private RenderModule myRenderModule;
-	private double xDraw;
-	private double yDraw;
 	private boolean initTranslation = false;
 	
 	/**
@@ -87,7 +85,6 @@ public class CustomAnimationQueue {
 		ImageView image = myRenderSprite.getImage();
 		double oldX = image.getX();
 		double oldY = image.getY();
-		checkInit(image, oldX, oldY);
 		
 		double newX = rMath.imageX(myRenderSprite.getX());
 		double newY = rMath.imageY(myRenderSprite.getY());
@@ -103,20 +100,6 @@ public class CustomAnimationQueue {
 				newX + image.getBoundsInLocal().getWidth() / 2, newY + image.getBoundsInLocal().getHeight() / 2, xTranslateTransition,
 				yTranslateTransition, clrScrn);
 		runQueue(pTransition);
-	}
-
-	/**
-	 * Check initiation and handle the stale x, y values during animation
-	 * @param image	ImageView to process
-	 * @param oldX	old X value of turtle image
-	 * @param oldY	old Y value of turtle image
-	 */
-	private void checkInit(ImageView image, double oldX, double oldY) {
-		if(!initTranslation) {
-			xDraw = oldX + image.getBoundsInLocal().getWidth() / 2;
-			yDraw = oldY + image.getBoundsInLocal().getHeight() / 2;
-			initTranslation = true;
-		}
 	}
 
 	private ParallelTransition createParallelTranslationTransition(double newX, double newY,
@@ -149,11 +132,15 @@ public class CustomAnimationQueue {
 	 * @param clrScrn	whether or not the turtle has cleared screen
 	 */
 	private void onFinish(boolean penDown, double newX, double newY, boolean clrScrn) {
+		ImageView image = myRenderSprite.getImage();
 		if(penDown && !clrScrn) {
-			myRenderModule.drawLine(myRenderSprite.getId(), xDraw, yDraw, newX, newY);
+			myRenderModule.drawLine(myRenderSprite.getId(), newX, newY);
 		}
-		xDraw = newX;
-		yDraw = newY;
+		image.setX(image.getX() + image.getTranslateX());
+		image.setY(image.getY() + image.getTranslateY());
+		image.setTranslateX(0);
+		image.setTranslateY(0);
+
 		checkQueue();
 	}
 

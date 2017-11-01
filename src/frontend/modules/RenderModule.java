@@ -61,11 +61,12 @@ public class RenderModule extends Module {
 	}
 
 	// https://docs.oracle.com/javafx/2/canvas/jfxpub-canvas.htm
-	public void drawLine(int turtleId, double oldX, double oldY, double newX, double newY) {
+	public void drawLine(int turtleId, double newX, double newY) {
 		RenderSprite sprite = findSpriteById(turtleId);
-		if (sprite == null) {
-			return;
-		}
+		ImageView image = sprite.getImage();
+		double oldX = image.getX() + image.getBoundsInLocal().getWidth() / 2;
+		double oldY = image.getY() + image.getBoundsInLocal().getHeight() / 2;
+		
 		Line line = new Line(oldX, oldY, newX, newY);
 		line.getStyleClass().add("Render");
 		myGroup.getChildren().add(line);
