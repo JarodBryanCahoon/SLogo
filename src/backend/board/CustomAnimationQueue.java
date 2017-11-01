@@ -26,6 +26,8 @@ public class CustomAnimationQueue {
 	private RenderSprite myRenderSprite;
 	private RenderModule myRenderModule;
 	private boolean initTranslation = false;
+	private double xTranslate = 0;
+	private double yTranslate = 0;
 	
 	/**
 	 * Creates a new Queue of javafx animations
@@ -80,11 +82,11 @@ public class CustomAnimationQueue {
 	 * Add a new translation transition that moves the turtle in a line
 	 * @param clrScrn	whether or not the turtle has called clearscreen
 	 */
-	protected void appendTranslationTransition(boolean clrScrn) {
+	protected void appendTranslationTransition(boolean clrScrn, double oldX, double oldY) {
 		RenderMath rMath = myRenderSprite.getMath();
 		ImageView image = myRenderSprite.getImage();
-		double oldX = image.getX();
-		double oldY = image.getY();
+		oldX = rMath.imageX(oldX);
+		oldY = rMath.imageY(oldY);
 		
 		double newX = rMath.imageX(myRenderSprite.getX());
 		double newY = rMath.imageY(myRenderSprite.getY());
@@ -136,6 +138,8 @@ public class CustomAnimationQueue {
 		if(penDown && !clrScrn) {
 			myRenderModule.drawLine(myRenderSprite.getId(), newX, newY);
 		}
+		xTranslate = image.getTranslateX();
+		yTranslate = image.getTranslateY();
 		image.setX(image.getX() + image.getTranslateX());
 		image.setY(image.getY() + image.getTranslateY());
 		image.setTranslateX(0);

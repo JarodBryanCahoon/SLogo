@@ -206,7 +206,7 @@ public class RenderSprite extends Observable implements iRenderSprite, Observer 
 		readVisibility(turtle.getOpacity());
 
 		if (hasMoved(turtle, oldX, oldY)) {
-			myAnimationQueue.appendTranslationTransition(turtle.getClearScreen());
+			myAnimationQueue.appendTranslationTransition(turtle.getClearScreen(), oldX, oldY);
 		}
 
 		myAnimationQueue.appendRotationAnimation(oldAngle, myImageAngle);
