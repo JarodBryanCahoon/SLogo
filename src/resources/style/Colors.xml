@@ -42,7 +42,7 @@
 		
 		<Render>
 			<fx-background-color>#000000ff</fx-background-color>
-			<fx-stroke>#b34d1aff</fx-stroke>
+			<fx-stroke>#6a0</fx-stroke>
 			<fx-width>10</fx-width>
 			<turtle>red</turtle>
 		</Render>
