@@ -10,18 +10,15 @@ import frontend.modules.RenderModule;
 import frontend.popups.TurtleView;
 import frontend.xml.PreferenceXMLReader;
 import frontend.xml.XMLReader;
-import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.BorderPane;
 
 /**
  * @author Albert
- *
+ *	A Class that handles the rendering of a turtle
  */
 public class RenderSprite extends Observable implements iRenderSprite, Observer {
-	private static final int DURATION = 2000;
 	private static final double SELECTED_DIFFERENCE = 0.5;
 	private static final double SELECTED = 1.0;
 	private static final String TURTLE = "turtle";
@@ -41,6 +38,14 @@ public class RenderSprite extends Observable implements iRenderSprite, Observer 
 	private RenderModule myRender;
 	private CustomAnimationQueue myAnimationQueue;
 
+	/**
+	 * Creates a new RenderSprite
+	 * @param id		id of rendersprite
+	 * @param imagePath	path of image to be used for rendering
+	 * @param width		width of rendering stage
+	 * @param height	height of rendering stage
+	 * @param render	RenderModule which contains this sprite
+	 */
 	public RenderSprite(int id, String imagePath, double width, double height, RenderModule render) {
 		myRender = render;
 		myImageAngle = -myAngle;
@@ -53,6 +58,9 @@ public class RenderSprite extends Observable implements iRenderSprite, Observer 
 		myAnimationQueue = new CustomAnimationQueue(this, myRender);
 	}
 
+	/**
+	 * handles the logic of the imageview
+	 */
 	private void initImage() {
 		myImageView.setX(myRenderMath.imageX(myX));
 		myImageView.setY(myRenderMath.imageY(myY));
@@ -61,6 +69,10 @@ public class RenderSprite extends Observable implements iRenderSprite, Observer 
 		myImageView.setOnMouseDragged(e -> handleDrag(e));
 	}
 
+	/**
+	 * handles user mouse clicks
+	 * @param event	the user's mouse click
+	 */
 	private void handleMouseInput(MouseEvent event) {
 		if (event.getButton().equals(MouseButton.PRIMARY)) {
 			selectTurtle();
@@ -69,20 +81,33 @@ public class RenderSprite extends Observable implements iRenderSprite, Observer 
 		}
 	}
 
+	/**
+	 * handles user mouse drag
+	 * @param event	user mouse drag event
+	 */
 	private void handleDrag(MouseEvent event) {
 		setX(myRenderMath.logoX(event.getSceneX() - myRender.getViewModule().getLeftOffset() - myImageView.getBoundsInLocal().getWidth() / 2));
 		setY(myRenderMath.logoY(event.getSceneY() - myRender.getViewModule().getTopOffset() - myImageView.getBoundsInLocal().getHeight() / 2));
 		setChangedNotify();
 	}
 
+	/**
+	 * add css styling to this module
+	 */
 	public void stylize() {
 		myImageView.getStyleClass().add(TURTLE);
 	}
 
+	/**
+	 * @return	whether or not this turtle/rendersprite pair has been selected
+	 */
 	public boolean isSelected() {
 		return isSelected;
 	}
 
+	/**
+	 * choose the turtle to execute the commands that come afterwards
+	 */
 	public void selectTurtle() {
 		isSelected = !isSelected;
 		double isSelectedDouble = isSelected ? 0 : -1;
@@ -125,25 +150,45 @@ public class RenderSprite extends Observable implements iRenderSprite, Observer 
 		setChangedNotify();
 	}
 
+	/**
+	 * sets x value and image x value without notifying observers
+	 * @param X	the x value to set this rendersprite to
+	 */
 	private void readX(double X) {
 		myX = myRenderMath.xTranslate(X);
-		myImageView.setX(myRenderMath.imageX(myX));
+		myImageView.setX(myRenderMath.imageX(X));
 	}
 
+	/**
+	 * sets y value and image y value wihtout notifying observers
+	 * @param newY	the y value to set this rendersprite to
+	 */
 	private void readY(double newY) {
 		myY = myRenderMath.yTranslate(newY);
-		myImageView.setY(myRenderMath.imageY(myY));
+		myImageView.setY(myRenderMath.imageY(newY));
 	}
 
+	/**
+	 * sets angle to newAngle wihtout notifying observers
+	 * @param newAngle	the new angle value
+	 */
 	private void readAngle(double newAngle) {
 		myAngle = newAngle;
 		myImageAngle = 360 - myAngle;
 	}
 
+	/**
+	 * sets pen value without notifying observers
+	 * @param isPenDown	the new pen value
+	 */
 	private void readPen(boolean isPenDown) {
 		penDown = isPenDown;
 	}
 
+	/**
+	 * sets the visibility value without notifying observers
+	 * @param isVisible	the new visibility value
+	 */
 	private void readVisibility(boolean isVisible) {
 		this.isVisible = isVisible;
 	}
@@ -155,13 +200,13 @@ public class RenderSprite extends Observable implements iRenderSprite, Observer 
 		double oldY = myY;
 		double oldAngle = myAngle;
 		boolean oldVisibility = isVisible;
-		myX = myRenderMath.xTranslate(turtle.getMyX());
-		myY = myRenderMath.xTranslate(turtle.getMyY());
+		myX = turtle.getMyX();
+		myY = turtle.getMyY();
 		readAngle(turtle.getAngle());
 		readVisibility(turtle.getOpacity());
 
 		if (hasMoved(turtle, oldX, oldY)) {
-			myAnimationQueue.appendTranslationTransition(turtle.getClearScreen());
+			myAnimationQueue.appendTranslationTransition(turtle.getClearScreen(), oldX, oldY);
 		}
 
 		myAnimationQueue.appendRotationAnimation(oldAngle, myImageAngle);
@@ -181,9 +226,16 @@ public class RenderSprite extends Observable implements iRenderSprite, Observer 
 		return !((turtle.getMyX() == oldX) && (turtle.getMyY() == oldY));
 	}
 
-	public void changeImage(ImageView image) {
+	/**
+	 * Change the imageview contained within the rendersprite
+	 * @param image	imageview to change to
+	 * @return		the old imageview
+	 */
+	public ImageView changeImage(ImageView image) {
+		ImageView oldImageView = myImageView;
 		myImageView = image;
 		initImage();
+		return oldImageView;
 	}
 
 	private void setChangedNotify() {
@@ -191,10 +243,12 @@ public class RenderSprite extends Observable implements iRenderSprite, Observer 
 		notifyObservers();
 	}
 
+	@Override
 	public RenderMath getMath() {
 		return myRenderMath;
 	}
 
+	@Override
 	public boolean isPenDown() {
 		return penDown;
 	}
@@ -203,26 +257,38 @@ public class RenderSprite extends Observable implements iRenderSprite, Observer 
 		return myPenWidth;
 	}
 
+	@Override
 	public boolean isVisible() {
 		return isVisible;
 	}
 
+	@Override
 	public double getX() {
 		return myX;
 	}
 
+	@Override
 	public double getY() {
 		return myY;
 	}
 
+	@Override
 	public int getId() {
 		return myTurtleId;
 	}
 
+	/**
+	 * @return	the imageview contained inside this rendersprite
+	 */
 	public ImageView getImage() {
 		return myImageView;
 	}
 
+	/**
+	 * Creates an xml element that contains information about this turtle
+	 * @param doc	Document to write to
+	 * @return		Element that contains the information with the turtle
+	 */
 	public Element getTurtleXML(Document doc) {
 		Element xmlElement = doc.createElement(XML_SPRITE);
 		xmlElement.appendChild(

@@ -19,6 +19,11 @@ import exceptions.XMLException;
 import frontend.modules.ViewModule;
 import javafx.scene.Scene;
 
+/**Creates a css file based off of an XML file
+ * Allows for changing of the XML file
+ * @author lasia
+ *
+ */
 public class ColorReader extends XMLReader {
 	public static final String CSSPATH = System.getProperty("user.dir")+"/src/resources/style/";
 	public static final String CSSFILENAME = "stylesheet2.css";
@@ -43,9 +48,7 @@ public class ColorReader extends XMLReader {
 		bf = new BufferedWriter(fileWriter);
 		writeHeader();
 		writeBody(document);
-		bf.close();
-		System.out.println("dones");
-		
+		bf.close();		
 		
 	}
 	private void writeHeader() throws IOException {

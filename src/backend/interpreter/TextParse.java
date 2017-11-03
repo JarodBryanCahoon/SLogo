@@ -82,7 +82,7 @@ public class TextParse {
 		s = s.trim();
 		fillCommandQueue(s, turtles);
 		root = recursiveTree();
-		if (!queue.isEmpty());
+		if (!queue.isEmpty()) {
 			root.execute();
 			root = recursiveTree();
 		}
@@ -109,24 +109,21 @@ public class TextParse {
 				i=j;
 			}
 			Word w = new Word(t, rb, turtles, variables, languageMap);
-//			System.out.print(w.getName() +" : " );
-//			System.out.println(w.getType());
 			queue.add(w);
-		};
+		}
 	}
 
 
 	private ASTNode recursiveTree() {
 		if (queue.isEmpty()) {
-	
 			throw new SyntaxException();
 		}
 		Word w = queue.poll();
 		ASTNode tree = w.getNode();
 		if(w.getType().equals(COMMAND)) {
 			for(int i = 0; i<w.getNumber(); i++) {
-				System.out.println("hi");
 				tree.setChildren(recursiveTree());
+				
 			}
 		}
 		return tree;

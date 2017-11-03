@@ -1,5 +1,10 @@
 package exceptions;
 
+/**
+ * A Class that is thrown during xml reading errors
+ * @author Albert
+ *
+ */
 public class XMLException extends RuntimeException {
 	/**
 	 * Creates a new XMLException

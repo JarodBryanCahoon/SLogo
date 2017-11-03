@@ -18,20 +18,23 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.layout.BorderPane;
 
+/**Houses all modules in a central window
+ * @author Lasia
+ *@author Albert
+ */
 public class ViewModule extends Module {
 	private static final String SET = "set";
 
 	private final static String moduleFileName = "resources/style/modules.xml";
 	private RenderModule myRenderModule = null;
 	private Set<Module> myModules;
-	private final static String ARGUMENTS = "ArgumentNumbers";
 	private Manager myManager;
 	private Properties myLanguageProperties;
 
 	public ViewModule(int width, int height) throws Exception {
 		super(width, height);
 		setViewModule(this);
-		myManager = new Manager(ARGUMENTS, this);
+		myManager = new Manager(this);
 		initSubModules();
 		for (Module m : myModules) {
 			myManager.addObserver(m);

@@ -6,6 +6,10 @@ import frontend.xml.ColorReader;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.paint.Color;
 
+/**Creates a ColorPicker that changes color settings
+ * @author lasia
+ *
+ */
 public class ColorPick {
 	private ColorPicker colorpick;
 	private ColorReader myReader;

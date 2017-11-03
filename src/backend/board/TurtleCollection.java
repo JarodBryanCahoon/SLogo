@@ -8,10 +8,20 @@ import java.util.Observable;
 import backend.board.interfacemovement.TurtleNode;
 import javafx.scene.Scene;
 
+/**
+ * A Class that contains multiple turtles and can call multiple actions on them
+ * @author Albert
+ *
+ */
 public class TurtleCollection extends Observable implements ITurtle {
 	private List<Turtle> myTurtles;
 	private Scene myScene;
 	private int totalTurtlesAdded;
+	/**
+	 * Creates a new TurtleCollection
+	 * @param turtles	List of Turtles to create collection from
+	 * @param s			The Scene that the turtlecollection comes from
+	 */
 	public TurtleCollection(List<Turtle> turtles, Scene s) {
 		myTurtles = turtles;
 		myScene = s;
@@ -27,6 +37,10 @@ public class TurtleCollection extends Observable implements ITurtle {
 		return returnValue;
 	}
 	
+	/**
+	 * @param id	id of a turtle
+	 * @return		whether or not the turtle of id param exists in the turtlecollection
+	 */
 	public boolean turtleExistsById(int id) {
 		for(Turtle t : myTurtles) {
 			if(t.getId() == id) {
@@ -36,10 +50,23 @@ public class TurtleCollection extends Observable implements ITurtle {
 		return false;
 	}
 	
+	/**
+	 * @return	the scene of the turtle
+	 */
 	public Scene getScene() {
 		return myScene;
 	}
 	
+	/**
+	 * @return	the list of turtles contained in the collection
+	 */
+	public List<Turtle> getTurtles() {
+		return myTurtles;
+	}
+	
+	/**
+	 * @return	a list of selected turtles
+	 */
 	private List<Turtle> getSelectedTurtles() {
 		List<Turtle> selectedTurtles = new ArrayList<>();
 		for(Turtle t : myTurtles) {
@@ -51,18 +78,21 @@ public class TurtleCollection extends Observable implements ITurtle {
 		return selectedTurtles;
 	}
 	
+	/**
+	 * Adds a turtle to the collection
+	 * @param newTurtle	turtle to be added
+	 */
 	public void addTurtle(Turtle newTurtle) {
 		myTurtles.add(newTurtle);
 		totalTurtlesAdded++;
 	}
 	
+	/**
+	 * Notifies its observing class to create a turtle
+	 */
 	public void createTurtle() {
 		setChanged();
 		notifyObservers();
-	}
-	
-	public void removeTurtle(Turtle removeTurtle) {
-		myTurtles.remove(removeTurtle);
 	}
 
 	@Override
@@ -100,6 +130,9 @@ public class TurtleCollection extends Observable implements ITurtle {
 		}
 	}
 	
+	/**
+	 * @return	the number of turtles added to the collection
+	 */
 	public int totalTurtlesAdded() {
 		return totalTurtlesAdded;
 	}

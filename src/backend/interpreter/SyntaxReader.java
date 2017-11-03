@@ -8,7 +8,8 @@ import java.util.Properties;
 import exceptions.ErrorMessage;
 
 
-/**Encapsulates syntax properties
+/*
+ * A Class that encapsulates syntax properties
  * @author albert
  *
  */
@@ -16,6 +17,9 @@ public class SyntaxReader {
 	private Properties myProperties;
 	private static final String SYNTAX_PATH = "src/resources/languages/Syntax.properties";
 
+	/**
+	 * Creates a new Syntax Reader
+	 */
 	public SyntaxReader() {
 		myProperties = new Properties();
 		InputStream input = null;

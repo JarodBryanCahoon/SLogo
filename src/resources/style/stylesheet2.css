@@ -37,14 +37,19 @@
 }
 
 .Render{ 
+<<<<<<< HEAD
 -fx-background-color:#000000ff;
 -fx-stroke:#6a0;
+=======
+-fx-background-color:#ffffffff;
+-fx-stroke:#b34d1aff;
+>>>>>>> master
 -fx-width:10;
 -turtle:red;
 }
 
 .ScrollPane{ 
--fx-background-color:#333333ff;
+-fx-background-color:slategray;
 -fx-background:BLACK;
 }
 

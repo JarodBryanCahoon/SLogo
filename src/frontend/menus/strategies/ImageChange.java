@@ -1,12 +1,13 @@
 package frontend.menus.strategies;
 
-import java.nio.file.InvalidPathException;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
 import backend.board.RenderSprite;
 import exceptions.ErrorMessage;
 import exceptions.XMLException;
+import frontend.modules.RenderModule;
 import frontend.modules.ViewModule;
 import frontend.popups.TextPromptWindow;
 import javafx.scene.image.ImageView;
@@ -23,11 +24,15 @@ public class ImageChange extends MenuItemStrategy {
 	
 	private void changeImage(String path) {
 		 try {
-			 ImageView newImage = loadImage(this.getClass().getClassLoader().getResource(path).getPath());
+			 Path p = Paths.get(path);
+			 ImageView newImage = loadImage(p);
 			 List<RenderSprite> selectedSprites = getView().getRenderModule().getSprites();
 			 for(RenderSprite s : selectedSprites) { 
 				 if(s.isSelected()) {
-					 s.changeImage(newImage);
+					 RenderModule rModule = (RenderModule) getView().getRenderModule();
+
+					 ImageView oldImage = s.changeImage(newImage);
+					 rModule.replaceImage(oldImage, newImage);
 				 }
 			 }			 
 		 } catch (XMLException | NullPointerException e) {
@@ -36,9 +41,9 @@ public class ImageChange extends MenuItemStrategy {
 		 }
 	}
 	
-	private ImageView loadImage(String path) throws XMLException{
+	private ImageView loadImage(Path path) throws XMLException{
 		try {
-			ImageView image = new ImageView(path);
+			ImageView image = new ImageView(path.toString());
 			return image;
 		} catch (NullPointerException | IllegalArgumentException e) {
 			throw new XMLException();

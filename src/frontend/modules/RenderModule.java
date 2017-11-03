@@ -15,10 +15,12 @@ import frontend.xml.PreferenceXMLReader;
 import frontend.xml.XMLReader;
 import javafx.scene.Group;
 import javafx.scene.Parent;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Line;
 
 /**
+ * A class that handles the rendering of the turtles
  * @author Albert
  *
  */
@@ -29,6 +31,13 @@ public class RenderModule extends Module {
 	private Group myGroup;
 	private static final String turtlePath = "/resources/turtle.png";
 
+	/**
+	 * Creates a new RenderModule
+	 * @param width		width of module
+	 * @param height	height of module
+	 * @param view		associated ViewModule
+	 * @throws Exception
+	 */
 	public RenderModule(double width, double height, ViewModule view) throws Exception {
 		super(width, height, view);
 		mySpriteLines = new HashMap<>();
@@ -45,10 +54,13 @@ public class RenderModule extends Module {
 		myPane.getChildren().add(myGroup);
 
 		myPane.getStyleClass().add("Render");
-		stylize();
 		return myPane;
 	}
 
+	/**
+	 * add a new RenderSprite to the RenderModule's list
+	 * @return	created RenderSprite
+	 */
 	public RenderSprite addTurtle() {
 		Pane myPane = (Pane) getParent();
 		RenderSprite sprite = new RenderSprite(turtleId, turtlePath, getWidth(), getHeight(), this);
@@ -60,11 +72,19 @@ public class RenderModule extends Module {
 	}
 
 	// https://docs.oracle.com/javafx/2/canvas/jfxpub-canvas.htm
-	public void drawLine(int turtleId, double oldX, double oldY, double newX, double newY) {
+	/**
+	 * Draws a line from the turtleId's "current" position (as defined by javafx animations) and its new position
+	 * Adds line to mapping from turtle to list of lines
+	 * @param turtleId	id of turtle drawing line
+	 * @param newX		new x position of turtle
+	 * @param newY		new y position of turtle
+	 */
+	public void drawLine(int turtleId, double newX, double newY) {
 		RenderSprite sprite = findSpriteById(turtleId);
-		if (sprite == null) {
-			return;
-		}
+		ImageView image = sprite.getImage();
+		double oldX = image.getX() + image.getBoundsInLocal().getWidth() / 2;
+		double oldY = image.getY() + image.getBoundsInLocal().getHeight() / 2;
+		
 		Line line = new Line(oldX, oldY, newX, newY);
 		line.getStyleClass().add("Render");
 		myGroup.getChildren().add(line);
@@ -80,20 +100,21 @@ public class RenderModule extends Module {
 		return null;
 	}
 
+	/**
+	 * clears the screen for selected turtles
+	 */
 	public void clearScreen() {
-		Pane myPane = (Pane) getParent();
 		Iterator<RenderSprite> renderIter = mySprites.iterator();
 		while(renderIter.hasNext()) {
 			RenderSprite s = renderIter.next();
-			List<Line> lineList = mySpriteLines.get(s);
-			myGroup.getChildren().removeAll(lineList);
-			if (!s.isSelected()) {
-				myPane.getChildren().remove(s.getImage());
-				renderIter.remove();
+			if(s.isSelected()) {
+				List<Line> lineList = mySpriteLines.get(s);
+				myGroup.getChildren().removeAll(lineList);			
 			}
 		}
 	}
 
+	@Override
 	public Element getXMLPreferences(Document doc) {
 		Element cls = doc.createElement(PreferenceXMLReader.RenderTags.MODULE.getTag());
 
@@ -116,11 +137,42 @@ public class RenderModule extends Module {
 		return cls;
 	}
 
-	private void stylize() {
-		// myGroup.getStyleClass().add("Render");
-	}
-
+	/**
+	 * @return	a list of contained rendersprites
+	 */
 	public List<RenderSprite> getSprites() {
 		return mySprites;
+	}
+	
+	/**
+	 * theoretically will set the state of the sprite list to a previous state
+	 * @param spriteState	previous list of rendersprites
+	 */
+	public void setSpriteState(List<RenderSprite> spriteState) {
+		Pane myPane = (Pane) getParent();
+		myPane.getChildren().clear();
+		for(RenderSprite rs : spriteState) {
+			myPane.getChildren().add(rs.getImage());
+		}
+		mySprites = spriteState;
+	}
+	
+	/**
+	 * theoretically will set the state of the render to a previous state
+	 * @param renderState	previous render state
+	 */
+	public void setRenderState(Parent renderState) {
+		setParent(renderState);
+	}
+
+	/**
+	 * Replace a turtle's image
+	 * @param oldImage	image to be removd
+	 * @param newImage	image to be added
+	 */
+	public void replaceImage(ImageView oldImage, ImageView newImage) {
+		Pane parent = (Pane) getParent();
+		parent.getChildren().remove(oldImage);
+		parent.getChildren().add(newImage);
 	}
 }
