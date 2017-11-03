@@ -11,6 +11,7 @@ import backend.board.TurtleCollection;
 /**
  * A Class that maintains a history of previous commands
  * @author Albert
+ * @author Lasia Lo
  *
  */
 public class History {

@@ -20,6 +20,7 @@ import exceptions.SyntaxException;
 /*TextParse.java
  * @author Venkat Subramaniam
  * @author Albert
+ * @author Lasia Lo
  * Class that creates an AbstractSyntaxTree after parsing lines of text.
  * @version 10.21.17
  */

@@ -10,7 +10,7 @@ import exceptions.XMLException;
 /**
  * An XMLReader that reads in the initial configuration parameters
  * @author Albert
- *
+ *@author Lasia
  */
 public class ConfigReader extends XMLReader {
 

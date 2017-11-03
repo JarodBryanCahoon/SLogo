@@ -9,7 +9,7 @@ import javafx.scene.control.MenuBar;
 /**
  * A class that creates a menubar from several submenus
  * @author Albert
- *
+ *@author Lasia
  */
 public class MenuFactory {	
 	/**

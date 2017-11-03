@@ -18,6 +18,10 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.layout.BorderPane;
 
+/**Houses all modules in a central window
+ * @author Lasia
+ *@author Albert
+ */
 public class ViewModule extends Module {
 	private static final String SET = "set";
 

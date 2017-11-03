@@ -12,7 +12,7 @@ import javafx.scene.Parent;
  * A class that allows the user to create a javafx parent within itself and be added in any order 
  * and any position to a controlling class
  * @author Albert
- *
+ *@author Lasia Lo
  */
 public abstract class Module implements Observer{
 	private double myWidth;

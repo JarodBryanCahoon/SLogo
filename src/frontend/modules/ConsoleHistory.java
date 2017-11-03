@@ -21,6 +21,10 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.util.Duration;
 
+/**Displays history of commands with syntax coloring
+ * @author lasia
+ *
+ */
 public class ConsoleHistory extends Module {
 	private static final String SCROLLPANE = "ScrollPane";
 	private static final String WINDOW = "Window";

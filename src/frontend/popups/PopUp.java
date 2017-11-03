@@ -7,7 +7,7 @@ import javafx.stage.Stage;
 /**
  * A class that automatically appears to the user on creation 
  * @author Albert
- *
+ *@author Lasia
  */
 public class PopUp {
 	private Stage myStage = new Stage();

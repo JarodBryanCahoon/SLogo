@@ -9,6 +9,10 @@ import backend.board.interfacemovement.SomeParamTurtle;
 import frontend.xml.ColorReader;
 import javafx.scene.Scene;
 
+/**
+ * @author Jarod Cahoon, Lasia Lo
+ *
+ */
 public class SetPenColor extends SomeParamTurtle {
 	public static final String RENDER = "Render";
 //	private ResourceBundle myColors = ResourceBundle.getBundle("");

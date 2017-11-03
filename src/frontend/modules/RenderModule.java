@@ -20,7 +20,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.shape.Line;
 
 /**
- * A class that handles the rendering of the turles
+ * A class that handles the rendering of the turtles
  * @author Albert
  *
  */
