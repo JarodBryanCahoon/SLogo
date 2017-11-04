@@ -2,13 +2,23 @@ package backend.control;
 
 import java.util.Map;
 
+/*
+ * This class enables one to repeat commands a certain number of times.
+ */
 public class Repeat extends ControlNode {
 	private static final String REPCOUNT = ":repCount";
+	
+	/*
+	 * The constructor just calls the super constructor.
+	 */
 	public Repeat(Map<String, VariableNode> variables) {
 		super(variables);
 	}
 	
-	
+	/*
+	 * (non-Javadoc)
+	 * @see backend.control.ControlNode#execute()
+	 */
 	@Override
 	public double execute() {
 		double d=0;
