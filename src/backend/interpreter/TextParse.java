@@ -20,7 +20,7 @@ import exceptions.SyntaxException;
 /*TextParse.java
  * @author Venkat Subramaniam
  * Class that creates an AbstractSyntaxTree after parsing lines of text.
- * @version 10.21.17
+ * @version 10.31.17
  */
 public class TextParse {
 	private static final String COMMENT = "Comment";
@@ -39,12 +39,20 @@ public class TextParse {
 	private Properties myProperties;
 	private Map<String, String> languageMap;
 	
+	/*
+	 * Constructor for this class. Takes a single map of variables and constructs the resource bundle 
+	 * and syntax reader.
+	 * @param vars
+	 */
 	public TextParse(Map<String, VariableNode> vars) throws ClassNotFoundException, FileNotFoundException {
 		variables = vars;
 		rb = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE +DEFAULT_COMMAND_MAP);
 		createSyntaxReader();
 	}
 	
+	/*
+	 * This method enables one to change the language used to parse commands.
+	 */
 	public void changeLanguage(Properties languageFile) { 
 		languageMap = new HashMap<>(); 
 		for(Object key : languageFile.keySet()) { 
@@ -59,16 +67,24 @@ public class TextParse {
 		}
 	} 
 
-
+	/*
+	 * This method creates the syntax reader.
+	 */
 	private void createSyntaxReader() throws ClassNotFoundException, FileNotFoundException {
 		SyntaxReader sReader = new SyntaxReader();
 		myProperties = sReader.getProperties();
 	}
 	
+	/*
+	 * This method is a public one which allows the current commands to be set.
+	 */
 	public void setCommands(String s, TurtleCollection turtles) {
 		makeTree(s, turtles);
 	}
 
+	/*
+	 * This method parses the text, gets rid of whitespaces and comments.
+	 */
 	private void makeTree(String commands, TurtleCollection turtles) {
 		String[] lineList = commands.split(myProperties.getProperty(NEWLINE));	
 		for (String command: lineList) {
@@ -88,6 +104,10 @@ public class TextParse {
 		}
 	}
 
+	/*
+	 * This method fills the queue data structure with Word objects, which will later be used to construct
+	 * an abstract syntax tree.
+	 */
 	private void fillCommandQueue(String s, TurtleCollection turtles) {
 		String[] commandList = s.split(myProperties.getProperty(WHITESPACE));
 		for(int i = 0; i<commandList.length; i++) {
@@ -113,6 +133,10 @@ public class TextParse {
 		}
 	}
 
+	/*
+	 * This method recursively creates the abstract syntax tree from the commands given to it using the previously
+	 * filled command queue.
+	 */
 
 	private ASTNode recursiveTree() {
 		if (queue.isEmpty()) {
@@ -129,11 +153,18 @@ public class TextParse {
 		return tree;
 	}
 	
+	/*
+	 * This is a public get method for the abstract syntax tree.
+	 */
 
 	public ASTNode getTree() {
 		return root;
 	}
 	
+	/*
+	 * This returns an array of words, including the whitespaces, so that the front end can display the words along
+	 * with their types (commands, constants, etc).
+	 */
 	public Word[] getFormattedSentence(String s, TurtleCollection turtles) {
 		String[] commandList = s.split("\\b");
 		Word[] sentence = new Word[commandList.length];
@@ -145,6 +176,10 @@ public class TextParse {
 		return sentence;
 	}
 	
+	/*
+	 * This is a public method which enables one to set the language map of the TextParse object should it be 
+	 * necessary.
+	 */
 	public void setLanguageMap(Map<String, String> map) {
 		languageMap = map;
 	}
