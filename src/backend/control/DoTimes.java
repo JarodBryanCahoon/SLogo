@@ -2,25 +2,13 @@ package backend.control;
 
 import java.util.Map;
 
-/*
- * @author Venkat Subramaniam
- * This class creates a DoTimes node, which executes a command a certain number of times.
- */
 public class DoTimes extends ControlNode{	
 	private VariableNode count;
 	private int limit;
-	
-	/*
-	 * The constructor just calls the super constructor.
-	 */
 	public DoTimes(Map<String, VariableNode> variables) {
 		super(variables);
 	}
 	
-	/*
-	 * (non-Javadoc)
-	 * @see backend.control.ControlNode#execute()
-	 */
 	@Override
 	public double execute() {
 		makeVariable();
@@ -32,9 +20,6 @@ public class DoTimes extends ControlNode{
 		return result;
 	}
 
-	/*
-	 * This command creates a variable, repcount, that can be accessed by the commands being performed.
-	 */
 	private void makeVariable() {
 		ListNode myList = (ListNode) super.getChildren().get(0);
 		String[] params = myList.getContents();

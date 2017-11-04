@@ -2,10 +2,6 @@ package backend.control;
 
 import java.util.Map;
 
-/*
- * @author Venkat Subramaniam
- * This class enables the construction of for loops within the AST.
- */
 public class For extends ControlNode{
     private double limit = 0;
 	private VariableNode count;
@@ -13,17 +9,10 @@ public class For extends ControlNode{
 	private double init;
 	private double increment;
 	
-	/*
-	 * The constrcutor just calls the super constructor.
-	 */
 	public For(Map<String, VariableNode> variables) {
 		super(variables);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see backend.control.ControlNode#execute()
-	 */
 	@Override
 	public double execute() {
 		makeVariable();
@@ -34,9 +23,6 @@ public class For extends ControlNode{
 		return result;
 	}
 	
-	/*
-	 * This command just creates and stores the variable that can be referenced by the commands in the for loop.
-	 */
 	private void makeVariable() {
 		ListNode myList = (ListNode) super.getChildren().get(0);
 		params = myList.getContents();

@@ -23,8 +23,6 @@ import backend.control.VariableNode;
 
 /**
  * @author Venkat Subramaniam
- * This is a class which enables one to create Word objects, which are assigned a type depending on what they are.
- * @version 10.31.17
  *
  */
 public class Word {
@@ -41,10 +39,7 @@ public class Word {
 	private TurtleCollection myTurtles;
 	private Map<String, String> myLanguageMap;
 
-	/*
-	 * Constructor for this class. It takes in a string, a resource bundle, a turtle collection, a map of variables, and a language map.
-	 * @param s, resources, turtles, variables, languageMap
-	 */
+	
 	
 	public Word(String s, ResourceBundle resources, TurtleCollection turtles, Map<String, VariableNode> variables, Map<String, String> languageMap) {	
 		myName = s;
@@ -55,9 +50,6 @@ public class Word {
 		determineType(resources, variables);
 	}
 	
-	/*
-	 * This method enables the object to determine the type of input that it has received.
-	 */
 	private void determineType(ResourceBundle rb, Map<String, VariableNode> variables) {
 		if(myName.matches(myProperties.getProperty(CONSTANT))){ 
 			makeConstantNode();
@@ -82,9 +74,6 @@ public class Word {
 		} 
 	}
 	
-	/*
-	 * This method creates and sets myNode to a List Node if it is called.
-	 */
 	private void makeListNode(ResourceBundle rb, Map<String, VariableNode> variables) {
 		myType = LIST;
 		try {
@@ -98,17 +87,11 @@ public class Word {
 		}
 	}
 
-	/*
-	 * This method creates and sets myNode to a Constant Node if it is called.
-	 */
 	private void makeConstantNode() {
 		myType = CONSTANT;
 		myNode = new ConstantNode(Double.parseDouble(myName));
 	}
 
-	/*
-	 * This method creates and sets myNode to a Command Node if it is called. 
-	 */
 	private void makeCommandNode(ResourceBundle rb, Map<String, VariableNode> variables) {
 		myType = COMMAND;
 		if (myName.startsWith(":")) {
@@ -145,9 +128,6 @@ public class Word {
 	
 	}
 
-	/*
-	 * This methods creates and sets myNode to a Variable Node when it is called.
-	 */
 	private void makeVariableNode(Map<String, VariableNode> variables) {
 		myType = VARIABLE;
 		if(!variables.containsKey(myName)) {
@@ -159,31 +139,18 @@ public class Word {
 		}
 	}
 	
-	/*
-	 * This is a public get method for myNode.
-	 */
 	public ASTNode getNode() {
 		return myNode;
 	}
 
-	/*
-	 * This is a public get method for the type of word this is. 
-	 */
 	public String getType() {
 		return myType;
 	}
 
-	/*
-	 * This is a public get method for the string of the Word.
-	 */
 	public String getName() {
 		return myName;
 	}
 
-	/*
-	 * This is a public get method that is used if the node is a command node, to get the number of arguments
-	 * that the node takes.
-	 */
 	public int getNumber() {
 		return operatorNumber;
 	}

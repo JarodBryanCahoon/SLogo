@@ -2,26 +2,14 @@ package backend.control;
 
 import java.util.Map;
 
-/*
- * @author Venkat Subramaniam
- * This class is used to create user made commands.
- */
 public class To extends ControlNode {
 	private CommandVariableNode command; 
 	private double result = 0;
-	
-	/*
-	 * The constructor calls the super constructor.
-	 */
 	public To(Map<String, VariableNode> variables) {
 		super(variables);
 	}
 	
 	
-	/*
-	 * (non-Javadoc)
-	 * @see backend.control.ControlNode#execute()
-	 */
 	@Override
 	public double execute() {
 		makeCommandNode();
@@ -30,9 +18,6 @@ public class To extends ControlNode {
 	}
 	
 
-	/*
-	 * This method makes and stores the variables which are later used by the commands.
-	 */
 	private void makeVariables() {
 		ListNode myList = (ListNode) super.getChildren().get(1);
 		String[] vars = myList.getContents();
@@ -47,9 +32,6 @@ public class To extends ControlNode {
 	}
 
 
-	/*
-	 * This method makes the CommandVariableNode which stores the user made command.
-	 */
 	private void makeCommandNode() {
 		ListNode myList = (ListNode) super.getChildren().get(2);
 		VariableNode var = (VariableNode) super.getChildren().get(0);

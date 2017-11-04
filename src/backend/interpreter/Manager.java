@@ -29,7 +29,7 @@ import backend.control.VariableNode;
  * @author Albert
  * @author Venkat Subramaniam
  * Class that creates and maintains information used to interpret Slogo commands.
- * @version 10.31.17
+ * @version 10.21.17
  */ 
 
 public class Manager extends Observable implements Observer {

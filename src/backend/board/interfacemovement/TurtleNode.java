@@ -8,7 +8,7 @@ import backend.board.TurtleCollection;
 import exceptions.ErrorMessage;
 
 /**
- * @author Venkat
+ * @author Albert, Venkat
  *
  */
 public abstract class TurtleNode implements ASTNode {

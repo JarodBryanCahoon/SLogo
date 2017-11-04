@@ -41,13 +41,8 @@
 	<Rendering>
 		
 		<Render>
-<<<<<<< HEAD
-			<fx-background-color>#000000ff</fx-background-color>
-			<fx-stroke>#6a0</fx-stroke>
-=======
 			<fx-background-color>#ffffffff</fx-background-color>
 			<fx-stroke>#b34d1aff</fx-stroke>
->>>>>>> master
 			<fx-width>10</fx-width>
 			<turtle>red</turtle>
 		</Render>

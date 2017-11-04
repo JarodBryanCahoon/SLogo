@@ -18,10 +18,6 @@ import javafx.scene.input.MouseEvent;
  * @author Albert
  *	A Class that handles the rendering of a turtle
  */
-/**
- * @author Albert
- *
- */
 public class RenderSprite extends Observable implements iRenderSprite, Observer {
 	private static final double SELECTED_DIFFERENCE = 0.5;
 	private static final double SELECTED = 1.0;
@@ -257,9 +253,6 @@ public class RenderSprite extends Observable implements iRenderSprite, Observer 
 		return penDown;
 	}
 
-	/**
-	 * @return	the width of the pen
-	 */
 	public double getPenWidth() {
 		return myPenWidth;
 	}
