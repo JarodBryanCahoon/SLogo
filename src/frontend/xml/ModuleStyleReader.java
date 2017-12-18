@@ -13,9 +13,13 @@ import org.w3c.dom.NodeList;
 import exceptions.ErrorMessage;
 import exceptions.XMLException;
 import frontend.modules.Module;
-import frontend.modules.RenderModule;
 import frontend.modules.ViewModule;
 
+/**
+ * A class that reads in the style of all submodules of the ViewModule
+ * @author Albert
+ *
+ */
 public class ModuleStyleReader extends XMLReader {
 	private static final String POSITION_TAG = "position";
 	// maybe convert to enum
@@ -25,6 +29,13 @@ public class ModuleStyleReader extends XMLReader {
 	private static final String CLASS_TAG = "class";
 	private Map<Module, String> myModules;
 	
+	/**
+	 * Creates a new ModulestyleReader
+	 * @param path			path of file to read from
+	 * @param view			associated ViewModule
+	 * @throws XMLException
+	 * @throws IOException
+	 */
 	public ModuleStyleReader(String path, ViewModule view) throws XMLException, IOException {
 		super(path, view);
 	}
@@ -43,10 +54,19 @@ public class ModuleStyleReader extends XMLReader {
 		}
 	}
 
+	/**
+	 * @return	a map of Modules to their names;
+	 */
 	public Map<Module, String> getModules() {
 		return myModules;
 	}
 
+	/**
+	 * Use reflection to create a module from the read in string
+	 * @param element	element that contains information about a module
+	 * @return			an appropriately created module
+	 * @throws XMLException
+	 */
 	private Module instFromElement(Element element) throws XMLException {
 		String clsName = getContent(element, CLASS_TAG);
 		double width = (double) Integer.parseInt(getContent(element, WIDTH_TAG));
@@ -64,7 +84,6 @@ public class ModuleStyleReader extends XMLReader {
 			myModules.put(module, pos);
 		} catch (ClassNotFoundException | NoSuchMethodException | SecurityException | InstantiationException
 				| IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
-			e.printStackTrace();
 			ErrorMessage eMessage = new ErrorMessage("Could Not Read Modules From File");
 			eMessage.show();
 		}

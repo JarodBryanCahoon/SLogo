@@ -7,7 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-/**
+/**A class that creates a menuitem that creates a Stylize Module
  * @author lasia
  *
  */
@@ -41,7 +41,6 @@ public class ColorChange extends MenuItemStrategy {
 		Scene scene = this.getView().getParent().getScene();
 		scene.getStylesheets().clear();
 		scene.getStylesheets().add("/resources/style/" + "stylesheet2.css");
-		System.out.println("this works");
 	}
 
 }

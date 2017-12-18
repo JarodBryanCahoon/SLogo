@@ -9,10 +9,15 @@ import backend.board.interfacemovement.SomeParamTurtle;
 import frontend.xml.ColorReader;
 import javafx.scene.Scene;
 
+/**
+ * @author Jarod Cahoon, Lasia Lo
+ *
+ */
 public class SetPenColor extends SomeParamTurtle {
 	public static final String RENDER = "Render";
-	private ResourceBundle myColors = ResourceBundle.getBundle("TBD");
+//	private ResourceBundle myColors = ResourceBundle.getBundle("");
 	private String myColor;
+	
 	public SetPenColor(TurtleCollection turtles) {
 		super(turtles);
 	}
@@ -20,7 +25,7 @@ public class SetPenColor extends SomeParamTurtle {
 	@Override
 	public double act(Turtle turt) throws IOException {
 		// TODO Auto-generated method stub
-		ColorReader cr = new ColorReader(ColorReader.CSSPATH);
+		ColorReader cr = new ColorReader(ColorReader.CSSPATH+"Colors.xml");
 		cr.setColor(RENDER, 3, Double.toHexString(super.getChildren().get(0).execute()));
 		Scene thisScene = this.getTurtles().getScene();
 		thisScene.getStylesheets().clear();

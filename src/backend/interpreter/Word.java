@@ -12,23 +12,17 @@ import java.util.Properties;
 import java.util.ResourceBundle;
 
 import backend.abstractSyntaxTree.ASTNode;
-//import backend.abstractSyntaxTree.DoubleExp;
-//import backend.abstractSyntaxTree.DuoOperatorExp;
-//import backend.abstractSyntaxTree.Expression;
-//import backend.abstractSyntaxTree.ListExp;
-//import backend.abstractSyntaxTree.MonoOperatorExp;
-//import backend.abstractSyntaxTree.NoneOperatorExp;
-//import backend.abstractSyntaxTree.VariableExp;
 import backend.board.Turtle;
 import backend.board.TurtleCollection;
 import backend.board.logic.ConstantNode;
+import exceptions.ErrorMessage;
 import exceptions.SyntaxException;
+import backend.control.CommandVariableNode;
 import backend.control.ListNode;
-//import exceptions.ErrorMessage;
 import backend.control.VariableNode;
 
 /**
- * @author Venkat Subramaniam, Albert
+ * @author Venkat Subramaniam
  *
  */
 public class Word {
@@ -45,51 +39,6 @@ public class Word {
 	private TurtleCollection myTurtles;
 	private Map<String, String> myLanguageMap;
 
-
-//	public Word(String s, ResourceBundle resources, TurtleCollection turtles, Map<String, VariableNode> variables, Map<String, String> languageMap) throws SyntaxException {
-//		myName = s;
-//		SyntaxReader syntaxReader = new SyntaxReader();
-//		myProperties = syntaxReader.getProperties();
-//		myTurtles = turtles;
-//		myLanguageMap = languageMap;
-//		determineType(resources);
-//	}
-//
-//	private void determineType(ResourceBundle rb) throws SyntaxException {
-//		if (myName.matches(myProperties.getProperty(CONSTANT))) {
-//			myType = CONSTANT;
-//			// myExpression = new DoubleExp(Double.parseDouble(myName));
-//			 myNode = new ConstantNode(Double.parseDouble(myName));
-//		} else if (myName.matches(myProperties.getProperty(VARIABLE))) {
-//			myType = VARIABLE;
-//			// myExpression = new VariableExp(myName);
-////			 myNode = new VariableNode(myName);
-//		} else if (myName.matches(myProperties.getProperty(COMMAND))) {
-//			myType = COMMAND;
-//			try {
-//				String[] readString = rb.getString(myLanguageMap.get(myName)).split(",");
-//				operatorNumber = Integer.parseInt(readString[0]);
-//				String method = readString[1];
-//				String methodType = readString[2];
-//				Class<?> c = Class.forName(method);
-//				Constructor<?> ctr;
-//				// Node myNode;
-//				if (methodType.equals("Turtle")) {
-//					nodeType = "Turtle";
-//					ctr = c.getConstructor(TurtleCollection.class);
-//					myNode = (ASTNode) ctr.newInstance(myTurtles);
-//				} else {
-//					ctr = c.getConstructor();
-//					myNode = (ASTNode) ctr.newInstance();
-//				}
-//			} catch (MissingResourceException | ClassNotFoundException | NoSuchMethodException | SecurityException
-//					| InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NullPointerException e) {
-//				myType = "Invalid";
-//			}
-//		} else {
-//=======
-
-//	private Map<String, Integer> commandNumbers = new HashMap<String, Integer>();
 	
 	
 	public Word(String s, ResourceBundle resources, TurtleCollection turtles, Map<String, VariableNode> variables, Map<String, String> languageMap) {	
@@ -106,7 +55,13 @@ public class Word {
 			makeConstantNode();
 		}
 		else if(myName.matches(myProperties.getProperty(VARIABLE))) {
+			
+			if(variables.containsKey(myName)&&!variables.get(myName).isNumberVar()) {
+				makeCommandNode(rb, variables);
+			}
+			else {
 			makeVariableNode(variables);
+			}
 		}
 		else if(myName.matches(myProperties.getProperty(LIST))){
 			makeListNode(rb, variables);
@@ -122,13 +77,13 @@ public class Word {
 	private void makeListNode(ResourceBundle rb, Map<String, VariableNode> variables) {
 		myType = LIST;
 		try {
-			myNode = new ListNode(myName.substring(1,myName.length()), variables, myTurtles);
+			myNode = new ListNode(myName.substring(2,myName.length()-1), variables, myTurtles, myLanguageMap);
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			ErrorMessage eMessage = new ErrorMessage("Could Not Find Class");
+			eMessage.show();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			ErrorMessage eMessage = new ErrorMessage("Could Not Find File");
+			eMessage.show();
 		}
 	}
 
@@ -139,6 +94,10 @@ public class Word {
 
 	private void makeCommandNode(ResourceBundle rb, Map<String, VariableNode> variables) {
 		myType = COMMAND;
+		if (myName.startsWith(":")) {
+			CommandVariableNode comm = (CommandVariableNode) variables.get(myName);
+			operatorNumber = comm.getArgNum();
+		}else {
 		try {
 			String[] readString = rb.getString(myLanguageMap.get(myName.toLowerCase())).split(",");
 			operatorNumber = Integer.parseInt(readString[0]);
@@ -162,8 +121,9 @@ public class Word {
 			}
 		} catch (MissingResourceException | ClassNotFoundException | NoSuchMethodException | SecurityException
 				| InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NullPointerException e) {
-
+			
 			myType = "Invalid";
+		}
 		}
 	
 	}

@@ -35,15 +35,10 @@ public class To extends ControlNode {
 	private void makeCommandNode() {
 		ListNode myList = (ListNode) super.getChildren().get(2);
 		VariableNode var = (VariableNode) super.getChildren().get(0);
+		ListNode myArgs = (ListNode) super.getChildren().get(1);
 		String name = var.getName();
-//		if (!super.getVariables().containsKey(name)){
-//			command = new CommandVariableNode(name, myList);
-//			super.getVariables().put(name, command);
-//		}
-//		else {
-		command = (CommandVariableNode) super.getVariables().get(name);
-//		}
-		command.setList(myList);
+		command = super.getVariables().get(name).makeCommandNode(myList, myArgs.getContents().length);
+		super.getVariables().put(command.getName(), command);
 	}
 
 }

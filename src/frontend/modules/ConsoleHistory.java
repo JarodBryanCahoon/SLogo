@@ -8,15 +8,28 @@ import org.w3c.dom.Element;
 
 import backend.interpreter.Manager;
 import javafx.animation.FadeTransition;
+import javafx.geometry.Insets;
+import javafx.geometry.InsetsBuilder;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.util.Duration;
 
+/**Displays history of commands with syntax coloring
+ * @author lasia
+ *
+ */
 public class ConsoleHistory extends Module {
+	private static final String SCROLLPANE = "ScrollPane";
+	private static final String WINDOW = "Window";
 	private static final int FADE = 200;
+	private static final String GAP = "                                        ";
 	private VBox history;
 	private ScrollPane historyPane;
 	private Manager backend;
@@ -24,7 +37,7 @@ public class ConsoleHistory extends Module {
 	public ConsoleHistory(double myWidth, double myHeight, ViewModule view) throws Exception {
 		super(myWidth, myHeight, view);
 		historyPane.setMinSize(myWidth,myHeight);
-		history.setMinSize(myWidth-10,myHeight-10);
+		history.setMinSize(myWidth,myHeight);
 		backend = view.getManager();
 		backend.addObserver(this);
 		stylize();
@@ -39,10 +52,15 @@ public class ConsoleHistory extends Module {
 	
 	@Override
 	public void update(Observable backend, Object arg1) {
-		FlowPane toAdd = ((Manager) backend).getHistory();
+		Manager manager = (Manager) backend;
+		FlowPane toAdd = manager.getHistory();
 		history.getChildren().add(toAdd);
+		Text text = new Text(GAP+Double.toString(manager.getOutput()));
+		text.getStyleClass().add("Text");
+		text.setTextAlignment(TextAlignment.RIGHT);
+		
+		history.getChildren().add(text);
 		fadeIn(toAdd);
-		stylize();
 		historyPane.setVvalue(1.0);
 	}
 
@@ -60,10 +78,11 @@ public class ConsoleHistory extends Module {
 			history.getChildren().get(index).setStyle("-fx-background-color: black;");			
 	}
 
-
 	private void stylize() {
-		history.getStyleClass().add("Window");
-		historyPane.getStyleClass().add("ScrollPane");
+		history.getChildren().add(new Text(""));
+		history.getStyleClass().add(WINDOW);
+		historyPane.getStyleClass().add(SCROLLPANE);
+		historyPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
 		
 	}
 

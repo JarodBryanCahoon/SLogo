@@ -11,6 +11,11 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
+/**
+ * A class that displays a turtle's current state
+ * @author Albert
+ *
+ */
 public class TurtleView {
 	public enum METHODS {
 		ID("setId"),
@@ -47,10 +52,19 @@ public class TurtleView {
 		put(METHODS.ANGLE.getMethod(), double.class);
 	}};
 	
+	/**
+	 * Creates and shows a new TurtleView
+	 * @param rs
+	 */
 	public TurtleView(RenderSprite rs) {
 		PopUp myPop = new PopUp(createViewBox(rs), "Turtle View");
 	}
 	
+	/**
+	 * Creates the view for the turtle
+	 * @param rs	turtle/sprite to be shown
+	 * @return		vBox of turtle states
+	 */
 	private VBox createViewBox(RenderSprite rs) {
 		VBox parent = new VBox();
 		
@@ -63,6 +77,13 @@ public class TurtleView {
 		return parent;
 	}
 	
+	/**
+	 * Creates an HBox that maps turtle parameter with turtle state
+	 * @param method	reflection method to read turtle state
+	 * @param value		name of turtle's parameter
+	 * @param rs		rendersprite to read
+	 * @return			hBox with turtle parameter and associated information
+	 */
 	private HBox createSubBox(String method, String value, RenderSprite rs) {
 		HBox hBox = new HBox();
 		TextField head = new TextField(headers.get(method));
@@ -78,6 +99,13 @@ public class TurtleView {
 		return hBox;
 	}
 	
+	/**
+	 * reads the value of a turtle parameter
+	 * @param method		reflection method to get turtle instance field
+	 * @param paramValue	name of turtle instance field
+	 * @param rs			rendersprite to read from
+	 * @param code			user inputted interaction through javafx
+	 */
 	private void readValue(String method, TextField paramValue, RenderSprite rs, KeyCode code) {
 		if(code.equals(KeyCode.ENTER)) {
 			Method setMethod = null;
@@ -98,7 +126,6 @@ public class TurtleView {
 					setMethod.invoke(rs, value);
 				}
 			} catch (Exception e) {
-				e.printStackTrace();
 				ErrorMessage eMessage = new ErrorMessage("That value is invalid");
 				eMessage.show();
 			}

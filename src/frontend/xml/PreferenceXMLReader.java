@@ -4,6 +4,11 @@ import java.io.IOException;
 
 import exceptions.XMLException;
 
+/**
+ * A class that will theoretically read in preferences for each module according to an xml file
+ * @author Albert
+ *
+ */
 public class PreferenceXMLReader extends XMLReader {
 	public enum RenderTags {
 		NAME("name"),
@@ -32,6 +37,12 @@ public class PreferenceXMLReader extends XMLReader {
 	}
 
 	
+	/**
+	 * Creates a new PreferenceXMLReader
+	 * @param path			path of file to be read from
+	 * @throws XMLException
+	 * @throws IOException
+	 */
 	public PreferenceXMLReader(String path) throws XMLException, IOException {
 		super(path);
 	}

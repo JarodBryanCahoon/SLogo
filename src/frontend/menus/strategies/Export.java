@@ -1,10 +1,9 @@
 package frontend.menus.strategies;
 
 import java.io.File;
-
-import java.io.FileNotFoundException;
 import java.nio.file.InvalidPathException;
 import java.nio.file.Paths;
+
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -26,13 +25,12 @@ import frontend.modules.Module;
 import frontend.modules.ViewModule;
 import frontend.popups.TextPromptWindow;
 import frontend.xml.PreferenceXMLReader;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
 
+/**
+ * A MenuItemStrategy class that allows the user to export module preferences to a specified path
+ * @author Albert
+ *
+ */
 public class Export extends MenuItemStrategy {
 	public Export(ViewModule module) {
 		super(module);
@@ -44,6 +42,10 @@ public class Export extends MenuItemStrategy {
 	}
 
 	//https://www.mkyong.com/java/how-to-create-xml-file-in-java-dom/
+	/**
+	 * Writes a new XML file to the specified path
+	 * @param path	path to write to
+	 */
 	private void writeXML(String path) {
 //		path = this.getClass().getProtectionDomain().getCodeSource().getLocation().getPath() + path;
 		try {
@@ -63,6 +65,9 @@ public class Export extends MenuItemStrategy {
 		}			
 	}
 
+	/**
+	 * @return	a document with the preferences of each module in view written as a single element
+	 */
 	private Document createDocument() {
 		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder docBuilder;
