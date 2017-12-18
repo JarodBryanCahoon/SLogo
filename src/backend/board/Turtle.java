@@ -25,12 +25,14 @@ public class Turtle extends Observable implements ITurtle, Observer {
 	private boolean myOpacity;
 	private boolean isSelected;
 	private boolean clearScreen = false;
+	private RenderSprite mySprite;
 
 	/**
 	 * Create a new Turtle
 	 * @param ob	the RenderSprite that is observing this turtle
 	 */
 	public Turtle(RenderSprite ob) {
+		mySprite = ob;
 		addObserver(ob);
 		readRenderSprite(ob);
 	}
@@ -159,5 +161,13 @@ public class Turtle extends Observable implements ITurtle, Observer {
 	@Override
 	public void setOpacity(boolean isVisible) {
 		myOpacity = isVisible;
+	}
+
+	public void placeStamp() {
+		
+	}
+	
+	public void clearStamps() {
+		
 	}
 }

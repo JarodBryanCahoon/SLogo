@@ -42,6 +42,7 @@ public class Manager extends Observable implements Observer {
 	private InfoInterface myInfoInterface;
 	private History myHistory;
 	private Properties myLangProperties;
+	private ArrayList<RenderSprite> myStamps;
 	
 	/**
 	 * Creates a new Manager 
@@ -75,6 +76,13 @@ public class Manager extends Observable implements Observer {
 		return output;
 	}
 	
+	public void addStamp(RenderSprite rs) {
+		myStamps.add(rs);
+	}
+	
+	public void clearStamps() {
+		myStamps.clear();
+	}
 	/**
 	 * @return	the history as formatted by the info interface
 	 */
