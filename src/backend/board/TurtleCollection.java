@@ -11,6 +11,10 @@ import javafx.scene.Scene;
 /**
  * A Class that contains multiple turtles and can call multiple actions on them
  * @author Albert
+ * 
+ * I chose this as my masterpiece because while it is a simple class that doesn't seem to do a lot, in reality this class is an incredibly useful abstraction of
+ * multiple turtles. TurtleCollection uses the proxy pattern by acting as a sort of proxy pattern for multiple turtles. It removes the need for multiple for loops
+ * in every single command and logic in every command to find the correctly selected turtles, etc.
  *
  */
 public class TurtleCollection extends Observable implements ITurtle {

@@ -12,8 +12,7 @@ public class VariableInput {
 	}
 	private void send(KeyEvent event, String string) {
 		String text = inputField.textProperty().getValue();
-		if (
-		
+
 	}
 	
 }

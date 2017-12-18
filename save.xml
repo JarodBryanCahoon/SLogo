@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+<module>
+<name>frontend.modules.RenderModule</name>
+<stage_height>800.0</stage_height>
+<stage_width>800.0</stage_width>
+<sprite>
+<myX>127.99999999999997</myX>
+</sprite>
+<sprite>
+<myX>49.999999999999986</myX>
+</sprite>
+</module>
+</resources>

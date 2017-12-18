@@ -28,6 +28,11 @@
 			<type>button</type>
 			<strategy>ChangeLanguage</strategy>
 		</item>
+		<item>
+			<name>TurtleView</name>
+			<type>button</type>
+			<strategy>ImageViewing</strategy>
+		</item>
 	</menu>
 
 	<menu>

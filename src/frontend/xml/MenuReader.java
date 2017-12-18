@@ -22,6 +22,15 @@ import javafx.scene.control.MenuItem;
  * This class is important because it allows the user to create any number of
  * submenus
  * @author Albert
+ * 
+ * I chose this class as my masterpiece because, while it does not necessarily implement any specific design patterns, I think that
+ * this class and this feature is the best way to show that I completely understand the open to extension and closed to modification principle.
+ * In essence, this class allows people to create any number of submenus within submenus within submenus, no matter how many levels you want to go down, without
+ * changing any kind of code within the actual project besides adding a corresponding class for reflection. I feel that a lot of teams would write code that only reads menus
+ * down to a certain level, but this menu reader will read down to any level, which makes it completely reusable.
+ * 
+ * All a user has to do is add an item into the xml file. In addition, this class is completely modular and is completely reusable, because the idea of
+ * recursively reading in menus is not restricted to slogo.
  *
  */
 public class MenuReader extends XMLReader {

@@ -8,6 +8,8 @@ import backend.board.TurtleCollection;
 import exceptions.ErrorMessage;
 
 /**
+ * A class that provides a template for extending Nodes that perform actions on turtles
+ * 
  * @author Albert, Venkat
  *
  */
@@ -23,6 +25,12 @@ public abstract class TurtleNode implements ASTNode {
 		return myTurtles;		
 	}
 	
+	/**
+	 * Implements the logic for acting the command out on the turtle
+	 * @param turt	turtle to act on
+	 * @return		double value of the logo command execute
+	 * @throws IOException
+	 */
 	public abstract double act(Turtle turt) throws IOException;
 	
 	@Override
