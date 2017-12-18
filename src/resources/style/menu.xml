@@ -15,7 +15,9 @@
 				<type>button</type>
 				<strategy>NewWindow</strategy>
 			</item>
+			
 		</item>
+		
 
 		<item>
 			<name>Export Preferences</name>
@@ -27,6 +29,12 @@
 			<name>Change Language</name>
 			<type>button</type>
 			<strategy>ChangeLanguage</strategy>
+		</item>
+		
+		<item>
+			<name>Reset</name>
+			<type>button</type>
+			<strategy>Reset</strategy>
 		</item>
 	</menu>
 
@@ -52,6 +60,24 @@
 			<name>Bobby D's Help Page</name>
 			<type>button</type>
 			<strategy>Help</strategy>
+		</item>
+	</menu>
+
+	<menu>
+		<name>Debug</name>
+		<item>
+			<name>Step Through Debugger</name>
+			<type>menu</type>
+			<item>
+				<name>Undo</name>
+				<type>button</type>
+				<strategy>StepThroughUndo</strategy>
+			</item>
+			<item>
+				<name>Redo</name>
+				<type>button</type>
+				<strategy>StepThroughRedo</strategy>
+			</item>
 		</item>
 	</menu>
 
